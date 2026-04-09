@@ -48,10 +48,19 @@
     /* ── LAYOUT ── */
     .z { position: relative; z-index: 1; }
 
+    /* ── HERO (Pretext로 줄 단위 좌표 계산) ── */
+    .hero-area {
+      position: relative;
+      text-align: center;
+      padding: 56px 24px 8px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .hero-inner { text-align: center; }
     /* ── HEADER ── */
     header {
       text-align: center;
-      padding: 56px 24px 0;
+      padding: 0;
     }
     .logo {
       font-family: 'Press Start 2P', monospace;
@@ -67,6 +76,47 @@
       font-size: clamp(12px, 2vw, 15px);
       color: var(--muted);
       line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: keep-all;
+    }
+    /* 글자 사이로 튀어나오는 고양이 (Pretext 샘플 좌표) */
+    .cat-pop {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 72px;
+      height: 72px;
+      margin-left: -36px;
+      margin-top: -42px;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.2s ease, transform 0.38s cubic-bezier(0.34, 1.45, 0.64, 1);
+      filter: drop-shadow(0 0 14px rgba(232, 121, 249, 0.75));
+    }
+    .cat-pop img {
+      width: 72px;
+      height: 72px;
+      display: block;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+    .cat-pop.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .cat-pop.wiggle img {
+      animation: cat-pop-wiggle 0.35s ease-in-out infinite alternate;
+    }
+    @keyframes cat-pop-wiggle {
+      from { transform: rotate(-6deg) translateY(0); }
+      to { transform: rotate(6deg) translateY(-3px); }
+    }
+    #cat-wrap.dim {
+      opacity: 0.22;
+      filter: grayscale(0.3);
+      transition: opacity 0.25s ease, filter 0.25s ease;
     }
 
     /* ── STAGE ── */
@@ -103,7 +153,7 @@
       bottom: 40px;
       width: 96px;
       height: 96px;
-      transition: left .05s linear;
+      transition: left 0.05s linear, bottom 0.12s ease-out;
     }
     #cat-wrap.flip { transform: scaleX(-1); }
     #cat-img { width: 96px; height: 96px; display: block; }
@@ -182,6 +232,8 @@
     .btn-w:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent2); }
     .btn-m { color: var(--accent); border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
     .btn-m:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent); }
+    .btn-mi { color: #f59e0b; border-color: #f59e0b; box-shadow: 4px 4px 0 #f59e0b; }
+    .btn-mi:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #f59e0b; }
     .btn-gh { color: var(--accent3); border-color: var(--accent3); box-shadow: 4px 4px 0 var(--accent3); }
     .btn-gh:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent3); }
 
@@ -267,16 +319,20 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+<div id="cat-pop" class="cat-pop" aria-hidden="true">
+  <img id="cat-pop-img" src="sprites/idle_0.png" alt="" />
+</div>
+
 <div id="stars"></div>
 
-<!-- HEADER -->
-<header class="z">
-  <div class="logo">🐱 DESK <span>AI</span> PET</div>
-  <p class="tagline">
-    바탕화면에 사는 AI 집사<br>
-    단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출
-  </p>
-</header>
+<!-- HERO: @chenglou/pretext 로 hero-copy 줄배치 → 고양이 좌표 샘플 -->
+<section id="hero-area" class="z hero-area">
+  <header class="hero-inner">
+    <div class="logo">🐱 DESK <span>AI</span> PET</div>
+  </header>
+  <p id="hero-copy" class="tagline">바탕화면에 사는 AI 집사
+단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출</p>
+</section>
 
 <!-- STAGE -->
 <div id="stage" class="z" title="클릭해서 츄르 주기!">
@@ -303,8 +359,12 @@
       🪟 Windows
     </a>
     <a class="btn btn-m" id="btn-mac"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos.dmg">
-      🍎 macOS
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg">
+      🍎 macOS (Apple Silicon)
+    </a>
+    <a class="btn btn-mi" id="btn-mac-intel"
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg">
+      🍎 macOS (Intel)
     </a>
   </div>
 </div>
@@ -365,45 +425,125 @@
   Made with 🐱 &amp; PyQt5 &nbsp;·&nbsp; Windows &amp; macOS &nbsp;·&nbsp; MIT License
 </footer>
 
-<script>
+<script type="module">
+/**
+ * Pretext (@chenglou/pretext): https://github.com/chenglou/pretext
+ * hero-copy 줄배치(너비·줄 수)를 캔버스 측정으로 계산 → 글 줄 위 무작위 좌표에 고양이 팝업.
+ */
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 90; i++) {
   const s = document.createElement('div');
   s.className = 'star';
   s.style.left = Math.random() * 100 + '%';
-  s.style.top  = Math.random() * 100 + '%';
-  s.style.setProperty('--dur',   (2 + Math.random() * 3) + 's');
-  s.style.setProperty('--delay', (Math.random() * 3) + 's');
+  s.style.top = Math.random() * 100 + '%';
+  s.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
+  s.style.setProperty('--delay', Math.random() * 3 + 's');
   starsEl.appendChild(s);
 }
 
-/* ── 고양이 FSM ── */
-const catWrap   = document.getElementById('cat-wrap');
-const catImg    = document.getElementById('cat-img');
-const bubbleEl  = document.getElementById('bubble');
+const catWrap = document.getElementById('cat-wrap');
+const catImg = document.getElementById('cat-img');
+const catPop = document.getElementById('cat-pop');
+const catPopImg = document.getElementById('cat-pop-img');
+const bubbleEl = document.getElementById('bubble');
 const churuItem = document.getElementById('churu-item');
-const stage     = document.getElementById('stage');
+const stage = document.getElementById('stage');
+const heroCopy = document.getElementById('hero-copy');
 
-const IDLE  = Array.from({length:5}, (_,i) => `sprites/idle_${i}.png`);
-const WALK  = Array.from({length:5}, (_,i) => `sprites/walk_${i}.png`);
+const IDLE = Array.from({ length: 5 }, (_, i) => `sprites/idle_${i}.png`);
+const WALK = Array.from({ length: 5 }, (_, i) => `sprites/walk_${i}.png`);
+[...IDLE, ...WALK].forEach((s) => {
+  const im = new Image();
+  im.src = s;
+});
 
-// 프리로드
-[...IDLE, ...WALK].forEach(s => { const im = new Image(); im.src = s; });
+let prepareWithSegments;
+let layoutWithLines;
+let heroLinesMeta = [];
+let textPopReady = false;
 
-let state    = 'idle';
-let catX     = 60;
-let targetX  = 60;
-let flip     = false;
-let frame    = 0;
-let ftimer   = 0;
-let stimer   = 0;
+async function loadPretext() {
+  try {
+    const m = await import('https://esm.sh/@chenglou/pretext');
+    prepareWithSegments = m.prepareWithSegments;
+    layoutWithLines = m.layoutWithLines;
+    return true;
+  } catch (e) {
+    console.warn('[pretext] CDN 로드 실패 — 텍스트 팝업 비활성', e);
+    return false;
+  }
+}
+
+function heroFontShorthand() {
+  const cs = getComputedStyle(heroCopy);
+  const fs = cs.fontSize;
+  const fw = cs.fontWeight;
+  let fam = cs.fontFamily.split(',')[0].replace(/["']/g, '').trim();
+  if (!fam || fam === 'sans-serif') fam = 'Noto Sans KR';
+  return `${fw} ${fs} "${fam}", sans-serif`;
+}
+
+function lineHeightPx() {
+  const cs = getComputedStyle(heroCopy);
+  let lh = parseFloat(cs.lineHeight);
+  if (Number.isNaN(lh)) lh = parseFloat(cs.fontSize) * 1.7;
+  return lh;
+}
+
+function rebuildHeroLayout() {
+  if (!prepareWithSegments || !layoutWithLines || !heroCopy) return;
+  const text = heroCopy.textContent.trim();
+  if (!text) return;
+  const w = heroCopy.getBoundingClientRect().width;
+  if (w < 12) return;
+  const lh = lineHeightPx();
+  try {
+    const prepared = prepareWithSegments(text, heroFontShorthand(), {
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'keep-all',
+    });
+    const { lines } = layoutWithLines(prepared, w, lh);
+    heroLinesMeta = lines.map((l) => ({ width: l.width }));
+    textPopReady = heroLinesMeta.length > 0;
+  } catch (e) {
+    console.warn('[pretext] layout', e);
+    textPopReady = false;
+  }
+}
+
+function samplePopPoint() {
+  if (!heroLinesMeta.length) return null;
+  const rect = heroCopy.getBoundingClientRect();
+  const lh = lineHeightPx();
+  const i = Math.floor(Math.random() * heroLinesMeta.length);
+  const line = heroLinesMeta[i];
+  const inner = Math.max(4, line.width - 8);
+  const xInLine = Math.random() * inner;
+  const x = rect.left + (rect.width - line.width) / 2 + xInLine;
+  const y = rect.top + i * lh + lh * 0.52;
+  return { x, y };
+}
+
+await loadPretext();
+rebuildHeroLayout();
+new ResizeObserver(() => requestAnimationFrame(rebuildHeroLayout)).observe(heroCopy);
+window.addEventListener('load', () => rebuildHeroLayout());
+
+let state = 'idle';
+let catX = 60;
+let targetX = 60;
+let flip = false;
+let frame = 0;
+let ftimer = 0;
+let stimer = 0;
 let bubTimer = 0;
-const FINT   = 130; // ms per frame
-const SW     = () => Math.max(300, stage.clientWidth);
+const FINT = 115;
+const SW = () => Math.max(300, stage.clientWidth);
 
 function setFlip(f) {
   flip = f;
-  catWrap.style.transform = f ? 'scaleX(-1)' : '';
+  const sx = f ? 'scaleX(-1)' : '';
+  catWrap.style.transform = sx;
 }
 
 function showBubble(txt, ms = 1800) {
@@ -417,29 +557,68 @@ function showBubble(txt, ms = 1800) {
 function spawnChuru(x) {
   churuItem.style.left = x + 'px';
   churuItem.style.display = 'block';
-  setTimeout(() => { churuItem.style.display = 'none'; }, 2200);
+  setTimeout(() => {
+    churuItem.style.display = 'none';
+  }, 2200);
 }
 
-function goIdle()  { state='idle'; frame=0; stimer = 1800 + Math.random()*3000; }
-function goWalk()  {
-  state='walk'; frame=0;
-  targetX = Math.max(10, Math.min(SW()-110, Math.random()*(SW()-120)));
+function goIdle() {
+  state = 'idle';
+  frame = 0;
+  stimer = 1400 + Math.random() * 2800;
+}
+
+function goWalk() {
+  state = 'walk';
+  frame = 0;
+  targetX = Math.max(10, Math.min(SW() - 110, Math.random() * (SW() - 120)));
   setFlip(targetX < catX);
   stimer = 0;
 }
+
 function goEat(cx) {
-  state='eat'; frame=0;
+  state = 'eat';
+  frame = 0;
   const sx = cx + (flip ? -44 : 60);
-  spawnChuru(Math.max(0, Math.min(SW()-40, sx)));
+  spawnChuru(Math.max(0, Math.min(SW() - 40, sx)));
   showBubble('냠냠~ 🍣', 2000);
   stimer = 2100;
+}
+
+function goTextPop() {
+  const pt = samplePopPoint();
+  if (!pt || state !== 'idle' || !textPopReady) return false;
+  state = 'textpop';
+  catWrap.classList.add('dim');
+  catPop.style.left = `${pt.x}px`;
+  catPop.style.top = `${pt.y}px`;
+  catPop.classList.add('visible');
+  requestAnimationFrame(() => catPop.classList.add('wiggle'));
+
+  let pf = 0;
+  catPopImg.src = IDLE[0];
+  const iv = setInterval(() => {
+    pf += 1;
+    catPopImg.src = IDLE[pf % IDLE.length];
+  }, 130);
+
+  setTimeout(() => {
+    clearInterval(iv);
+    catPop.classList.remove('wiggle');
+    catPop.classList.remove('visible');
+    catWrap.classList.remove('dim');
+    state = 'idle';
+    stimer = 1800 + Math.random() * 3200;
+  }, 2600);
+  return true;
 }
 
 goIdle();
 
 let last = performance.now();
 function tick(now) {
-  const dt = Math.min(now - last, 80); last = now;
+  const dt = Math.min(now - last, 80);
+  last = now;
 
   ftimer += dt;
   if (ftimer >= FINT) {
@@ -455,47 +634,51 @@ function tick(now) {
     if (bubTimer <= 0) bubbleEl.classList.remove('show');
   }
 
-  catWrap.style.left = catX + 'px';
-
-  // 걷기
+  catWrap.style.left = `${catX}px`;
   if (state === 'walk') {
+    catWrap.style.bottom = `${40 + Math.sin(now / 200) * 6}px`;
     const dir = targetX > catX ? 1 : -1;
-    catX += dir * 2.2;
-    if (Math.abs(catX - targetX) < 5) {
+    const spd = 2.1 + Math.sin(now / 400) * 0.55;
+    catX += dir * spd;
+    if (Math.abs(catX - targetX) < 6) {
       catX = targetX;
-      if (Math.random() < 0.25) goEat(catX);
+      if (Math.random() < 0.22) goEat(catX);
       else goIdle();
     }
+  } else {
+    catWrap.style.bottom = '40px';
   }
 
-  // 상태 전이
-  if (state === 'idle' && stimer <= 0) goWalk();
-  if (state === 'eat'  && stimer <= 0) goIdle();
+  if (state === 'idle' && stimer <= 0) {
+    if (textPopReady && Math.random() < 0.3) {
+      if (!goTextPop()) goWalk();
+    } else goWalk();
+  }
+  if (state === 'eat' && stimer <= 0) goIdle();
 
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
 
-/* ── 스테이지 클릭 ── */
-stage.addEventListener('click', e => {
+stage.addEventListener('click', (e) => {
+  if (state === 'textpop') return;
   const rect = stage.getBoundingClientRect();
-  const cx   = e.clientX - rect.left;
+  const cx = e.clientX - rect.left;
   if (Math.abs(cx - catX - 48) < 72) {
-    // 고양이 클릭 → 츄르
     goEat(catX);
     showBubble('야옹! 🐾', 1600);
   } else {
-    // 다른 곳 클릭 → 이동
-    targetX = Math.max(10, Math.min(SW()-110, cx - 48));
+    targetX = Math.max(10, Math.min(SW() - 110, cx - 48));
     setFlip(targetX < catX);
-    state = 'walk'; frame = 0;
+    state = 'walk';
+    frame = 0;
     showBubble('가고 있어! 🏃', 1200);
   }
 });
 
-/* ── 다운로드 버튼 호버 ── */
 document.getElementById('btn-win').addEventListener('mouseenter', () => showBubble('Windows 다운로드! 🪟'));
-document.getElementById('btn-mac').addEventListener('mouseenter', () => showBubble('macOS 다운로드! 🍎'));
+document.getElementById('btn-mac').addEventListener('mouseenter', () => showBubble('macOS Apple Silicon 다운로드! 🍎'));
+document.getElementById('btn-mac-intel').addEventListener('mouseenter', () => showBubble('macOS Intel 다운로드! 🍎'));
 </script>
 </body>
 </html>
