@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desk AI Pet — 바탕화면 AI 집사</title>
+  <meta name="description" content="글로벌 단축키 하나로 Claude · ChatGPT · Gemini를 바탕화면에서 즉시 호출" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d1a;
+      --surface: #16162a;
+      --border: #2a2a4a;
+      --accent: #e879f9;
+      --accent2: #38bdf8;
+      --accent3: #4ade80;
+      --text: #e2e8f0;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      overflow-x: hidden;
+    }
+    img { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+    /* ── STARS ── */
+    #stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--dur, 3s) var(--delay, 0s) infinite alternate;
+    }
+    @keyframes twinkle { from { opacity: .15; } to { opacity: 1; } }
+
+    /* ── LAYOUT ── */
+    .z { position: relative; z-index: 1; }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 56px 24px 0;
+    }
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(13px, 3.5vw, 24px);
+      color: var(--accent);
+      text-shadow: 0 0 24px var(--accent), 0 0 6px var(--accent);
+      line-height: 1.8;
+      letter-spacing: 3px;
+    }
+    .logo span { color: var(--accent2); }
+    .tagline {
+      margin-top: 14px;
+      font-size: clamp(12px, 2vw, 15px);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── STAGE ── */
+    #stage {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      margin: 8px 0 0;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    /* 픽셀 바닥 */
+    #floor {
+      position: absolute;
+      bottom: 36px; left: 0; right: 0;
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--accent) 0 8px, transparent 8px 16px
+      );
+      opacity: .25;
+    }
+    /* 배경 픽셀 오브젝트 */
+    .bg-obj {
+      position: absolute;
+      bottom: 40px;
+      font-size: 22px;
+      opacity: .18;
+      user-select: none;
+    }
+
+    #cat-wrap {
+      position: absolute;
+      bottom: 40px;
+      width: 96px;
+      height: 96px;
+      transition: left .05s linear;
+    }
+    #cat-wrap.flip { transform: scaleX(-1); }
+    #cat-img { width: 96px; height: 96px; display: block; }
+
+    /* 말풍선 */
+    #bubble {
+      position: absolute;
+      bottom: 108px;
+      background: #fff;
+      color: #111;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      padding: 6px 10px;
+      border-radius: 3px;
+      border: 2px solid var(--accent);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s;
+      z-index: 5;
+    }
+    #bubble.show { opacity: 1; }
+    #bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -7px; left: 12px;
+      border: 4px solid transparent;
+      border-top-color: #fff;
+    }
+
+    /* 츄르 아이템 */
+    .item {
+      position: absolute;
+      bottom: 40px;
+      font-size: 26px;
+      display: none;
+      z-index: 4;
+      animation: bob .5s infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes bob { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+
+    /* ── DOWNLOAD ── */
+    .dl-section {
+      text-align: center;
+      padding: 4px 24px 36px;
+    }
+    .dl-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(8px, 1.8vw, 11px);
+      color: var(--accent2);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(7px, 1.4vw, 9px);
+      padding: 12px 22px;
+      border: 3px solid;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .08s, box-shadow .08s;
+      background: var(--surface);
+    }
+    .btn:active { transform: translate(2px,2px) !important; box-shadow: 0 0 !important; }
+    .btn-w { color: var(--accent2); border-color: var(--accent2); box-shadow: 4px 4px 0 var(--accent2); }
+    .btn-w:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent2); }
+    .btn-m { color: var(--accent); border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
+    .btn-m:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent); }
+    .btn-gh { color: var(--accent3); border-color: var(--accent3); box-shadow: 4px 4px 0 var(--accent3); }
+    .btn-gh:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent3); }
+
+    /* ── FEATURES ── */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      padding: 0 24px 56px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 22px;
+      flex: 1 1 200px;
+      max-width: 250px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .card-icon { font-size: 26px; margin-bottom: 10px; }
+    .card h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--accent);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .card p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      max-width: 640px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .how h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(8px, 1.8vw, 11px);
+      color: var(--accent2);
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+    .steps { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+    }
+    .step-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      min-width: 28px;
+      margin-top: 2px;
+    }
+    .step strong { display: block; margin-bottom: 4px; font-size: 14px; }
+    .step p { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--muted);
+      line-height: 2.2;
+    }
+  </style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<!-- HEADER -->
+<header class="z">
+  <div class="logo">🐱 DESK <span>AI</span> PET</div>
+  <p class="tagline">
+    바탕화면에 사는 AI 집사<br>
+    단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출
+  </p>
+</header>
+
+<!-- STAGE -->
+<div id="stage" class="z" title="클릭해서 츄르 주기!">
+  <div id="floor"></div>
+  <!-- 배경 오브젝트 -->
+  <span class="bg-obj" style="left:8%">🌙</span>
+  <span class="bg-obj" style="left:30%">⭐</span>
+  <span class="bg-obj" style="left:55%">💫</span>
+  <span class="bg-obj" style="left:80%">🌙</span>
+
+  <div id="bubble"></div>
+  <div id="cat-wrap">
+    <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
+  </div>
+  <div class="item" id="churu-item">🍣</div>
+</div>
+
+<!-- DOWNLOAD -->
+<div class="dl-section z">
+  <p class="dl-label">⬇ DOWNLOAD</p>
+  <div class="btn-row">
+    <a class="btn btn-w" id="btn-win"
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe">
+      🪟 Windows
+    </a>
+    <a class="btn btn-m" id="btn-mac"
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos.dmg">
+      🍎 macOS
+    </a>
+    <a class="btn btn-gh" href="https://github.com/Project-Undonghae/desk-ai-pet/releases">
+      📋 Releases
+    </a>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features z">
+  <div class="card">
+    <div class="card-icon">⌨️</div>
+    <h3>SPOTLIGHT AI</h3>
+    <p>글로벌 단축키 하나로 어디서든 AI 채팅창 팝업. macOS Spotlight처럼.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">🤖</div>
+    <h3>MULTI AI</h3>
+    <p>Claude · ChatGPT · Gemini 중 원하는 AI를 API Key 하나로 연결.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">🐾</div>
+    <h3>TRAY FIRST</h3>
+    <p>항상 트레이에 상주. 번역·PDF 요약·링크 저장을 펫이 처리.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">💾</div>
+    <h3>CLIP INBOX</h3>
+    <p>번역·링크·PDF 기록이 인박스에 자동 저장. 검색·재활용 가능.</p>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how z">
+  <h2>HOW IT WORKS</h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div>
+        <strong>다운로드 & 설치</strong>
+        <p>위 버튼으로 플랫폼에 맞는 파일을 받아 실행. 부팅 자동 시작 등록도 선택 가능.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div>
+        <strong>AI 연결</strong>
+        <p>설정에서 Claude · ChatGPT · Gemini 중 선택 후 API Key 입력. OS 키체인에 안전 저장.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div>
+        <strong>단축키로 즉시 호출</strong>
+        <p><code>Ctrl+Shift+Space</code> (Win) / <code>Cmd+Shift+Space</code> (Mac) 어디서든 AI 채팅 팝업.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="z">
+  Made with 🐱 &amp; PyQt5 &nbsp;·&nbsp; Windows &amp; macOS &nbsp;·&nbsp; MIT License<br>
+  <a href="https://github.com/Project-Undonghae/desk-ai-pet" style="color:var(--accent2);text-decoration:none;">
+    github.com/Project-Undonghae/mydeskpet
+  </a>
+</footer>
+
+<script>
+/* ── 별 ── */
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 90; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  s.style.left = Math.random() * 100 + '%';
+  s.style.top  = Math.random() * 100 + '%';
+  s.style.setProperty('--dur',   (2 + Math.random() * 3) + 's');
+  s.style.setProperty('--delay', (Math.random() * 3) + 's');
+  starsEl.appendChild(s);
+}
+
+/* ── 고양이 FSM ── */
+const catWrap   = document.getElementById('cat-wrap');
+const catImg    = document.getElementById('cat-img');
+const bubbleEl  = document.getElementById('bubble');
+const churuItem = document.getElementById('churu-item');
+const stage     = document.getElementById('stage');
+
+const IDLE  = Array.from({length:5}, (_,i) => `sprites/idle_${i}.png`);
+const WALK  = Array.from({length:5}, (_,i) => `sprites/walk_${i}.png`);
+
+// 프리로드
+[...IDLE, ...WALK].forEach(s => { const im = new Image(); im.src = s; });
+
+let state    = 'idle';
+let catX     = 60;
+let targetX  = 60;
+let flip     = false;
+let frame    = 0;
+let ftimer   = 0;
+let stimer   = 0;
+let bubTimer = 0;
+const FINT   = 130; // ms per frame
+const SW     = () => Math.max(300, stage.clientWidth);
+
+function setFlip(f) {
+  flip = f;
+  catWrap.style.transform = f ? 'scaleX(-1)' : '';
+}
+
+function showBubble(txt, ms = 1800) {
+  bubbleEl.textContent = txt;
+  const bx = Math.min(catX + 4, SW() - 160);
+  bubbleEl.style.left = bx + 'px';
+  bubbleEl.classList.add('show');
+  bubTimer = ms;
+}
+
+function spawnChuru(x) {
+  churuItem.style.left = x + 'px';
+  churuItem.style.display = 'block';
+  setTimeout(() => { churuItem.style.display = 'none'; }, 2200);
+}
+
+function goIdle()  { state='idle'; frame=0; stimer = 1800 + Math.random()*3000; }
+function goWalk()  {
+  state='walk'; frame=0;
+  targetX = Math.max(10, Math.min(SW()-110, Math.random()*(SW()-120)));
+  setFlip(targetX < catX);
+  stimer = 0;
+}
+function goEat(cx) {
+  state='eat'; frame=0;
+  const sx = cx + (flip ? -44 : 60);
+  spawnChuru(Math.max(0, Math.min(SW()-40, sx)));
+  showBubble('냠냠~ 🍣', 2000);
+  stimer = 2100;
+}
+
+goIdle();
+
+let last = performance.now();
+function tick(now) {
+  const dt = Math.min(now - last, 80); last = now;
+
+  ftimer += dt;
+  if (ftimer >= FINT) {
+    ftimer = 0;
+    const frames = state === 'walk' ? WALK : IDLE;
+    frame = (frame + 1) % frames.length;
+    catImg.src = frames[frame];
+  }
+
+  stimer -= dt;
+  if (bubTimer > 0) {
+    bubTimer -= dt;
+    if (bubTimer <= 0) bubbleEl.classList.remove('show');
+  }
+
+  catWrap.style.left = catX + 'px';
+
+  // 걷기
+  if (state === 'walk') {
+    const dir = targetX > catX ? 1 : -1;
+    catX += dir * 2.2;
+    if (Math.abs(catX - targetX) < 5) {
+      catX = targetX;
+      if (Math.random() < 0.25) goEat(catX);
+      else goIdle();
+    }
+  }
+
+  // 상태 전이
+  if (state === 'idle' && stimer <= 0) goWalk();
+  if (state === 'eat'  && stimer <= 0) goIdle();
+
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+/* ── 스테이지 클릭 ── */
+stage.addEventListener('click', e => {
+  const rect = stage.getBoundingClientRect();
+  const cx   = e.clientX - rect.left;
+  if (Math.abs(cx - catX - 48) < 72) {
+    // 고양이 클릭 → 츄르
+    goEat(catX);
+    showBubble('야옹! 🐾', 1600);
+  } else {
+    // 다른 곳 클릭 → 이동
+    targetX = Math.max(10, Math.min(SW()-110, cx - 48));
+    setFlip(targetX < catX);
+    state = 'walk'; frame = 0;
+    showBubble('가고 있어! 🏃', 1200);
+  }
+});
+
+/* ── 다운로드 버튼 호버 ── */
+document.getElementById('btn-win').addEventListener('mouseenter', () => showBubble('Windows 다운로드! 🪟'));
+document.getElementById('btn-mac').addEventListener('mouseenter', () => showBubble('macOS 다운로드! 🍎'));
+</script>
+</body>
+</html>
