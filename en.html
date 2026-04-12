@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <!-- Google Tag Manager -->
@@ -10,11 +10,11 @@
   })(window,document,'script','dataLayer','GTM-TJ4RS8CW');</script>
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desk AI Pet — 바탕화면 AI 집사</title>
-  <meta name="description" content="글로벌 단축키 하나로 Claude · ChatGPT · Gemini를 바탕화면에서 즉시 호출" />
+  <title>Desk AI Pet — Desktop AI Butler</title>
+  <meta name="description" content="Summon Claude, ChatGPT, and Gemini from your desktop with one global shortcut" />
   <link rel="alternate" hreflang="ko" href="index.html" />
   <link rel="alternate" hreflang="en" href="en.html" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0d0d1a;
@@ -31,7 +31,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       overflow-x: hidden;
     }
     img { image-rendering: pixelated; image-rendering: crisp-edges; }
@@ -98,7 +98,7 @@
     }
     .top-lang:hover { border-color: var(--accent2); color: var(--accent2) !important; }
 
-    /* ── HERO (Pretext로 줄 단위 좌표 계산) ── */
+    /* ── HERO (Pretext) ── */
     .hero-area {
       position: relative;
       text-align: center;
@@ -107,7 +107,6 @@
       margin: 0 auto;
     }
     .hero-inner { text-align: center; }
-    /* ── HEADER ── */
     header {
       text-align: center;
       padding: 0;
@@ -127,9 +126,8 @@
       color: var(--muted);
       line-height: 1.7;
       white-space: pre-wrap;
-      word-break: keep-all;
+      word-break: normal;
     }
-    /* 글자 사이로 튀어나오는 고양이 (Pretext 샘플 좌표) */
     .cat-pop {
       position: fixed;
       left: 0;
@@ -178,7 +176,6 @@
       overflow: hidden;
       cursor: pointer;
     }
-    /* 픽셀 바닥 */
     #floor {
       position: absolute;
       bottom: 36px; left: 0; right: 0;
@@ -189,7 +186,6 @@
       );
       opacity: .25;
     }
-    /* 배경 픽셀 오브젝트 */
     .bg-obj {
       position: absolute;
       bottom: 40px;
@@ -208,7 +204,6 @@
     #cat-wrap.flip { transform: scaleX(-1); }
     #cat-img { width: 96px; height: 96px; display: block; }
 
-    /* 말풍선 */
     #bubble {
       position: absolute;
       bottom: 108px;
@@ -234,7 +229,6 @@
       border-top-color: #fff;
     }
 
-    /* 츄르 아이템 */
     .item {
       position: absolute;
       bottom: 40px;
@@ -468,15 +462,15 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<nav class="top-nav z" aria-label="주요 내비게이션">
+<nav class="top-nav z" aria-label="Primary">
   <a class="top-brand" href="#">Desk AI Pet</a>
   <div class="top-links">
-    <a href="#waitlist">웨이트리스트</a>
-    <a href="#download">다운로드</a>
-    <a href="#features">기능</a>
-    <a href="#how">사용법</a>
-    <a href="#contact">문의</a>
-    <a class="top-lang" href="en.html" hreflang="en">English</a>
+    <a href="#waitlist">Waitlist</a>
+    <a href="#download">Download</a>
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#contact">Contact</a>
+    <a class="top-lang" href="index.html" hreflang="ko">한국어</a>
   </div>
 </nav>
 
@@ -486,28 +480,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="stars"></div>
 
-<!-- HERO: @chenglou/pretext 로 hero-copy 줄배치 → 고양이 좌표 샘플 -->
 <section id="hero-area" class="z hero-area">
   <header class="hero-inner">
     <div class="logo">🐱 DESK <span>AI</span> PET</div>
   </header>
-  <p id="hero-copy" class="tagline">바탕화면에 사는 AI 집사
-단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출</p>
+  <p id="hero-copy" class="tagline">Your desktop AI butler
+One shortcut to summon Claude · ChatGPT · Gemini</p>
   <section id="waitlist" class="waitlist-section z" aria-labelledby="waitlist-heading">
     <h2 id="waitlist-heading">WAITLIST</h2>
-    <p class="wl-desc">정식 출시·주요 업데이트 소식을 가장 먼저 받으려면 이메일을 남겨 주세요.</p>
+    <p class="wl-desc">Get notified about the full release and major updates—leave your email below.</p>
     <form class="waitlist-form" action="https://formspree.io/f/xaqawddd" method="POST">
-      <input type="hidden" name="_subject" value="Desk AI Pet — Waitlist (KO)" />
-      <input type="email" id="wl-email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="이메일 주소" />
-      <button type="submit" id="waitlist-submit" class="btn btn-gh">웨이트리스트 신청</button>
+      <input type="hidden" name="_subject" value="Desk AI Pet — Waitlist (EN)" />
+      <input type="email" id="wl-email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address" />
+      <button type="submit" id="waitlist-submit" class="btn btn-gh">Join waitlist</button>
     </form>
   </section>
 </section>
 
-<!-- STAGE -->
-<div id="stage" class="z" title="클릭해서 츄르 주기!">
+<div id="stage" class="z" title="Click to drop a treat!">
   <div id="floor"></div>
-  <!-- 배경 오브젝트 -->
   <span class="bg-obj" style="left:8%">🌙</span>
   <span class="bg-obj" style="left:30%">⭐</span>
   <span class="bg-obj" style="left:55%">💫</span>
@@ -515,12 +506,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div id="bubble"></div>
   <div id="cat-wrap">
-    <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
+    <img id="cat-img" src="sprites/idle_0.png" alt="Cat" />
   </div>
   <div class="item" id="churu-item">🍣</div>
 </div>
 
-<!-- DOWNLOAD -->
 <div id="download" class="dl-section z">
   <p class="dl-label">⬇ DOWNLOAD</p>
   <div class="btn-row">
@@ -545,7 +535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       🍎 macOS (Intel)
     </a>
   </div>
-  <p class="dl-demo-note">제공되는 다운로드는 <strong style="color: var(--text);">데모·시연용 빌드</strong>입니다. 기능·안정성은 정식 출시와 다를 수 있으며, 업데이트는 웨이트리스트와 공지를 통해 안내됩니다.</p>
+  <p class="dl-demo-note">These downloads are <strong style="color: var(--text);">demo / preview builds</strong>. Features and stability may differ from the final release. Updates will be announced via the waitlist and release notes.</p>
 </div>
 
 <script>
@@ -559,58 +549,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 </script>
 
-<!-- FEATURES -->
 <div id="features" class="features z">
   <div class="card">
     <div class="card-icon">⌨️</div>
     <h3>SPOTLIGHT AI</h3>
-    <p>글로벌 단축키 하나로 어디서든 AI 채팅창 팝업. macOS Spotlight처럼.</p>
+    <p>Pop up an AI chat from anywhere with one global shortcut—like macOS Spotlight.</p>
   </div>
   <div class="card">
     <div class="card-icon">🤖</div>
     <h3>MULTI AI</h3>
-    <p>Claude · ChatGPT · Gemini 중 원하는 AI를 API Key 하나로 연결.</p>
+    <p>Connect Claude, ChatGPT, or Gemini with your API keys.</p>
   </div>
   <div class="card">
     <div class="card-icon">🐾</div>
     <h3>TRAY FIRST</h3>
-    <p>항상 트레이에 상주. 번역·PDF 요약·링크 저장을 펫이 처리.</p>
+    <p>Lives in the system tray: translation, PDF summaries, and saved links handled by your pet.</p>
   </div>
   <div class="card">
     <div class="card-icon">💾</div>
     <h3>CLIP INBOX</h3>
-    <p>번역·링크·PDF 기록이 인박스에 자동 저장. 검색·재활용 가능.</p>
+    <p>Translations, links, and PDF history land in an inbox you can search and reuse.</p>
   </div>
   <div class="card">
     <div class="card-icon">🔀</div>
     <h3>CLI HUB</h3>
-    <p>의도만 맞추면 코딩·조사·일상은 설치된 AI CLI로, 일정·음악·날씨는 스크립트로—앱을 옮겨 다닐 필요 없이 펫 채팅 한 곳에서 처리합니다. CLI가 없을 때는 로컬 LLM으로 자연스럽게 이어집니다.</p>
+    <p>One chat line routes intent: send coding and research to installed AI CLIs, run calendar, music, and weather through scripts—no hopping between apps. When no CLI is available, it hands off to your local LLM.</p>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
 <div id="how" class="how z">
   <h2>HOW IT WORKS</h2>
   <div class="steps">
     <div class="step">
       <span class="step-num">01</span>
       <div>
-        <strong>다운로드 & 설치</strong>
-        <p>위 버튼으로 플랫폼에 맞는 파일을 받아 실행. 부팅 자동 시작 등록도 선택 가능.</p>
+        <strong>Download &amp; install</strong>
+        <p>Grab the build for your platform above and run it. You can enable launch at login if you like.</p>
       </div>
     </div>
     <div class="step">
       <span class="step-num">02</span>
       <div>
-        <strong>AI 연결</strong>
-        <p>설정에서 Claude · ChatGPT · Gemini 중 선택 후 API Key 입력. OS 키체인에 안전 저장.</p>
+        <strong>Connect your AI</strong>
+        <p>Pick Claude, ChatGPT, or Gemini in settings and add your API key. Stored in the OS keychain.</p>
       </div>
     </div>
     <div class="step">
       <span class="step-num">03</span>
       <div>
-        <strong>단축키로 즉시 호출</strong>
-        <p><code>Ctrl+Shift+Space</code> (Win) / <code>Cmd+Shift+Space</code> (Mac) 어디서든 AI 채팅 팝업.</p>
+        <strong>Open with a shortcut</strong>
+        <p><code>Ctrl+Shift+Space</code> (Windows) / <code>Cmd+Shift+Space</code> (macOS) opens the chat anywhere.</p>
       </div>
     </div>
   </div>
@@ -618,7 +606,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="contact" class="contact-section z" aria-labelledby="contact-heading">
   <h2 id="contact-heading">CONTACT</h2>
-  <p class="contact-desc">원하는 기능이나 문의사항이 있으면 아래 이메일로 보내 주세요.</p>
+  <p class="contact-desc">Feature requests or questions? Send them to the email below.</p>
   <p class="contact-email"><a href="mailto:ssongshare0720@gmail.com">ssongshare0720@gmail.com</a></p>
 </section>
 
@@ -627,10 +615,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script type="module">
-/**
- * Pretext (@chenglou/pretext): https://github.com/chenglou/pretext
- * hero-copy 줄배치(너비·줄 수)를 캔버스 측정으로 계산 → 글 줄 위 무작위 좌표에 고양이 팝업.
- */
 const starsEl = document.getElementById('stars');
 for (let i = 0; i < 90; i++) {
   const s = document.createElement('div');
@@ -670,7 +654,7 @@ async function loadPretext() {
     layoutWithLines = m.layoutWithLines;
     return true;
   } catch (e) {
-    console.warn('[pretext] CDN 로드 실패 — 텍스트 팝업 비활성', e);
+    console.warn('[pretext] CDN failed — text pop disabled', e);
     return false;
   }
 }
@@ -680,7 +664,7 @@ function heroFontShorthand() {
   const fs = cs.fontSize;
   const fw = cs.fontWeight;
   let fam = cs.fontFamily.split(',')[0].replace(/["']/g, '').trim();
-  if (!fam || fam === 'sans-serif') fam = 'Noto Sans KR';
+  if (!fam || fam === 'sans-serif') fam = 'Inter';
   return `${fw} ${fs} "${fam}", sans-serif`;
 }
 
@@ -701,7 +685,7 @@ function rebuildHeroLayout() {
   try {
     const prepared = prepareWithSegments(text, heroFontShorthand(), {
       whiteSpace: 'pre-wrap',
-      wordBreak: 'keep-all',
+      wordBreak: 'normal',
     });
     const { lines } = layoutWithLines(prepared, w, lh);
     heroLinesMeta = lines.map((l) => ({ width: l.width }));
@@ -782,7 +766,7 @@ function goEat(cx) {
   frame = 0;
   const sx = cx + (flip ? -44 : 60);
   spawnChuru(Math.max(0, Math.min(SW() - 40, sx)));
-  showBubble('냠냠~ 🍣', 2000);
+  showBubble('Nom nom~ 🍣', 2000);
   stimer = 2100;
 }
 
@@ -867,24 +851,24 @@ stage.addEventListener('click', (e) => {
   const cx = e.clientX - rect.left;
   if (Math.abs(cx - catX - 48) < 72) {
     goEat(catX);
-    showBubble('야옹! 🐾', 1600);
+    showBubble('Meow! 🐾', 1600);
   } else {
     targetX = Math.max(10, Math.min(SW() - 110, cx - 48));
     setFlip(targetX < catX);
     state = 'walk';
     frame = 0;
-    showBubble('가고 있어! 🏃', 1200);
+    showBubble('On my way! 🏃', 1200);
   }
 });
 
 const elDlWin = document.getElementById('download-windows');
-if (elDlWin) elDlWin.addEventListener('mouseenter', () => showBubble('Windows 다운로드! 🪟'));
+if (elDlWin) elDlWin.addEventListener('mouseenter', () => showBubble('Download for Windows 🪟'));
 const elDlArm = document.getElementById('download-macos-arm64');
-if (elDlArm) elDlArm.addEventListener('mouseenter', () => showBubble('macOS Apple Silicon 다운로드! 🍎'));
+if (elDlArm) elDlArm.addEventListener('mouseenter', () => showBubble('Download for Apple Silicon 🍎'));
 const elDlIntel = document.getElementById('download-macos-x64');
-if (elDlIntel) elDlIntel.addEventListener('mouseenter', () => showBubble('macOS Intel 다운로드! 🍎'));
+if (elDlIntel) elDlIntel.addEventListener('mouseenter', () => showBubble('Download for Intel Mac 🍎'));
 
-/** gtag 우선, 없으면 GTM dataLayer */
+/** Prefer gtag; else GTM dataLayer */
 function trackGaEvent(eventName, params) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);
