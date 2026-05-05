@@ -237,6 +237,50 @@
     .btn-gh { color: var(--accent3); border-color: var(--accent3); box-shadow: 4px 4px 0 var(--accent3); }
     .btn-gh:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent3); }
 
+    .dl-box {
+      max-width: 820px;
+      margin: 18px auto 0;
+      padding: 0 10px;
+    }
+
+    .dl-subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .ver-list {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .ver-card {
+      border: 2px solid var(--border);
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 10px 12px;
+      min-width: 240px;
+    }
+
+    .ver-card-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+
+    .mini-btn {
+      padding: 8px 10px;
+      font-size: 7px;
+      box-shadow: none;
+      border-width: 2px;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
     /* ── FEATURES ── */
     .features {
       display: flex;
@@ -353,21 +397,7 @@
 <!-- DOWNLOAD -->
 <div class="dl-section z">
   <p class="dl-label">⬇ DOWNLOAD</p>
-  <div class="btn-row">
-    <a class="btn btn-w" id="btn-win"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe">
-      🪟 Windows
-    </a>
-    <a class="btn btn-m" id="btn-mac"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg">
-      🍎 macOS (Apple Silicon)
-    </a>
-    <a class="btn btn-mi" id="btn-mac-intel"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg">
-      🍎 macOS (Intel)
-    </a>
-  </div>
-  <div id="version-list" style="max-width:720px;margin:18px auto 0; padding:0 10px;"></div>
+  <div id="version-list" class="dl-box"></div>
 </div>
 
 <!-- FEATURES -->
@@ -677,14 +707,26 @@ stage.addEventListener('click', (e) => {
   }
 });
 
-document.getElementById('btn-win').addEventListener('mouseenter', () => showBubble('Windows 다운로드! 🪟'));
-document.getElementById('btn-mac').addEventListener('mouseenter', () => showBubble('macOS Apple Silicon 다운로드! 🍎'));
-document.getElementById('btn-mac-intel').addEventListener('mouseenter', () => showBubble('macOS Intel 다운로드! 🍎'));
-
 async function renderVersions() {
   const host = document.getElementById('version-list');
   if (!host) return;
   host.innerHTML = '';
+
+  const fallback = {
+    win: 'https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe',
+    mac_arm64: 'https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg',
+    mac_x64: 'https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg',
+  };
+
+  const mkLatest = (label, href, cls) => {
+    const a = document.createElement('a');
+    a.className = `btn ${cls}`;
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = label;
+    return a;
+  };
 
   try {
     const res = await fetch('downloads/index.json', { cache: 'no-store' });
@@ -692,35 +734,37 @@ async function renderVersions() {
     const data = await res.json();
     const versions = Array.isArray(data.versions) ? data.versions : [];
 
+    const latestTitle = document.createElement('div');
+    latestTitle.className = 'dl-subtitle';
+    latestTitle.textContent = '최신 버전 다운로드';
+    host.appendChild(latestTitle);
+
+    const latestRow = document.createElement('div');
+    latestRow.className = 'btn-row';
+    latestRow.style.marginTop = '12px';
+
+    latestRow.appendChild(mkLatest('🪟 Windows', data.files?.win || fallback.win, 'btn-w'));
+    latestRow.appendChild(mkLatest('🍎 macOS (Apple Silicon)', data.files?.mac_arm64 || fallback.mac_arm64, 'btn-m'));
+    latestRow.appendChild(mkLatest('🍎 macOS (Intel)', data.files?.mac_x64 || fallback.mac_x64, 'btn-mi'));
+    host.appendChild(latestRow);
+
     if (!versions.length) return;
 
     const title = document.createElement('div');
+    title.className = 'dl-subtitle';
     title.style.marginTop = '14px';
-    title.style.color = 'var(--muted)';
-    title.style.fontSize = '12px';
-    title.textContent = '버전 목록 (GitHub Pages에서 직접 다운로드)';
+    title.textContent = '버전 목록';
     host.appendChild(title);
 
     const list = document.createElement('div');
-    list.style.marginTop = '10px';
-    list.style.display = 'flex';
-    list.style.flexWrap = 'wrap';
-    list.style.gap = '10px';
-    list.style.justifyContent = 'center';
+    list.className = 'ver-list';
 
     versions.slice(0, 12).forEach((v) => {
       const wrap = document.createElement('div');
-      wrap.style.border = '2px solid var(--border)';
-      wrap.style.background = 'var(--surface)';
-      wrap.style.borderRadius = '6px';
-      wrap.style.padding = '10px 12px';
-      wrap.style.minWidth = '220px';
+      wrap.className = 'ver-card';
 
       const h = document.createElement('div');
-      h.style.fontFamily = "'Press Start 2P', monospace";
-      h.style.fontSize = '8px';
-      h.style.color = 'var(--accent2)';
-      h.style.marginBottom = '10px';
+      h.className = 'ver-card-title';
       h.textContent = v;
       wrap.appendChild(h);
 
@@ -732,14 +776,10 @@ async function renderVersions() {
 
       const mk = (label, href) => {
         const a = document.createElement('a');
-        a.className = 'btn';
-        a.style.padding = '8px 10px';
-        a.style.fontSize = '7px';
-        a.style.boxShadow = 'none';
-        a.style.borderWidth = '2px';
-        a.style.borderColor = 'var(--border)';
-        a.style.color = 'var(--text)';
+        a.className = 'btn mini-btn';
         a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
         a.textContent = label;
         return a;
       };
@@ -768,8 +808,25 @@ async function renderVersions() {
 
     host.appendChild(list);
   } catch (e) {
-    // If index.json isn't present yet, don't block the page.
-    return;
+    const latestTitle = document.createElement('div');
+    latestTitle.className = 'dl-subtitle';
+    latestTitle.textContent = '최신 버전 다운로드';
+    host.appendChild(latestTitle);
+
+    const latestRow = document.createElement('div');
+    latestRow.className = 'btn-row';
+    latestRow.style.marginTop = '12px';
+    latestRow.appendChild(mkLatest('🪟 Windows', fallback.win, 'btn-w'));
+    latestRow.appendChild(mkLatest('🍎 macOS (Apple Silicon)', fallback.mac_arm64, 'btn-m'));
+    latestRow.appendChild(mkLatest('🍎 macOS (Intel)', fallback.mac_x64, 'btn-mi'));
+    host.appendChild(latestRow);
+
+    const hint = document.createElement('div');
+    hint.style.marginTop = '10px';
+    hint.style.fontSize = '11px';
+    hint.style.color = 'var(--muted)';
+    hint.textContent = '버전 목록은 배포 후 자동으로 표시됩니다.';
+    host.appendChild(hint);
   }
 }
 
