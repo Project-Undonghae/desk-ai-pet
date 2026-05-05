@@ -12,8 +12,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Desk AI Pet — 바탕화면 AI 집사</title>
   <meta name="description" content="글로벌 단축키 하나로 Claude · ChatGPT · Gemini를 바탕화면에서 즉시 호출" />
-  <link rel="alternate" hreflang="ko" href="index.html" />
-  <link rel="alternate" hreflang="en" href="en.html" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -50,59 +48,11 @@
     /* ── LAYOUT ── */
     .z { position: relative; z-index: 1; }
 
-    /* ── TOP BAR ── */
-    .top-nav {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 20px;
-      background: rgba(13, 13, 26, 0.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .top-brand {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(8px, 2vw, 11px);
-      color: var(--accent);
-      text-decoration: none;
-      letter-spacing: 1px;
-      text-shadow: 0 0 12px rgba(232, 121, 249, 0.35);
-    }
-    .top-brand:hover { color: var(--accent2); }
-    .top-links {
-      display: flex;
-      align-items: center;
-      gap: 10px 16px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .top-links a {
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
-    .top-links a:hover { color: var(--accent2); }
-    .top-lang {
-      padding: 6px 10px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px !important;
-      letter-spacing: 0.5px;
-    }
-    .top-lang:hover { border-color: var(--accent2); color: var(--accent2) !important; }
-
     /* ── HERO (Pretext로 줄 단위 좌표 계산) ── */
     .hero-area {
       position: relative;
       text-align: center;
-      padding: 56px 24px 24px;
+      padding: 56px 24px 8px;
       max-width: 520px;
       margin: 0 auto;
     }
@@ -287,73 +237,6 @@
     .btn-gh { color: var(--accent3); border-color: var(--accent3); box-shadow: 4px 4px 0 var(--accent3); }
     .btn-gh:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent3); }
 
-    .dl-demo-note {
-      margin-top: 18px;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 8px;
-    }
-
-    /* ── WAITLIST ── */
-    .waitlist-section {
-      max-width: 560px;
-      margin: 0 auto 56px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .waitlist-section h2 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(8px, 1.8vw, 11px);
-      color: var(--accent2);
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-    .waitlist-section .wl-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 22px;
-    }
-    .waitlist-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      align-items: stretch;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-    @media (min-width: 480px) {
-      .waitlist-form { flex-direction: row; align-items: stretch; }
-    }
-    .waitlist-form input[type="email"] {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 14px;
-      border: 2px solid var(--border);
-      border-radius: 4px;
-      background: var(--surface);
-      color: var(--text);
-      font-family: inherit;
-      font-size: 14px;
-    }
-    .waitlist-form input[type="email"]:focus {
-      outline: none;
-      border-color: var(--accent2);
-    }
-    .waitlist-form .btn { justify-content: center; white-space: nowrap; }
-    .hero-area .waitlist-section {
-      margin-top: 18px;
-      margin-bottom: 0;
-      padding: 0 8px;
-    }
-    .hero-area .wl-desc {
-      margin-bottom: 16px;
-    }
-
     /* ── FEATURES ── */
     .features {
       display: flex;
@@ -418,38 +301,6 @@
     .step strong { display: block; margin-bottom: 4px; font-size: 14px; }
     .step p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
-    /* ── CONTACT ── */
-    .contact-section {
-      max-width: 560px;
-      margin: 0 auto 48px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .contact-section h2 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(8px, 1.8vw, 11px);
-      color: var(--accent2);
-      margin-bottom: 12px;
-      letter-spacing: 1px;
-    }
-    .contact-section .contact-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 10px;
-    }
-    .contact-section .contact-email {
-      font-size: 14px;
-    }
-    .contact-section .contact-email a {
-      color: var(--accent2);
-      text-decoration: none;
-      word-break: break-all;
-    }
-    .contact-section .contact-email a:hover {
-      text-decoration: underline;
-    }
-
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -463,22 +314,10 @@
   </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ4RS8CW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<nav class="top-nav z" aria-label="주요 내비게이션">
-  <a class="top-brand" href="#">Desk AI Pet</a>
-  <div class="top-links">
-    <a href="#waitlist">웨이트리스트</a>
-    <a href="#download">다운로드</a>
-    <a href="#features">기능</a>
-    <a href="#how">사용법</a>
-    <a href="#contact">문의</a>
-    <a class="top-lang" href="en.html" hreflang="en">English</a>
-  </div>
-</nav>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ4RS8CW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
 <div id="cat-pop" class="cat-pop" aria-hidden="true">
   <img id="cat-pop-img" src="sprites/idle_0.png" alt="" />
@@ -493,15 +332,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </header>
   <p id="hero-copy" class="tagline">바탕화면에 사는 AI 집사
 단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출</p>
-  <section id="waitlist" class="waitlist-section z" aria-labelledby="waitlist-heading">
-    <h2 id="waitlist-heading">WAITLIST</h2>
-    <p class="wl-desc">정식 출시·주요 업데이트 소식을 가장 먼저 받으려면 이메일을 남겨 주세요.</p>
-    <form class="waitlist-form" action="https://formspree.io/f/xaqawddd" method="POST">
-      <input type="hidden" name="_subject" value="Desk AI Pet — Waitlist (KO)" />
-      <input type="email" id="wl-email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="이메일 주소" />
-      <button type="submit" id="waitlist-submit" class="btn btn-gh">웨이트리스트 신청</button>
-    </form>
-  </section>
 </section>
 
 <!-- STAGE -->
@@ -521,46 +351,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- DOWNLOAD -->
-<div id="download" class="dl-section z">
+<div class="dl-section z">
   <p class="dl-label">⬇ DOWNLOAD</p>
   <div class="btn-row">
-    <a id="download-windows"
-       class="btn btn-w"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe"
-       onclick="pushDownloadEvent('windows', 'DeskAIPet-latest-win64.exe')">
+    <a class="btn btn-w" id="btn-win"
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe">
       🪟 Windows
     </a>
-
-    <a id="download-macos-arm64"
-       class="btn btn-m"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg"
-       onclick="pushDownloadEvent('macOS_AppleSilicon', 'DeskAIPet-latest-macos-arm64.dmg')">
+    <a class="btn btn-m" id="btn-mac"
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg">
       🍎 macOS (Apple Silicon)
     </a>
-
-    <a id="download-macos-x64"
-       class="btn btn-mi"
-       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
-       onclick="pushDownloadEvent('macOS_Intel', 'DeskAIPet-latest-macos-x64.dmg')">
+    <a class="btn btn-mi" id="btn-mac-intel"
+       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg">
       🍎 macOS (Intel)
     </a>
   </div>
-  <p class="dl-demo-note">제공되는 다운로드는 <strong style="color: var(--text);">데모·시연용 빌드</strong>입니다. 기능·안정성은 정식 출시와 다를 수 있으며, 업데이트는 웨이트리스트와 공지를 통해 안내됩니다.</p>
+  <div id="version-list" style="max-width:720px;margin:18px auto 0; padding:0 10px;"></div>
 </div>
 
-<script>
-  function pushDownloadEvent(platform, fileName) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      'event': 'demo_download',
-      'platform': platform,
-      'file_name': fileName
-    });
-  }
-</script>
-
 <!-- FEATURES -->
-<div id="features" class="features z">
+<div class="features z">
   <div class="card">
     <div class="card-icon">⌨️</div>
     <h3>SPOTLIGHT AI</h3>
@@ -581,15 +392,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h3>CLIP INBOX</h3>
     <p>번역·링크·PDF 기록이 인박스에 자동 저장. 검색·재활용 가능.</p>
   </div>
-  <div class="card">
-    <div class="card-icon">🔀</div>
-    <h3>CLI HUB</h3>
-    <p>의도만 맞추면 코딩·조사·일상은 설치된 AI CLI로, 일정·음악·날씨는 스크립트로—앱을 옮겨 다닐 필요 없이 펫 채팅 한 곳에서 처리합니다. CLI가 없을 때는 로컬 LLM으로 자연스럽게 이어집니다.</p>
-  </div>
 </div>
 
 <!-- HOW IT WORKS -->
-<div id="how" class="how z">
+<div class="how z">
   <h2>HOW IT WORKS</h2>
   <div class="steps">
     <div class="step">
@@ -615,12 +421,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </div>
-
-<section id="contact" class="contact-section z" aria-labelledby="contact-heading">
-  <h2 id="contact-heading">CONTACT</h2>
-  <p class="contact-desc">원하는 기능이나 문의사항이 있으면 아래 이메일로 보내 주세요.</p>
-  <p class="contact-email"><a href="mailto:ssongshare0720@gmail.com">ssongshare0720@gmail.com</a></p>
-</section>
 
 <footer class="z">
   Made with 🐱 &amp; PyQt5 &nbsp;·&nbsp; Windows &amp; macOS &nbsp;·&nbsp; MIT License
@@ -877,32 +677,103 @@ stage.addEventListener('click', (e) => {
   }
 });
 
-const elDlWin = document.getElementById('download-windows');
-if (elDlWin) elDlWin.addEventListener('mouseenter', () => showBubble('Windows 다운로드! 🪟'));
-const elDlArm = document.getElementById('download-macos-arm64');
-if (elDlArm) elDlArm.addEventListener('mouseenter', () => showBubble('macOS Apple Silicon 다운로드! 🍎'));
-const elDlIntel = document.getElementById('download-macos-x64');
-if (elDlIntel) elDlIntel.addEventListener('mouseenter', () => showBubble('macOS Intel 다운로드! 🍎'));
+document.getElementById('btn-win').addEventListener('mouseenter', () => showBubble('Windows 다운로드! 🪟'));
+document.getElementById('btn-mac').addEventListener('mouseenter', () => showBubble('macOS Apple Silicon 다운로드! 🍎'));
+document.getElementById('btn-mac-intel').addEventListener('mouseenter', () => showBubble('macOS Intel 다운로드! 🍎'));
 
-/** gtag 우선, 없으면 GTM dataLayer */
-function trackGaEvent(eventName, params) {
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', eventName, params);
+async function renderVersions() {
+  const host = document.getElementById('version-list');
+  if (!host) return;
+  host.innerHTML = '';
+
+  try {
+    const res = await fetch('downloads/index.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('index.json fetch failed');
+    const data = await res.json();
+    const versions = Array.isArray(data.versions) ? data.versions : [];
+
+    if (!versions.length) return;
+
+    const title = document.createElement('div');
+    title.style.marginTop = '14px';
+    title.style.color = 'var(--muted)';
+    title.style.fontSize = '12px';
+    title.textContent = '버전 목록 (GitHub Pages에서 직접 다운로드)';
+    host.appendChild(title);
+
+    const list = document.createElement('div');
+    list.style.marginTop = '10px';
+    list.style.display = 'flex';
+    list.style.flexWrap = 'wrap';
+    list.style.gap = '10px';
+    list.style.justifyContent = 'center';
+
+    versions.slice(0, 12).forEach((v) => {
+      const wrap = document.createElement('div');
+      wrap.style.border = '2px solid var(--border)';
+      wrap.style.background = 'var(--surface)';
+      wrap.style.borderRadius = '6px';
+      wrap.style.padding = '10px 12px';
+      wrap.style.minWidth = '220px';
+
+      const h = document.createElement('div');
+      h.style.fontFamily = "'Press Start 2P', monospace";
+      h.style.fontSize = '8px';
+      h.style.color = 'var(--accent2)';
+      h.style.marginBottom = '10px';
+      h.textContent = v;
+      wrap.appendChild(h);
+
+      const row = document.createElement('div');
+      row.style.display = 'flex';
+      row.style.gap = '8px';
+      row.style.flexWrap = 'wrap';
+      row.style.justifyContent = 'center';
+
+      const mk = (label, href) => {
+        const a = document.createElement('a');
+        a.className = 'btn';
+        a.style.padding = '8px 10px';
+        a.style.fontSize = '7px';
+        a.style.boxShadow = 'none';
+        a.style.borderWidth = '2px';
+        a.style.borderColor = 'var(--border)';
+        a.style.color = 'var(--text)';
+        a.href = href;
+        a.textContent = label;
+        return a;
+      };
+
+      const per = (data.per_version_files && data.per_version_files[v]) ? data.per_version_files[v] : null;
+      if (per) {
+        row.appendChild(mk('Windows', per.win));
+        row.appendChild(mk('mac arm64', per.mac_arm64));
+        row.appendChild(mk('mac x64', per.mac_x64));
+      } else {
+        row.appendChild(mk('Windows', data.files?.win || '#'));
+        row.appendChild(mk('mac arm64', data.files?.mac_arm64 || '#'));
+        row.appendChild(mk('mac x64', data.files?.mac_x64 || '#'));
+      }
+      wrap.appendChild(row);
+
+      const hint = document.createElement('div');
+      hint.style.marginTop = '8px';
+      hint.style.fontSize = '11px';
+      hint.style.color = 'var(--muted)';
+      hint.textContent = 'GitHub Release 자산으로 다운로드됩니다.';
+      wrap.appendChild(hint);
+
+      list.appendChild(wrap);
+    });
+
+    host.appendChild(list);
+  } catch (e) {
+    // If index.json isn't present yet, don't block the page.
     return;
   }
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventName, ...params });
 }
 
-const wlForm = document.querySelector('#waitlist .waitlist-form');
-if (wlForm) {
-  wlForm.addEventListener('submit', () => {
-    trackGaEvent('waitlist_join', {
-      event_category: 'engagement',
-      event_label: 'waitlist_form',
-    });
-  });
-}
+renderVersions();
 </script>
 </body>
 </html>
