@@ -83,7 +83,8 @@
       display: inline-flex;
       gap: 8px;
       align-items: center;
-      z-index: 200;
+      z-index: 2147483647;
+      transform: translateZ(0);
     }
     .lang button{
       font-family: 'Press Start 2P', monospace;
@@ -122,6 +123,16 @@
       pointer-events: none;
       white-space: pre-wrap;
       word-break: keep-all;
+    }
+
+    @media (max-width: 480px){
+      .hero-area{
+        padding-top: 72px;
+      }
+      .lang{
+        top: 10px;
+        right: 10px;
+      }
     }
     /* 글자 사이로 튀어나오는 고양이 (Pretext 샘플 좌표) */
     .cat-pop {
@@ -457,15 +468,16 @@
   <img id="cat-pop-img" src="sprites/idle_0.png" alt="" />
 </div>
 
+<div class="lang" aria-label="Language toggle">
+  <button id="lang-ko" type="button" aria-pressed="true">KO</button>
+  <button id="lang-en" type="button" aria-pressed="false">EN</button>
+</div>
+
 <div id="stars"></div>
 
 <!-- HERO: @chenglou/pretext 로 hero-copy 줄배치 → 고양이 좌표 샘플 -->
 <section id="hero-area" class="z hero-area">
   <header class="hero-inner">
-    <div class="lang" aria-label="Language toggle">
-      <button id="lang-ko" type="button" aria-pressed="true">KO</button>
-      <button id="lang-en" type="button" aria-pressed="false">EN</button>
-    </div>
     <div class="logo">🐱 DESK <span>AI</span> PET</div>
   </header>
   <p id="hero-copy" class="tagline" data-i18n="hero_copy">
