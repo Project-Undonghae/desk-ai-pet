@@ -397,7 +397,32 @@
 <!-- DOWNLOAD -->
 <div class="dl-section z">
   <p class="dl-label">⬇ DOWNLOAD</p>
-  <div id="version-list" class="dl-box"></div>
+  <div class="btn-row">
+    <a
+      class="btn btn-w"
+      href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🪟 Windows
+    </a>
+    <a
+      class="btn btn-m"
+      href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🍎 macOS (Apple Silicon)
+    </a>
+    <a
+      class="btn btn-mi"
+      href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🍎 macOS (Intel)
+    </a>
+  </div>
 </div>
 
 <!-- FEATURES -->
@@ -706,131 +731,6 @@ stage.addEventListener('click', (e) => {
     showBubble('가고 있어! 🏃', 1200);
   }
 });
-
-async function renderVersions() {
-  const host = document.getElementById('version-list');
-  if (!host) return;
-  host.innerHTML = '';
-
-  const fallback = {
-    win: 'https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe',
-    mac_arm64: 'https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg',
-    mac_x64: 'https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg',
-  };
-
-  const mkLatest = (label, href, cls) => {
-    const a = document.createElement('a');
-    a.className = `btn ${cls}`;
-    a.href = href;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = label;
-    return a;
-  };
-
-  try {
-    const res = await fetch('downloads/index.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('index.json fetch failed');
-    const data = await res.json();
-    const versions = Array.isArray(data.versions) ? data.versions : [];
-
-    const latestTitle = document.createElement('div');
-    latestTitle.className = 'dl-subtitle';
-    latestTitle.textContent = '최신 버전 다운로드';
-    host.appendChild(latestTitle);
-
-    const latestRow = document.createElement('div');
-    latestRow.className = 'btn-row';
-    latestRow.style.marginTop = '12px';
-
-    latestRow.appendChild(mkLatest('🪟 Windows', data.files?.win || fallback.win, 'btn-w'));
-    latestRow.appendChild(mkLatest('🍎 macOS (Apple Silicon)', data.files?.mac_arm64 || fallback.mac_arm64, 'btn-m'));
-    latestRow.appendChild(mkLatest('🍎 macOS (Intel)', data.files?.mac_x64 || fallback.mac_x64, 'btn-mi'));
-    host.appendChild(latestRow);
-
-    if (!versions.length) return;
-
-    const title = document.createElement('div');
-    title.className = 'dl-subtitle';
-    title.style.marginTop = '14px';
-    title.textContent = '버전 목록';
-    host.appendChild(title);
-
-    const list = document.createElement('div');
-    list.className = 'ver-list';
-
-    versions.slice(0, 12).forEach((v) => {
-      const wrap = document.createElement('div');
-      wrap.className = 'ver-card';
-
-      const h = document.createElement('div');
-      h.className = 'ver-card-title';
-      h.textContent = v;
-      wrap.appendChild(h);
-
-      const row = document.createElement('div');
-      row.style.display = 'flex';
-      row.style.gap = '8px';
-      row.style.flexWrap = 'wrap';
-      row.style.justifyContent = 'center';
-
-      const mk = (label, href) => {
-        const a = document.createElement('a');
-        a.className = 'btn mini-btn';
-        a.href = href;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.textContent = label;
-        return a;
-      };
-
-      const per = (data.per_version_files && data.per_version_files[v]) ? data.per_version_files[v] : null;
-      if (per) {
-        row.appendChild(mk('Windows', per.win));
-        row.appendChild(mk('mac arm64', per.mac_arm64));
-        row.appendChild(mk('mac x64', per.mac_x64));
-      } else {
-        row.appendChild(mk('Windows', data.files?.win || '#'));
-        row.appendChild(mk('mac arm64', data.files?.mac_arm64 || '#'));
-        row.appendChild(mk('mac x64', data.files?.mac_x64 || '#'));
-      }
-      wrap.appendChild(row);
-
-      const hint = document.createElement('div');
-      hint.style.marginTop = '8px';
-      hint.style.fontSize = '11px';
-      hint.style.color = 'var(--muted)';
-      hint.textContent = 'GitHub Release 자산으로 다운로드됩니다.';
-      wrap.appendChild(hint);
-
-      list.appendChild(wrap);
-    });
-
-    host.appendChild(list);
-  } catch (e) {
-    const latestTitle = document.createElement('div');
-    latestTitle.className = 'dl-subtitle';
-    latestTitle.textContent = '최신 버전 다운로드';
-    host.appendChild(latestTitle);
-
-    const latestRow = document.createElement('div');
-    latestRow.className = 'btn-row';
-    latestRow.style.marginTop = '12px';
-    latestRow.appendChild(mkLatest('🪟 Windows', fallback.win, 'btn-w'));
-    latestRow.appendChild(mkLatest('🍎 macOS (Apple Silicon)', fallback.mac_arm64, 'btn-m'));
-    latestRow.appendChild(mkLatest('🍎 macOS (Intel)', fallback.mac_x64, 'btn-mi'));
-    host.appendChild(latestRow);
-
-    const hint = document.createElement('div');
-    hint.style.marginTop = '10px';
-    hint.style.fontSize = '11px';
-    hint.style.color = 'var(--muted)';
-    hint.textContent = '버전 목록은 배포 후 자동으로 표시됩니다.';
-    host.appendChild(hint);
-  }
-}
-
-renderVersions();
 </script>
 </body>
 </html>
