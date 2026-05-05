@@ -33,11 +33,15 @@
       --accent3: #4ade80;
       --text: #e2e8f0;
       --muted: #64748b;
+      --cat-size: clamp(80px, 14vw, 160px);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,121,249,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(56,189,248,0.05) 0%, transparent 50%),
+        var(--bg);
       color: var(--text);
       font-family: 'Noto Sans KR', sans-serif;
       overflow-x: hidden;
@@ -62,8 +66,8 @@
     .hero-area {
       position: relative;
       text-align: center;
-      padding: 56px 24px 8px;
-      max-width: 520px;
+      padding: 20px 24px 4px;
+      max-width: 720px;
       margin: 0 auto;
     }
     .hero-inner { text-align: center; }
@@ -110,10 +114,12 @@
     }
     .logo span { color: var(--accent2); }
     .tagline {
-      margin-top: 14px;
-      font-size: clamp(12px, 2vw, 15px);
-      color: var(--muted);
-      line-height: 1.7;
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
       white-space: pre-wrap;
       word-break: keep-all;
     }
@@ -161,7 +167,7 @@
     #stage {
       position: relative;
       width: 100%;
-      height: 200px;
+      height: clamp(180px, 30vh, 400px);
       margin: 8px 0 0;
       overflow: hidden;
       cursor: pointer;
@@ -189,17 +195,17 @@
     #cat-wrap {
       position: absolute;
       bottom: 40px;
-      width: 96px;
-      height: 96px;
+      width: var(--cat-size);
+      height: var(--cat-size);
       transition: left 0.05s linear, bottom 0.12s ease-out;
     }
     #cat-wrap.flip { transform: scaleX(-1); }
-    #cat-img { width: 96px; height: 96px; display: block; }
+    #cat-img { width: 100%; height: 100%; display: block; }
 
     /* 말풍선 */
     #bubble {
       position: absolute;
-      bottom: 108px;
+      bottom: calc(var(--cat-size) + 12px);
       background: #fff;
       color: #111;
       font-family: 'Press Start 2P', monospace;
@@ -246,11 +252,18 @@
       letter-spacing: 2px;
       margin-bottom: 20px;
     }
-    .btn-row {
+    .dl-row {
       display: flex;
       gap: 14px;
       justify-content: center;
-      flex-wrap: wrap;
+      align-items: center;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+    .dl-row > .btn{
+      flex: 0 0 auto;
+      justify-content: center;
+      min-width: 0;
     }
     .btn {
       font-family: 'Press Start 2P', monospace;
@@ -264,6 +277,9 @@
       gap: 8px;
       transition: transform .08s, box-shadow .08s;
       background: var(--surface);
+    }
+    .btn-secondary {
+      opacity: 0.75;
     }
     .btn:active { transform: translate(2px,2px) !important; box-shadow: 0 0 !important; }
     .btn-w { color: var(--accent2); border-color: var(--accent2); box-shadow: 4px 4px 0 var(--accent2); }
@@ -285,6 +301,16 @@
       margin-top: 10px;
       color: var(--muted);
       font-size: 12px;
+    }
+
+    @media (max-width: 480px){
+      .dl-row{
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .dl-row > .btn{
+        width: 100%;
+      }
     }
 
     .ver-list {
@@ -321,33 +347,36 @@
 
     /* ── FEATURES ── */
     .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-      padding: 0 24px 56px;
-      max-width: 900px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 0 40px 64px;
+      max-width: 1100px;
       margin: 0 auto;
+    }
+    @media (max-width: 860px) {
+      .features { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .features { grid-template-columns: 1fr; padding: 0 20px 48px; }
     }
     .card {
       background: var(--surface);
       border: 2px solid var(--border);
-      border-radius: 6px;
-      padding: 20px 22px;
-      flex: 1 1 200px;
-      max-width: 250px;
-      transition: border-color .2s, transform .2s;
+      border-radius: 10px;
+      padding: 24px 20px;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
     }
-    .card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .card-icon { font-size: 26px; margin-bottom: 10px; }
+    .card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 12px 32px rgba(232,121,249,0.15); }
+    .card-icon { font-size: 32px; margin-bottom: 14px; }
     .card h3 {
       font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
+      font-size: 8px;
       color: var(--accent);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
     }
-    .card p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+    .card p { font-size: 13px; color: var(--muted); line-height: 1.75; }
 
     /* ── HOW IT WORKS ── */
     .how {
@@ -363,23 +392,46 @@
       margin-bottom: 28px;
       letter-spacing: 1px;
     }
-    .steps { display: flex; flex-direction: column; gap: 16px; text-align: left; }
+    .steps { position: relative; display: flex; flex-direction: column; gap: 16px; text-align: left; }
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 37px;
+      top: 28px;
+      bottom: 28px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2), var(--accent3));
+      opacity: 0.3;
+    }
     .step {
       display: flex;
-      gap: 16px;
+      gap: 20px;
       align-items: flex-start;
       background: var(--surface);
       border: 2px solid var(--border);
       border-radius: 6px;
-      padding: 16px 18px;
+      padding: 18px 20px;
     }
     .step-num {
       font-family: 'Press Start 2P', monospace;
-      font-size: 11px;
+      font-size: 10px;
+      min-width: 36px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
       color: var(--accent);
-      min-width: 28px;
-      margin-top: 2px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      background: var(--surface);
     }
+    .step:nth-child(1) .step-num { border-color: var(--accent); color: var(--accent); }
+    .step:nth-child(2) .step-num { border-color: var(--accent2); color: var(--accent2); }
+    .step:nth-child(3) .step-num { border-color: var(--accent3); color: var(--accent3); }
     .step strong { display: block; margin-bottom: 4px; font-size: 14px; }
     .step p { font-size: 12px; color: var(--muted); line-height: 1.6; }
 
@@ -441,7 +493,7 @@
 <!-- DOWNLOAD -->
 <div class="dl-section z">
   <p class="dl-label" data-i18n="download_label">⬇ DOWNLOAD</p>
-  <div class="btn-row">
+  <div class="dl-row">
     <a
       class="btn btn-w"
       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe"
@@ -459,7 +511,7 @@
       <span data-i18n="download_mac_arm">🍎 macOS (Apple Silicon)</span>
     </a>
     <a
-      class="btn btn-mi"
+      class="btn btn-mi btn-secondary"
       href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
       target="_blank"
       rel="noopener noreferrer"
@@ -532,13 +584,16 @@
  * hero-copy 줄배치(너비·줄 수)를 캔버스 측정으로 계산 → 글 줄 위 무작위 좌표에 고양이 팝업.
  */
 const starsEl = document.getElementById('stars');
-for (let i = 0; i < 90; i++) {
+for (let i = 0; i < 120; i++) {
   const s = document.createElement('div');
   s.className = 'star';
   s.style.left = Math.random() * 100 + '%';
   s.style.top = Math.random() * 100 + '%';
   s.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
   s.style.setProperty('--delay', Math.random() * 3 + 's');
+  const sz = i < 40 ? '1px' : i < 90 ? '2px' : '3px';
+  s.style.width = sz;
+  s.style.height = sz;
   starsEl.appendChild(s);
 }
 
