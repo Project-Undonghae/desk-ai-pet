@@ -27,440 +27,7 @@
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="favicon-180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0d0d1a;
-      --surface: #16162a;
-      --border: #2a2a4a;
-      --accent: #e879f9;
-      --accent2: #38bdf8;
-      --accent3: #4ade80;
-      --text: #e2e8f0;
-      --muted: #64748b;
-      --cat-size: clamp(80px, 14vw, 160px);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,121,249,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(56,189,248,0.05) 0%, transparent 50%),
-        var(--bg);
-      color: var(--text);
-      font-family: 'Noto Sans KR', sans-serif;
-      overflow-x: hidden;
-    }
-    img { image-rendering: pixelated; image-rendering: crisp-edges; }
-
-    /* ── STARS ── */
-    #stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-    .star {
-      position: absolute;
-      width: 2px; height: 2px;
-      background: #fff;
-      border-radius: 50%;
-      animation: twinkle var(--dur, 3s) var(--delay, 0s) infinite alternate;
-    }
-    @keyframes twinkle { from { opacity: .15; } to { opacity: 1; } }
-
-    /* ── LAYOUT ── */
-    .z { position: relative; z-index: 1; }
-
-    /* ── HERO (Pretext로 줄 단위 좌표 계산) ── */
-    .hero-area {
-      position: relative;
-      text-align: center;
-      padding: 20px 24px 4px;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .hero-inner { text-align: center; }
-    /* ── HEADER ── */
-    header {
-      text-align: center;
-      padding: 0;
-    }
-    .lang {
-      position: fixed;
-      right: 14px;
-      top: 14px;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      z-index: 2147483647;
-      transform: translateZ(0);
-    }
-    .lang button{
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      padding: 8px 10px;
-      border: 2px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 6px;
-      cursor: pointer;
-      letter-spacing: 1px;
-    }
-    .lang button[aria-pressed="true"]{
-      border-color: var(--accent2);
-      box-shadow: 3px 3px 0 var(--accent2);
-    }
-    .lang button:focus-visible{
-      outline: 2px solid var(--accent2);
-      outline-offset: 3px;
-    }
-    .logo {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(13px, 3.5vw, 24px);
-      color: var(--accent);
-      text-shadow: 0 0 24px var(--accent), 0 0 6px var(--accent);
-      line-height: 1.8;
-      letter-spacing: 3px;
-    }
-    .logo span { color: var(--accent2); }
-    .tagline {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      opacity: 0;
-      pointer-events: none;
-      white-space: pre-wrap;
-      word-break: keep-all;
-    }
-
-    @media (max-width: 480px){
-      .hero-area{
-        padding-top: 72px;
-      }
-      .lang{
-        top: 10px;
-        right: 10px;
-      }
-    }
-    /* 글자 사이로 튀어나오는 고양이 (Pretext 샘플 좌표) */
-    .cat-pop {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 72px;
-      height: 72px;
-      margin-left: -36px;
-      margin-top: -42px;
-      z-index: 100;
-      pointer-events: none;
-      opacity: 0;
-      transform: scale(0);
-      transition: opacity 0.2s ease, transform 0.38s cubic-bezier(0.34, 1.45, 0.64, 1);
-      filter: drop-shadow(0 0 14px rgba(232, 121, 249, 0.75));
-    }
-    .cat-pop img {
-      width: 72px;
-      height: 72px;
-      display: block;
-      image-rendering: pixelated;
-      image-rendering: crisp-edges;
-    }
-    .cat-pop.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    .cat-pop.wiggle img {
-      animation: cat-pop-wiggle 0.35s ease-in-out infinite alternate;
-    }
-    @keyframes cat-pop-wiggle {
-      from { transform: rotate(-6deg) translateY(0); }
-      to { transform: rotate(6deg) translateY(-3px); }
-    }
-    #cat-wrap.dim {
-      opacity: 0.22;
-      filter: grayscale(0.3);
-      transition: opacity 0.25s ease, filter 0.25s ease;
-    }
-
-    /* ── STAGE ── */
-    #stage {
-      position: relative;
-      width: 100%;
-      height: clamp(180px, 30vh, 400px);
-      margin: 8px 0 0;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    /* 픽셀 바닥 */
-    #floor {
-      position: absolute;
-      bottom: 36px; left: 0; right: 0;
-      height: 4px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--accent) 0 8px, transparent 8px 16px
-      );
-      opacity: .25;
-    }
-    /* 배경 픽셀 오브젝트 */
-    .bg-obj {
-      position: absolute;
-      bottom: 40px;
-      font-size: 22px;
-      opacity: .18;
-      user-select: none;
-    }
-
-    #cat-wrap {
-      position: absolute;
-      bottom: 40px;
-      width: var(--cat-size);
-      height: var(--cat-size);
-      transition: left 0.05s linear, bottom 0.12s ease-out;
-    }
-    #cat-wrap.flip { transform: scaleX(-1); }
-    #cat-img { width: 100%; height: 100%; display: block; }
-
-    /* 말풍선 */
-    #bubble {
-      position: absolute;
-      bottom: calc(var(--cat-size) + 12px);
-      background: #fff;
-      color: #111;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      padding: 6px 10px;
-      border-radius: 3px;
-      border: 2px solid var(--accent);
-      white-space: nowrap;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity .15s;
-      z-index: 5;
-    }
-    #bubble.show { opacity: 1; }
-    #bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -7px; left: 12px;
-      border: 4px solid transparent;
-      border-top-color: #fff;
-    }
-
-    /* 츄르 아이템 */
-    .item {
-      position: absolute;
-      bottom: 40px;
-      font-size: 26px;
-      display: none;
-      z-index: 4;
-      animation: bob .5s infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes bob { from { transform: translateY(0); } to { transform: translateY(-6px); } }
-
-    /* ── DOWNLOAD ── */
-    .dl-section {
-      text-align: center;
-      padding: 4px 24px 36px;
-    }
-    .dl-label {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(8px, 1.8vw, 11px);
-      color: var(--accent2);
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-    .dl-row {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-      width: 100%;
-    }
-    .dl-row > .btn{
-      flex: 0 0 auto;
-      justify-content: center;
-      min-width: 0;
-    }
-    .btn {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(7px, 1.4vw, 9px);
-      padding: 12px 22px;
-      border: 3px solid;
-      border-radius: 3px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform .08s, box-shadow .08s;
-      background: var(--surface);
-    }
-    .btn-secondary {
-      opacity: 0.75;
-    }
-    .btn:active { transform: translate(2px,2px) !important; box-shadow: 0 0 !important; }
-    .btn-w { color: var(--accent2); border-color: var(--accent2); box-shadow: 4px 4px 0 var(--accent2); }
-    .btn-w:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent2); }
-    .btn-m { color: var(--accent); border-color: var(--accent); box-shadow: 4px 4px 0 var(--accent); }
-    .btn-m:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent); }
-    .btn-mi { color: #f59e0b; border-color: #f59e0b; box-shadow: 4px 4px 0 #f59e0b; }
-    .btn-mi:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #f59e0b; }
-    .btn-gh { color: var(--accent3); border-color: var(--accent3); box-shadow: 4px 4px 0 var(--accent3); }
-    .btn-gh:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--accent3); }
-
-    .dl-box {
-      max-width: 820px;
-      margin: 18px auto 0;
-      padding: 0 10px;
-    }
-
-    .dl-subtitle {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    @media (max-width: 480px){
-      .dl-row{
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .dl-row > .btn{
-        width: 100%;
-      }
-    }
-
-    .ver-list {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .ver-card {
-      border: 2px solid var(--border);
-      background: var(--surface);
-      border-radius: 6px;
-      padding: 10px 12px;
-      min-width: 240px;
-    }
-
-    .ver-card-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: var(--accent2);
-      margin-bottom: 10px;
-    }
-
-    .mini-btn {
-      padding: 8px 10px;
-      font-size: 7px;
-      box-shadow: none;
-      border-width: 2px;
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    /* ── FEATURES ── */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      padding: 0 40px 64px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    @media (max-width: 860px) {
-      .features { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .features { grid-template-columns: 1fr; padding: 0 20px 48px; }
-    }
-    .card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 10px;
-      padding: 24px 20px;
-      transition: border-color .2s, transform .2s, box-shadow .2s;
-    }
-    .card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 12px 32px rgba(232,121,249,0.15); }
-    .card-icon { font-size: 32px; margin-bottom: 14px; }
-    .card h3 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: var(--accent);
-      margin-bottom: 10px;
-      letter-spacing: 2px;
-    }
-    .card p { font-size: 13px; color: var(--muted); line-height: 1.75; }
-
-    /* ── HOW IT WORKS ── */
-    .how {
-      max-width: 640px;
-      margin: 0 auto 60px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .how h2 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(8px, 1.8vw, 11px);
-      color: var(--accent2);
-      margin-bottom: 28px;
-      letter-spacing: 1px;
-    }
-    .steps { position: relative; display: flex; flex-direction: column; gap: 16px; text-align: left; }
-    .steps::before {
-      content: '';
-      position: absolute;
-      left: 37px;
-      top: 28px;
-      bottom: 28px;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent), var(--accent2), var(--accent3));
-      opacity: 0.3;
-    }
-    .step {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 6px;
-      padding: 18px 20px;
-    }
-    .step-num {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      min-width: 36px;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-      background: var(--surface);
-    }
-    .step:nth-child(1) .step-num { border-color: var(--accent); color: var(--accent); }
-    .step:nth-child(2) .step-num { border-color: var(--accent2); color: var(--accent2); }
-    .step:nth-child(3) .step-num { border-color: var(--accent3); color: var(--accent3); }
-    .step strong { display: block; margin-bottom: 4px; font-size: 14px; }
-    .step p { font-size: 12px; color: var(--muted); line-height: 1.6; }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 24px;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      color: var(--muted);
-      line-height: 2.2;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -479,83 +46,85 @@
 
 <div id="stars"></div>
 
-<!-- HERO: @chenglou/pretext 로 hero-copy 줄배치 → 고양이 좌표 샘플 -->
-<section id="hero-area" class="z hero-area">
-  <header class="hero-inner">
-    <div class="logo">🐱 DESK <span>AI</span> PET</div>
-  </header>
+<!-- HERO FULLSCREEN: 고양이 스테이지가 전체 화면 배경, 텍스트는 오버레이 -->
+<section id="hero-fullscreen">
+  <!-- STAGE: 100vh 풀스크린 고양이 무대 -->
+  <div id="stage" data-i18n-title="stage_title" title="클릭해서 츄르 주기!">
+    <div id="floor"></div>
+    <span class="bg-obj" style="left:8%">🌙</span>
+    <span class="bg-obj" style="left:30%">⭐</span>
+    <span class="bg-obj" style="left:55%">💫</span>
+    <span class="bg-obj" style="left:80%">🌙</span>
+
+    <div id="bubble"></div>
+    <div id="cat-wrap">
+      <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
+    </div>
+    <div class="item" id="churu-item">🍣</div>
+  </div>
+
+  <!-- HERO OVERLAY: 타이틀 + 다운로드 CTA -->
+  <div class="hero-overlay">
+    <div class="hero-overlay-inner z">
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">AI DESKTOP COMPANION</p>
+      <div class="logo">🐱 DESK <span>AI</span> PET</div>
+      <p class="hero-tagline-text" data-i18n="hero_tagline">단축키 하나로, 원하는 AI를 바로 불러오세요</p>
+      <div class="hero-dl-row">
+        <a
+          class="btn btn-w"
+          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span data-i18n="download_win">🪟 Windows</span>
+        </a>
+        <a
+          class="btn btn-m"
+          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span data-i18n="download_mac_arm">🍎 macOS (Apple Silicon)</span>
+        </a>
+        <a
+          class="btn btn-mi btn-secondary"
+          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span data-i18n="download_mac_intel">🍎 macOS (Intel)</span>
+        </a>
+      </div>
+      <p class="dl-subtitle-hero" data-i18n="download_subtitle">최신 릴리즈 자산 · 무료 · MIT License</p>
+    </div>
+  </div>
+
+  <!-- pretext용 sr-only 측정 요소 (cat-pop 좌표 계산) -->
   <p id="hero-copy" class="tagline" data-i18n="hero_copy">
     바탕화면에 사는 AI 집사
     단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출
   </p>
 </section>
 
-<!-- STAGE -->
-<div id="stage" class="z" data-i18n-title="stage_title" title="클릭해서 츄르 주기!">
-  <div id="floor"></div>
-  <!-- 배경 오브젝트 -->
-  <span class="bg-obj" style="left:8%">🌙</span>
-  <span class="bg-obj" style="left:30%">⭐</span>
-  <span class="bg-obj" style="left:55%">💫</span>
-  <span class="bg-obj" style="left:80%">🌙</span>
-
-  <div id="bubble"></div>
-  <div id="cat-wrap">
-    <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
-  </div>
-  <div class="item" id="churu-item">🍣</div>
-</div>
-
-<!-- DOWNLOAD -->
-<div class="dl-section z">
-  <p class="dl-label" data-i18n="download_label">⬇ DOWNLOAD</p>
-  <div class="dl-row">
-    <a
-      class="btn btn-w"
-      href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-win64.exe"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span data-i18n="download_win">🪟 Windows</span>
-    </a>
-    <a
-      class="btn btn-m"
-      href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span data-i18n="download_mac_arm">🍎 macOS (Apple Silicon)</span>
-    </a>
-    <a
-      class="btn btn-mi btn-secondary"
-      href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span data-i18n="download_mac_intel">🍎 macOS (Intel)</span>
-    </a>
-  </div>
-  <p class="dl-subtitle" data-i18n="download_subtitle">최신 릴리즈 자산으로 바로 다운로드됩니다.</p>
-</div>
-
 <!-- FEATURES -->
+<p class="section-label" data-i18n="features_label">⚡ FEATURES</p>
 <div class="features z">
-  <div class="card">
+  <div class="card reveal">
     <div class="card-icon">⌨️</div>
     <h3 data-i18n="f1_title">SPOTLIGHT AI</h3>
     <p data-i18n="f1_desc">글로벌 단축키 하나로 어디서든 AI 채팅창 팝업. macOS Spotlight처럼.</p>
   </div>
-  <div class="card">
+  <div class="card reveal">
     <div class="card-icon">🤖</div>
     <h3 data-i18n="f2_title">MULTI AI</h3>
     <p data-i18n="f2_desc">Claude · ChatGPT · Gemini 중 원하는 AI를 API Key 하나로 연결.</p>
   </div>
-  <div class="card">
+  <div class="card reveal">
     <div class="card-icon">🐾</div>
     <h3 data-i18n="f3_title">TRAY FIRST</h3>
     <p data-i18n="f3_desc">항상 트레이에 상주. 번역·PDF 요약·링크 저장을 펫이 처리.</p>
   </div>
-  <div class="card">
+  <div class="card reveal">
     <div class="card-icon">💾</div>
     <h3 data-i18n="f4_title">CLIP INBOX</h3>
     <p data-i18n="f4_desc">번역·링크·PDF 기록이 인박스에 자동 저장. 검색·재활용 가능.</p>
@@ -566,21 +135,21 @@
 <div class="how z">
   <h2 data-i18n="how_title">HOW IT WORKS</h2>
   <div class="steps">
-    <div class="step">
+    <div class="step reveal">
       <span class="step-num">01</span>
       <div>
         <strong data-i18n="s1_title">다운로드 & 설치</strong>
         <p data-i18n="s1_desc">위 버튼으로 플랫폼에 맞는 파일을 받아 실행. 부팅 자동 시작 등록도 선택 가능.</p>
       </div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <span class="step-num">02</span>
       <div>
         <strong data-i18n="s2_title">AI 연결</strong>
         <p data-i18n="s2_desc">설정에서 Claude · ChatGPT · Gemini 중 선택 후 API Key 입력. OS 키체인에 안전 저장.</p>
       </div>
     </div>
-    <div class="step">
+    <div class="step reveal">
       <span class="step-num">03</span>
       <div>
         <strong data-i18n="s3_title">단축키로 즉시 호출</strong>
@@ -632,13 +201,16 @@ const I18N = {
   ko: {
     meta_title: "Desk AI Pet — 바탕화면 AI 집사",
     meta_desc: "단축키 하나로 Claude · ChatGPT · Gemini를 바탕화면에서 즉시 호출",
+    hero_eyebrow: "AI DESKTOP COMPANION",
     hero_copy: "바탕화면에 사는 AI 집사\n단축키 하나로 Claude · ChatGPT · Gemini 즉시 호출",
+    hero_tagline: "단축키 하나로, 원하는 AI를 바로 불러오세요",
     stage_title: "클릭해서 츄르 주기!",
-    download_label: "⬇ DOWNLOAD",
-    download_subtitle: "최신 릴리즈 자산으로 바로 다운로드됩니다.",
+    download_label: "⬇ DOWNLOAD FREE",
+    download_subtitle: "최신 릴리즈 자산 · 무료 · MIT License",
     download_win: "🪟 Windows",
     download_mac_arm: "🍎 macOS (Apple Silicon)",
     download_mac_intel: "🍎 macOS (Intel)",
+    features_label: "⚡ FEATURES",
     f1_title: "SPOTLIGHT AI",
     f1_desc: "글로벌 단축키 하나로 어디서든 AI 채팅창 팝업. macOS Spotlight처럼.",
     f2_title: "MULTI AI",
@@ -662,13 +234,16 @@ const I18N = {
   en: {
     meta_title: "Desk AI Pet — Desktop AI companion",
     meta_desc: "Instantly call Claude, ChatGPT, or Gemini from your desktop with a global hotkey",
+    hero_eyebrow: "AI DESKTOP COMPANION",
     hero_copy: "A desktop AI companion\nCall Claude · ChatGPT · Gemini with a hotkey",
+    hero_tagline: "Claude · ChatGPT · Gemini — instantly, from anywhere",
     stage_title: "Click to give churu!",
-    download_label: "⬇ DOWNLOAD",
-    download_subtitle: "Direct downloads from the latest release assets.",
+    download_label: "⬇ DOWNLOAD FREE",
+    download_subtitle: "Direct downloads · Free · MIT License",
     download_win: "🪟 Windows",
     download_mac_arm: "🍎 macOS (Apple Silicon)",
     download_mac_intel: "🍎 macOS (Intel)",
+    features_label: "⚡ FEATURES",
     f1_title: "SPOTLIGHT AI",
     f1_desc: "Popup the AI chat from anywhere with a global hotkey. Like macOS Spotlight.",
     f2_title: "MULTI AI",
@@ -966,6 +541,22 @@ stage.addEventListener('click', (e) => {
     showBubble(BUBBLE_TEXT.going, 1200);
   }
 });
+
+// ── SCROLL REVEAL (IntersectionObserver) ──
+const revealEls = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && revealEls.length) {
+  const obs = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach((el) => obs.observe(el));
+} else {
+  revealEls.forEach((el) => el.classList.add('in'));
+}
 </script>
 </body>
 </html>
