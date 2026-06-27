@@ -1,8 +1,8 @@
 {
-  "updated_at": "27355158950",
-  "latest": "v1.0.9",
+  "updated_at": "28282672279",
+  "latest": "v1.0.12",
   "versions": [
-    "v1.0.9"
+    "v1.0.12"
   ],
   "files": {
     "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-Setup-latest-win64.exe",
@@ -10,10 +10,10 @@
     "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
   },
   "per_version_files": {
-    "v1.0.9": {
-      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.0.9/DeskAIPet-Setup-1.0.9-win64.exe",
-      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.0.9/DeskAIPet-1.0.9-macos-arm64.dmg",
-      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.0.9/DeskAIPet-1.0.9-macos-x64.dmg"
+    "v1.0.12": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.0.12/DeskAIPet-Setup-1.0.12-win64.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.0.12/DeskAIPet-1.0.12-macos-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.0.12/DeskAIPet-1.0.12-macos-x64.dmg"
     }
   },
   "checksums": {
@@ -26,6 +26,11 @@
       "win": "7f6f2e19c9e0c10a58ca0645f8a22af6cfb84ff168f08e6f580541773bd20372",
       "mac_arm64": "cd19b005ed3cb35bfa96391f609dcad146c312271bf624900b63dbb0f0af212e",
       "mac_x64": "f36ee428ded8405b691d918dbdb2cc85fc49e8650574dec8b330616bafa170a6"
+    },
+    "v1.0.12": {
+      "win": "d3f08fbf3b9232c2cc59208af4b638b183d0ed74c8ba1e377070f99f9afb97ab",
+      "mac_arm64": "7108fd7bc3840c974ad319930853bcd2bb06108ce6dc7dbb1d58e414552ad0ab",
+      "mac_x64": "425c5ed5c7f4cd34e3b4aa1fb45263a8ce15550c72abff6506ad36b4db5a1078"
     }
   }
 }
