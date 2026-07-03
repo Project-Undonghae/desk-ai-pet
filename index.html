@@ -119,25 +119,25 @@
 <!-- HERO FULLSCREEN: 고양이 스테이지가 전체 화면 배경, 텍스트는 오버레이 -->
 <section id="hero-fullscreen">
   <!-- STAGE: 100vh 풀스크린 고양이 무대 -->
-  <div id="stage" data-i18n-title="stage_title" title="클릭해서 츄르 주기!">
+  <div id="stage" data-i18n-title="stage_title" title="클릭해서 반응 보기">
     <div id="floor"></div>
-    <span class="bg-obj" style="left:8%">🌙</span>
-    <span class="bg-obj" style="left:30%">⭐</span>
-    <span class="bg-obj" style="left:55%">💫</span>
-    <span class="bg-obj" style="left:80%">🌙</span>
+    <span class="bg-obj" style="left:8%"></span>
+    <span class="bg-obj" style="left:30%"></span>
+    <span class="bg-obj" style="left:55%"></span>
+    <span class="bg-obj" style="left:80%"></span>
 
     <div id="bubble"></div>
     <div id="cat-wrap">
       <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
     </div>
-    <div class="item" id="churu-item">🍣</div>
+    <div class="item" id="churu-item">TREAT</div>
   </div>
 
   <!-- HERO OVERLAY: 타이틀 + 다운로드 CTA -->
   <div class="hero-overlay">
     <div class="hero-overlay-inner z">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">DAP · YOUR FIRST AI OS</p>
-      <div class="logo">🐱 DESK <span>AI</span> PET</div>
+      <div class="logo"><span>DAP</span><small>Desk AI Pet</small></div>
       <p class="hero-tagline-text" data-i18n="hero_tagline">바탕화면에 상주하는 AI 펫이 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 이어줍니다</p>
       <div class="hero-dl-row">
         <a
@@ -145,21 +145,21 @@
           href="#summary-title"
           aria-disabled="true"
         >
-          <span data-i18n="download_win">🪟 Windows 준비 중</span>
+          <span data-i18n="download_win">Windows 준비 중</span>
         </a>
         <a
           class="btn btn-m btn-disabled"
           href="#summary-title"
           aria-disabled="true"
         >
-          <span data-i18n="download_mac_arm">🍎 macOS Apple Silicon 준비 중</span>
+          <span data-i18n="download_mac_arm">macOS Apple Silicon 준비 중</span>
         </a>
         <a
           class="btn btn-mi btn-disabled"
           href="#summary-title"
           aria-disabled="true"
         >
-          <span data-i18n="download_mac_intel">🍎 macOS Intel 준비 중</span>
+          <span data-i18n="download_mac_intel">macOS Intel 준비 중</span>
         </a>
       </div>
       <p class="dl-subtitle-hero" data-i18n="download_subtitle">Windows/macOS Electron 앱 · 공개 설치 파일 준비 중</p>
@@ -202,25 +202,25 @@
 </section>
 
 <!-- FEATURES -->
-<p class="section-label" data-i18n="features_label">⚡ FEATURES</p>
+<p class="section-label" data-i18n="features_label">FEATURES</p>
 <div class="features z">
   <div class="card reveal">
-    <div class="card-icon">⌨️</div>
+    <div class="card-icon">CMD</div>
     <h3 data-i18n="f1_title">SPOTLIGHT</h3>
     <p data-i18n="f1_desc">Ctrl+Shift+Space로 어디서든 커맨드 바를 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.</p>
   </div>
   <div class="card reveal">
-    <div class="card-icon">🤖</div>
+    <div class="card-icon">CLI</div>
     <h3 data-i18n="f2_title">SUBSCRIPTION CLI</h3>
     <p data-i18n="f2_desc">API Key 입력 없이 로그인된 Claude 또는 Codex CLI를 headless로 호출해 기존 구독을 활용합니다.</p>
   </div>
   <div class="card reveal">
-    <div class="card-icon">✂️</div>
+    <div class="card-icon">SEL</div>
     <h3 data-i18n="f3_title">QUICK ACTIONS</h3>
     <p data-i18n="f3_desc">텍스트를 선택하거나 복사하면 번역, 요약, 다듬기, 설명 같은 액션을 커서 근처에서 바로 실행합니다.</p>
   </div>
   <div class="card reveal">
-    <div class="card-icon">🐾</div>
+    <div class="card-icon">PET</div>
     <h3 data-i18n="f4_title">PET INTERFACE</h3>
     <p data-i18n="f4_desc">Nabi가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
   </div>
@@ -275,7 +275,7 @@
 </main>
 
 <footer class="z">
-  <span data-i18n="footer">Made with 🐱 &amp; Electron · TypeScript · Windows &amp; macOS · MIT License</span>
+  <span data-i18n="footer">Built with Electron · TypeScript · Windows &amp; macOS · MIT License</span>
 </footer>
 
 <script type="module">
@@ -319,12 +319,12 @@ const I18N = {
     hero_eyebrow: "DAP · YOUR FIRST AI OS",
     hero_copy: "당신의 첫 AI OS\n바탕화면 위 고양이가 채팅과 작업 흐름을 이어줍니다",
     hero_tagline: "바탕화면에 상주하는 AI 펫이 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 이어줍니다",
-    stage_title: "클릭해서 츄르 주기!",
-    download_label: "⬇ DOWNLOAD FREE",
+    stage_title: "클릭해서 반응 보기",
+    download_label: "DOWNLOAD",
     download_subtitle: "Windows/macOS Electron 앱 · 공개 설치 파일 준비 중",
-    download_win: "🪟 Windows 준비 중",
-    download_mac_arm: "🍎 macOS Apple Silicon 준비 중",
-    download_mac_intel: "🍎 macOS Intel 준비 중",
+    download_win: "Windows 준비 중",
+    download_mac_arm: "macOS Apple Silicon 준비 중",
+    download_mac_intel: "macOS Intel 준비 중",
     summary_label: "DAP OVERVIEW",
     summary_title: "DAP은 바탕화면에 머무는 Personal AI OS layer입니다",
     summary_desc: "DAP는 투명 오버레이 펫, Spotlight 커맨드 바, LightChat, 선택 영역 퀵액션, 유저 메모리를 하나로 묶습니다. 현재 Electron 앱은 API Key 입력 대신 사용자가 로그인한 Claude/Codex CLI를 활용하며, 작업 흐름을 방해하지 않는 조용한 데스크톱 레이어를 지향합니다.",
@@ -334,7 +334,7 @@ const I18N = {
     fact_ai_value: "Claude CLI · Codex CLI 구독 로그인",
     fact_license_label: "런타임",
     fact_license_value: "Electron · TypeScript · Local-first settings",
-    features_label: "⚡ FEATURES",
+    features_label: "FEATURES",
     f1_title: "SPOTLIGHT",
     f1_desc: "Ctrl+Shift+Space로 어디서든 커맨드 바를 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
     f2_title: "SUBSCRIPTION CLI",
@@ -357,10 +357,10 @@ const I18N = {
     q2_desc: "DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트입니다. Oshi Desk는 이 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다.",
     q3_title: "API Key가 필요한가요?",
     q3_desc: "현재 Electron 앱의 기본 흐름은 API Key 입력이 아니라 로그인된 Claude/Codex CLI를 사용하는 구독 연결입니다.",
-    footer: "Made with 🐱 & Electron · TypeScript · Windows & macOS · MIT License",
-    bubble_eat: "냠냠~ 🍣",
-    bubble_meow: "야옹! 🐾",
-    bubble_going: "가고 있어! 🏃",
+    footer: "Built with Electron · TypeScript · Windows & macOS · MIT License",
+    bubble_eat: "잠깐 쉬는 중",
+    bubble_meow: "여기 있어요",
+    bubble_going: "이동 중",
   },
   en: {
     meta_title: "DAP (Desk AI Pet) - Your first AI OS",
@@ -368,12 +368,12 @@ const I18N = {
     hero_eyebrow: "DAP · YOUR FIRST AI OS",
     hero_copy: "Your first AI OS\nA desktop pet keeps chat and work in flow",
     hero_tagline: "A desktop AI pet for chat, selection quick actions, and Claude/Codex CLI",
-    stage_title: "Click to give churu!",
-    download_label: "⬇ DOWNLOAD FREE",
+    stage_title: "Click to interact",
+    download_label: "DOWNLOAD",
     download_subtitle: "Windows/macOS Electron app · public installers coming soon",
-    download_win: "🪟 Windows coming soon",
-    download_mac_arm: "🍎 macOS Apple Silicon coming soon",
-    download_mac_intel: "🍎 macOS Intel coming soon",
+    download_win: "Windows coming soon",
+    download_mac_arm: "macOS Apple Silicon coming soon",
+    download_mac_intel: "macOS Intel coming soon",
     summary_label: "DAP OVERVIEW",
     summary_title: "DAP is a Personal AI OS layer that lives on your desktop",
     summary_desc: "DAP brings together a transparent pet overlay, Spotlight command bar, LightChat, selection quick actions, and user memory. The current Electron app uses your logged-in Claude/Codex CLI instead of API keys, keeping AI help close without taking over your workflow.",
@@ -383,7 +383,7 @@ const I18N = {
     fact_ai_value: "Claude CLI · Codex CLI subscription login",
     fact_license_label: "Runtime",
     fact_license_value: "Electron · TypeScript · local-first settings",
-    features_label: "⚡ FEATURES",
+    features_label: "FEATURES",
     f1_title: "SPOTLIGHT",
     f1_desc: "Open the command bar from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
     f2_title: "SUBSCRIPTION CLI",
@@ -406,10 +406,10 @@ const I18N = {
     q2_desc: "DAP is the base project that combined AI and desktop pets. Oshi Desk is the character-focused desktop pet service that grew from that flow.",
     q3_title: "Do I need API keys?",
     q3_desc: "The current Electron app uses your logged-in Claude/Codex CLI subscription flow rather than API-key setup.",
-    footer: "Made with 🐱 & Electron · TypeScript · Windows & macOS · MIT License",
-    bubble_eat: "Nom nom~ 🍣",
-    bubble_meow: "Meow! 🐾",
-    bubble_going: "On my way! 🏃",
+    footer: "Built with Electron · TypeScript · Windows & macOS · MIT License",
+    bubble_eat: "Taking a break",
+    bubble_meow: "I'm here",
+    bubble_going: "Moving",
   }
 };
 
