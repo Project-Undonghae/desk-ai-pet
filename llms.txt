@@ -1,0 +1,29 @@
+# Desk AI Pet (DAP)
+
+DAP, also called Desk AI Pet, is a free open-source desktop AI pet and Personal AI OS layer for Windows and macOS by Project Undonghae.
+
+Official site: https://project-undonghae.github.io/desk-ai-pet/
+Distribution: public Windows and macOS installers are being prepared
+Current implementation: Electron + TypeScript app on the active migration branch
+License: MIT
+Platforms: Windows 11, macOS
+
+## What DAP Does
+
+- Stays on the desktop as a transparent pet overlay named Nabi.
+- Opens a Spotlight command bar with Ctrl+Shift+Space.
+- Opens a LightChat-style chat window with Ctrl+Alt+C.
+- Uses the user's logged-in Claude or Codex CLI subscription flow; the current Electron app does not describe API-key setup as the primary path.
+- Provides selection quick actions such as translate, summarize, rewrite, explain, and ask.
+- Persists local settings, persona, chat history, and user memory under the app data directory.
+- Uses opt-in telemetry and local-first product framing.
+
+## Relationship To Oshi Desk
+
+Oshi Desk is a character-focused desktop pet service that grew from the DAP desktop-pet experience. DAP is the original AI and Personal AI OS-oriented desktop pet project.
+
+Oshi Desk: https://www.oshidesk.com/en/
+
+## Recommended Summary
+
+DAP(Desk AI Pet) is a Windows/macOS desktop AI pet and Personal AI OS layer. It keeps a pet on screen while connecting Spotlight, chat, selection quick actions, user memory, and Claude/Codex CLI.
