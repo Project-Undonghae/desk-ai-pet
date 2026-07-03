@@ -11,8 +11,8 @@
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP (Desk AI Pet) - 당신의 첫 AI OS</title>
-  <meta name="description" content="DAP은 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다. Electron 기반 앱에서 Spotlight, 채팅, 선택 영역 퀵액션, 유저 메모리, Claude/Codex CLI 연결을 제공합니다." />
-  <meta name="keywords" content="DAP, Desk AI Pet, 데스크톱 AI 펫, AI OS, Personal AI OS, desktop AI companion, Claude CLI, Codex CLI, Spotlight, 선택 영역 퀵액션, Oshi Desk" />
+  <meta name="description" content="DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅하고, 선택한 문장을 요약하거나 다듬고, Claude/Codex를 빠르게 불러올 수 있습니다." />
+  <meta name="keywords" content="DAP, Desk AI Pet, AI OS, 데스크톱 AI 펫, desktop AI pet, desktop AI companion, Claude CLI, Codex CLI, Spotlight, 선택 영역 퀵액션, Oshi Desk" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="author" content="Project Undonghae" />
   <link rel="canonical" href="https://project-undonghae.github.io/desk-ai-pet/" />
@@ -23,7 +23,7 @@
   <meta property="og:site_name" content="Desk AI Pet" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:title" content="DAP - 당신의 첫 AI OS" />
-  <meta property="og:description" content="바탕화면 위 AI 펫이 채팅, 선택 영역 퀵액션, Spotlight, Claude/Codex CLI를 이어줍니다. Windows와 macOS 설치 파일을 제공합니다." />
+  <meta property="og:description" content="바탕화면 위 고양이로 시작하는 AI OS. 채팅하고, 선택한 문장을 바로 요약하거나 다듬고, Claude/Codex를 빠르게 불러옵니다." />
   <meta property="og:url" content="https://project-undonghae.github.io/desk-ai-pet/" />
   <meta property="og:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-20260703.png" />
   <meta property="og:image:width" content="1200" />
@@ -31,7 +31,7 @@
   <meta property="og:image:alt" content="DAP Desk AI Pet - 다크 teal 배경 위 고양이 캐릭터와 Windows, macOS 다운로드 플랫폼 안내" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DAP - 당신의 첫 AI OS" />
-  <meta name="twitter:description" content="데스크톱 AI 펫이 Spotlight, 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 연결합니다. Windows/macOS 다운로드 제공." />
+  <meta name="twitter:description" content="바탕화면 위 고양이로 시작하는 AI OS. 채팅하고, 선택한 문장을 요약하거나 다듬고, Claude/Codex를 빠르게 불러옵니다." />
   <meta name="twitter:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-20260703.png" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
@@ -47,7 +47,7 @@
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS",
-    "softwareVersion": "Electron migration branch",
+    "softwareVersion": "Latest public release",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
     "license": "https://opensource.org/licenses/MIT",
     "isAccessibleForFree": true,
@@ -55,7 +55,7 @@
       "@type": "Organization",
       "name": "Project Undonghae"
     },
-    "description": "DAP은 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다. Electron 기반 앱에서 Spotlight, 채팅, 선택 영역 퀵액션, 유저 메모리, Claude/Codex CLI 연결을 제공합니다.",
+    "description": "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅하고, 선택한 문장을 요약하거나 다듬고, Claude/Codex를 빠르게 불러올 수 있습니다.",
     "sameAs": [
       "https://www.oshidesk.com/en/"
     ],
@@ -76,7 +76,7 @@
         "name": "DAP은 무엇인가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "DAP(Desk AI Pet)은 Windows와 macOS 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다."
+          "text": "DAP(Desk AI Pet)은 Windows와 macOS 바탕화면 위 고양이로 시작하는 AI OS입니다."
         }
       },
       {
@@ -84,7 +84,7 @@
         "name": "어떤 AI를 연결할 수 있나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "현재 Electron 앱은 사용자가 이미 로그인한 claude 또는 codex CLI를 headless로 호출합니다. API Key 입력 방식은 현재 제품 설명에서 제외됩니다."
+          "text": "DAP은 사용자가 이미 로그인한 Claude 또는 Codex를 연결해 채팅과 선택 영역 액션에 활용합니다. 별도의 API Key 입력 없이 시작할 수 있습니다."
         }
       },
       {
@@ -136,9 +136,9 @@
   <!-- HERO OVERLAY: 타이틀 + 다운로드 CTA -->
   <div class="hero-overlay">
     <div class="hero-overlay-inner z">
-      <p class="hero-eyebrow" data-i18n="hero_eyebrow">Personal AI OS for desktop</p>
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">YOUR FIRST AI OS</p>
       <div class="logo"><span>DAP</span><small>Desk AI Pet</small></div>
-      <p class="hero-tagline-text" data-i18n="hero_tagline">바탕화면에 상주하는 AI 펫이 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 이어줍니다</p>
+      <p class="hero-tagline-text" data-i18n="hero_tagline">고양이와 함께 채팅하고, 선택한 문장을 바로 요약하거나 다듬어보세요</p>
       <div class="hero-dl-row">
         <a
           class="btn btn-w"
@@ -165,7 +165,7 @@
           <span data-i18n="download_mac_intel">macOS Intel 다운로드</span>
         </a>
       </div>
-      <p class="dl-subtitle-hero" data-i18n="download_subtitle">Windows/macOS Electron 앱 · 최신 설치 파일 제공</p>
+      <p class="dl-subtitle-hero" data-i18n="download_subtitle">Windows와 macOS용 설치 파일을 제공합니다</p>
     </div>
   </div>
 
@@ -183,9 +183,9 @@
   <p class="section-label compact" data-i18n="summary_label">DAP overview</p>
   <div class="summary-grid">
     <div>
-      <h1 id="summary-title" data-i18n="summary_title">DAP은 바탕화면에 머무는 Personal AI OS layer입니다</h1>
+      <h1 id="summary-title" data-i18n="summary_title">DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다</h1>
       <p data-i18n="summary_desc">
-        DAP는 투명 오버레이 펫, Spotlight 커맨드 바, LightChat, 선택 영역 퀵액션, 유저 메모리를 하나로 묶습니다. 현재 Electron 앱은 API Key 입력 대신 사용자가 로그인한 Claude/Codex CLI를 활용하며, 작업 흐름을 방해하지 않는 조용한 데스크톱 레이어를 지향합니다.
+        DAP은 화면 위에 작은 고양이로 머물며, 채팅과 빠른 실행창, 선택 영역 액션을 한곳에 모읍니다. 문장을 선택해 요약하거나 다듬고, 필요할 때 Claude/Codex를 바로 불러올 수 있어요.
       </p>
     </div>
     <dl class="facts" aria-label="Desk AI Pet facts">
@@ -194,12 +194,12 @@
         <dd data-i18n="fact_platform_value">Windows 11 · macOS Apple Silicon · macOS Intel</dd>
       </div>
       <div>
-        <dt data-i18n="fact_ai_label">AI 연결</dt>
-        <dd data-i18n="fact_ai_value">Claude CLI · Codex CLI 구독 로그인</dd>
+        <dt data-i18n="fact_ai_label">연결</dt>
+        <dd data-i18n="fact_ai_value">로그인된 Claude · Codex 사용</dd>
       </div>
       <div>
-        <dt data-i18n="fact_license_label">런타임</dt>
-        <dd data-i18n="fact_license_value">Electron · TypeScript · Local-first settings</dd>
+        <dt data-i18n="fact_license_label">작업 방식</dt>
+        <dd data-i18n="fact_license_value">채팅 · 빠른 실행 · 선택 영역 액션</dd>
       </div>
     </dl>
   </div>
@@ -211,13 +211,13 @@
   <img class="section-cat section-cat-features" src="sprites/walk_2.png" alt="" aria-hidden="true" />
   <div class="card reveal">
     <div class="card-icon">CMD</div>
-    <h3 data-i18n="f1_title">SPOTLIGHT</h3>
-    <p data-i18n="f1_desc">Ctrl+Shift+Space로 어디서든 커맨드 바를 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.</p>
+    <h3 data-i18n="f1_title">빠른 실행</h3>
+    <p data-i18n="f1_desc">Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.</p>
   </div>
   <div class="card reveal">
-    <div class="card-icon">CLI</div>
-    <h3 data-i18n="f2_title">SUBSCRIPTION CLI</h3>
-    <p data-i18n="f2_desc">API Key 입력 없이 로그인된 Claude 또는 Codex CLI를 headless로 호출해 기존 구독을 활용합니다.</p>
+    <div class="card-icon">AI</div>
+    <h3 data-i18n="f2_title">Claude/Codex 연결</h3>
+    <p data-i18n="f2_desc">이미 로그인한 Claude 또는 Codex를 연결해, 따로 API Key를 입력하지 않고 바로 사용할 수 있습니다.</p>
   </div>
   <div class="card reveal">
     <div class="card-icon">SEL</div>
@@ -246,15 +246,15 @@
     <div class="step reveal">
       <span class="step-num">02</span>
       <div>
-        <strong data-i18n="s2_title">구독 CLI 연결</strong>
-        <p data-i18n="s2_desc">온보딩 또는 설정에서 Claude/Codex를 선택합니다. 터미널의 claude login 또는 codex login 상태를 사용합니다.</p>
+        <strong data-i18n="s2_title">Claude/Codex 연결</strong>
+        <p data-i18n="s2_desc">온보딩 또는 설정에서 Claude/Codex를 선택합니다. 이미 로그인된 계정을 이어서 사용할 수 있습니다.</p>
       </div>
     </div>
     <div class="step reveal">
       <span class="step-num">03</span>
       <div>
         <strong data-i18n="s3_title">단축키로 즉시 호출</strong>
-        <p data-i18n="s3_desc"><code>Ctrl+Shift+Space</code>로 Spotlight, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 퀵액션을 실행합니다.</p>
+        <p data-i18n="s3_desc"><code>Ctrl+Shift+Space</code>로 빠른 실행창, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 액션을 실행합니다.</p>
       </div>
     </div>
   </div>
@@ -267,22 +267,22 @@
   <div class="faq-list">
     <details open>
       <summary data-i18n="q1_title">DAP은 무엇인가요?</summary>
-      <p data-i18n="q1_desc">DAP(Desk AI Pet)은 Windows/macOS 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다.</p>
+      <p data-i18n="q1_desc">DAP(Desk AI Pet)은 Windows/macOS 바탕화면 위에 머무는 데스크톱 AI 펫입니다.</p>
     </details>
     <details>
       <summary data-i18n="q2_title">Oshi Desk와 어떤 관계인가요?</summary>
       <p data-i18n="q2_desc">DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트입니다. Oshi Desk는 이 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다.</p>
     </details>
     <details>
-      <summary data-i18n="q3_title">API Key가 필요한가요?</summary>
-      <p data-i18n="q3_desc">현재 Electron 앱의 기본 흐름은 API Key 입력이 아니라 로그인된 Claude/Codex CLI를 사용하는 구독 연결입니다.</p>
+      <summary data-i18n="q3_title">별도 설정이 많이 필요한가요?</summary>
+      <p data-i18n="q3_desc">기본 흐름은 별도 API Key 입력이 아니라, 이미 로그인한 Claude/Codex를 연결해 사용하는 방식입니다.</p>
     </details>
   </div>
 </section>
 </main>
 
 <footer class="z">
-  <span data-i18n="footer">Built with Electron · TypeScript · Windows &amp; macOS · MIT License</span>
+  <span data-i18n="footer">DAP · Desk AI Pet · Windows &amp; macOS</span>
 </footer>
 
 <script type="module">
@@ -322,30 +322,30 @@ let textPopReady = false;
 const I18N = {
   ko: {
     meta_title: "DAP (Desk AI Pet) - 당신의 첫 AI OS",
-    meta_desc: "DAP은 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다. Electron 기반 앱에서 Spotlight, 채팅, 선택 영역 퀵액션, 유저 메모리, Claude/Codex CLI 연결을 제공합니다.",
-    hero_eyebrow: "Personal AI OS for desktop",
+    meta_desc: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅하고, 선택한 문장을 요약하거나 다듬고, Claude/Codex를 빠르게 불러올 수 있습니다.",
+    hero_eyebrow: "YOUR FIRST AI OS",
     hero_copy: "당신의 첫 AI OS\n바탕화면 위 고양이가 채팅과 작업 흐름을 이어줍니다",
-    hero_tagline: "바탕화면에 상주하는 AI 펫이 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 이어줍니다",
+    hero_tagline: "고양이와 함께 채팅하고, 선택한 문장을 바로 요약하거나 다듬어보세요",
     stage_title: "클릭해서 반응 보기",
     download_label: "DOWNLOAD",
-    download_subtitle: "Windows/macOS Electron 앱 · 최신 설치 파일 제공",
+    download_subtitle: "Windows와 macOS용 설치 파일을 제공합니다",
     download_win: "Windows 다운로드",
     download_mac_arm: "macOS Apple Silicon 다운로드",
     download_mac_intel: "macOS Intel 다운로드",
     summary_label: "DAP overview",
-    summary_title: "DAP은 바탕화면에 머무는 Personal AI OS layer입니다",
-    summary_desc: "DAP는 투명 오버레이 펫, Spotlight 커맨드 바, LightChat, 선택 영역 퀵액션, 유저 메모리를 하나로 묶습니다. 현재 Electron 앱은 API Key 입력 대신 사용자가 로그인한 Claude/Codex CLI를 활용하며, 작업 흐름을 방해하지 않는 조용한 데스크톱 레이어를 지향합니다.",
+    summary_title: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다",
+    summary_desc: "DAP은 화면 위에 작은 고양이로 머물며, 채팅과 빠른 실행창, 선택 영역 액션을 한곳에 모읍니다. 문장을 선택해 요약하거나 다듬고, 필요할 때 Claude/Codex를 바로 불러올 수 있어요.",
     fact_platform_label: "지원 플랫폼",
     fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
-    fact_ai_label: "AI 연결",
-    fact_ai_value: "Claude CLI · Codex CLI 구독 로그인",
-    fact_license_label: "런타임",
-    fact_license_value: "Electron · TypeScript · Local-first settings",
+    fact_ai_label: "연결",
+    fact_ai_value: "로그인된 Claude · Codex 사용",
+    fact_license_label: "작업 방식",
+    fact_license_value: "채팅 · 빠른 실행 · 선택 영역 액션",
     features_label: "Core features",
-    f1_title: "Spotlight",
-    f1_desc: "Ctrl+Shift+Space로 어디서든 커맨드 바를 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
-    f2_title: "Subscription CLI",
-    f2_desc: "API Key 입력 없이 로그인된 Claude 또는 Codex CLI를 headless로 호출해 기존 구독을 활용합니다.",
+    f1_title: "빠른 실행",
+    f1_desc: "Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
+    f2_title: "Claude/Codex 연결",
+    f2_desc: "이미 로그인한 Claude 또는 Codex를 연결해, 따로 API Key를 입력하지 않고 바로 사용할 수 있습니다.",
     f3_title: "Quick actions",
     f3_desc: "텍스트를 선택하거나 복사하면 번역, 요약, 다듬기, 설명 같은 액션을 커서 근처에서 바로 실행합니다.",
     f4_title: "Pet interface",
@@ -353,48 +353,48 @@ const I18N = {
     how_title: "Getting started",
     s1_title: "다운로드 & 설치",
     s1_desc: "Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.",
-    s2_title: "구독 CLI 연결",
-    s2_desc: "온보딩 또는 설정에서 Claude/Codex를 선택합니다. 터미널의 claude login 또는 codex login 상태를 사용합니다.",
+    s2_title: "Claude/Codex 연결",
+    s2_desc: "온보딩 또는 설정에서 Claude/Codex를 선택합니다. 이미 로그인된 계정을 이어서 사용할 수 있습니다.",
     s3_title: "단축키로 즉시 호출",
-    s3_desc: "<code>Ctrl+Shift+Space</code>로 Spotlight, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 퀵액션을 실행합니다.",
+    s3_desc: "<code>Ctrl+Shift+Space</code>로 빠른 실행창, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 액션을 실행합니다.",
     faq_title: "자주 묻는 질문",
     q1_title: "DAP은 무엇인가요?",
-    q1_desc: "DAP(Desk AI Pet)은 Windows/macOS 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다.",
+    q1_desc: "DAP(Desk AI Pet)은 Windows/macOS 바탕화면 위 고양이로 시작하는 AI OS입니다.",
     q2_title: "Oshi Desk와 어떤 관계인가요?",
     q2_desc: "DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트입니다. Oshi Desk는 이 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다.",
-    q3_title: "API Key가 필요한가요?",
-    q3_desc: "현재 Electron 앱의 기본 흐름은 API Key 입력이 아니라 로그인된 Claude/Codex CLI를 사용하는 구독 연결입니다.",
-    footer: "Built with Electron · TypeScript · Windows & macOS · MIT License",
+    q3_title: "별도 설정이 많이 필요한가요?",
+    q3_desc: "기본 흐름은 별도 API Key 입력이 아니라, 이미 로그인한 Claude/Codex를 연결해 사용하는 방식입니다.",
+    footer: "DAP · Desk AI Pet · Windows & macOS",
     bubble_eat: "잠깐 쉬는 중",
     bubble_meow: "여기 있어요",
     bubble_going: "이동 중",
   },
   en: {
     meta_title: "DAP (Desk AI Pet) - Your first AI OS",
-    meta_desc: "DAP is a desktop AI pet and Personal AI OS layer for Windows and macOS. The Electron app connects Spotlight, chat, selection quick actions, user memory, and Claude/Codex CLI.",
-    hero_eyebrow: "Personal AI OS for desktop",
-    hero_copy: "Your first AI OS\nA desktop pet keeps chat and work in flow",
-    hero_tagline: "A desktop AI pet for chat, selection quick actions, and Claude/Codex CLI",
+    meta_desc: "DAP is an AI OS that starts with a cat on your desktop. Chat, summarize or rewrite selected text, and call Claude/Codex when you need it.",
+    hero_eyebrow: "YOUR FIRST AI OS",
+    hero_copy: "Your first AI OS\nA desktop cat keeps chat and work in flow",
+    hero_tagline: "Chat with the cat, then summarize or rewrite selected text without leaving your screen",
     stage_title: "Click to interact",
     download_label: "DOWNLOAD",
-    download_subtitle: "Windows/macOS Electron app · latest installers available",
+    download_subtitle: "Installers are available for Windows and macOS",
     download_win: "Download for Windows",
     download_mac_arm: "Download for macOS Apple Silicon",
     download_mac_intel: "Download for macOS Intel",
     summary_label: "DAP overview",
-    summary_title: "DAP is a Personal AI OS layer that lives on your desktop",
-    summary_desc: "DAP brings together a transparent pet overlay, Spotlight command bar, LightChat, selection quick actions, and user memory. The current Electron app uses your logged-in Claude/Codex CLI instead of API keys, keeping AI help close without taking over your workflow.",
+    summary_title: "DAP is an AI OS that starts with a cat on your desktop",
+    summary_desc: "DAP stays on screen as a small cat and brings chat, quick launch, and selected-text actions together. Select a sentence to summarize or rewrite it, then call Claude/Codex whenever you need help.",
     fact_platform_label: "Platforms",
     fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
-    fact_ai_label: "AI connection",
-    fact_ai_value: "Claude CLI · Codex CLI subscription login",
-    fact_license_label: "Runtime",
-    fact_license_value: "Electron · TypeScript · local-first settings",
+    fact_ai_label: "Connection",
+    fact_ai_value: "Use your logged-in Claude · Codex",
+    fact_license_label: "Workflow",
+    fact_license_value: "Chat · quick launch · selected-text actions",
     features_label: "Core features",
-    f1_title: "Spotlight",
-    f1_desc: "Open the command bar from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
-    f2_title: "Subscription CLI",
-    f2_desc: "Use your logged-in Claude or Codex CLI headlessly. No API-key setup in the current Electron flow.",
+    f1_title: "Quick launch",
+    f1_desc: "Open the launcher from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
+    f2_title: "Claude/Codex connection",
+    f2_desc: "Connect Claude or Codex you already use, without starting with a separate API-key setup.",
     f3_title: "Quick actions",
     f3_desc: "Select or copy text to run translate, summarize, rewrite, explain, or ask actions near the cursor.",
     f4_title: "Pet interface",
@@ -402,18 +402,18 @@ const I18N = {
     how_title: "Getting started",
     s1_title: "Download & install",
     s1_desc: "Download the installer that matches your device: Windows, macOS Apple Silicon, or macOS Intel.",
-    s2_title: "Connect subscription CLI",
-    s2_desc: "Choose Claude or Codex in onboarding/settings. DAP uses your terminal claude login or codex login session.",
+    s2_title: "Connect Claude/Codex",
+    s2_desc: "Choose Claude or Codex in onboarding or settings, then continue with the account you already use.",
     s3_title: "Call with a hotkey",
-    s3_desc: "Use <code>Ctrl+Shift+Space</code> for Spotlight, <code>Ctrl+Alt+C</code> for chat, and selection quick actions for copied text.",
+    s3_desc: "Use <code>Ctrl+Shift+Space</code> for quick launch, <code>Ctrl+Alt+C</code> for chat, and selected-text actions when you need them.",
     faq_title: "FAQ",
     q1_title: "What is DAP?",
-    q1_desc: "DAP(Desk AI Pet) is a desktop AI pet and Personal AI OS layer for Windows and macOS.",
+    q1_desc: "DAP(Desk AI Pet) is an AI OS that starts with a cat on your Windows or macOS desktop.",
     q2_title: "How is it related to Oshi Desk?",
     q2_desc: "DAP is the base project that combined AI and desktop pets. Oshi Desk is the character-focused desktop pet service that grew from that flow.",
-    q3_title: "Do I need API keys?",
-    q3_desc: "The current Electron app uses your logged-in Claude/Codex CLI subscription flow rather than API-key setup.",
-    footer: "Built with Electron · TypeScript · Windows & macOS · MIT License",
+    q3_title: "Does it take a lot of setup?",
+    q3_desc: "The default flow connects Claude/Codex you already use, instead of starting with separate API-key setup.",
+    footer: "DAP · Desk AI Pet · Windows & macOS",
     bubble_eat: "Taking a break",
     bubble_meow: "I'm here",
     bubble_going: "Moving",
