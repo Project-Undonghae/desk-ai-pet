@@ -463,6 +463,72 @@ img { image-rendering: pixelated; image-rendering: crisp-edges; }
   .summary h1 { font-size: 24px; }
 }
 
+/* ── DEMO PREVIEW ── */
+.demo {
+  max-width: 1120px;
+  margin: 0 auto 52px;
+  padding: 0 40px;
+}
+.demo-copy {
+  max-width: 680px;
+  margin: 0 auto 22px;
+  text-align: center;
+}
+.demo-copy .section-label {
+  padding-left: 0;
+  padding-right: 0;
+}
+.demo h2 {
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.35;
+  margin: 10px 0 10px;
+  color: var(--text);
+}
+.demo p:not(.section-label) {
+  color: var(--soft);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.demo-frame {
+  position: relative;
+  margin: 0;
+  border: 1px solid rgba(139, 211, 221, 0.26);
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(18, 27, 30, 0.92), rgba(13, 20, 23, 0.84));
+  box-shadow: 0 24px 68px rgba(0, 0, 0, 0.32);
+}
+.demo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-top: 2px solid rgba(103, 232, 200, 0.42);
+  pointer-events: none;
+  z-index: 1;
+}
+.demo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 820px) {
+  .demo {
+    padding: 0 24px;
+    margin-bottom: 42px;
+  }
+}
+@media (max-width: 480px) {
+  .demo {
+    padding: 0 20px;
+  }
+  .demo h2 {
+    font-size: 22px;
+  }
+  .demo p:not(.section-label) {
+    font-size: 13px;
+  }
+}
+
 /* ── FEATURES ── */
 .features {
   position: relative;
