@@ -37,7 +37,7 @@
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="favicon-180.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <script id="software-jsonld" type="application/ld+json">
   {
@@ -136,33 +136,36 @@
   <!-- HERO OVERLAY: 타이틀 + 다운로드 CTA -->
   <div class="hero-overlay">
     <div class="hero-overlay-inner z">
-      <p class="hero-eyebrow" data-i18n="hero_eyebrow">DAP · YOUR FIRST AI OS</p>
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">Personal AI OS for desktop</p>
       <div class="logo"><span>DAP</span><small>Desk AI Pet</small></div>
       <p class="hero-tagline-text" data-i18n="hero_tagline">바탕화면에 상주하는 AI 펫이 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 이어줍니다</p>
       <div class="hero-dl-row">
         <a
-          class="btn btn-w btn-disabled"
-          href="#summary-title"
-          aria-disabled="true"
+          class="btn btn-w"
+          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-Setup-latest-win64.exe"
+          data-download-platform="windows"
+          data-download-availability="available"
         >
-          <span data-i18n="download_win">Windows 준비 중</span>
+          <span data-i18n="download_win">Windows 다운로드</span>
         </a>
         <a
-          class="btn btn-m btn-disabled"
-          href="#summary-title"
-          aria-disabled="true"
+          class="btn btn-m"
+          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg"
+          data-download-platform="macos_apple_silicon"
+          data-download-availability="available"
         >
-          <span data-i18n="download_mac_arm">macOS Apple Silicon 준비 중</span>
+          <span data-i18n="download_mac_arm">macOS Apple Silicon 다운로드</span>
         </a>
         <a
-          class="btn btn-mi btn-disabled"
-          href="#summary-title"
-          aria-disabled="true"
+          class="btn btn-mi"
+          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
+          data-download-platform="macos_intel"
+          data-download-availability="available"
         >
-          <span data-i18n="download_mac_intel">macOS Intel 준비 중</span>
+          <span data-i18n="download_mac_intel">macOS Intel 다운로드</span>
         </a>
       </div>
-      <p class="dl-subtitle-hero" data-i18n="download_subtitle">Windows/macOS Electron 앱 · 공개 설치 파일 준비 중</p>
+      <p class="dl-subtitle-hero" data-i18n="download_subtitle">Windows/macOS Electron 앱 · 최신 설치 파일 제공</p>
     </div>
   </div>
 
@@ -176,7 +179,8 @@
 <!-- PRODUCT SUMMARY -->
 <main>
 <section class="summary z" aria-labelledby="summary-title">
-  <p class="section-label compact" data-i18n="summary_label">DAP OVERVIEW</p>
+  <img class="section-cat section-cat-summary" src="sprites/idle_2.png" alt="" aria-hidden="true" />
+  <p class="section-label compact" data-i18n="summary_label">DAP overview</p>
   <div class="summary-grid">
     <div>
       <h1 id="summary-title" data-i18n="summary_title">DAP은 바탕화면에 머무는 Personal AI OS layer입니다</h1>
@@ -202,8 +206,9 @@
 </section>
 
 <!-- FEATURES -->
-<p class="section-label" data-i18n="features_label">FEATURES</p>
+<p class="section-label" data-i18n="features_label">Core features</p>
 <div class="features z">
+  <img class="section-cat section-cat-features" src="sprites/walk_2.png" alt="" aria-hidden="true" />
   <div class="card reveal">
     <div class="card-icon">CMD</div>
     <h3 data-i18n="f1_title">SPOTLIGHT</h3>
@@ -228,13 +233,14 @@
 
 <!-- HOW IT WORKS -->
 <div class="how z">
-  <h2 data-i18n="how_title">HOW IT WORKS</h2>
+  <img class="section-cat section-cat-how" src="sprites/idle_4.png" alt="" aria-hidden="true" />
+  <h2 data-i18n="how_title">Getting started</h2>
   <div class="steps">
     <div class="step reveal">
       <span class="step-num">01</span>
       <div>
         <strong data-i18n="s1_title">다운로드 & 설치</strong>
-        <p data-i18n="s1_desc">Windows와 macOS용 공개 설치 파일은 준비 중입니다. 현재 페이지에서는 제품 방향과 핵심 기능을 먼저 확인할 수 있습니다.</p>
+        <p data-i18n="s1_desc">Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.</p>
       </div>
     </div>
     <div class="step reveal">
@@ -256,6 +262,7 @@
 
 <!-- FAQ -->
 <section class="faq z" aria-labelledby="faq-title">
+  <img class="section-cat section-cat-faq" src="sprites/idle_1.png" alt="" aria-hidden="true" />
   <h2 id="faq-title" data-i18n="faq_title">자주 묻는 질문</h2>
   <div class="faq-list">
     <details open>
@@ -284,7 +291,7 @@
  * hero-copy 줄배치(너비·줄 수)를 캔버스 측정으로 계산 → 글 줄 위 무작위 좌표에 고양이 팝업.
  */
 const starsEl = document.getElementById('stars');
-for (let i = 0; i < 120; i++) {
+for (let i = 0; i < 48; i++) {
   const s = document.createElement('div');
   s.className = 'star';
   s.style.left = Math.random() * 100 + '%';
@@ -316,16 +323,16 @@ const I18N = {
   ko: {
     meta_title: "DAP (Desk AI Pet) - 당신의 첫 AI OS",
     meta_desc: "DAP은 바탕화면에 상주하는 데스크톱 AI 펫이자 Personal AI OS layer입니다. Electron 기반 앱에서 Spotlight, 채팅, 선택 영역 퀵액션, 유저 메모리, Claude/Codex CLI 연결을 제공합니다.",
-    hero_eyebrow: "DAP · YOUR FIRST AI OS",
+    hero_eyebrow: "Personal AI OS for desktop",
     hero_copy: "당신의 첫 AI OS\n바탕화면 위 고양이가 채팅과 작업 흐름을 이어줍니다",
     hero_tagline: "바탕화면에 상주하는 AI 펫이 채팅, 선택 영역 퀵액션, Claude/Codex CLI를 이어줍니다",
     stage_title: "클릭해서 반응 보기",
     download_label: "DOWNLOAD",
-    download_subtitle: "Windows/macOS Electron 앱 · 공개 설치 파일 준비 중",
-    download_win: "Windows 준비 중",
-    download_mac_arm: "macOS Apple Silicon 준비 중",
-    download_mac_intel: "macOS Intel 준비 중",
-    summary_label: "DAP OVERVIEW",
+    download_subtitle: "Windows/macOS Electron 앱 · 최신 설치 파일 제공",
+    download_win: "Windows 다운로드",
+    download_mac_arm: "macOS Apple Silicon 다운로드",
+    download_mac_intel: "macOS Intel 다운로드",
+    summary_label: "DAP overview",
     summary_title: "DAP은 바탕화면에 머무는 Personal AI OS layer입니다",
     summary_desc: "DAP는 투명 오버레이 펫, Spotlight 커맨드 바, LightChat, 선택 영역 퀵액션, 유저 메모리를 하나로 묶습니다. 현재 Electron 앱은 API Key 입력 대신 사용자가 로그인한 Claude/Codex CLI를 활용하며, 작업 흐름을 방해하지 않는 조용한 데스크톱 레이어를 지향합니다.",
     fact_platform_label: "지원 플랫폼",
@@ -334,18 +341,18 @@ const I18N = {
     fact_ai_value: "Claude CLI · Codex CLI 구독 로그인",
     fact_license_label: "런타임",
     fact_license_value: "Electron · TypeScript · Local-first settings",
-    features_label: "FEATURES",
-    f1_title: "SPOTLIGHT",
+    features_label: "Core features",
+    f1_title: "Spotlight",
     f1_desc: "Ctrl+Shift+Space로 어디서든 커맨드 바를 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
-    f2_title: "SUBSCRIPTION CLI",
+    f2_title: "Subscription CLI",
     f2_desc: "API Key 입력 없이 로그인된 Claude 또는 Codex CLI를 headless로 호출해 기존 구독을 활용합니다.",
-    f3_title: "QUICK ACTIONS",
+    f3_title: "Quick actions",
     f3_desc: "텍스트를 선택하거나 복사하면 번역, 요약, 다듬기, 설명 같은 액션을 커서 근처에서 바로 실행합니다.",
-    f4_title: "PET INTERFACE",
+    f4_title: "Pet interface",
     f4_desc: "Nabi가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
-    how_title: "HOW IT WORKS",
+    how_title: "Getting started",
     s1_title: "다운로드 & 설치",
-    s1_desc: "Windows와 macOS용 공개 설치 파일은 준비 중입니다. 현재 페이지에서는 제품 방향과 핵심 기능을 먼저 확인할 수 있습니다.",
+    s1_desc: "Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.",
     s2_title: "구독 CLI 연결",
     s2_desc: "온보딩 또는 설정에서 Claude/Codex를 선택합니다. 터미널의 claude login 또는 codex login 상태를 사용합니다.",
     s3_title: "단축키로 즉시 호출",
@@ -365,16 +372,16 @@ const I18N = {
   en: {
     meta_title: "DAP (Desk AI Pet) - Your first AI OS",
     meta_desc: "DAP is a desktop AI pet and Personal AI OS layer for Windows and macOS. The Electron app connects Spotlight, chat, selection quick actions, user memory, and Claude/Codex CLI.",
-    hero_eyebrow: "DAP · YOUR FIRST AI OS",
+    hero_eyebrow: "Personal AI OS for desktop",
     hero_copy: "Your first AI OS\nA desktop pet keeps chat and work in flow",
     hero_tagline: "A desktop AI pet for chat, selection quick actions, and Claude/Codex CLI",
     stage_title: "Click to interact",
     download_label: "DOWNLOAD",
-    download_subtitle: "Windows/macOS Electron app · public installers coming soon",
-    download_win: "Windows coming soon",
-    download_mac_arm: "macOS Apple Silicon coming soon",
-    download_mac_intel: "macOS Intel coming soon",
-    summary_label: "DAP OVERVIEW",
+    download_subtitle: "Windows/macOS Electron app · latest installers available",
+    download_win: "Download for Windows",
+    download_mac_arm: "Download for macOS Apple Silicon",
+    download_mac_intel: "Download for macOS Intel",
+    summary_label: "DAP overview",
     summary_title: "DAP is a Personal AI OS layer that lives on your desktop",
     summary_desc: "DAP brings together a transparent pet overlay, Spotlight command bar, LightChat, selection quick actions, and user memory. The current Electron app uses your logged-in Claude/Codex CLI instead of API keys, keeping AI help close without taking over your workflow.",
     fact_platform_label: "Platforms",
@@ -383,18 +390,18 @@ const I18N = {
     fact_ai_value: "Claude CLI · Codex CLI subscription login",
     fact_license_label: "Runtime",
     fact_license_value: "Electron · TypeScript · local-first settings",
-    features_label: "FEATURES",
-    f1_title: "SPOTLIGHT",
+    features_label: "Core features",
+    f1_title: "Spotlight",
     f1_desc: "Open the command bar from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
-    f2_title: "SUBSCRIPTION CLI",
+    f2_title: "Subscription CLI",
     f2_desc: "Use your logged-in Claude or Codex CLI headlessly. No API-key setup in the current Electron flow.",
-    f3_title: "QUICK ACTIONS",
+    f3_title: "Quick actions",
     f3_desc: "Select or copy text to run translate, summarize, rewrite, explain, or ask actions near the cursor.",
-    f4_title: "PET INTERFACE",
+    f4_title: "Pet interface",
     f4_desc: "Nabi stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
-    how_title: "HOW IT WORKS",
+    how_title: "Getting started",
     s1_title: "Download & install",
-    s1_desc: "Public Windows and macOS installers are being prepared. This page shows the product direction and core features first.",
+    s1_desc: "Download the installer that matches your device: Windows, macOS Apple Silicon, or macOS Intel.",
     s2_title: "Connect subscription CLI",
     s2_desc: "Choose Claude or Codex in onboarding/settings. DAP uses your terminal claude login or codex login session.",
     s3_title: "Call with a hotkey",
@@ -467,6 +474,23 @@ document.getElementById('lang-en')?.addEventListener('click', () => {
   applyLang('en');
   const u = new URL(location.href); u.searchParams.set('lang','en'); history.replaceState({},'',u);
 });
+
+for (const el of document.querySelectorAll('[data-download-platform]')) {
+  el.addEventListener('click', (event) => {
+    const availability = el.getAttribute('data-download-availability') || 'available';
+    const platform = el.getAttribute('data-download-platform') || 'unknown';
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'dap_download_click',
+      download_platform: platform,
+      download_availability: availability,
+      download_label: el.textContent.trim(),
+      page_language: document.documentElement.lang || 'ko',
+      page_location: location.href,
+    });
+    if (availability !== 'available') event.preventDefault();
+  });
+}
 
 const IDLE = Array.from({ length: 5 }, (_, i) => `sprites/idle_${i}.png`);
 const WALK = Array.from({ length: 5 }, (_, i) => `sprites/walk_${i}.png`);
