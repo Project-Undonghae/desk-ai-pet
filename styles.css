@@ -329,10 +329,6 @@ img { image-rendering: pixelated; image-rendering: crisp-edges; }
 @media (max-width: 480px) {
   #hero-fullscreen { height: 82vh; min-height: 540px; }
   .hero-overlay { padding: 2vh 0 10vh; }
-  .hero-overlay-inner {
-    max-width: 360px;
-    padding: 0 20px;
-  }
   .logo { font-size: clamp(62px, 18vw, 78px); }
   .logo small { font-size: 13px; letter-spacing: 0; }
   .hero-tagline-text { font-size: 12px; }
@@ -359,14 +355,8 @@ img { image-rendering: pixelated; image-rendering: crisp-edges; }
   font-size: 12px;
   opacity: 0.78;
 }
-@media (max-width: 720px) {
-  .hero-dl-row {
-    flex-direction: column;
-    align-items: stretch;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+@media (max-width: 480px) {
+  .hero-dl-row { flex-direction: column; align-items: stretch; }
   .hero-dl-row > .btn {
     width: 100%;
     max-width: none;
@@ -520,7 +510,6 @@ img { image-rendering: pixelated; image-rendering: crisp-edges; }
   display: block;
   width: 100%;
   height: auto;
-  image-rendering: auto;
 }
 @media (max-width: 820px) {
   .demo {
