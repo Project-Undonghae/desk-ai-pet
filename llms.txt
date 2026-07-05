@@ -3,9 +3,12 @@
 DAP, also called Desk AI Pet, is a free open-source AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
+Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
+Plugin registry: https://project-undonghae.github.io/desk-ai-pet/plugins.html
 Distribution: Windows, macOS Apple Silicon, and macOS Intel installers are available from the public download buttons
 License: MIT
 Platforms: Windows 11, macOS
+Current plugin platform baseline: Plugin Platform 0.1.0, manifest_version 2
 
 ## What DAP Does
 
@@ -14,6 +17,8 @@ Platforms: Windows 11, macOS
 - Opens a chat window with Ctrl+Alt+C.
 - Connects Claude or Codex the user already uses, without making API-key setup the first step.
 - Provides selection quick actions such as translate, summarize, rewrite, explain, and ask.
+- Provides developer-facing plugin docs for manifest v2, ctx APIs, permissions, palette UI, and catalog distribution.
+- Uses a GitHub-backed plugin registry through Project-Undonghae/dap-plugins.
 - Persists local settings, persona, chat history, and user memory under the app data directory.
 - Uses opt-in telemetry.
 
@@ -25,4 +30,4 @@ Oshi Desk: https://www.oshidesk.com/en/
 
 ## Recommended Summary
 
-DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It keeps the cat on screen while connecting chat, quick launch, selected-text actions, user memory, and Claude/Codex.
+DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It keeps the cat on screen while connecting chat, quick launch, selected-text actions, user memory, Claude/Codex, and an extensible plugin platform.

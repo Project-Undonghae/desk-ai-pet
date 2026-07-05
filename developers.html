@@ -22,7 +22,7 @@
 <body class="doc-page docs-product-page">
 <header class="site-nav" aria-label="DAP navigation">
   <a class="site-nav-brand" href="index.html">DAP</a>
-  <nav>
+  <nav id="site-nav-links">
     <a href="index.html">홈</a>
     <a href="developers.html" aria-current="page">Docs</a>
     <a href="plugins.html">플러그인</a>
@@ -31,6 +31,11 @@
   <div class="site-nav-actions">
     <button id="theme-toggle" class="theme-toggle" type="button" data-next-theme="light" aria-label="라이트 모드로 전환">LIGHT</button>
   </div>
+  <button id="site-nav-menu" class="site-nav-menu" type="button" aria-controls="site-nav-links" aria-expanded="false" aria-label="메뉴 열기">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 
 <main class="docs-shell">
@@ -43,6 +48,7 @@
     <a href="#reference">API reference</a>
     <a href="#examples">Examples</a>
     <a href="#distribution">Distribution</a>
+    <a href="#versioning">Versioning</a>
     <a href="#troubleshooting">Troubleshooting</a>
     <a href="#changelog">Changelog</a>
   </aside>
@@ -54,6 +60,10 @@
       DAP 플러그인은 데스크톱 위의 DAP 경험에 명령, 액션, 설정, 단축키, 팔레트 UI, 로컬 서비스를 추가하는 확장 모듈입니다.
       이 문서는 실제 플러그인을 만들고 배포하는 데 필요한 최소 경로와 API 레퍼런스를 제공합니다.
     </p>
+    <div class="docs-callout">
+      <strong>문서/버전 기준</strong>
+      <p>현재 Plugin Platform 버전은 <code>0.1.0</code>, manifest 기준은 <code>manifest_version: 2</code>입니다. 플러그인 관련 변경은 <code>docs/plugin-platform/version.json</code>과 changelog를 함께 갱신합니다.</p>
+    </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
       <a href="#quickstart">
@@ -310,6 +320,27 @@ await ctx.host.storage.delete("pins");</code></pre>
       </ul>
     </section>
 
+    <section id="versioning">
+      <h2>Versioning</h2>
+      <p>
+        DAP 앱 릴리스 버전, Plugin Platform 버전, manifest 버전, 개별 플러그인 버전은 서로 다른 책임을 가집니다.
+        플러그인 개발자에게 영향을 주는 변경은 개발문서와 <code>docs/plugin-platform</code> 아래의 관리 파일을 함께 갱신합니다.
+      </p>
+      <table>
+        <tr><th>변경</th><th>필수 갱신</th><th>버전 처리</th></tr>
+        <tr><td>새 host API, permission, manifest 선택 필드</td><td>API reference, changelog, version.json</td><td>Plugin Platform minor</td></tr>
+        <tr><td>API 설명 보강, 예시 수정, 비호환 없는 오류 수정</td><td>관련 문서, changelog</td><td>Plugin Platform patch</td></tr>
+        <tr><td>API 제거, 인자 변경, 권한 필수화, manifest 필수 필드 변경</td><td>문서 전체, migration note, changelog</td><td>Plugin Platform major 또는 manifest_version 증가</td></tr>
+        <tr><td>카탈로그 필드 추가/변경</td><td>Distribution, plugins.html 등록 안내, fallback data</td><td>Plugin Platform minor 또는 major</td></tr>
+        <tr><td>개별 플러그인 등록/업데이트</td><td>카탈로그 ref, 필요 시 plugins.html fallback</td><td>개별 플러그인 버전</td></tr>
+      </table>
+      <ul>
+        <li><code>docs/plugin-platform/version.json</code>은 Plugin Platform의 현재 버전과 호환성 기준입니다.</li>
+        <li><code>docs/plugin-platform/changelog.md</code>는 앱 릴리스 노트와 별도로 플러그인 개발자용 변경사항을 기록합니다.</li>
+        <li><code>manifest_version</code>은 manifest 해석 방식이 호환되지 않을 때만 올립니다.</li>
+      </ul>
+    </section>
+
     <section id="troubleshooting">
       <h2>Troubleshooting</h2>
       <table>
@@ -323,7 +354,7 @@ await ctx.host.storage.delete("pins");</code></pre>
 
     <section id="changelog">
       <h2>Changelog</h2>
-      <p><strong>2026-07-05</strong>: DAP Plugin Platform 문서 초안. Electron/TypeScript Host API, manifest v2, palette, distribution 구조 반영.</p>
+      <p><strong>2026-07-05</strong>: Plugin Platform <code>0.1.0</code> 기준 문서 구조를 정리했습니다. Electron/TypeScript Host API, manifest v2, palette, distribution, versioning 구조를 반영했습니다.</p>
     </section>
   </article>
 </main>
@@ -344,6 +375,32 @@ applyTheme(document.documentElement.dataset.theme);
 document.getElementById("theme-toggle")?.addEventListener("click", (event) => {
   applyTheme(event.currentTarget.dataset.nextTheme);
 });
+function setupSiteMenu() {
+  const header = document.querySelector(".site-nav");
+  const button = document.getElementById("site-nav-menu");
+  const nav = document.getElementById("site-nav-links");
+  if (!header || !button || !nav) return;
+  const close = () => {
+    header.classList.remove("is-menu-open");
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-label", "메뉴 열기");
+  };
+  const toggle = () => {
+    const isOpen = !header.classList.contains("is-menu-open");
+    header.classList.toggle("is-menu-open", isOpen);
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+  };
+  button.addEventListener("click", toggle);
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) close();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") close();
+  });
+  window.matchMedia("(min-width: 721px)").addEventListener("change", close);
+}
+setupSiteMenu();
 </script>
 </body>
 </html>

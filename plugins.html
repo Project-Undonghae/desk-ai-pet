@@ -22,7 +22,7 @@
 <body class="doc-page">
 <header class="site-nav" aria-label="DAP navigation">
   <a class="site-nav-brand" href="index.html">DAP</a>
-  <nav>
+  <nav id="site-nav-links">
     <a href="index.html" data-i18n="nav_home">홈</a>
     <a href="developers.html" data-i18n="nav_developers">Docs</a>
     <a href="plugins.html" aria-current="page" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en" data-i18n="nav_plugins">플러그인</a>
@@ -34,6 +34,11 @@
       <button id="lang-toggle" type="button" data-next-lang="en" aria-label="Switch to English">EN</button>
     </div>
   </div>
+  <button id="site-nav-menu" class="site-nav-menu" type="button" aria-controls="site-nav-links" aria-expanded="false" aria-label="메뉴 열기">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </header>
 <main class="marketplace-main">
   <section class="marketplace-hero">
@@ -262,6 +267,32 @@ document.getElementById("lang-toggle").addEventListener("click", (event) => {
   applyLang(lang);
   history.replaceState({}, "", lang === "en" ? "plugins.html?lang=en" : "plugins.html");
 });
+function setupSiteMenu() {
+  const header = document.querySelector(".site-nav");
+  const button = document.getElementById("site-nav-menu");
+  const nav = document.getElementById("site-nav-links");
+  if (!header || !button || !nav) return;
+  const close = () => {
+    header.classList.remove("is-menu-open");
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-label", "메뉴 열기");
+  };
+  const toggle = () => {
+    const isOpen = !header.classList.contains("is-menu-open");
+    header.classList.toggle("is-menu-open", isOpen);
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+  };
+  button.addEventListener("click", toggle);
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) close();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") close();
+  });
+  window.matchMedia("(min-width: 721px)").addEventListener("change", close);
+}
+setupSiteMenu();
 const searchInput = document.getElementById("plugin-search");
 const sortSelect = document.getElementById("plugin-sort");
 const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
