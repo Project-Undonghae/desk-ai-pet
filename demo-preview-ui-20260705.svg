@@ -75,17 +75,17 @@
 
   <!-- polish result -->
   <g filter="url(#cardShadow)">
-    <rect x="574" y="612" width="304" height="138" rx="15" fill="#fff" stroke="#d8e2e7"/>
+    <rect x="574" y="604" width="304" height="166" rx="15" fill="#fff" stroke="#d8e2e7"/>
   </g>
-  <text x="600" y="646" class="small soft">다듬기 · 완료</text>
-  <rect x="600" y="664" width="252" height="48" rx="10" fill="#fafbfc" stroke="#e6ebef"/>
-  <text x="620" y="695" class="body">조금 더 짧고 자연스럽게...</text>
-  <rect x="600" y="724" width="86" height="36" rx="10" fill="#1976d2"/>
-  <text x="616" y="747" font-size="15" font-weight="700" fill="#fff">대체하기</text>
-  <rect x="700" y="724" width="60" height="36" rx="10" fill="#fff" stroke="#d5dde5"/>
-  <text x="721" y="747" font-size="15" fill="#71808f">복사</text>
-  <rect x="774" y="724" width="60" height="36" rx="10" fill="#fff" stroke="#d5dde5"/>
-  <text x="795" y="747" font-size="15" fill="#71808f">닫기</text>
+  <text x="600" y="636" class="small soft">다듬기 · 완료</text>
+  <rect x="600" y="654" width="252" height="50" rx="10" fill="#fafbfc" stroke="#e6ebef"/>
+  <text x="620" y="686" class="body">조금 더 짧고 자연스럽게...</text>
+  <rect x="600" y="720" width="86" height="36" rx="10" fill="#1976d2"/>
+  <text x="616" y="743" font-size="15" font-weight="700" fill="#fff">대체하기</text>
+  <rect x="700" y="720" width="60" height="36" rx="10" fill="#fff" stroke="#d5dde5"/>
+  <text x="721" y="743" font-size="15" fill="#71808f">복사</text>
+  <rect x="774" y="720" width="60" height="36" rx="10" fill="#fff" stroke="#d5dde5"/>
+  <text x="795" y="743" font-size="15" fill="#71808f">닫기</text>
 
   <!-- chat panel -->
   <g filter="url(#cardShadow)">
@@ -107,9 +107,9 @@
   <text x="960" y="536" class="body bold">설명이나 웹 검색은</text>
   <text x="960" y="562" class="body bold">질문 안에서 고를게요.</text>
 
-  <line x1="934" y1="632" x2="1232" y2="632" stroke="#dfe5ea"/>
-  <rect x="948" y="656" width="206" height="42" rx="21" fill="#fff" stroke="#d4dce3"/>
-  <text x="988" y="683" font-size="14" fill="#9aa5ae">무슨 말이든 해 봐...</text>
-  <rect x="1166" y="656" width="64" height="42" rx="21" fill="#1976d2"/>
-  <text x="1184" y="683" font-size="14" font-weight="700" fill="#fff">전송</text>
+  <line x1="930" y1="666" x2="1236" y2="666" stroke="#dfe5ea"/>
+  <rect x="938" y="676" width="214" height="38" rx="19" fill="#fff" stroke="#d4dce3"/>
+  <text x="976" y="700" font-size="14" fill="#9aa5ae">무슨 말이든 해 봐...</text>
+  <rect x="1160" y="676" width="64" height="38" rx="19" fill="#0b6bcb"/>
+  <text x="1178" y="700" font-size="14" font-weight="700" fill="#fff">전송</text>
 </svg>

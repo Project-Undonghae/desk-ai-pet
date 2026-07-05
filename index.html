@@ -39,6 +39,16 @@
   <link rel="apple-touch-icon" href="favicon-180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260703-demo" />
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem('dap-theme');
+        document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
+      } catch (_) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
   <script id="software-jsonld" type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -117,9 +127,11 @@
     <a href="plugins.html" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en" data-i18n="nav_plugins">플러그인</a>
     <a href="#download" data-i18n="nav_download">다운로드</a>
   </nav>
-  <div class="site-nav-lang lang" aria-label="Language toggle">
-    <button id="lang-ko" type="button" aria-pressed="true">KO</button>
-    <button id="lang-en" type="button" aria-pressed="false">EN</button>
+  <div class="site-nav-actions">
+    <button id="theme-toggle" class="theme-toggle" type="button" data-next-theme="light" aria-label="라이트 모드로 전환">LIGHT</button>
+    <div class="site-nav-lang lang" aria-label="Language toggle">
+      <button id="lang-toggle" type="button" data-next-lang="en" aria-label="Switch to English">EN</button>
+    </div>
   </div>
 </header>
 
@@ -223,7 +235,7 @@
   </div>
   <figure class="demo-frame">
     <img
-      src="demo-preview-ui-20260705.svg?v=20260705-actual"
+      src="demo-preview-ui-20260705.svg?v=20260705-components"
       width="1400"
       height="900"
       alt="DAP 실제 UI 흐름: 빠른 실행창, 선택 영역 액션, 채팅 패널, 화면 위 고양이"
@@ -528,11 +540,12 @@ function applyLang(lang){
     if (typeof v !== 'string') continue;
     el.setAttribute('title', v);
   }
-  const koBtn = document.getElementById('lang-ko');
-  const enBtn = document.getElementById('lang-en');
-  if (koBtn && enBtn) {
-    koBtn.setAttribute('aria-pressed', lang === 'ko' ? 'true' : 'false');
-    enBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) {
+    const nextLang = lang === 'en' ? 'ko' : 'en';
+    langToggle.dataset.nextLang = nextLang;
+    langToggle.textContent = nextLang.toUpperCase();
+    langToggle.setAttribute('aria-label', lang === 'en' ? '한국어로 전환' : 'Switch to English');
   }
   for (const el of document.querySelectorAll('[data-href-ko][data-href-en]')) {
     el.setAttribute('href', lang === 'en' ? el.dataset.hrefEn : el.dataset.hrefKo);
@@ -545,13 +558,30 @@ function applyLang(lang){
 const qsLang = new URLSearchParams(location.search).get('lang');
 const initialLang = (qsLang || navigator.language || 'ko').toLowerCase().startsWith('en') ? 'en' : 'ko';
 applyLang(initialLang);
-document.getElementById('lang-ko')?.addEventListener('click', () => {
-  applyLang('ko');
-  const u = new URL(location.href); u.searchParams.set('lang','ko'); history.replaceState({},'',u);
+
+function applyTheme(theme) {
+  const selected = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = selected;
+  try { localStorage.setItem('dap-theme', selected); } catch (_) {}
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    const nextTheme = selected === 'light' ? 'dark' : 'light';
+    toggle.dataset.nextTheme = nextTheme;
+    toggle.textContent = nextTheme.toUpperCase();
+    toggle.setAttribute('aria-label', nextTheme === 'light' ? '라이트 모드로 전환' : '다크 모드로 전환');
+  }
+}
+applyTheme(document.documentElement.dataset.theme);
+document.getElementById('theme-toggle')?.addEventListener('click', (event) => {
+  applyTheme(event.currentTarget.dataset.nextTheme);
 });
-document.getElementById('lang-en')?.addEventListener('click', () => {
-  applyLang('en');
-  const u = new URL(location.href); u.searchParams.set('lang','en'); history.replaceState({},'',u);
+
+document.getElementById('lang-toggle')?.addEventListener('click', (event) => {
+  const lang = event.currentTarget.dataset.nextLang === 'ko' ? 'ko' : 'en';
+  applyLang(lang);
+  const u = new URL(location.href);
+  u.searchParams.set('lang', lang);
+  history.replaceState({}, '', u);
 });
 
 for (const el of document.querySelectorAll('[data-download-platform]')) {
