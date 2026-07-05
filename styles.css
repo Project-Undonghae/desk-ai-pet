@@ -1893,11 +1893,57 @@ html[data-theme="light"] .hero-overlay-inner,
 html[data-theme="light"] .logo span {
   text-shadow: 0 18px 64px rgba(255, 255, 255, 0.72);
 }
+html[data-theme="light"] .theme-toggle {
+  border-color: #127c68;
+  background: #127c68;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(18, 124, 104, 0.18);
+}
+html[data-theme="light"] .site-nav .lang button {
+  border-color: #91b7b3;
+  background: #ffffff;
+  color: #1b2a2d;
+  box-shadow: 0 8px 20px rgba(29, 54, 58, 0.1);
+}
+html[data-theme="light"] .site-nav nav a:hover,
+html[data-theme="light"] .site-nav nav a:focus-visible,
+html[data-theme="light"] .site-nav nav a[aria-current="page"] {
+  border-color: rgba(18, 124, 104, 0.34);
+  color: #0e6f5d;
+  background: rgba(18, 124, 104, 0.1);
+}
+html[data-theme="light"] .btn,
+html[data-theme="light"] .plugin-card-action,
+html[data-theme="light"] .marketplace-filters button {
+  border-color: rgba(18, 124, 104, 0.32);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 24px rgba(29, 54, 58, 0.1);
+}
+html[data-theme="light"] .btn-w,
+html[data-theme="light"] .plugin-card-action {
+  color: #185f6e;
+}
+html[data-theme="light"] .btn-m,
+html[data-theme="light"] .marketplace-filters button.is-active {
+  color: #0e6f5d;
+}
+html[data-theme="light"] .btn-mi {
+  color: #87580f;
+  border-color: rgba(155, 107, 24, 0.34);
+}
+html[data-theme="light"] .btn:hover,
+html[data-theme="light"] .plugin-card-action:hover,
+html[data-theme="light"] .marketplace-filters button:hover,
+html[data-theme="light"] .marketplace-filters button:focus-visible,
+html[data-theme="light"] .marketplace-filters button.is-active {
+  border-color: rgba(18, 124, 104, 0.48);
+  background: rgba(218, 241, 237, 0.96);
+  box-shadow: 0 14px 28px rgba(18, 124, 104, 0.14);
+}
 html[data-theme="light"] .plugin-status.is-catalog,
 html[data-theme="light"] .plugin-meta span,
 html[data-theme="light"] .plugin-facts div,
-html[data-theme="light"] .submit-fields div,
-html[data-theme="light"] .marketplace-filters button {
+html[data-theme="light"] .submit-fields div {
   background: rgba(255, 255, 255, 0.68);
 }
 html[data-theme="light"] .plugin-market-card.is-built-in {
