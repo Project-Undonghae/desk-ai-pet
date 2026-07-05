@@ -81,6 +81,27 @@ body {
   overflow-x: hidden;
 }
 img { image-rendering: auto; }
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 12px;
+  z-index: 2147483647;
+  transform: translateY(-140%);
+  padding: 9px 12px;
+  border: 1px solid var(--accent2);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform .16s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent2);
+  outline-offset: 2px;
+}
 
 /* ── STARS ── */
 #stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; opacity: var(--star-opacity); }
@@ -396,8 +417,13 @@ img { image-rendering: auto; }
   inset: 0;
   width: 100%;
   height: 100%;
+  border: 0;
   overflow: hidden;
   cursor: pointer;
+}
+#stage:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: -8px;
 }
 #floor {
   position: absolute;
@@ -537,7 +563,13 @@ img { image-rendering: auto; }
   letter-spacing: 0;
   margin-bottom: 16px;
 }
-.logo span { color: var(--text); }
+.logo h1 {
+  margin: 0;
+  color: var(--text);
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
 .logo small {
   display: block;
   margin-top: 18px;
@@ -660,7 +692,7 @@ img { image-rendering: auto; }
   gap: 28px;
   align-items: stretch;
 }
-.summary h1 {
+.summary h2 {
   font-size: clamp(26px, 4vw, 44px);
   line-height: 1.35;
   margin-bottom: 18px;
@@ -703,7 +735,7 @@ img { image-rendering: auto; }
 @media (max-width: 480px) {
   .section-label.compact { padding-top: 8px; }
   .summary { padding: 0 20px 16px; }
-  .summary h1 { font-size: 24px; }
+  .summary h2 { font-size: 24px; }
 }
 
 /* ── DEMO PREVIEW ── */
@@ -1977,7 +2009,7 @@ footer {
   background: var(--button-hover-bg-warm);
 }
 html[data-theme="light"] .hero-overlay-inner,
-html[data-theme="light"] .logo span {
+html[data-theme="light"] .logo h1 {
   text-shadow: 0 18px 64px rgba(255, 255, 255, 0.72);
 }
 html[data-theme="light"] .theme-toggle {
@@ -2051,4 +2083,22 @@ html[data-theme="light"] .plugin-market-card.is-built-in {
 .reveal {
   opacity: 1;
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .star,
+  .cat-pop.wiggle img,
+  .item {
+    animation: none !important;
+  }
 }

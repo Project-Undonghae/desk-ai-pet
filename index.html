@@ -57,7 +57,7 @@
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS",
-    "softwareVersion": "Latest public release",
+    "softwareVersion": "1.2.1",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
     "license": "https://opensource.org/licenses/MIT",
     "isAccessibleForFree": true,
@@ -123,6 +123,8 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
 <div id="cat-pop" class="cat-pop" aria-hidden="true">
   <img id="cat-pop-img" src="sprites/idle_0.png" alt="" />
 </div>
@@ -153,7 +155,7 @@
 <!-- HERO FULLSCREEN: 고양이 스테이지가 전체 화면 배경, 텍스트는 오버레이 -->
 <section id="hero-fullscreen">
   <!-- STAGE: 100vh 풀스크린 고양이 무대 -->
-  <div id="stage" data-i18n-title="stage_title" title="클릭해서 반응 보기">
+  <div id="stage" role="button" tabindex="0" data-i18n-title="stage_title" data-i18n-aria="stage_aria" title="클릭해서 반응 보기" aria-label="고양이에게 반응하기">
     <div id="floor"></div>
     <span class="bg-obj" style="left:8%"></span>
     <span class="bg-obj" style="left:30%"></span>
@@ -171,7 +173,7 @@
   <div class="hero-overlay">
     <div class="hero-overlay-inner z">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">YOUR FIRST AI OS</p>
-      <div class="logo"><span>DAP</span><small>Desk AI Pet</small></div>
+      <div class="logo"><h1>DAP</h1><small>Desk AI Pet</small></div>
       <p class="hero-tagline-text" data-i18n="hero_tagline">고양이와 채팅하고, 선택한 텍스트를 빠른 액션 바로 처리해보세요</p>
       <span id="download" class="download-anchor" aria-hidden="true"></span>
       <div class="hero-dl-row">
@@ -212,13 +214,13 @@
 </section>
 
 <!-- PRODUCT SUMMARY -->
-<main>
+<main id="main">
 <section class="summary z" aria-labelledby="summary-title">
   <img class="section-cat section-cat-summary" src="sprites/idle_2.png" alt="" aria-hidden="true" />
   <p class="section-label compact" data-i18n="summary_label">DAP overview</p>
   <div class="summary-grid">
     <div>
-      <h1 id="summary-title" data-i18n="summary_title">DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다</h1>
+      <h2 id="summary-title" data-i18n="summary_title">DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다</h2>
       <p data-i18n="summary_desc">
         DAP은 화면 위에 작은 고양이로 머물며, 채팅과 빠른 실행창, 선택 영역 액션을 한곳에 모읍니다. 텍스트를 선택해 다듬기, 번역, 요약, 질문을 바로 실행하고, 필요할 때 Claude/Codex를 불러올 수 있어요.
       </p>
@@ -414,6 +416,7 @@ const I18N = {
     hero_copy: "당신의 첫 AI OS\n바탕화면 위 고양이가 채팅과 작업 흐름을 이어줍니다",
     hero_tagline: "고양이와 채팅하고, 선택한 텍스트를 빠른 액션 바로 처리해보세요",
     stage_title: "클릭해서 반응 보기",
+    stage_aria: "고양이에게 반응하기",
     download_label: "DOWNLOAD",
     download_subtitle: "Windows와 macOS용 설치 파일을 제공합니다",
     download_win: "Windows 다운로드",
@@ -481,6 +484,7 @@ const I18N = {
     hero_copy: "Your first AI OS\nA desktop cat keeps chat and work in flow",
     hero_tagline: "Chat with the cat and handle selected text from the quick-action bar",
     stage_title: "Click to interact",
+    stage_aria: "Interact with the cat",
     download_label: "DOWNLOAD",
     download_subtitle: "Installers are available for Windows and macOS",
     download_win: "Download for Windows",
@@ -570,6 +574,12 @@ function applyLang(lang){
     const v = dict[key];
     if (typeof v !== 'string') continue;
     el.setAttribute('title', v);
+  }
+  for (const el of document.querySelectorAll('[data-i18n-aria]')) {
+    const key = el.getAttribute('data-i18n-aria');
+    const v = dict[key];
+    if (typeof v !== 'string') continue;
+    el.setAttribute('aria-label', v);
   }
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
@@ -743,6 +753,7 @@ let stimer = 0;
 let bubTimer = 0;
 const FINT = 115;
 const SW = () => Math.max(300, stage.clientWidth);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function setFlip(f) {
   flip = f;
@@ -862,12 +873,11 @@ function tick(now) {
 
   requestAnimationFrame(tick);
 }
-requestAnimationFrame(tick);
 
-stage.addEventListener('click', (e) => {
+function reactToStage(clientX) {
   if (state === 'textpop') return;
   const rect = stage.getBoundingClientRect();
-  const cx = e.clientX - rect.left;
+  const cx = typeof clientX === 'number' ? clientX - rect.left : catX + 48;
   if (Math.abs(cx - catX - 48) < 72) {
     goEat(catX);
     showBubble(BUBBLE_TEXT.meow, 1600);
@@ -878,6 +888,22 @@ stage.addEventListener('click', (e) => {
     frame = 0;
     showBubble(BUBBLE_TEXT.going, 1200);
   }
+}
+
+if (!reduceMotion) requestAnimationFrame(tick);
+else {
+  catWrap.style.left = `${catX}px`;
+  catWrap.style.bottom = '40px';
+}
+
+stage.addEventListener('click', (e) => {
+  reactToStage(e.clientX);
+});
+
+stage.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  e.preventDefault();
+  reactToStage();
 });
 
 // ── SCROLL REVEAL (IntersectionObserver) ──

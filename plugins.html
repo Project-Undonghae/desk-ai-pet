@@ -20,6 +20,7 @@
   </script>
 </head>
 <body class="doc-page">
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-nav" aria-label="DAP navigation">
   <a class="site-nav-brand" href="index.html">DAP</a>
   <nav id="site-nav-links">
@@ -40,7 +41,7 @@
     <span></span>
   </button>
 </header>
-<main class="marketplace-main">
+<main id="main" class="marketplace-main">
   <section class="marketplace-hero">
     <a class="doc-back" href="index.html#resources-title" data-i18n="back_home">&lt; 랜딩으로 돌아가기</a>
     <p class="section-label compact" data-i18n="eyebrow">Plugin registry</p>
@@ -64,7 +65,7 @@
 
   <section class="marketplace-controls" aria-label="Plugin filters">
     <div class="marketplace-search-row">
-      <input id="plugin-search" type="search" data-i18n-placeholder="search_placeholder" placeholder="플러그인 검색" autocomplete="off" />
+      <input id="plugin-search" type="search" data-i18n-placeholder="search_placeholder" data-i18n-aria="search_label" placeholder="플러그인 검색" aria-label="플러그인 검색" autocomplete="off" />
       <select id="plugin-sort" aria-label="Plugin sort">
         <option value="registry" data-i18n="sort_registry">등록순</option>
         <option value="name" data-i18n="sort_name">이름순</option>
@@ -136,6 +137,7 @@ const I18N = {
     stat_plugins_label: "등록 플러그인",
     stat_source_label: "카탈로그",
     search_placeholder: "플러그인 검색",
+    search_label: "플러그인 검색",
     sort_registry: "등록순",
     sort_name: "이름순",
     sort_repo: "레포순",
@@ -182,6 +184,7 @@ const I18N = {
     stat_plugins_label: "Registered",
     stat_source_label: "Catalog",
     search_placeholder: "Search plugins",
+    search_label: "Search plugins",
     sort_registry: "Registry order",
     sort_name: "Name",
     sort_repo: "Repository",
@@ -232,6 +235,10 @@ function applyLang(lang) {
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     const value = dict[el.dataset.i18nPlaceholder];
     if (value) el.setAttribute("placeholder", value);
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    const value = dict[el.dataset.i18nAria];
+    if (value) el.setAttribute("aria-label", value);
   });
   document.querySelectorAll("[data-href-ko][data-href-en]").forEach((el) => {
     el.setAttribute("href", lang === "en" ? el.dataset.hrefEn : el.dataset.hrefKo);
