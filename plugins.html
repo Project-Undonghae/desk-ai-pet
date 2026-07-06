@@ -115,6 +115,7 @@
           <div><dt>id</dt><dd data-i18n="submit_field_id">고유 플러그인 ID</dd></div>
           <div><dt>name</dt><dd data-i18n="submit_field_name">마켓플레이스 표시 이름</dd></div>
           <div><dt>description</dt><dd data-i18n="submit_field_description">한 줄 기능 설명</dd></div>
+          <div><dt>category</dt><dd data-i18n="submit_field_category">productivity, utility, developer 중 하나</dd></div>
           <div><dt>repo</dt><dd data-i18n="submit_field_repo">GitHub 저장소 경로</dd></div>
           <div><dt>ref</dt><dd data-i18n="submit_field_ref">설치에 사용할 브랜치 또는 태그</dd></div>
         </dl>
@@ -163,6 +164,7 @@ const I18N = {
     submit_field_id: "고유 플러그인 ID",
     submit_field_name: "마켓플레이스 표시 이름",
     submit_field_description: "한 줄 기능 설명",
+    submit_field_category: "productivity, utility, developer 중 하나",
     submit_field_repo: "GitHub 저장소 경로",
     submit_field_ref: "설치에 사용할 브랜치 또는 태그",
     submit_action: "등록 레포 보기",
@@ -210,6 +212,7 @@ const I18N = {
     submit_field_id: "Unique plugin ID",
     submit_field_name: "Marketplace display name",
     submit_field_description: "One-line feature summary",
+    submit_field_category: "One of productivity, utility, developer",
     submit_field_repo: "GitHub repository path",
     submit_field_ref: "Branch or tag used for installation",
     submit_action: "Open registry repo",
@@ -314,8 +317,17 @@ const FALLBACK_CATALOG = {
       id: "io.github.o-min222.super_clipboard",
       name: "Super Clipboard",
       description: "복사한 텍스트·이미지·파일을 팔레트로 모아 붙여넣기·드래그로 다시 사용",
+      category: "utility",
       repo: "o-min222/dap-super-clipboard",
       ref: "v0.1.0",
+    },
+    {
+      id: "dap.lecture_tools",
+      name: "Lecture Tools",
+      description: "강사용 커서 강조, 판서, spotlight 오버레이 컨트롤",
+      category: "productivity",
+      repo: "o-min222/dap-lecture-tools",
+      ref: "v0.3.4",
     },
   ],
 };
@@ -342,6 +354,11 @@ function inferCategory(plugin) {
   return "general";
 }
 
+function normalizeCategory(plugin) {
+  if (["productivity", "utility", "developer"].includes(plugin.category)) return plugin.category;
+  return inferCategory(plugin);
+}
+
 function categoryLabel(category) {
   if (category === "utility") return t("cat_utility");
   if (category === "developer") return t("cat_developer");
@@ -352,7 +369,7 @@ function categoryLabel(category) {
 function normalizePlugin(plugin, index) {
   const repoUrl = repoToUrl(plugin.repo);
   const ref = plugin.ref || "default";
-  const category = plugin.category || inferCategory(plugin);
+  const category = normalizeCategory(plugin);
   return {
     ...plugin,
     index,
