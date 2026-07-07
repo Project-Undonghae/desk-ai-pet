@@ -895,19 +895,14 @@ img { image-rendering: auto; }
 }
 .pet-moments-head {
   max-width: 720px;
-  margin: 0 auto 24px;
+  margin: 0 auto 22px;
   text-align: center;
 }
 .pet-moments h2 {
   font-size: clamp(22px, 3vw, 34px);
   line-height: 1.35;
-  margin: 10px 0 10px;
+  margin: 10px 0 0;
   color: var(--text);
-}
-.pet-moments-head p:not(.section-label) {
-  color: var(--soft);
-  font-size: 14px;
-  line-height: 1.85;
 }
 .pet-moment-grid {
   display: grid;
@@ -916,8 +911,8 @@ img { image-rendering: auto; }
 }
 .pet-moment {
   position: relative;
-  min-height: 260px;
-  padding: 18px;
+  min-height: 206px;
+  padding: 18px 16px 16px;
   border: var(--pixel-border) var(--border);
   border-radius: 8px;
   background: var(--panel-gradient);
@@ -936,7 +931,7 @@ img { image-rendering: auto; }
   display: block;
   width: min(82%, 154px);
   height: 128px;
-  margin: 4px auto 16px;
+  margin: 2px auto 14px;
   object-fit: contain;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
@@ -946,14 +941,9 @@ img { image-rendering: auto; }
 }
 .pet-moment strong {
   display: block;
-  margin-bottom: 8px;
   color: var(--accent);
   font-size: 15px;
-}
-.pet-moment p {
-  color: var(--soft);
-  font-size: 13px;
-  line-height: 1.75;
+  text-align: center;
 }
 @media (max-width: 900px) {
   .pet-moment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -969,12 +959,15 @@ img { image-rendering: auto; }
     grid-template-columns: 104px minmax(0, 1fr);
     gap: 16px;
     align-items: center;
-    min-height: 150px;
+    min-height: 128px;
   }
   .pet-moment img {
     width: 104px;
     height: 104px;
     margin: 0;
+  }
+  .pet-moment strong {
+    text-align: left;
   }
 }
 
