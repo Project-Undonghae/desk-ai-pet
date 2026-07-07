@@ -471,7 +471,6 @@ const I18N = {
     footer: "DAP · Desk AI Pet · Windows & macOS",
     bubble_eat: "잠깐 쉬는 중",
     bubble_meow: "여기 있어요",
-    bubble_going: "이동 중",
   },
   en: {
     meta_title: "DAP (Desk AI Pet) - Your first AI OS",
@@ -539,14 +538,12 @@ const I18N = {
     footer: "DAP · Desk AI Pet · Windows & macOS",
     bubble_eat: "Taking a break",
     bubble_meow: "I'm here",
-    bubble_going: "Moving",
   }
 };
 
 let BUBBLE_TEXT = {
   eat: I18N.ko.bubble_eat,
   meow: I18N.ko.bubble_meow,
-  going: I18N.ko.bubble_going,
 };
 
 function applyLang(lang){
@@ -559,7 +556,6 @@ function applyLang(lang){
   BUBBLE_TEXT = {
     eat: dict.bubble_eat,
     meow: dict.bubble_meow,
-    going: dict.bubble_going,
   };
 
   for (const el of document.querySelectorAll('[data-i18n]')) {
@@ -886,7 +882,6 @@ function reactToStage(clientX) {
     setFlip(targetX < catX);
     state = 'walk';
     frame = 0;
-    showBubble(BUBBLE_TEXT.going, 1200);
   }
 }
 
