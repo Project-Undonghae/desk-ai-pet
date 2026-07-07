@@ -1304,6 +1304,16 @@ footer {
   font-size: 13px;
   line-height: 1.75;
 }
+.docs-ai-guide {
+  padding-top: 2px;
+}
+.docs-copy-prompt pre {
+  border-color: rgba(103, 232, 200, 0.34);
+  background: linear-gradient(180deg, rgba(5, 8, 9, 0.82), rgba(11, 18, 20, 0.74));
+}
+.docs-ai-links {
+  margin-top: 18px;
+}
 .docs-callout {
   margin: 18px 0;
   padding: 16px 18px;

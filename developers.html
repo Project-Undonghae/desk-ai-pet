@@ -43,6 +43,7 @@
   <aside class="docs-sidebar" aria-label="Documentation sections">
     <strong>Plugin Platform</strong>
     <a href="#overview">Overview</a>
+    <a href="#ai-build">AI build guide</a>
     <a href="#quickstart">Quickstart</a>
     <a href="#concepts">Core concepts</a>
     <a href="#guides">Guides</a>
@@ -67,6 +68,11 @@
     </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
+      <a href="#ai-build">
+        <span>AI</span>
+        <strong>AI로 플러그인 만들기</strong>
+        <p>Codex, Claude, ChatGPT에 전달할 문서 링크와 프롬프트를 바로 복사합니다.</p>
+      </a>
       <a href="#quickstart">
         <span>Start</span>
         <strong>첫 플러그인 만들기</strong>
@@ -83,6 +89,47 @@
         <p>로컬 설치 경로와 카탈로그 배포 형식을 확인합니다.</p>
       </a>
     </div>
+
+    <section id="ai-build" class="docs-ai-guide">
+      <h2>AI로 플러그인 만들기</h2>
+      <p>
+        AI 에이전트에게 긴 문서를 직접 설명하지 않아도 됩니다.
+        아래 프롬프트에 만들고 싶은 기능만 적어 전달하면, AI가 <code>llms.txt</code>에서 필요한 문서와 규칙을 따라가도록 설계했습니다.
+      </p>
+      <div class="docs-copy-prompt" aria-label="AI prompt for DAP plugin development">
+        <pre><code>Read https://project-undonghae.github.io/desk-ai-pet/llms.txt
+and create a DAP plugin that [원하는 기능을 적어주세요].
+
+Return:
+- plugin.yaml
+- the ESM entry file
+- required permissions and why they are needed
+- local install steps
+
+Keep the implementation minimal and follow manifest_version: 2.</code></pre>
+      </div>
+      <div class="docs-card-grid docs-ai-links" aria-label="AI-readable documentation">
+        <a href="llms.txt">
+          <span>ENTRY</span>
+          <strong>llms.txt</strong>
+          <p>AI가 가장 먼저 읽을 공식 목차와 플러그인 작성 규칙입니다.</p>
+        </a>
+        <a href="docs/plugin-platform/ai-context.md">
+          <span>CONTEXT</span>
+          <strong>ai-context.md</strong>
+          <p>복붙하거나 로컬 에이전트에게 전달하기 쉬운 압축 컨텍스트입니다.</p>
+        </a>
+        <a href="#reference">
+          <span>API</span>
+          <strong>ctx API reference</strong>
+          <p>액션, 명령, 설정, host service를 구현할 때 확인합니다.</p>
+        </a>
+      </div>
+      <div class="docs-callout">
+        <strong>추천 사용법</strong>
+        <p>사람은 원하는 기능만 구체적으로 적고, AI에게는 <code>llms.txt</code> URL을 함께 전달하세요. 예: “선택한 한국어 문장을 공손하게 다듬는 DAP 플러그인을 만들어줘.”</p>
+      </div>
+    </section>
 
     <section id="overview">
       <h2>Overview</h2>
