@@ -164,7 +164,7 @@
 
     <div id="bubble"></div>
     <div id="cat-wrap">
-      <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
+      <img id="cat-img" src="sprites/hero_idle_0.png" alt="고양이" />
     </div>
     <div class="item" id="churu-item">TREAT</div>
   </div>
@@ -216,7 +216,7 @@
 <!-- PRODUCT SUMMARY -->
 <main id="main">
 <section class="summary z" aria-labelledby="summary-title">
-  <img class="section-cat section-cat-summary" src="sprites/idle_2.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-summary" src="sprites/headtilt_24_crop.png" alt="" aria-hidden="true" />
   <p class="section-label compact" data-i18n="summary_label">DAP overview</p>
   <div class="summary-grid">
     <div>
@@ -263,7 +263,7 @@
 <!-- FEATURES -->
 <p class="section-label" data-i18n="features_label">Core features</p>
 <div class="features z">
-  <img class="section-cat section-cat-features" src="sprites/walk_2.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-features" src="sprites/happy_24_crop.png" alt="" aria-hidden="true" />
   <div class="card reveal">
     <div class="card-icon">CMD</div>
     <h3 data-i18n="f1_title">빠른 실행</h3>
@@ -286,8 +286,48 @@
   </div>
 </div>
 
+<!-- PET STATES -->
+<section class="pet-moments z" aria-labelledby="pet-moments-title">
+  <div class="pet-moments-head">
+    <p class="section-label compact" data-i18n="pet_moments_label">Pet states</p>
+    <h2 id="pet-moments-title" data-i18n="pet_moments_title">상태가 보이는 작은 고양이 인터페이스</h2>
+    <p data-i18n="pet_moments_desc">DAP은 작업 흐름을 방해하지 않으면서도, 지금 무엇을 하고 있는지 고양이의 자세와 표정으로 살짝 알려줍니다.</p>
+  </div>
+  <div class="pet-moment-grid">
+    <article class="pet-moment reveal">
+      <img src="sprites/working_45_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_working_title">작업 중</strong>
+        <p data-i18n="pet_working_desc">요청을 처리하거나 생각 중일 때는 노트북 앞에 집중한 모습으로 머뭅니다.</p>
+      </div>
+    </article>
+    <article class="pet-moment reveal">
+      <img src="sprites/success_36_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_success_title">완료 신호</strong>
+        <p data-i18n="pet_success_desc">액션이 끝났을 때 짧고 확실한 시각 신호로 결과를 강조합니다.</p>
+      </div>
+    </article>
+    <article class="pet-moment reveal">
+      <img src="sprites/happy_24_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_happy_title">가벼운 반응</strong>
+        <p data-i18n="pet_happy_desc">사용자 입력과 성공적인 흐름에 맞춰 밝은 표정으로 반응합니다.</p>
+      </div>
+    </article>
+    <article class="pet-moment reveal">
+      <img src="sprites/sleep_12_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_sleep_title">조용한 대기</strong>
+        <p data-i18n="pet_sleep_desc">사용하지 않을 때는 화면 한쪽에서 차분하게 쉬며 존재감을 낮춥니다.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- NEXT STEPS -->
 <section class="resource-hub z" aria-labelledby="resources-title">
+  <img class="section-cat section-cat-resource" src="sprites/dance_64_crop.png" alt="" aria-hidden="true" />
   <p class="section-label compact" data-i18n="resources_label">Next steps</p>
   <div class="resource-head">
     <h2 id="resources-title" data-i18n="resources_title">DAP을 더 편하게 시작하는 방법</h2>
@@ -304,17 +344,17 @@
       <strong data-i18n="resource_services_title">플러그인 둘러보기</strong>
       <p data-i18n="resource_services_desc">DAP 안에서 더해 쓸 수 있는 확장 기능을 카드 형태로 확인합니다.</p>
     </a>
-    <a class="resource-card reveal" href="https://github.com/Project-Undonghae/desk-ai-pet" target="_blank" rel="noopener">
-      <span>GITHUB</span>
-      <strong data-i18n="resource_project_title">프로젝트 보기</strong>
-      <p data-i18n="resource_project_desc">릴리스와 업데이트 내역은 GitHub 프로젝트에서 확인할 수 있습니다.</p>
+    <a class="resource-card reveal" href="#download">
+      <span>UPDATE</span>
+      <strong data-i18n="resource_project_title">최신 버전 확인</strong>
+      <p data-i18n="resource_project_desc">공개 다운로드 버튼에서 현재 제공 중인 설치 파일을 확인할 수 있습니다.</p>
     </a>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <div class="how z">
-  <img class="section-cat section-cat-how" src="sprites/idle_4.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-how" src="sprites/working_45_crop.png" alt="" aria-hidden="true" />
   <h2 data-i18n="how_title">Getting started</h2>
   <div class="steps">
     <div class="step reveal">
@@ -343,7 +383,7 @@
 
 <!-- FAQ -->
 <section class="faq z" aria-labelledby="faq-title">
-  <img class="section-cat section-cat-faq" src="sprites/idle_1.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-faq" src="sprites/groom_48_crop.png" alt="" aria-hidden="true" />
   <h2 id="faq-title" data-i18n="faq_title">자주 묻는 질문</h2>
   <div class="faq-list">
     <details open>
@@ -443,6 +483,17 @@ const I18N = {
     f3_desc: "텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.",
     f4_title: "Pet interface",
     f4_desc: "고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
+    pet_moments_label: "Pet states",
+    pet_moments_title: "상태가 보이는 작은 고양이 인터페이스",
+    pet_moments_desc: "DAP은 작업 흐름을 방해하지 않으면서도, 지금 무엇을 하고 있는지 고양이의 자세와 표정으로 살짝 알려줍니다.",
+    pet_working_title: "작업 중",
+    pet_working_desc: "요청을 처리하거나 생각 중일 때는 노트북 앞에 집중한 모습으로 머뭅니다.",
+    pet_success_title: "완료 신호",
+    pet_success_desc: "액션이 끝났을 때 짧고 확실한 시각 신호로 결과를 강조합니다.",
+    pet_happy_title: "가벼운 반응",
+    pet_happy_desc: "사용자 입력과 성공적인 흐름에 맞춰 밝은 표정으로 반응합니다.",
+    pet_sleep_title: "조용한 대기",
+    pet_sleep_desc: "사용하지 않을 때는 화면 한쪽에서 차분하게 쉬며 존재감을 낮춥니다.",
     resources_label: "Next steps",
     resources_title: "DAP을 더 편하게 시작하는 방법",
     resources_desc: "설치 후 바로 쓰는 기본 흐름부터, 필요할 때 더해 쓰는 확장 기능까지 한눈에 둘러볼 수 있습니다.",
@@ -450,8 +501,8 @@ const I18N = {
     resource_start_desc: "Windows와 macOS 환경에 맞는 설치 파일을 선택해 DAP을 바로 시작합니다.",
     resource_services_title: "플러그인 둘러보기",
     resource_services_desc: "DAP 안에서 더해 쓸 수 있는 확장 기능을 카드 형태로 확인합니다.",
-    resource_project_title: "프로젝트 보기",
-    resource_project_desc: "릴리스와 업데이트 내역은 GitHub 프로젝트에서 확인할 수 있습니다.",
+    resource_project_title: "최신 버전 확인",
+    resource_project_desc: "공개 다운로드 버튼에서 현재 제공 중인 설치 파일을 확인할 수 있습니다.",
     how_title: "Getting started",
     s1_title: "다운로드 & 설치",
     s1_desc: "Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.",
@@ -510,6 +561,17 @@ const I18N = {
     f3_desc: "Drag-select text to open a quick-action bar near the cursor for polish, translate, summarize, and ask. The ask card also includes explain and web-search presets.",
     f4_title: "Pet interface",
     f4_desc: "The cat stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
+    pet_moments_label: "Pet states",
+    pet_moments_title: "A small cat interface that shows state",
+    pet_moments_desc: "DAP quietly shows what it is doing through the cat's posture and expression without interrupting your workflow.",
+    pet_working_title: "Working",
+    pet_working_desc: "When DAP is thinking or handling a request, the cat settles into a focused laptop pose.",
+    pet_success_title: "Done signal",
+    pet_success_desc: "Completed actions get a short, clear visual cue that makes the result feel acknowledged.",
+    pet_happy_title: "Light reactions",
+    pet_happy_desc: "The cat responds with brighter expressions when the flow is going well.",
+    pet_sleep_title: "Quiet standby",
+    pet_sleep_desc: "When you are not using DAP, the cat can rest calmly at the edge of the screen.",
     resources_label: "Next steps",
     resources_title: "A simpler way to start with DAP",
     resources_desc: "Start with the installer, then browse optional extensions when you want to add more to your desktop flow.",
@@ -517,8 +579,8 @@ const I18N = {
     resource_start_desc: "Choose the Windows or macOS installer that matches your device and start DAP right away.",
     resource_services_title: "Browse plugins",
     resource_services_desc: "Browse optional extensions you can add to DAP.",
-    resource_project_title: "View the project",
-    resource_project_desc: "Check releases and update history in the GitHub project.",
+    resource_project_title: "Check the latest version",
+    resource_project_desc: "Use the public download buttons to see the installers currently available.",
     how_title: "Getting started",
     s1_title: "Download & install",
     s1_desc: "Download the installer that matches your device: Windows, macOS Apple Silicon, or macOS Intel.",
@@ -665,8 +727,8 @@ for (const el of document.querySelectorAll('[data-download-platform]')) {
   });
 }
 
-const IDLE = Array.from({ length: 5 }, (_, i) => `sprites/idle_${i}.png`);
-const WALK = Array.from({ length: 5 }, (_, i) => `sprites/walk_${i}.png`);
+const IDLE = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108, 132, 156].map((i) => `sprites/hero_idle_${i}.png`);
+const WALK = [0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88].map((i) => `sprites/hero_walk_${i}.png`);
 [...IDLE, ...WALK].forEach((s) => {
   const im = new Image();
   im.src = s;
@@ -749,6 +811,7 @@ let stimer = 0;
 let bubTimer = 0;
 const FINT = 115;
 const SW = () => Math.max(300, stage.clientWidth);
+const catWidth = () => Math.max(96, catWrap.getBoundingClientRect().width || catWrap.clientWidth || 120);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function setFlip(f) {
@@ -782,7 +845,8 @@ function goIdle() {
 function goWalk() {
   state = 'walk';
   frame = 0;
-  targetX = Math.max(10, Math.min(SW() - 110, Math.random() * (SW() - 120)));
+  const w = catWidth();
+  targetX = Math.max(10, Math.min(SW() - w - 10, Math.random() * (SW() - w)));
   setFlip(targetX < catX);
   stimer = 0;
 }
@@ -832,7 +896,8 @@ function tick(now) {
   last = now;
 
   ftimer += dt;
-  if (ftimer >= FINT) {
+  const frameInterval = state === 'walk' ? 165 : state === 'idle' ? 220 : FINT;
+  if (ftimer >= frameInterval) {
     ftimer = 0;
     const frames = state === 'walk' ? WALK : IDLE;
     frame = (frame + 1) % frames.length;
@@ -847,9 +912,9 @@ function tick(now) {
 
   catWrap.style.left = `${catX}px`;
   if (state === 'walk') {
-    catWrap.style.bottom = `${40 + Math.sin(now / 200) * 6}px`;
+    catWrap.style.bottom = `${40 + Math.sin(now / 340) * 2}px`;
     const dir = targetX > catX ? 1 : -1;
-    const spd = 2.1 + Math.sin(now / 400) * 0.55;
+    const spd = 0.9 + Math.sin(now / 680) * 0.16;
     catX += dir * spd;
     if (Math.abs(catX - targetX) < 6) {
       catX = targetX;
@@ -873,12 +938,13 @@ function tick(now) {
 function reactToStage(clientX) {
   if (state === 'textpop') return;
   const rect = stage.getBoundingClientRect();
-  const cx = typeof clientX === 'number' ? clientX - rect.left : catX + 48;
-  if (Math.abs(cx - catX - 48) < 72) {
+  const halfCat = catWidth() / 2;
+  const cx = typeof clientX === 'number' ? clientX - rect.left : catX + halfCat;
+  if (Math.abs(cx - catX - halfCat) < halfCat * 0.76) {
     goEat(catX);
     showBubble(BUBBLE_TEXT.meow, 1600);
   } else {
-    targetX = Math.max(10, Math.min(SW() - 110, cx - 48));
+    targetX = Math.max(10, Math.min(SW() - catWidth() - 10, cx - halfCat));
     setFlip(targetX < catX);
     state = 'walk';
     frame = 0;
