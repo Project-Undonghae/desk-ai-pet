@@ -110,7 +110,7 @@
         "name": "플러그인을 만들거나 등록할 수 있나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "DAP은 manifest v2 기반 플러그인 문서와 GitHub 카탈로그 방식의 플러그인 레지스트리를 제공합니다."
+          "text": "DAP은 필요할 때 더해 쓸 수 있는 플러그인 확장 기능을 제공합니다."
         }
       }
     ]
@@ -236,7 +236,7 @@
       </div>
       <div>
         <dt data-i18n="fact_license_label">확장</dt>
-        <dd data-i18n="fact_license_value">Plugin Platform · Registry · manifest v2</dd>
+        <dd data-i18n="fact_license_value">플러그인 · 설정 · 빠른 액션</dd>
       </div>
     </dl>
   </div>
@@ -282,32 +282,32 @@
   <div class="card reveal">
     <div class="card-icon">PET</div>
     <h3 data-i18n="f4_title">PET INTERFACE</h3>
-    <p data-i18n="f4_desc">Nabi가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
+    <p data-i18n="f4_desc">고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
   </div>
 </div>
 
-<!-- DEVELOPER AND PLUGIN SERVICES -->
+<!-- NEXT STEPS -->
 <section class="resource-hub z" aria-labelledby="resources-title">
-  <p class="section-label compact" data-i18n="resources_label">Developers & plugins</p>
+  <p class="section-label compact" data-i18n="resources_label">Next steps</p>
   <div class="resource-head">
-    <h2 id="resources-title" data-i18n="resources_title">DAP을 확장하는 세 가지 입구</h2>
-    <p data-i18n="resources_desc">개발자는 플러그인 구조와 버전 정책을 확인하고, 사용자는 DAP 안에서 사용할 수 있는 카탈로그 플러그인을 둘러볼 수 있습니다.</p>
+    <h2 id="resources-title" data-i18n="resources_title">DAP을 더 편하게 시작하는 방법</h2>
+    <p data-i18n="resources_desc">설치 후 바로 쓰는 기본 흐름부터, 필요할 때 더해 쓰는 확장 기능까지 한눈에 둘러볼 수 있습니다.</p>
   </div>
   <div class="resource-grid">
-    <a class="resource-card reveal" href="developers.html">
-      <span>DOCS</span>
-      <strong data-i18n="resource_developers_title">Plugin Docs</strong>
-      <p data-i18n="resource_developers_desc">manifest v2, ctx API, 권한, 팔레트 UI, 배포 흐름을 실제 개발 기준으로 정리했습니다.</p>
+    <a class="resource-card reveal" href="#download">
+      <span>START</span>
+      <strong data-i18n="resource_start_title">설치 파일 받기</strong>
+      <p data-i18n="resource_start_desc">Windows와 macOS 환경에 맞는 설치 파일을 선택해 DAP을 바로 시작합니다.</p>
     </a>
     <a class="resource-card reveal" href="plugins.html" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en">
-      <span>REGISTRY</span>
+      <span>PLUGINS</span>
       <strong data-i18n="resource_services_title">플러그인 둘러보기</strong>
-      <p data-i18n="resource_services_desc">Project-Undonghae/dap-plugins 카탈로그에 등록된 확장 기능을 카드 형태로 확인합니다.</p>
+      <p data-i18n="resource_services_desc">DAP 안에서 더해 쓸 수 있는 확장 기능을 카드 형태로 확인합니다.</p>
     </a>
-    <a class="resource-card reveal" href="developers.html#versioning">
-      <span>VERSION</span>
-      <strong data-i18n="resource_versioning_title">버전 관리 기준</strong>
-      <p data-i18n="resource_versioning_desc">앱 버전, Plugin Platform 버전, manifest 버전, 개별 플러그인 버전을 분리해 관리합니다.</p>
+    <a class="resource-card reveal" href="https://github.com/Project-Undonghae/desk-ai-pet" target="_blank" rel="noopener">
+      <span>GITHUB</span>
+      <strong data-i18n="resource_project_title">프로젝트 보기</strong>
+      <p data-i18n="resource_project_desc">릴리스와 업데이트 내역은 GitHub 프로젝트에서 확인할 수 있습니다.</p>
     </a>
   </div>
 </section>
@@ -360,7 +360,7 @@
     </details>
     <details>
       <summary data-i18n="q4_title">플러그인을 만들거나 등록할 수 있나요?</summary>
-      <p data-i18n="q4_desc">개발자 문서에서 manifest v2와 ctx API를 확인하고, dap-plugins 카탈로그에 플러그인 정보를 등록하는 방식으로 배포 흐름을 맞출 수 있습니다.</p>
+      <p data-i18n="q4_desc">플러그인 페이지에서 DAP에 더해 쓸 수 있는 확장 기능을 둘러볼 수 있습니다.</p>
     </details>
   </div>
 </section>
@@ -407,7 +407,7 @@ let textPopReady = false;
 const I18N = {
   ko: {
     meta_title: "DAP (Desk AI Pet) - 당신의 첫 AI OS",
-    meta_desc: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex 연결, 플러그인 플랫폼과 레지스트리로 작업 흐름을 확장합니다.",
+    meta_desc: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex 연결, 확장 기능으로 작업 흐름을 넓힙니다.",
     nav_home: "홈",
     nav_developers: "Docs",
     nav_plugins: "플러그인",
@@ -430,7 +430,7 @@ const I18N = {
     fact_ai_label: "연결",
     fact_ai_value: "로그인된 Claude · Codex 사용",
     fact_license_label: "확장",
-    fact_license_value: "Plugin Platform · Registry · manifest v2",
+    fact_license_value: "플러그인 · 설정 · 빠른 액션",
     demo_label: "Preview",
     demo_title: "실제 화면 위에서 바로 이어지는 AI OS",
     demo_desc: "빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.",
@@ -442,16 +442,16 @@ const I18N = {
     f3_title: "Quick actions",
     f3_desc: "텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.",
     f4_title: "Pet interface",
-    f4_desc: "Nabi가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
-    resources_label: "Developers & plugins",
-    resources_title: "DAP을 확장하는 세 가지 입구",
-    resources_desc: "개발자는 플러그인 구조와 버전 정책을 확인하고, 사용자는 DAP 안에서 사용할 수 있는 카탈로그 플러그인을 둘러볼 수 있습니다.",
-    resource_developers_title: "Plugin Docs",
-    resource_developers_desc: "manifest v2, ctx API, 권한, 팔레트 UI, 배포 흐름을 실제 개발 기준으로 정리했습니다.",
+    f4_desc: "고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
+    resources_label: "Next steps",
+    resources_title: "DAP을 더 편하게 시작하는 방법",
+    resources_desc: "설치 후 바로 쓰는 기본 흐름부터, 필요할 때 더해 쓰는 확장 기능까지 한눈에 둘러볼 수 있습니다.",
+    resource_start_title: "설치 파일 받기",
+    resource_start_desc: "Windows와 macOS 환경에 맞는 설치 파일을 선택해 DAP을 바로 시작합니다.",
     resource_services_title: "플러그인 둘러보기",
-    resource_services_desc: "Project-Undonghae/dap-plugins 카탈로그에 등록된 확장 기능을 카드 형태로 확인합니다.",
-    resource_versioning_title: "버전 관리 기준",
-    resource_versioning_desc: "앱 버전, Plugin Platform 버전, manifest 버전, 개별 플러그인 버전을 분리해 관리합니다.",
+    resource_services_desc: "DAP 안에서 더해 쓸 수 있는 확장 기능을 카드 형태로 확인합니다.",
+    resource_project_title: "프로젝트 보기",
+    resource_project_desc: "릴리스와 업데이트 내역은 GitHub 프로젝트에서 확인할 수 있습니다.",
     how_title: "Getting started",
     s1_title: "다운로드 & 설치",
     s1_desc: "Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.",
@@ -466,8 +466,8 @@ const I18N = {
     q2_desc: "DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트입니다. Oshi Desk는 이 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다.",
     q3_title: "별도 설정이 많이 필요한가요?",
     q3_desc: "기본 흐름은 별도 API Key 입력이 아니라, 이미 로그인한 Claude/Codex를 연결해 사용하는 방식입니다.",
-    q4_title: "플러그인을 만들거나 등록할 수 있나요?",
-    q4_desc: "개발자 문서에서 manifest v2와 ctx API를 확인하고, dap-plugins 카탈로그에 플러그인 정보를 등록하는 방식으로 배포 흐름을 맞출 수 있습니다.",
+    q4_title: "플러그인을 사용할 수 있나요?",
+    q4_desc: "플러그인 페이지에서 DAP에 더해 쓸 수 있는 확장 기능을 둘러볼 수 있습니다.",
     footer: "DAP · Desk AI Pet · Windows & macOS",
     bubble_eat: "잠깐 쉬는 중",
     bubble_meow: "여기 있어요",
@@ -475,7 +475,7 @@ const I18N = {
   },
   en: {
     meta_title: "DAP (Desk AI Pet) - Your first AI OS",
-    meta_desc: "DAP is an AI OS that starts with a cat on your desktop. It connects chat, quick launch, selected-text actions, Claude/Codex, and an extensible plugin platform.",
+    meta_desc: "DAP is an AI OS that starts with a cat on your desktop. It connects chat, quick launch, selected-text actions, Claude/Codex, and optional extensions.",
     nav_home: "Home",
     nav_developers: "Docs",
     nav_plugins: "Plugins",
@@ -498,7 +498,7 @@ const I18N = {
     fact_ai_label: "Connection",
     fact_ai_value: "Use your logged-in Claude · Codex",
     fact_license_label: "Extensions",
-    fact_license_value: "Plugin Platform · Registry · manifest v2",
+    fact_license_value: "Plugins · settings · quick actions",
     demo_label: "Preview",
     demo_title: "An AI OS that stays in the real desktop flow",
     demo_desc: "Quick launch, selected-text actions, chat, and the desktop cat work as one flow.",
@@ -510,16 +510,16 @@ const I18N = {
     f3_title: "Quick actions",
     f3_desc: "Drag-select text to open a quick-action bar near the cursor for polish, translate, summarize, and ask. The ask card also includes explain and web-search presets.",
     f4_title: "Pet interface",
-    f4_desc: "Nabi stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
-    resources_label: "Developers & plugins",
-    resources_title: "Three ways to extend DAP",
-    resources_desc: "Developers can read the plugin structure and versioning rules, while users can browse catalog plugins for the DAP experience.",
-    resource_developers_title: "Plugin Docs",
-    resource_developers_desc: "Manifest v2, ctx APIs, permissions, palette UI, and distribution flows are organized for real plugin development.",
+    f4_desc: "The cat stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
+    resources_label: "Next steps",
+    resources_title: "A simpler way to start with DAP",
+    resources_desc: "Start with the installer, then browse optional extensions when you want to add more to your desktop flow.",
+    resource_start_title: "Get the installer",
+    resource_start_desc: "Choose the Windows or macOS installer that matches your device and start DAP right away.",
     resource_services_title: "Browse plugins",
-    resource_services_desc: "Browse extensions registered in the Project-Undonghae/dap-plugins catalog.",
-    resource_versioning_title: "Versioning rules",
-    resource_versioning_desc: "DAP app, Plugin Platform, manifest, and individual plugin versions are managed separately.",
+    resource_services_desc: "Browse optional extensions you can add to DAP.",
+    resource_project_title: "View the project",
+    resource_project_desc: "Check releases and update history in the GitHub project.",
     how_title: "Getting started",
     s1_title: "Download & install",
     s1_desc: "Download the installer that matches your device: Windows, macOS Apple Silicon, or macOS Intel.",
@@ -534,8 +534,8 @@ const I18N = {
     q2_desc: "DAP is the base project that combined AI and desktop pets. Oshi Desk is the character-focused desktop pet service that grew from that flow.",
     q3_title: "Does it take a lot of setup?",
     q3_desc: "The default flow connects Claude/Codex you already use, instead of starting with separate API-key setup.",
-    q4_title: "Can I build or submit plugins?",
-    q4_desc: "Yes. Use the developer docs for manifest v2 and ctx APIs, then publish metadata through the dap-plugins catalog flow.",
+    q4_title: "Can I use plugins?",
+    q4_desc: "Yes. The plugins page shows optional extensions you can add to DAP.",
     footer: "DAP · Desk AI Pet · Windows & macOS",
     bubble_eat: "Taking a break",
     bubble_meow: "I'm here",
@@ -897,8 +897,17 @@ else {
 }
 
 stage.addEventListener('click', (e) => {
+  if (e.detail > 0) stage.blur();
   reactToStage(e.clientX);
 });
+
+stage.addEventListener('mousedown', (e) => {
+  e.preventDefault();
+});
+
+stage.addEventListener('touchstart', () => {
+  stage.blur();
+}, { passive: true });
 
 stage.addEventListener('keydown', (e) => {
   if (e.key !== 'Enter' && e.key !== ' ') return;
