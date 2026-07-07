@@ -98,12 +98,11 @@ Use this when the plugin should be launched from a command or launcher style sur
 
 ```js
 export function activate(ctx) {
-  ctx.commands.registerCommand({
+  ctx.commands.addCommand({
     id: "say-hello",
     title: "Say hello",
-    callback: () => {
-      ctx.host.bubble.speak("Hello");
-    },
+    matchers: [{ type: "keyword", patterns: ["hello", "안녕"], priority: 40 }],
+    backend: { type: "builtin", handler: "dap.say_hello" },
   });
 }
 ```
