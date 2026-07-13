@@ -38,7 +38,7 @@
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="favicon-180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260703-demo" />
+  <link rel="stylesheet" href="styles.css?v=20260714-mini2" />
   <script>
     (() => {
       try {
@@ -57,9 +57,8 @@
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS",
-    "softwareVersion": "1.2.1",
+    "softwareVersion": "1.3.0",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
-    "license": "https://opensource.org/licenses/MIT",
     "isAccessibleForFree": true,
     "creator": {
       "@type": "Organization",
@@ -320,6 +319,48 @@
   </div>
 </section>
 
+<!-- V1.3 MINI PETS -->
+<section class="mini-pets z" aria-labelledby="mini-pets-title">
+  <div class="mini-pets-copy">
+    <p class="section-label compact" data-i18n="mini_label">New in v1.3</p>
+    <h2 id="mini-pets-title" data-i18n="mini_title">작고 새로운 캐릭터를 바탕화면에</h2>
+    <p data-i18n="mini_desc">미니 모드에는 Claude, Codex, Gemini 캐릭터가 기본 프로필로 들어 있습니다. 평소 모습과 반응 모습을 직접 등록하고 크기도 조절할 수 있습니다.</p>
+  </div>
+  <div class="mini-pet-grid">
+    <figure class="mini-pet-card reveal" data-mini-pet="claude">
+      <figcaption>Claude</figcaption>
+      <div class="mini-pet-preview">
+        <img class="mini-pet-image" src="mini/claude_idle.png" width="2048" height="2048" loading="lazy" alt="Claude 미니 캐릭터 기본 상태" />
+      </div>
+      <div class="mini-pet-toggle" aria-label="Claude 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/claude_idle.png" data-mini-alt="Claude 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/claude_active.png" data-mini-alt="Claude 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      </div>
+    </figure>
+    <figure class="mini-pet-card reveal" data-mini-pet="codex">
+      <figcaption>Codex</figcaption>
+      <div class="mini-pet-preview">
+        <img class="mini-pet-image" src="mini/codex_idle.png" width="2048" height="2048" loading="lazy" alt="Codex 미니 캐릭터 기본 상태" />
+      </div>
+      <div class="mini-pet-toggle" aria-label="Codex 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/codex_idle.png" data-mini-alt="Codex 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/codex_active.png" data-mini-alt="Codex 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      </div>
+    </figure>
+    <figure class="mini-pet-card reveal" data-mini-pet="gemini">
+      <figcaption>Gemini</figcaption>
+      <div class="mini-pet-preview">
+        <img class="mini-pet-image" src="mini/gemini_idle.png" width="2048" height="2048" loading="lazy" alt="Gemini 미니 캐릭터 기본 상태" />
+      </div>
+      <div class="mini-pet-toggle" aria-label="Gemini 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/gemini_idle.png" data-mini-alt="Gemini 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/gemini_active.png" data-mini-alt="Gemini 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      </div>
+    </figure>
+  </div>
+  <p class="mini-pets-note" data-i18n="mini_note">캐릭터 프로필은 설정에서 추가·수정·삭제할 수 있으며, 연결한 AI와 별개로 선택할 수 있습니다.</p>
+</section>
+
 <!-- NEXT STEPS -->
 <section class="resource-hub z" aria-labelledby="resources-title">
   <img class="section-cat section-cat-resource" src="sprites/dance_64_crop.png" alt="" aria-hidden="true" />
@@ -484,6 +525,12 @@ const I18N = {
     pet_success_title: "완료 신호",
     pet_happy_title: "가벼운 반응",
     pet_sleep_title: "조용한 대기",
+    mini_label: "New in v1.3",
+    mini_title: "작고 새로운 캐릭터를 바탕화면에",
+    mini_desc: "미니 모드에는 Claude, Codex, Gemini 캐릭터가 기본 프로필로 들어 있습니다. 평소 모습과 반응 모습을 직접 등록하고 크기도 조절할 수 있습니다.",
+    mini_idle: "평소",
+    mini_active: "반응",
+    mini_note: "캐릭터 프로필은 설정에서 추가·수정·삭제할 수 있으며, 연결한 AI와 별개로 선택할 수 있습니다.",
     resources_label: "Next steps",
     resources_title: "DAP을 더 편하게 시작하는 방법",
     resources_desc: "설치 후 바로 쓰는 기본 흐름부터, 필요할 때 더해 쓰는 확장 기능까지 한눈에 둘러볼 수 있습니다.",
@@ -557,6 +604,12 @@ const I18N = {
     pet_success_title: "Done signal",
     pet_happy_title: "Light reactions",
     pet_sleep_title: "Quiet standby",
+    mini_label: "New in v1.3",
+    mini_title: "Put a small new character on your desktop",
+    mini_desc: "Mini mode includes Claude, Codex, and Gemini character profiles. Add your own idle and reaction images, then adjust the size to fit your desktop.",
+    mini_idle: "Idle",
+    mini_active: "Reaction",
+    mini_note: "Add, edit, or remove character profiles in Settings and choose one independently from your connected AI.",
     resources_label: "Next steps",
     resources_title: "A simpler way to start with DAP",
     resources_desc: "Start with the installer, then browse optional extensions when you want to add more to your desktop flow.",
@@ -694,6 +747,18 @@ function setupSiteMenu() {
   window.matchMedia('(min-width: 721px)').addEventListener('change', close);
 }
 setupSiteMenu();
+
+for (const card of document.querySelectorAll('.mini-pet-card')) {
+  const image = card.querySelector('.mini-pet-image');
+  const buttons = card.querySelectorAll('.mini-pet-toggle button');
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      image.src = button.dataset.miniSrc;
+      image.alt = button.dataset.miniAlt;
+      for (const item of buttons) item.setAttribute('aria-pressed', String(item === button));
+    });
+  }
+}
 
 for (const el of document.querySelectorAll('[data-download-platform]')) {
   el.addEventListener('click', (event) => {
