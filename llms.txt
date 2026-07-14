@@ -6,8 +6,8 @@ Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
 Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
-Current app release: v1.2.6
-Plugin platform baseline: Plugin Platform 0.1.1, manifest_version 2
+Current app release: v1.3.2
+Plugin platform baseline: Plugin Platform 0.2.0, manifest_version 2 recommended for new plugins
 Platforms: Windows 11, macOS
 
 ## For AI Agents Building DAP Plugins
@@ -29,7 +29,7 @@ When creating a plugin, return:
 
 Default plugin rules:
 
-- Use `manifest_version: 2`.
+- Use the recommended `manifest_version: 2` for new plugins. Older manifests without the field remain parser-compatible.
 - The manifest entry should point to an exported `activate(ctx)` function.
 - Keep plugins self-contained unless the user explicitly asks for external dependencies.
 - Ask for the smallest permission set that supports the requested behavior.
@@ -56,6 +56,7 @@ Keep the implementation minimal and follow manifest_version: 2.
 - Connects Claude or Codex the user already uses, without making API-key setup the first step.
 - Provides selection quick actions such as translate, summarize, rewrite, explain, and ask.
 - Provides plugin docs for manifest v2, ctx APIs, permissions, palette UI, and distribution.
+- Offers a v1.3 mini mode with 60–240px custom pet profiles made from idle and active images; Claude, Codex, and Gemini profiles are bundled.
 - Persists local settings, persona, chat history, and user memory under the app data directory.
 - Uses opt-in telemetry.
 

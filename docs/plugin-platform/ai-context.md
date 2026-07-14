@@ -28,7 +28,7 @@ my-plugin/
 
 ## Manifest Rules
 
-Use `manifest_version: 2`.
+For new plugins, use the recommended `manifest_version: 2`. The current parser accepts manifests without this field for backward compatibility, but generated plugins should declare it explicitly.
 
 ```yaml
 id: com.example.my_plugin
@@ -64,10 +64,8 @@ export function activate(ctx) {
     },
   });
 
-  return {
-    dispose() {
-      // Clean up timers, listeners, or long-running work here.
-    },
+  return () => {
+    // Clean up timers, listeners, or long-running work here.
   };
 }
 ```
@@ -116,7 +114,10 @@ Common permission decisions:
 - No permission: simple actions, commands, and short bubble feedback.
 - `storage.private`: plugin-private persisted settings or state.
 - `window.palette`: plugin palette windows or custom UI.
+- `presentation.overlay`: a sandboxed, transparent presentation overlay. Use `ctx.host.presentation` to open, show, hide, close, or make it interactive, exchange messages with its page, and read the cursor position.
 - Network-related permission: only when the user explicitly asks for web/API access.
+
+Settings fields may use `toggle`, `select`, `text`, or `range`. A `range` field requires finite numeric `min` and `max` values with `min < max`; `step` must be greater than zero and defaults to `1`. `unit` is an optional non-empty display string.
 
 Always explain why each permission is required.
 

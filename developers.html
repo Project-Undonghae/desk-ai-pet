@@ -64,7 +64,7 @@
     </p>
     <div class="docs-callout">
       <strong>현재 기준</strong>
-      <p>DAP <code>v1.2.6</code>의 Electron/TypeScript Host API와 <code>manifest_version: 2</code>를 기준으로 합니다.</p>
+      <p>DAP <code>v1.3.2</code>의 Electron/TypeScript Host API와 새 플러그인에 권장하는 <code>manifest_version: 2</code>를 기준으로 합니다. 이 문서의 전체 API는 DAP <code>v1.2.10</code> 이상에서 사용할 수 있습니다.</p>
     </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
@@ -233,11 +233,31 @@ macOS:
           { value: "careful", label: "정교하게" },
         ] },
       { key: "note", label: "메모", type: "text" },
+      { key: "opacity", label: "불투명도", type: "range", default: 80,
+        min: 10, max: 100, step: 5, unit: "%" },
     ],
   },
 });
 
 const values = ctx.host.settings.values("general");</code></pre>
+      <p><code>range</code>는 유한한 숫자 <code>min</code>과 <code>max</code>가 필요하며 <code>min &lt; max</code>여야 합니다. <code>step</code>은 0보다 커야 하고 생략하면 <code>1</code>, <code>unit</code>은 선택 표시 문자열입니다.</p>
+
+      <h3>프레젠테이션 오버레이 열기</h3>
+      <p>화면 위 주석이나 발표 도구처럼 투명 오버레이가 필요하면 manifest에 <code>presentation.overlay</code> 권한을 선언하고 <code>ctx.host.presentation</code>을 사용합니다. 페이지는 플러그인 루트 안의 HTML이어야 합니다.</p>
+      <pre><code>const overlay = ctx.host.presentation;
+overlay.openOverlay({
+  page: "overlay/index.html",
+  clickThrough: true,
+  width: "screen",
+  height: "screen",
+});
+
+overlay.onMessage((message) =&gt; {
+  if (message?.type === "edit") overlay.setInteractive(true);
+});
+overlay.postMessage({ type: "ready", cursor: overlay.cursorPos() });
+
+return () =&gt; overlay.closeOverlay();</code></pre>
 
       <h3>팔레트 UI 열기</h3>
       <p>팔레트는 플러그인 전용 HTML UI입니다. 페이지는 권한 API를 직접 받지 않고 <code>window.dapPalette</code> 메시지 브리지만 사용합니다.</p>
@@ -283,7 +303,7 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>name</code></td><td>예</td><td>사용자에게 표시할 이름입니다.</td></tr>
         <tr><td><code>version</code></td><td>예</td><td>플러그인 버전입니다.</td></tr>
         <tr><td><code>entry</code></td><td>예</td><td><code>module.path:callable</code> 형식의 진입점입니다.</td></tr>
-        <tr><td><code>manifest_version</code></td><td>권장</td><td>현행 문서는 <code>2</code>를 기준으로 합니다.</td></tr>
+        <tr><td><code>manifest_version</code></td><td>권장</td><td>새 플러그인은 <code>2</code>를 명시하세요. 기존 플러그인 호환성을 위해 현재 파서는 필드가 없는 manifest도 허용합니다.</td></tr>
         <tr><td><code>permissions</code></td><td>아니요</td><td>사용할 권한 토큰 목록입니다.</td></tr>
         <tr><td><code>execution_modes</code></td><td>아니요</td><td><code>user</code>, <code>builtin</code>, <code>scheduled</code> 등 실행 형태 메타데이터입니다.</td></tr>
       </table>
@@ -298,6 +318,7 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>ctx.radialMenu.addItem</code></td><td>펫 래디얼 메뉴 항목을 추가합니다.</td></tr>
         <tr><td><code>ctx.shortcuts.registerShortcut</code></td><td>재바인딩 가능한 전역 단축키를 등록합니다.</td></tr>
       </table>
+      <p>트레이에는 활성화된 모든 플러그인이 표시됩니다. <code>ctx.trayMenu.addItem</code>으로 액션을 등록한 플러그인은 해당 액션을 실행하고, 트레이 액션이 없는 플러그인은 설정 창을 엽니다.</p>
 
       <h3>Host services</h3>
       <table>
@@ -308,6 +329,7 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>window.palette</code></td><td><code>ctx.host.windows</code></td><td>플러그인 팔레트 창을 엽니다.</td></tr>
         <tr><td><code>clipboard.history</code></td><td><code>ctx.host.clipboardHistory</code></td><td>클립보드 기록을 읽습니다. 사용자 opt-in이 필요합니다.</td></tr>
         <tr><td><code>input.synthesize</code></td><td><code>ctx.host.paste</code></td><td>이전 foreground 앱에 붙여넣습니다.</td></tr>
+        <tr><td><code>presentation.overlay</code></td><td><code>ctx.host.presentation</code></td><td>샌드박스 투명 오버레이를 열고 표시·숨김·닫기, 입력 전환, 메시지 교환, 커서 위치 조회를 제공합니다.</td></tr>
       </table>
     </section>
 
@@ -402,6 +424,7 @@ await ctx.host.storage.delete("pins");</code></pre>
 
     <section id="changelog">
       <h2>Changelog</h2>
+      <p><strong>2026-07-14</strong>: Plugin Platform <code>0.2.0</code>. DAP <code>v1.3.2</code> 기준으로 <code>presentation.overlay</code>, <code>ctx.host.presentation</code>, <code>range</code> 설정, 트레이 동작과 manifest 호환성 설명을 추가했습니다.</p>
       <p><strong>2026-07-08</strong>: DAP <code>v1.2.6</code> 기준으로 AI용 예시와 명령 등록 API를 정정했습니다.</p>
       <p><strong>2026-07-05</strong>: Plugin Platform <code>0.1.0</code> 기준 문서 구조를 정리했습니다. Electron/TypeScript Host API, manifest v2, palette, distribution, versioning 구조를 반영했습니다.</p>
     </section>
