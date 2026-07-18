@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
-  <meta name="description" content="DAP 플러그인 플랫폼 공식 개발 문서. Quickstart, manifest v2, ctx API reference, 팔레트 UI, 설치와 배포 가이드." />
+  <meta id="meta-description" name="description" content="DAP 플러그인 플랫폼 공식 개발 문서. Quickstart, manifest v2, ctx API reference, 팔레트 UI, 설치와 배포 가이드." />
+  <link rel="alternate" hreflang="ko" href="https://project-undonghae.github.io/desk-ai-pet/developers.html" />
+  <link rel="alternate" hreflang="en" href="https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://project-undonghae.github.io/desk-ai-pet/developers.html" />
   <link rel="icon" href="favicon.ico" sizes="any" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260703-mobile" />
   <script>
     (() => {
@@ -20,16 +23,19 @@
   </script>
 </head>
 <body class="doc-page docs-product-page">
-<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<a id="skip-link" class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-nav" aria-label="DAP navigation">
   <a class="site-nav-brand" href="index.html">DAP</a>
   <nav id="site-nav-links">
-    <a href="index.html">홈</a>
-    <a href="developers.html" aria-current="page">Docs</a>
-    <a href="plugins.html">플러그인</a>
-    <a href="index.html#download">다운로드</a>
+    <a id="nav-home" href="index.html" data-href-ko="index.html" data-href-en="index.html?lang=en">홈</a>
+    <a id="nav-docs" href="developers.html" data-href-ko="developers.html" data-href-en="developers.html?lang=en" aria-current="page">Docs</a>
+    <a id="nav-plugins" href="plugins.html" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en">플러그인</a>
+    <a id="nav-download" href="index.html#download" data-href-ko="index.html#download" data-href-en="index.html?lang=en#download">다운로드</a>
   </nav>
   <div class="site-nav-actions">
+    <div class="site-nav-lang lang" aria-label="Language toggle">
+      <button id="lang-toggle" type="button" data-next-lang="en" aria-label="Switch to English">EN</button>
+    </div>
     <button id="theme-toggle" class="theme-toggle" type="button" data-next-theme="light" aria-label="라이트 모드로 전환">LIGHT</button>
   </div>
   <button id="site-nav-menu" class="site-nav-menu" type="button" aria-controls="site-nav-links" aria-expanded="false" aria-label="메뉴 열기">
@@ -406,7 +412,448 @@ await ctx.host.storage.delete("pins");</code></pre>
     </section>
   </article>
 </main>
+<template id="docs-en-template">
+  <aside class="docs-sidebar" aria-label="Documentation sections">
+    <strong>Plugin Platform</strong>
+    <a href="#overview">Overview</a>
+    <a href="#ai-build">AI build guide</a>
+    <a href="#quickstart">Quickstart</a>
+    <a href="#concepts">Core concepts</a>
+    <a href="#guides">Guides</a>
+    <a href="#reference">API reference</a>
+    <a href="#examples">Examples</a>
+    <a href="#distribution">Distribution</a>
+    <a href="#versioning">Versioning</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+    <a href="#changelog">Changelog</a>
+  </aside>
+
+  <article class="docs-content">
+    <p class="docs-eyebrow">DAP Plugin Platform</p>
+    <h1>DAP Plugin Docs</h1>
+    <p class="docs-lead">
+      DAP plugins are extension modules that add commands, actions, settings, shortcuts, palette UI, and local services to the DAP desktop experience.
+      This guide covers the shortest path and API reference you need to build and distribute a working plugin.
+    </p>
+    <div class="docs-callout">
+      <strong>Documentation and version baseline</strong>
+      <p>The current Plugin Platform version is <code>0.1.0</code>, and the manifest baseline is <code>manifest_version: 2</code>. When plugin behavior changes, update <code>docs/plugin-platform/version.json</code> and the changelog together.</p>
+    </div>
+
+    <div class="docs-card-grid" aria-label="Key documentation paths">
+      <a href="#ai-build">
+        <span>AI</span>
+        <strong>Build a plugin with AI</strong>
+        <p>Copy the documentation link and prompt for Codex, Claude, or ChatGPT.</p>
+      </a>
+      <a href="#quickstart">
+        <span>Start</span>
+        <strong>Build your first plugin</strong>
+        <p>Register one action and run it in DAP in about five minutes.</p>
+      </a>
+      <a href="#reference">
+        <span>Reference</span>
+        <strong>Explore the ctx API</strong>
+        <p>Quickly find commands, actions, settings, and host services.</p>
+      </a>
+      <a href="#distribution">
+        <span>Ship</span>
+        <strong>Install and distribute</strong>
+        <p>Review local installation paths and the catalog distribution format.</p>
+      </a>
+    </div>
+
+    <section id="ai-build" class="docs-ai-guide">
+      <h2>Build a plugin with AI</h2>
+      <p>
+        You do not need to explain the entire platform to an AI agent.
+        Add the feature you want to the prompt below, and the agent can follow the documentation and rules linked from <code>llms.txt</code>.
+      </p>
+      <div class="docs-copy-prompt" aria-label="AI prompt for DAP plugin development">
+        <pre><code>Read https://project-undonghae.github.io/desk-ai-pet/llms.txt
+and create a DAP plugin that [describe the feature you want].
+
+Return:
+- plugin.yaml
+- the ESM entry file
+- required permissions and why they are needed
+- local install steps
+
+Keep the implementation minimal and follow manifest_version: 2.</code></pre>
+      </div>
+      <div class="docs-card-grid docs-ai-links" aria-label="AI-readable documentation">
+        <a href="llms.txt">
+          <span>ENTRY</span>
+          <strong>llms.txt</strong>
+          <p>The official index and plugin authoring rules an AI should read first.</p>
+        </a>
+        <a href="docs/plugin-platform/ai-context.md">
+          <span>CONTEXT</span>
+          <strong>ai-context.md</strong>
+          <p>Condensed context that is easy to paste or pass to a local agent.</p>
+        </a>
+        <a href="#reference">
+          <span>API</span>
+          <strong>ctx API reference</strong>
+          <p>Use it while implementing actions, commands, settings, and host services.</p>
+        </a>
+      </div>
+      <div class="docs-callout">
+        <strong>Recommended workflow</strong>
+        <p>Describe the feature clearly and include the <code>llms.txt</code> URL for the AI. Example: “Create a DAP plugin that rewrites selected English text in a professional tone.”</p>
+      </div>
+    </section>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        A DAP plugin consists of a <code>plugin.yaml</code> file and a self-contained ESM <code>.mjs</code> entry file.
+        Declare metadata and permissions in the manifest, then register behavior in <code>activate(ctx)</code>.
+      </p>
+      <div class="docs-callout">
+        <strong>Current runtime</strong>
+        <p>The current DAP plugin documentation targets the Electron/TypeScript Host API. Treat older Python/PyQt plugin documentation as historical only.</p>
+      </div>
+    </section>
+
+    <section id="quickstart">
+      <h2>Quickstart</h2>
+      <h3>1. Create the folder structure</h3>
+      <pre><code>my-plugin/
+  plugin.yaml
+  dap_my_plugin/
+    plugin.mjs
+  README.md</code></pre>
+
+      <h3>2. Write the manifest</h3>
+      <pre><code>id: com.example.my_plugin
+name: My Plugin
+version: 1.0.0
+manifest_version: 2
+entry: dap_my_plugin.plugin:activate
+description: My first plugin for DAP
+author: Your Name
+surface: user
+permissions: []
+execution_modes:
+  - user</code></pre>
+
+      <h3>3. Register an action</h3>
+      <pre><code>// dap_my_plugin/plugin.mjs
+export function activate(ctx) {
+  ctx.actions.registerAction({
+    id: "hello",
+    callback: () => {
+      ctx.host.bubble.speak("Hello from plugin");
+      return "Hello from plugin";
+    },
+  });
+
+  ctx.radialMenu.addItem({
+    itemId: "hello",
+    label: "Hello",
+    actionId: "hello",
+    priority: 50,
+  });
+}</code></pre>
+
+      <h3>4. Install locally</h3>
+      <pre><code>Windows:
+%APPDATA%\dap\plugins\com.example.my_plugin\
+
+macOS:
+~/Library/Application Support/dap/plugins/com.example.my_plugin/</code></pre>
+      <p>Restart DAP, or turn the plugin off and on again in Settings to load it.</p>
+    </section>
+
+    <section id="concepts">
+      <h2>Core concepts</h2>
+      <table>
+        <tr><th>Concept</th><th>Description</th></tr>
+        <tr><td>Manifest</td><td><code>plugin.yaml</code>. Declares the id, name, version, entry point, and permissions.</td></tr>
+        <tr><td>Entry</td><td><code>module.path:activate</code>. The plugin's ESM entry point.</td></tr>
+        <tr><td>Activation</td><td>DAP calls <code>activate(ctx)</code> when it loads the plugin.</td></tr>
+        <tr><td>Registration</td><td>Actions, menus, shortcuts, and settings sections are tracked by registration handles and cleaned up when the plugin is disabled.</td></tr>
+        <tr><td>Host services</td><td>Access features such as clipboard, storage, palette windows, and LLMs only through <code>ctx.host.*</code>.</td></tr>
+        <tr><td>Permissions</td><td>Declare sensitive or permission-gated host services in <code>permissions[]</code>.</td></tr>
+      </table>
+    </section>
+
+    <section id="guides">
+      <h2>Guides</h2>
+
+      <h3>Register a command</h3>
+      <p>Use <code>ctx.commands</code> when chat or Spotlight input should route to your plugin through natural language.</p>
+      <pre><code>ctx.commands.addCommand({
+  id: "weather",
+  title: "Weather",
+  matchers: [
+    { type: "keyword", patterns: ["weather", "forecast"], priority: 40 },
+  ],
+  backend: { type: "builtin", handler: "dap.weather.current" },
+});</code></pre>
+
+      <h3>Add a settings section</h3>
+      <pre><code>ctx.settings.registerSettingsSection({
+  sectionId: "general",
+  title: "My Plugin",
+  spec: {
+    fields: [
+      { key: "compact", label: "Compact view", type: "toggle", default: false },
+      { key: "mode", label: "Mode", type: "select", default: "fast",
+        options: [
+          { value: "fast", label: "Fast" },
+          { value: "careful", label: "Careful" },
+        ] },
+      { key: "note", label: "Note", type: "text" },
+    ],
+  },
+});
+
+const values = ctx.host.settings.values("general");</code></pre>
+
+      <h3>Open a palette UI</h3>
+      <p>A palette is a plugin-owned HTML interface. The page does not receive privileged APIs directly and communicates only through the <code>window.dapPalette</code> message bridge.</p>
+      <pre><code>export function activate(ctx) {
+  let palette = null;
+
+  const open = () => {
+    if (palette) {
+      palette.toggle();
+      return;
+    }
+
+    palette = ctx.host.windows.openPalette({
+      page: "palette/index.html",
+      width: 360,
+      height: 520,
+      frame: false,
+    });
+
+    palette.onMessage((msg) => {
+      if (msg.type === "ready") {
+        palette.postMessage({ type: "items", items: ["A", "B"] });
+      }
+    });
+
+    palette.show();
+  };
+
+  ctx.actions.registerAction({ id: "openPalette", callback: open });
+  ctx.radialMenu.addItem({ itemId: "palette", label: "Palette", actionId: "openPalette" });
+
+  return () => palette?.close();
+}</code></pre>
+    </section>
+
+    <section id="reference">
+      <h2>API reference</h2>
+
+      <h3>Manifest fields</h3>
+      <table>
+        <tr><th>Field</th><th>Required</th><th>Description</th></tr>
+        <tr><td><code>id</code></td><td>Yes</td><td>The unique plugin id. It must match the catalog id.</td></tr>
+        <tr><td><code>name</code></td><td>Yes</td><td>The name shown to users.</td></tr>
+        <tr><td><code>version</code></td><td>Yes</td><td>The plugin version.</td></tr>
+        <tr><td><code>entry</code></td><td>Yes</td><td>The entry point in <code>module.path:callable</code> format.</td></tr>
+        <tr><td><code>manifest_version</code></td><td>Recommended</td><td>The current documentation targets version <code>2</code>.</td></tr>
+        <tr><td><code>permissions</code></td><td>No</td><td>A list of permission tokens used by the plugin.</td></tr>
+        <tr><td><code>execution_modes</code></td><td>No</td><td>Execution metadata such as <code>user</code>, <code>builtin</code>, or <code>scheduled</code>.</td></tr>
+      </table>
+
+      <h3>ctx namespaces</h3>
+      <table>
+        <tr><th>API</th><th>Purpose</th></tr>
+        <tr><td><code>ctx.actions.registerAction</code></td><td>Registers an action that DAP can call.</td></tr>
+        <tr><td><code>ctx.commands.addCommand</code></td><td>Registers a natural-language or label-based command.</td></tr>
+        <tr><td><code>ctx.settings.registerSettingsSection</code></td><td>Registers a settings UI section.</td></tr>
+        <tr><td><code>ctx.trayMenu.addItem</code></td><td>Adds an item to the tray menu.</td></tr>
+        <tr><td><code>ctx.radialMenu.addItem</code></td><td>Adds an item to the pet's radial menu.</td></tr>
+        <tr><td><code>ctx.shortcuts.registerShortcut</code></td><td>Registers a rebindable global shortcut.</td></tr>
+      </table>
+
+      <h3>Host services</h3>
+      <table>
+        <tr><th>Permission</th><th>Service</th><th>Description</th></tr>
+        <tr><td>None</td><td><code>ctx.host.bubble</code></td><td>Shows a pet speech bubble.</td></tr>
+        <tr><td>None</td><td><code>ctx.host.llm</code></td><td>Generates text through the active LLM provider.</td></tr>
+        <tr><td><code>storage.private</code></td><td><code>ctx.host.storage</code></td><td>Provides isolated storage for the plugin.</td></tr>
+        <tr><td><code>window.palette</code></td><td><code>ctx.host.windows</code></td><td>Opens a plugin palette window.</td></tr>
+        <tr><td><code>clipboard.history</code></td><td><code>ctx.host.clipboardHistory</code></td><td>Reads clipboard history. User opt-in is required.</td></tr>
+        <tr><td><code>input.synthesize</code></td><td><code>ctx.host.paste</code></td><td>Pastes into the previously focused application.</td></tr>
+      </table>
+    </section>
+
+    <section id="examples">
+      <h2>Examples</h2>
+      <h3>Storage</h3>
+      <pre><code>await ctx.host.storage.setJson("pins", ["a", "b"]);
+const pins = await ctx.host.storage.getJson("pins");
+await ctx.host.storage.delete("pins");</code></pre>
+
+      <h3>LLM</h3>
+      <pre><code>const answer = await ctx.host.llm.generate(
+  "Rewrite this sentence so it sounds more natural: " + text,
+  30
+);</code></pre>
+
+      <h3>Palette page</h3>
+      <pre><code>&lt;!doctype html&gt;
+&lt;meta charset="utf-8" /&gt;
+&lt;button id="close"&gt;close&lt;/button&gt;
+&lt;ul id="list"&gt;&lt;/ul&gt;
+&lt;script&gt;
+  const list = document.getElementById("list");
+
+  window.dapPalette.onMessage((msg) =&gt; {
+    if (msg.type !== "items") return;
+    list.innerHTML = "";
+    for (const item of msg.items) {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.append(li);
+    }
+  });
+
+  window.dapPalette.postMessage({ type: "ready" });
+  document.getElementById("close").onclick = () =&gt; window.dapPalette.close();
+&lt;/script&gt;</code></pre>
+    </section>
+
+    <section id="distribution">
+      <h2>Distribution</h2>
+      <h3>Catalog entry</h3>
+      <pre><code>{
+  "plugins": [
+    {
+      "id": "com.example.my_plugin",
+      "name": "My Plugin",
+      "description": "One-line description",
+      "repo": "https://github.com/example/dap-my-plugin.git",
+      "ref": "v1.0.0"
+    }
+  ]
+}</code></pre>
+      <ul>
+        <li>Use a GitHub HTTPS URL for <code>repo</code>.</li>
+        <li>Installation is rejected when the <code>id</code> in <code>plugin.yaml</code> does not match the catalog <code>id</code>.</li>
+        <li>Installation and activation are separate steps. The plugin runs only after the user explicitly enables it.</li>
+      </ul>
+    </section>
+
+    <section id="versioning">
+      <h2>Versioning</h2>
+      <p>
+        The DAP app release, Plugin Platform version, manifest version, and individual plugin version each have a separate responsibility.
+        Changes that affect plugin developers must update both the public developer guide and the maintenance files under <code>docs/plugin-platform</code>.
+      </p>
+      <table>
+        <tr><th>Change</th><th>Required updates</th><th>Version handling</th></tr>
+        <tr><td>New host API, permission, or optional manifest field</td><td>API reference, changelog, version.json</td><td>Plugin Platform minor</td></tr>
+        <tr><td>Clarified API text, updated example, or backward-compatible fix</td><td>Related documentation, changelog</td><td>Plugin Platform patch</td></tr>
+        <tr><td>Removed API, changed arguments, newly required permission, or required manifest field</td><td>Full documentation, migration note, changelog</td><td>Plugin Platform major or a manifest_version increase</td></tr>
+        <tr><td>Added or changed catalog field</td><td>Distribution, the plugins.html publishing guide, fallback data</td><td>Plugin Platform minor or major</td></tr>
+        <tr><td>Registered or updated an individual plugin</td><td>Catalog ref and, when needed, the plugins.html fallback</td><td>Individual plugin version</td></tr>
+      </table>
+      <ul>
+        <li><code>docs/plugin-platform/version.json</code> records the current Plugin Platform version and compatibility baseline.</li>
+        <li><code>docs/plugin-platform/changelog.md</code> records developer-facing plugin changes separately from app release notes.</li>
+        <li>Increase <code>manifest_version</code> only when manifest interpretation becomes incompatible.</li>
+      </ul>
+    </section>
+
+    <section id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      <table>
+        <tr><th>Symptom</th><th>What to check</th></tr>
+        <tr><td>The plugin does not appear</td><td>Check the installation folder name, the location of <code>plugin.yaml</code>, and whether the <code>id</code> values match.</td></tr>
+        <tr><td>Activation fails</td><td>Check that <code>entry</code> points to an actual named export in the <code>.mjs</code> file.</td></tr>
+        <tr><td>A host service is undefined</td><td>Check that the required permission is declared in <code>permissions[]</code>.</td></tr>
+        <tr><td>The palette does not open</td><td>Check the <code>window.palette</code> permission and make sure the <code>page</code> path stays inside the plugin root.</td></tr>
+      </table>
+    </section>
+
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <p><strong>2026-07-05</strong>: Reorganized the documentation around Plugin Platform <code>0.1.0</code>. Added the Electron/TypeScript Host API, manifest v2, palette, distribution, and versioning structure.</p>
+    </section>
+  </article>
+</template>
 <script>
+const docsMain = document.getElementById("main");
+const docsKoMarkup = docsMain?.innerHTML ?? "";
+const docsEnMarkup = document.getElementById("docs-en-template")?.innerHTML ?? "";
+const PAGE_COPY = {
+  ko: {
+    title: "DAP Plugin Platform Docs",
+    description: "DAP 플러그인 플랫폼 공식 개발 문서. Quickstart, manifest v2, ctx API reference, 팔레트 UI, 설치와 배포 가이드.",
+    skip: "본문으로 건너뛰기",
+    navHome: "홈",
+    navPlugins: "플러그인",
+    navDownload: "다운로드",
+    langAria: "언어 전환",
+    switchLang: "Switch to English",
+    lightMode: "라이트 모드로 전환",
+    darkMode: "다크 모드로 전환",
+    menuOpen: "메뉴 열기",
+    menuClose: "메뉴 닫기",
+  },
+  en: {
+    title: "DAP Plugin Platform Docs",
+    description: "Official DAP Plugin Platform documentation covering the quickstart, manifest v2, ctx API reference, palette UI, installation, and distribution.",
+    skip: "Skip to content",
+    navHome: "Home",
+    navPlugins: "Plugins",
+    navDownload: "Download",
+    langAria: "Language toggle",
+    switchLang: "한국어로 전환",
+    lightMode: "Switch to light mode",
+    darkMode: "Switch to dark mode",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+  },
+};
+let currentLang = "ko";
+
+function applyLang(lang) {
+  currentLang = lang === "en" ? "en" : "ko";
+  const copy = PAGE_COPY[currentLang];
+  document.documentElement.lang = currentLang;
+  document.title = copy.title;
+  document.getElementById("meta-description")?.setAttribute("content", copy.description);
+  if (docsMain) docsMain.innerHTML = currentLang === "en" ? docsEnMarkup : docsKoMarkup;
+
+  const skip = document.getElementById("skip-link");
+  if (skip) skip.textContent = copy.skip;
+  const brand = document.querySelector(".site-nav-brand");
+  if (brand) brand.setAttribute("href", currentLang === "en" ? "index.html?lang=en" : "index.html");
+  const navHome = document.getElementById("nav-home");
+  const navPlugins = document.getElementById("nav-plugins");
+  const navDownload = document.getElementById("nav-download");
+  if (navHome) navHome.textContent = copy.navHome;
+  if (navPlugins) navPlugins.textContent = copy.navPlugins;
+  if (navDownload) navDownload.textContent = copy.navDownload;
+  document.querySelectorAll("[data-href-en]").forEach((link) => {
+    link.setAttribute("href", currentLang === "en" ? link.dataset.hrefEn : link.dataset.hrefKo);
+  });
+
+  const langWrap = document.querySelector(".site-nav-lang");
+  if (langWrap) langWrap.setAttribute("aria-label", copy.langAria);
+  const langToggle = document.getElementById("lang-toggle");
+  if (langToggle) {
+    const nextLang = currentLang === "en" ? "ko" : "en";
+    langToggle.dataset.nextLang = nextLang;
+    langToggle.textContent = nextLang.toUpperCase();
+    langToggle.setAttribute("aria-label", copy.switchLang);
+  }
+
+  const menu = document.getElementById("site-nav-menu");
+  if (menu) {
+    const isOpen = document.querySelector(".site-nav")?.classList.contains("is-menu-open") ?? false;
+    menu.setAttribute("aria-label", isOpen ? copy.menuClose : copy.menuOpen);
+  }
+}
+
 function applyTheme(theme) {
   const selected = theme === "light" ? "light" : "dark";
   document.documentElement.dataset.theme = selected;
@@ -416,10 +863,22 @@ function applyTheme(theme) {
     const nextTheme = selected === "light" ? "dark" : "light";
     toggle.dataset.nextTheme = nextTheme;
     toggle.textContent = nextTheme.toUpperCase();
-    toggle.setAttribute("aria-label", nextTheme === "light" ? "라이트 모드로 전환" : "다크 모드로 전환");
+    const copy = PAGE_COPY[currentLang];
+    toggle.setAttribute("aria-label", nextTheme === "light" ? copy.lightMode : copy.darkMode);
   }
 }
+const initialLang = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "ko";
+applyLang(initialLang);
 applyTheme(document.documentElement.dataset.theme);
+document.getElementById("lang-toggle")?.addEventListener("click", (event) => {
+  const lang = event.currentTarget.dataset.nextLang === "ko" ? "ko" : "en";
+  applyLang(lang);
+  applyTheme(document.documentElement.dataset.theme);
+  const url = new URL(location.href);
+  if (lang === "en") url.searchParams.set("lang", "en");
+  else url.searchParams.delete("lang");
+  history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+});
 document.getElementById("theme-toggle")?.addEventListener("click", (event) => {
   applyTheme(event.currentTarget.dataset.nextTheme);
 });
@@ -431,13 +890,13 @@ function setupSiteMenu() {
   const close = () => {
     header.classList.remove("is-menu-open");
     button.setAttribute("aria-expanded", "false");
-    button.setAttribute("aria-label", "메뉴 열기");
+    button.setAttribute("aria-label", PAGE_COPY[currentLang].menuOpen);
   };
   const toggle = () => {
     const isOpen = !header.classList.contains("is-menu-open");
     header.classList.toggle("is-menu-open", isOpen);
     button.setAttribute("aria-expanded", String(isOpen));
-    button.setAttribute("aria-label", isOpen ? "메뉴 닫기" : "메뉴 열기");
+    button.setAttribute("aria-label", isOpen ? PAGE_COPY[currentLang].menuClose : PAGE_COPY[currentLang].menuOpen);
   };
   button.addEventListener("click", toggle);
   nav.addEventListener("click", (event) => {

@@ -27,7 +27,7 @@
 
 플러그인 플랫폼 변경 PR은 아래 파일을 함께 확인합니다.
 
-- `developers.html`: 공개 개발자 문서. Quickstart, manifest, API reference, distribution, troubleshooting을 최신 상태로 유지합니다.
+- `developers.html`: 한국어와 `?lang=en` 영어를 제공하는 공개 개발자 문서. Quickstart, manifest, API reference, distribution, troubleshooting을 두 언어에서 함께 최신 상태로 유지합니다.
 - `docs/plugin-platform/version.json`: 현재 Plugin Platform 버전과 호환성 메타데이터를 기록합니다.
 - `docs/plugin-platform/changelog.md`: 개발자에게 의미 있는 변경사항을 날짜와 버전으로 기록합니다.
 - `docs/plugin-platform/release-checklist.md`: PR 작성자가 변경 유형별 누락을 점검합니다.

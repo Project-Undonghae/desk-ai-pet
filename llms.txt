@@ -2,10 +2,10 @@
 
 DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae.
 
-Official site: https://project-undonghae.github.io/desk-ai-pet/
+Official site: https://project-undonghae.github.io/desk-ai-pet/?lang=en
 Current app release: v1.3.7
-Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
-Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
+Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en
+Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html?lang=en
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
 Plugin platform baseline: Plugin Platform 0.1.0, manifest_version 2
 Platforms: Windows 11, macOS
@@ -15,9 +15,9 @@ Platforms: Windows 11, macOS
 Read this file first, then read:
 
 1. https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
-2. https://project-undonghae.github.io/desk-ai-pet/developers.html#quickstart
-3. https://project-undonghae.github.io/desk-ai-pet/developers.html#reference
-4. https://project-undonghae.github.io/desk-ai-pet/developers.html#distribution
+2. https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en#quickstart
+3. https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en#reference
+4. https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en#distribution
 
 When creating a plugin, return:
 
