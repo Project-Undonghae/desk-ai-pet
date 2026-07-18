@@ -57,7 +57,7 @@
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS",
-    "softwareVersion": "1.3.5",
+  "softwareVersion": "1.3.7",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
     "isAccessibleForFree": true,
     "creator": {
@@ -246,14 +246,14 @@
   <div class="demo-copy">
     <p class="section-label compact" data-i18n="demo_label">Preview</p>
     <h2 id="demo-title" data-i18n="demo_title">실제 화면 위에서 바로 이어지는 AI OS</h2>
-    <p data-i18n="demo_desc">빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.</p>
+    <p data-i18n="demo_desc">빠른 실행, 선택 영역 액션, 음성 명령, 실행 전 확인, 채팅이 화면 위 고양이와 하나의 흐름으로 이어집니다.</p>
   </div>
   <figure class="demo-frame">
     <img
-      src="demo-preview-ui-20260705.svg?v=20260705-components"
+      src="demo-preview-ui-20260718.png?v=20260718-service"
       width="1400"
       height="900"
-      alt="DAP 실제 UI 흐름: 빠른 실행창, 선택 영역 액션, 채팅 패널, 화면 위 고양이"
+      alt="DAP 최신 서비스 화면: 빠른 실행창, 선택 영역 액션, 음성 명령, 실행 확인, 채팅 패널, 화면 위 고양이"
       loading="lazy"
     />
   </figure>
@@ -266,7 +266,7 @@
   <div class="card reveal">
     <div class="card-icon">CMD</div>
     <h3 data-i18n="f1_title">빠른 실행</h3>
-    <p data-i18n="f1_desc">Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.</p>
+    <p data-i18n="f1_desc">Windows에서는 Ctrl+Shift+Space, macOS에서는 Cmd+Shift+Space로 어디서든 실행창을 열고 현재 흐름을 끊지 않고 DAP에게 요청합니다.</p>
   </div>
   <div class="card reveal">
     <div class="card-icon">AI</div>
@@ -282,6 +282,11 @@
     <div class="card-icon">PET</div>
     <h3 data-i18n="f4_title">PET INTERFACE</h3>
     <p data-i18n="f4_desc">고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
+  </div>
+  <div class="card reveal">
+    <div class="card-icon">MIC</div>
+    <h3 data-i18n="f5_title">음성 명령</h3>
+    <p data-i18n="f5_desc">고양이를 길게 눌러 말하면 음성으로 DAP에게 요청할 수 있습니다. 실행이 필요한 요청은 확인 후 진행합니다.</p>
   </div>
 </div>
 
@@ -411,7 +416,7 @@
       <span class="step-num">03</span>
       <div>
         <strong data-i18n="s3_title">단축키로 즉시 호출</strong>
-        <p data-i18n="s3_desc"><code>Ctrl+Shift+Space</code>로 빠른 실행창, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 액션을 실행합니다.</p>
+        <p data-i18n="s3_desc">Windows에서는 <code>Ctrl+Shift+Space</code> / <code>Ctrl+Alt+C</code>, macOS에서는 <code>Cmd+Shift+Space</code> / <code>Cmd+Option+C</code>로 빠른 실행창과 채팅창을 열고 선택 영역 액션을 실행합니다.</p>
       </div>
     </div>
   </div>
@@ -509,16 +514,18 @@ const I18N = {
     fact_license_value: "플러그인 · 설정 · 빠른 액션",
     demo_label: "Preview",
     demo_title: "실제 화면 위에서 바로 이어지는 AI OS",
-    demo_desc: "빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.",
+    demo_desc: "빠른 실행, 선택 영역 액션, 음성 명령, 실행 전 확인, 채팅이 화면 위 고양이와 하나의 흐름으로 이어집니다.",
     features_label: "Core features",
     f1_title: "빠른 실행",
-    f1_desc: "Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
+    f1_desc: "Windows에서는 Ctrl+Shift+Space, macOS에서는 Cmd+Shift+Space로 어디서든 실행창을 열고 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
     f2_title: "Claude/Codex 연결",
     f2_desc: "이미 로그인한 Claude 또는 Codex를 연결해, 따로 API Key를 입력하지 않고 바로 사용할 수 있습니다.",
     f3_title: "Quick actions",
     f3_desc: "텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.",
     f4_title: "Pet interface",
     f4_desc: "고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
+    f5_title: "음성 명령",
+    f5_desc: "고양이를 길게 눌러 말하면 음성으로 DAP에게 요청할 수 있습니다. 실행이 필요한 요청은 확인 후 진행합니다.",
     pet_moments_label: "Pet states",
     pet_moments_title: "상태가 보이는 작은 고양이 인터페이스",
     pet_working_title: "작업 중",
@@ -546,7 +553,7 @@ const I18N = {
     s2_title: "Claude/Codex 연결",
     s2_desc: "온보딩 또는 설정에서 Claude/Codex를 선택합니다. 이미 로그인된 계정을 이어서 사용할 수 있습니다.",
     s3_title: "단축키로 즉시 호출",
-    s3_desc: "<code>Ctrl+Shift+Space</code>로 빠른 실행창, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 액션을 실행합니다.",
+    s3_desc: "Windows에서는 <code>Ctrl+Shift+Space</code> / <code>Ctrl+Alt+C</code>, macOS에서는 <code>Cmd+Shift+Space</code> / <code>Cmd+Option+C</code>로 빠른 실행창과 채팅창을 열고 선택 영역 액션을 실행합니다.",
     faq_title: "자주 묻는 질문",
     q1_title: "DAP은 무엇인가요?",
     q1_desc: "DAP(Desk AI Pet)은 Windows/macOS 바탕화면 위 고양이로 시작하는 AI OS입니다.",
@@ -588,16 +595,18 @@ const I18N = {
     fact_license_value: "Plugins · settings · quick actions",
     demo_label: "Preview",
     demo_title: "An AI OS that stays in the real desktop flow",
-    demo_desc: "Quick launch, selected-text actions, chat, and the desktop cat work as one flow.",
+    demo_desc: "Quick launch, selected-text actions, voice commands, confirmations, and chat flow through the desktop pet.",
     features_label: "Core features",
     f1_title: "Quick launch",
-    f1_desc: "Open the launcher from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
+    f1_desc: "Open the launcher from anywhere with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS, and ask DAP without leaving your flow.",
     f2_title: "Claude/Codex connection",
     f2_desc: "Connect Claude or Codex you already use, without starting with a separate API-key setup.",
     f3_title: "Quick actions",
     f3_desc: "Drag-select text to open a quick-action bar near the cursor for polish, translate, summarize, and ask. The ask card also includes explain and web-search presets.",
     f4_title: "Pet interface",
     f4_desc: "The cat stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
+    f5_title: "Voice commands",
+    f5_desc: "Press and hold the pet to speak your request to DAP. DAP asks for confirmation before carrying out actions.",
     pet_moments_label: "Pet states",
     pet_moments_title: "A small cat interface that shows state",
     pet_working_title: "Working",
@@ -625,7 +634,7 @@ const I18N = {
     s2_title: "Connect Claude/Codex",
     s2_desc: "Choose Claude or Codex in onboarding or settings, then continue with the account you already use.",
     s3_title: "Call with a hotkey",
-    s3_desc: "Use <code>Ctrl+Shift+Space</code> for quick launch, <code>Ctrl+Alt+C</code> for chat, and selected-text actions when you need them.",
+    s3_desc: "Use <code>Ctrl+Shift+Space</code> / <code>Ctrl+Alt+C</code> on Windows or <code>Cmd+Shift+Space</code> / <code>Cmd+Option+C</code> on macOS for quick launch, chat, and selected-text actions.",
     faq_title: "FAQ",
     q1_title: "What is DAP?",
     q1_desc: "DAP(Desk AI Pet) is an AI OS that starts with a cat on your Windows or macOS desktop.",
