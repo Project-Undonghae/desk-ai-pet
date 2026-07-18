@@ -10,9 +10,9 @@
   })(window,document,'script','dataLayer','GTM-TJ4RS8CW');</script>
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAP (Desk AI Pet) - Claude와 Codex를 부르는 데스크톱 AI 고양이</title>
-  <meta name="description" content="DAP으로 Claude와 Codex를 어떤 앱에서든 호출하세요. 선택한 문장을 번역·요약·다듬고, 작업 상태는 바탕화면 위 고양이로 확인할 수 있습니다." />
-  <meta name="keywords" content="DAP, Desk AI Pet, AI OS, 데스크톱 AI 펫, desktop AI pet, desktop AI companion, Claude CLI, Codex CLI, Spotlight, 선택 영역 퀵액션, Oshi Desk" />
+  <title>DAP (Desk AI Pet) - 당신의 첫 AI OS</title>
+  <meta name="description" content="DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex 연결, 플러그인 플랫폼과 레지스트리로 작업 흐름을 확장합니다." />
+  <meta name="keywords" content="DAP, Desk AI Pet, AI OS, 데스크톱 AI 펫, desktop AI pet, desktop AI companion, Claude CLI, Codex CLI, Spotlight, 선택 영역 퀵액션, 플러그인 플랫폼, plugin registry, Oshi Desk" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="author" content="Project Undonghae" />
   <link rel="canonical" href="https://project-undonghae.github.io/desk-ai-pet/" />
@@ -22,23 +22,33 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Desk AI Pet" />
   <meta property="og:locale" content="ko_KR" />
-  <meta property="og:title" content="DAP - Claude와 Codex를 부르는 데스크톱 AI 고양이" />
-  <meta property="og:description" content="앱을 바꾸지 않고 선택한 문장을 번역·요약·다듬고, Claude와 Codex를 바로 호출하세요." />
+  <meta property="og:title" content="DAP - 당신의 첫 AI OS" />
+  <meta property="og:description" content="바탕화면 위 고양이로 시작하는 AI OS. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex, 플러그인 확장을 한 흐름에 연결합니다." />
   <meta property="og:url" content="https://project-undonghae.github.io/desk-ai-pet/" />
   <meta property="og:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-20260703.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="DAP Desk AI Pet - 다크 teal 배경 위 고양이 캐릭터와 Windows, macOS 다운로드 플랫폼 안내" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DAP - Claude와 Codex를 부르는 데스크톱 AI 고양이" />
-  <meta name="twitter:description" content="앱을 바꾸지 않고 선택한 문장을 번역·요약·다듬고, Claude와 Codex를 바로 호출하세요." />
+  <meta name="twitter:title" content="DAP - 당신의 첫 AI OS" />
+  <meta name="twitter:description" content="바탕화면 위 고양이로 시작하는 AI OS. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex, 플러그인 확장을 한 흐름에 연결합니다." />
   <meta name="twitter:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-20260703.png" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="favicon-180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260713-marketing" />
+  <link rel="stylesheet" href="styles.css?v=20260714-mini2" />
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem('dap-theme');
+        document.documentElement.dataset.theme = saved === 'light' ? 'light' : 'dark';
+      } catch (_) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
   <script id="software-jsonld" type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -47,15 +57,14 @@
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS",
-    "softwareVersion": "Latest public release",
+    "softwareVersion": "1.3.5",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
-    "license": "https://opensource.org/licenses/MIT",
     "isAccessibleForFree": true,
     "creator": {
       "@type": "Organization",
       "name": "Project Undonghae"
     },
-    "description": "DAP은 Claude와 Codex를 어떤 앱에서든 호출하고 선택한 문장을 번역·요약·다듬는 데스크톱 AI 고양이입니다.",
+    "description": "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex 연결, 플러그인 플랫폼과 레지스트리로 작업 흐름을 확장합니다.",
     "sameAs": [
       "https://www.oshidesk.com/en/"
     ],
@@ -81,34 +90,26 @@
       },
       {
         "@type": "Question",
-        "name": "어떤 AI를 연결할 수 있나요?",
+        "name": "Oshi Desk와 어떤 관계인가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "DAP은 사용자가 이미 로그인한 Claude 또는 Codex를 연결해 채팅과 선택 영역 액션에 활용합니다. 별도의 API Key 입력 없이 시작할 수 있습니다."
+          "text": "DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트이며, Oshi Desk는 그 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다."
         }
       },
       {
         "@type": "Question",
-        "name": "설치 전에 무엇이 필요한가요?",
+        "name": "별도 설정이 많이 필요한가요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Windows 11 또는 macOS와 Claude Code 또는 Codex CLI 설치 및 로그인이 필요합니다. 온보딩에서 연결 상태를 확인할 수 있습니다."
+          "text": "기본 흐름은 별도 API Key 입력이 아니라, 이미 로그인한 Claude/Codex를 연결해 사용하는 방식입니다."
         }
       },
       {
         "@type": "Question",
-        "name": "사용 데이터는 어떻게 처리되나요?",
+        "name": "플러그인을 만들거나 등록할 수 있나요?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "설정과 대화 기록은 기기 안에 저장되며 오류 보고 텔레메트리는 기본값이 꺼져 있습니다. 사용자가 설정에서 동의한 경우에만 오류 보고가 전송됩니다."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "API 키를 입력해야 하나요?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "아니요. 별도의 API 키 대신 이미 로그인한 Claude/Codex 구독 계정을 연결해 사용합니다."
+          "text": "DAP은 필요할 때 더해 쓸 수 있는 플러그인 확장 기능을 제공합니다."
         }
       }
     ]
@@ -121,21 +122,39 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
 <div id="cat-pop" class="cat-pop" aria-hidden="true">
   <img id="cat-pop-img" src="sprites/idle_0.png" alt="" />
 </div>
 
-<div class="lang" aria-label="Language toggle">
-  <button id="lang-ko" type="button" aria-pressed="true">KO</button>
-  <button id="lang-en" type="button" aria-pressed="false">EN</button>
-</div>
+<header class="site-nav" aria-label="DAP navigation">
+  <a class="site-nav-brand" href="index.html">DAP</a>
+  <nav id="site-nav-links">
+    <a href="index.html" aria-current="page" data-i18n="nav_home">홈</a>
+    <a href="developers.html" data-i18n="nav_developers">Docs</a>
+    <a href="plugins.html" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en" data-i18n="nav_plugins">플러그인</a>
+    <a href="#download" data-i18n="nav_download">다운로드</a>
+  </nav>
+  <div class="site-nav-actions">
+    <button id="theme-toggle" class="theme-toggle" type="button" data-next-theme="light" aria-label="라이트 모드로 전환">LIGHT</button>
+    <div class="site-nav-lang lang" aria-label="Language toggle">
+      <button id="lang-toggle" type="button" data-next-lang="en" aria-label="Switch to English">EN</button>
+    </div>
+  </div>
+  <button id="site-nav-menu" class="site-nav-menu" type="button" aria-controls="site-nav-links" aria-expanded="false" aria-label="메뉴 열기">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
 
 <div id="stars"></div>
 
 <!-- HERO FULLSCREEN: 고양이 스테이지가 전체 화면 배경, 텍스트는 오버레이 -->
 <section id="hero-fullscreen">
   <!-- STAGE: 100vh 풀스크린 고양이 무대 -->
-  <div id="stage" data-i18n-title="stage_title" title="클릭해서 반응 보기">
+  <div id="stage" role="button" tabindex="0" data-i18n-title="stage_title" data-i18n-aria="stage_aria" title="클릭해서 반응 보기" aria-label="고양이에게 반응하기">
     <div id="floor"></div>
     <span class="bg-obj" style="left:8%"></span>
     <span class="bg-obj" style="left:30%"></span>
@@ -144,7 +163,7 @@
 
     <div id="bubble"></div>
     <div id="cat-wrap">
-      <img id="cat-img" src="sprites/idle_0.png" alt="고양이" />
+      <img id="cat-img" src="sprites/hero_idle_0.png" alt="고양이" />
     </div>
     <div class="item" id="churu-item">TREAT</div>
   </div>
@@ -153,8 +172,9 @@
   <div class="hero-overlay">
     <div class="hero-overlay-inner z">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">YOUR FIRST AI OS</p>
-      <div class="logo"><span>DAP</span><small>Desk AI Pet</small></div>
-      <p class="hero-tagline-text" data-i18n="hero_tagline">Claude와 Codex를 어떤 앱에서든 호출하세요. 선택한 문장은 바로 번역·요약·다듬을 수 있습니다.</p>
+      <div class="logo"><h1>DAP</h1><small>Desk AI Pet</small></div>
+      <p class="hero-tagline-text" data-i18n="hero_tagline">고양이와 대화하고, 선택한 텍스트는 빠른 액션으로 바로 처리하세요</p>
+      <span id="download" class="download-anchor" aria-hidden="true"></span>
       <div class="hero-dl-row">
         <a
           class="btn btn-w"
@@ -181,12 +201,7 @@
           <span data-i18n="download_mac_intel">macOS Intel 다운로드</span>
         </a>
       </div>
-      <p class="dl-subtitle-hero" data-i18n="download_subtitle">별도 API 키 없이, 이미 로그인한 구독 계정을 연결합니다</p>
-      <div class="hero-trust" aria-label="DAP trust facts">
-        <span data-i18n="trust_free">무료</span>
-        <span data-i18n="trust_telemetry">오류 보고 기본 OFF</span>
-        <a href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest" data-i18n="trust_release">GitHub 공개 릴리즈</a>
-      </div>
+      <p class="dl-subtitle-hero" data-i18n="download_subtitle">Windows와 macOS용 설치 파일을 제공합니다</p>
     </div>
   </div>
 
@@ -198,15 +213,15 @@
 </section>
 
 <!-- PRODUCT SUMMARY -->
-<main>
+<main id="main">
 <section class="summary z" aria-labelledby="summary-title">
-  <img class="section-cat section-cat-summary" src="sprites/idle_2.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-summary" src="sprites/headtilt_24_crop.png" alt="" aria-hidden="true" />
   <p class="section-label compact" data-i18n="summary_label">DAP overview</p>
   <div class="summary-grid">
     <div>
-      <h1 id="summary-title" data-i18n="summary_title">앱을 바꾸지 않고, 지금 하던 일 위에서 AI를 사용하세요</h1>
+      <h2 id="summary-title" data-i18n="summary_title">DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다</h2>
       <p data-i18n="summary_desc">
-        DAP은 화면 위에 작은 고양이로 머물며 채팅, 빠른 실행, 선택 영역 액션을 한곳에 모읍니다. 이미 사용 중인 Claude/Codex 구독을 연결해 문장을 번역·요약·다듬고, 작업 상태는 고양이의 반응으로 확인할 수 있습니다.
+        DAP은 화면 위에 작은 고양이로 머물며, 채팅과 빠른 실행창, 선택 영역 액션을 한곳에 모읍니다. 텍스트를 선택해 다듬기, 번역, 요약, 질문을 바로 실행하고, 필요할 때 Claude/Codex를 불러올 수 있어요.
       </p>
     </div>
     <dl class="facts" aria-label="Desk AI Pet facts">
@@ -216,11 +231,11 @@
       </div>
       <div>
         <dt data-i18n="fact_ai_label">연결</dt>
-        <dd data-i18n="fact_ai_value">Claude Code 또는 Codex CLI 설치·로그인 필요</dd>
+        <dd data-i18n="fact_ai_value">로그인된 Claude · Codex 사용</dd>
       </div>
       <div>
-        <dt data-i18n="fact_license_label">작업 방식</dt>
-        <dd data-i18n="fact_license_value">채팅 · 빠른 실행 · 선택 영역 액션</dd>
+        <dt data-i18n="fact_license_label">확장</dt>
+        <dd data-i18n="fact_license_value">플러그인 · 설정 · 빠른 액션</dd>
       </div>
     </dl>
   </div>
@@ -230,15 +245,15 @@
 <section class="demo z" aria-labelledby="demo-title">
   <div class="demo-copy">
     <p class="section-label compact" data-i18n="demo_label">Preview</p>
-    <h2 id="demo-title" data-i18n="demo_title">화면 위에서 바로 부르고, 바로 맡기는 흐름</h2>
-    <p data-i18n="demo_desc">빠른 실행창으로 요청하고, 선택한 문장을 요약하거나 다듬고, 고양이와 이어서 대화합니다.</p>
+    <h2 id="demo-title" data-i18n="demo_title">실제 화면 위에서 바로 이어지는 AI OS</h2>
+    <p data-i18n="demo_desc">빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.</p>
   </div>
   <figure class="demo-frame">
     <img
-      src="demo-preview.png"
+      src="demo-preview-ui-20260705.svg?v=20260705-components"
       width="1400"
       height="900"
-      alt="DAP 데스크톱 시연 화면: 빠른 실행창, 선택 영역 액션, 채팅 패널, 고양이 캐릭터"
+      alt="DAP 실제 UI 흐름: 빠른 실행창, 선택 영역 액션, 채팅 패널, 화면 위 고양이"
       loading="lazy"
     />
   </figure>
@@ -247,7 +262,7 @@
 <!-- FEATURES -->
 <p class="section-label" data-i18n="features_label">Core features</p>
 <div class="features z">
-  <img class="section-cat section-cat-features" src="sprites/walk_2.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-features" src="sprites/happy_24_crop.png" alt="" aria-hidden="true" />
   <div class="card reveal">
     <div class="card-icon">CMD</div>
     <h3 data-i18n="f1_title">빠른 실행</h3>
@@ -261,18 +276,121 @@
   <div class="card reveal">
     <div class="card-icon">SEL</div>
     <h3 data-i18n="f3_title">QUICK ACTIONS</h3>
-    <p data-i18n="f3_desc">텍스트를 선택하거나 복사하면 번역, 요약, 다듬기, 설명 같은 액션을 커서 근처에서 바로 실행합니다.</p>
+    <p data-i18n="f3_desc">텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.</p>
   </div>
   <div class="card reveal">
     <div class="card-icon">PET</div>
     <h3 data-i18n="f4_title">PET INTERFACE</h3>
-    <p data-i18n="f4_desc">Nabi가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
+    <p data-i18n="f4_desc">고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
   </div>
 </div>
 
+<!-- PET STATES -->
+<section class="pet-moments z" aria-labelledby="pet-moments-title">
+  <div class="pet-moments-head">
+    <p class="section-label compact" data-i18n="pet_moments_label">Pet states</p>
+    <h2 id="pet-moments-title" data-i18n="pet_moments_title">상태가 보이는 작은 고양이 인터페이스</h2>
+  </div>
+  <div class="pet-moment-grid">
+    <article class="pet-moment reveal">
+      <img src="sprites/working_45_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_working_title">작업 중</strong>
+      </div>
+    </article>
+    <article class="pet-moment reveal">
+      <img src="sprites/success_36_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_success_title">완료 신호</strong>
+      </div>
+    </article>
+    <article class="pet-moment reveal">
+      <img src="sprites/happy_24_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_happy_title">가벼운 반응</strong>
+      </div>
+    </article>
+    <article class="pet-moment reveal">
+      <img src="sprites/sleep_12_crop.png" alt="" aria-hidden="true" />
+      <div>
+        <strong data-i18n="pet_sleep_title">조용한 대기</strong>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- V1.3 MINI PETS -->
+<section class="mini-pets z" aria-labelledby="mini-pets-title">
+  <div class="mini-pets-copy">
+    <p class="section-label compact" data-i18n="mini_label">New in v1.3</p>
+    <h2 id="mini-pets-title" data-i18n="mini_title">작고 새로운 캐릭터를 바탕화면에</h2>
+    <p data-i18n="mini_desc">미니 모드에는 Claude, Codex, Gemini 캐릭터가 기본 프로필로 들어 있습니다. 평소 모습과 반응 모습을 직접 등록하고 크기도 조절할 수 있습니다.</p>
+  </div>
+  <div class="mini-pet-grid">
+    <figure class="mini-pet-card reveal" data-mini-pet="claude">
+      <figcaption>Claude</figcaption>
+      <div class="mini-pet-preview">
+        <img class="mini-pet-image" src="mini/claude_idle.png" width="2048" height="2048" loading="lazy" alt="Claude 미니 캐릭터 기본 상태" />
+      </div>
+      <div class="mini-pet-toggle" aria-label="Claude 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/claude_idle.png" data-mini-alt="Claude 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/claude_active.png" data-mini-alt="Claude 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      </div>
+    </figure>
+    <figure class="mini-pet-card reveal" data-mini-pet="codex">
+      <figcaption>Codex</figcaption>
+      <div class="mini-pet-preview">
+        <img class="mini-pet-image" src="mini/codex_idle.png" width="2048" height="2048" loading="lazy" alt="Codex 미니 캐릭터 기본 상태" />
+      </div>
+      <div class="mini-pet-toggle" aria-label="Codex 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/codex_idle.png" data-mini-alt="Codex 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/codex_active.png" data-mini-alt="Codex 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      </div>
+    </figure>
+    <figure class="mini-pet-card reveal" data-mini-pet="gemini">
+      <figcaption>Gemini</figcaption>
+      <div class="mini-pet-preview">
+        <img class="mini-pet-image" src="mini/gemini_idle.png" width="2048" height="2048" loading="lazy" alt="Gemini 미니 캐릭터 기본 상태" />
+      </div>
+      <div class="mini-pet-toggle" aria-label="Gemini 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/gemini_idle.png" data-mini-alt="Gemini 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/gemini_active.png" data-mini-alt="Gemini 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      </div>
+    </figure>
+  </div>
+  <p class="mini-pets-note" data-i18n="mini_note">캐릭터 프로필은 설정에서 추가·수정·삭제할 수 있으며, 연결한 AI와 별개로 선택할 수 있습니다.</p>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="resource-hub z" aria-labelledby="resources-title">
+  <img class="section-cat section-cat-resource" src="sprites/dance_64_crop.png" alt="" aria-hidden="true" />
+  <p class="section-label compact" data-i18n="resources_label">Next steps</p>
+  <div class="resource-head">
+    <h2 id="resources-title" data-i18n="resources_title">DAP을 더 편하게 시작하는 방법</h2>
+    <p data-i18n="resources_desc">설치 후 바로 쓰는 기본 흐름부터, 필요할 때 더해 쓰는 확장 기능까지 한눈에 둘러볼 수 있습니다.</p>
+  </div>
+  <div class="resource-grid">
+    <a class="resource-card reveal" href="#download">
+      <span>START</span>
+      <strong data-i18n="resource_start_title">설치 파일 받기</strong>
+      <p data-i18n="resource_start_desc">Windows와 macOS 환경에 맞는 설치 파일을 선택해 DAP을 바로 시작합니다.</p>
+    </a>
+    <a class="resource-card reveal" href="plugins.html" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en">
+      <span>PLUGINS</span>
+      <strong data-i18n="resource_services_title">플러그인 둘러보기</strong>
+      <p data-i18n="resource_services_desc">DAP 안에서 더해 쓸 수 있는 확장 기능을 카드 형태로 확인합니다.</p>
+    </a>
+    <a class="resource-card reveal" href="#download">
+      <span>UPDATE</span>
+      <strong data-i18n="resource_project_title">최신 버전 확인</strong>
+      <p data-i18n="resource_project_desc">공개 다운로드 버튼에서 현재 제공 중인 설치 파일을 확인할 수 있습니다.</p>
+    </a>
+  </div>
+</section>
+
 <!-- HOW IT WORKS -->
 <div class="how z">
-  <img class="section-cat section-cat-how" src="sprites/idle_4.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-how" src="sprites/working_45_crop.png" alt="" aria-hidden="true" />
   <h2 data-i18n="how_title">Getting started</h2>
   <div class="steps">
     <div class="step reveal">
@@ -301,7 +419,7 @@
 
 <!-- FAQ -->
 <section class="faq z" aria-labelledby="faq-title">
-  <img class="section-cat section-cat-faq" src="sprites/idle_1.png" alt="" aria-hidden="true" />
+  <img class="section-cat section-cat-faq" src="sprites/groom_48_crop.png" alt="" aria-hidden="true" />
   <h2 id="faq-title" data-i18n="faq_title">자주 묻는 질문</h2>
   <div class="faq-list">
     <details open>
@@ -309,16 +427,16 @@
       <p data-i18n="q1_desc">DAP(Desk AI Pet)은 Windows/macOS 바탕화면 위에 머무는 데스크톱 AI 펫입니다.</p>
     </details>
     <details>
-      <summary data-i18n="q2_title">설치 전에 무엇이 필요한가요?</summary>
-      <p data-i18n="q2_desc">Windows 11 또는 macOS와 Claude Code 또는 Codex CLI 설치 및 로그인이 필요합니다. 온보딩에서 연결 상태를 확인할 수 있습니다.</p>
+      <summary data-i18n="q2_title">Oshi Desk와 어떤 관계인가요?</summary>
+      <p data-i18n="q2_desc">DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트입니다. Oshi Desk는 이 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다.</p>
     </details>
     <details>
-      <summary data-i18n="q3_title">API 키를 입력해야 하나요?</summary>
-      <p data-i18n="q3_desc">아니요. 별도의 API 키 대신 이미 로그인한 Claude/Codex 구독 계정을 연결해 사용합니다.</p>
+      <summary data-i18n="q3_title">별도 설정이 많이 필요한가요?</summary>
+      <p data-i18n="q3_desc">기본 흐름은 별도 API Key 입력이 아니라, 이미 로그인한 Claude/Codex를 연결해 사용하는 방식입니다.</p>
     </details>
     <details>
-      <summary data-i18n="q4_title">사용 데이터는 어떻게 처리되나요?</summary>
-      <p data-i18n="q4_desc">설정과 대화 기록은 기기 안에 저장됩니다. 오류 보고 텔레메트리는 기본 OFF이며, 설정에서 동의한 경우에만 전송됩니다.</p>
+      <summary data-i18n="q4_title">플러그인을 만들거나 등록할 수 있나요?</summary>
+      <p data-i18n="q4_desc">플러그인 페이지에서 DAP에 더해 쓸 수 있는 확장 기능을 둘러볼 수 있습니다.</p>
     </details>
   </div>
 </section>
@@ -326,7 +444,6 @@
 
 <footer class="z">
   <span data-i18n="footer">DAP · Desk AI Pet · Windows &amp; macOS</span>
-  <a href="https://github.com/Project-Undonghae/desk-ai-pet" data-i18n="footer_github">GitHub</a>
 </footer>
 
 <script type="module">
@@ -365,41 +482,64 @@ let textPopReady = false;
 
 const I18N = {
   ko: {
-    meta_title: "DAP (Desk AI Pet) - Claude와 Codex를 부르는 데스크톱 AI 고양이",
-    meta_desc: "DAP으로 Claude와 Codex를 어떤 앱에서든 호출하세요. 선택한 문장을 번역·요약·다듬고, 작업 상태는 바탕화면 위 고양이로 확인할 수 있습니다.",
+    meta_title: "DAP (Desk AI Pet) - 당신의 첫 AI OS",
+    meta_desc: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. 채팅, 빠른 실행, 선택 영역 액션, Claude/Codex 연결, 확장 기능으로 작업 흐름을 넓힙니다.",
+    nav_home: "홈",
+    nav_developers: "Docs",
+    nav_plugins: "플러그인",
+    nav_download: "다운로드",
     hero_eyebrow: "YOUR FIRST AI OS",
     hero_copy: "당신의 첫 AI OS\n바탕화면 위 고양이가 채팅과 작업 흐름을 이어줍니다",
-    hero_tagline: "Claude와 Codex를 어떤 앱에서든 호출하세요. 선택한 문장은 바로 번역·요약·다듬을 수 있습니다.",
+    hero_tagline: "고양이와 대화하고, 선택한 텍스트는 빠른 액션으로 바로 처리하세요",
     stage_title: "클릭해서 반응 보기",
+    stage_aria: "고양이에게 반응하기",
     download_label: "DOWNLOAD",
-    download_subtitle: "별도 API 키 없이, 이미 로그인한 구독 계정을 연결합니다",
-    trust_free: "무료",
-    trust_telemetry: "오류 보고 기본 OFF",
-    trust_release: "GitHub 공개 릴리즈",
+    download_subtitle: "Windows와 macOS용 설치 파일을 제공합니다",
     download_win: "Windows 다운로드",
     download_mac_arm: "macOS Apple Silicon 다운로드",
     download_mac_intel: "macOS Intel 다운로드",
     summary_label: "DAP overview",
-    summary_title: "앱을 바꾸지 않고, 지금 하던 일 위에서 AI를 사용하세요",
-    summary_desc: "DAP은 화면 위에 작은 고양이로 머물며 채팅, 빠른 실행, 선택 영역 액션을 한곳에 모읍니다. 이미 사용 중인 Claude/Codex 구독을 연결해 문장을 번역·요약·다듬고, 작업 상태는 고양이의 반응으로 확인할 수 있습니다.",
+    summary_title: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다",
+    summary_desc: "DAP은 화면 위에 작은 고양이로 머물며, 채팅과 빠른 실행창, 선택 영역 액션을 한곳에 모읍니다. 텍스트를 선택해 다듬기, 번역, 요약, 질문을 바로 실행하고, 필요할 때 Claude/Codex를 불러올 수 있어요.",
     fact_platform_label: "지원 플랫폼",
     fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
     fact_ai_label: "연결",
-    fact_ai_value: "Claude Code 또는 Codex CLI 설치·로그인 필요",
-    fact_license_label: "작업 방식",
-    fact_license_value: "채팅 · 빠른 실행 · 선택 영역 액션",
+    fact_ai_value: "로그인된 Claude · Codex 사용",
+    fact_license_label: "확장",
+    fact_license_value: "플러그인 · 설정 · 빠른 액션",
     demo_label: "Preview",
-    demo_title: "화면 위에서 바로 부르고, 바로 맡기는 흐름",
-    demo_desc: "빠른 실행창으로 요청하고, 선택한 문장을 요약하거나 다듬고, 고양이와 이어서 대화합니다.",
+    demo_title: "실제 화면 위에서 바로 이어지는 AI OS",
+    demo_desc: "빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.",
     features_label: "Core features",
     f1_title: "빠른 실행",
     f1_desc: "Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
     f2_title: "Claude/Codex 연결",
     f2_desc: "이미 로그인한 Claude 또는 Codex를 연결해, 따로 API Key를 입력하지 않고 바로 사용할 수 있습니다.",
     f3_title: "Quick actions",
-    f3_desc: "텍스트를 선택하거나 복사하면 번역, 요약, 다듬기, 설명 같은 액션을 커서 근처에서 바로 실행합니다.",
+    f3_desc: "텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.",
     f4_title: "Pet interface",
-    f4_desc: "Nabi가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
+    f4_desc: "고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
+    pet_moments_label: "Pet states",
+    pet_moments_title: "상태가 보이는 작은 고양이 인터페이스",
+    pet_working_title: "작업 중",
+    pet_success_title: "완료 신호",
+    pet_happy_title: "가벼운 반응",
+    pet_sleep_title: "조용한 대기",
+    mini_label: "New in v1.3",
+    mini_title: "작고 새로운 캐릭터를 바탕화면에",
+    mini_desc: "미니 모드에는 Claude, Codex, Gemini 캐릭터가 기본 프로필로 들어 있습니다. 평소 모습과 반응 모습을 직접 등록하고 크기도 조절할 수 있습니다.",
+    mini_idle: "평소",
+    mini_active: "반응",
+    mini_note: "캐릭터 프로필은 설정에서 추가·수정·삭제할 수 있으며, 연결한 AI와 별개로 선택할 수 있습니다.",
+    resources_label: "Next steps",
+    resources_title: "DAP을 더 편하게 시작하는 방법",
+    resources_desc: "설치 후 바로 쓰는 기본 흐름부터, 필요할 때 더해 쓰는 확장 기능까지 한눈에 둘러볼 수 있습니다.",
+    resource_start_title: "설치 파일 받기",
+    resource_start_desc: "Windows와 macOS 환경에 맞는 설치 파일을 선택해 DAP을 바로 시작합니다.",
+    resource_services_title: "플러그인 둘러보기",
+    resource_services_desc: "DAP 안에서 더해 쓸 수 있는 확장 기능을 카드 형태로 확인합니다.",
+    resource_project_title: "최신 버전 확인",
+    resource_project_desc: "공개 다운로드 버튼에서 현재 제공 중인 설치 파일을 확인할 수 있습니다.",
     how_title: "Getting started",
     s1_title: "다운로드 & 설치",
     s1_desc: "Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.",
@@ -410,54 +550,75 @@ const I18N = {
     faq_title: "자주 묻는 질문",
     q1_title: "DAP은 무엇인가요?",
     q1_desc: "DAP(Desk AI Pet)은 Windows/macOS 바탕화면 위 고양이로 시작하는 AI OS입니다.",
-    q2_title: "설치 전에 무엇이 필요한가요?",
-    q2_desc: "Windows 11 또는 macOS와 Claude Code 또는 Codex CLI 설치 및 로그인이 필요합니다. 온보딩에서 연결 상태를 확인할 수 있습니다.",
-    q3_title: "API 키를 입력해야 하나요?",
-    q3_desc: "아니요. 별도의 API 키 대신 이미 로그인한 Claude/Codex 구독 계정을 연결해 사용합니다.",
-    q4_title: "사용 데이터는 어떻게 처리되나요?",
-    q4_desc: "설정과 대화 기록은 기기 안에 저장됩니다. 오류 보고 텔레메트리는 기본 OFF이며, 설정에서 동의한 경우에만 전송됩니다.",
+    q2_title: "Oshi Desk와 어떤 관계인가요?",
+    q2_desc: "DAP는 AI와 데스크톱 펫을 결합한 기반 프로젝트입니다. Oshi Desk는 이 흐름에서 시작된 캐릭터 중심 데스크톱 펫 서비스입니다.",
+    q3_title: "별도 설정이 많이 필요한가요?",
+    q3_desc: "기본 흐름은 별도 API Key 입력이 아니라, 이미 로그인한 Claude/Codex를 연결해 사용하는 방식입니다.",
+    q4_title: "플러그인을 사용할 수 있나요?",
+    q4_desc: "플러그인 페이지에서 DAP에 더해 쓸 수 있는 확장 기능을 둘러볼 수 있습니다.",
     footer: "DAP · Desk AI Pet · Windows & macOS",
-    footer_github: "GitHub",
     bubble_eat: "잠깐 쉬는 중",
     bubble_meow: "여기 있어요",
-    bubble_going: "이동 중",
   },
   en: {
-    meta_title: "DAP (Desk AI Pet) - A desktop AI cat for Claude and Codex",
-    meta_desc: "Call Claude and Codex from any app with DAP. Translate, summarize, or rewrite selected text while a desktop cat shows the work in progress.",
+    meta_title: "DAP (Desk AI Pet) - Your first AI OS",
+    meta_desc: "DAP is an AI OS that starts with a cat on your desktop. It connects chat, quick launch, selected-text actions, Claude/Codex, and optional extensions.",
+    nav_home: "Home",
+    nav_developers: "Docs",
+    nav_plugins: "Plugins",
+    nav_download: "Download",
     hero_eyebrow: "YOUR FIRST AI OS",
     hero_copy: "Your first AI OS\nA desktop cat keeps chat and work in flow",
-    hero_tagline: "Call Claude and Codex from any app. Translate, summarize, or rewrite selected text right where you work.",
+    hero_tagline: "Chat with the cat and handle selected text from the quick-action bar",
     stage_title: "Click to interact",
+    stage_aria: "Interact with the cat",
     download_label: "DOWNLOAD",
-    download_subtitle: "Connect the subscription account you already use—no separate API key",
-    trust_free: "Free",
-    trust_telemetry: "Error reporting OFF by default",
-    trust_release: "Public GitHub releases",
+    download_subtitle: "Installers are available for Windows and macOS",
     download_win: "Download for Windows",
     download_mac_arm: "Download for macOS Apple Silicon",
     download_mac_intel: "Download for macOS Intel",
     summary_label: "DAP overview",
-    summary_title: "Use AI on top of your current work without switching apps",
-    summary_desc: "DAP stays on screen as a small cat and brings chat, quick launch, and selected-text actions together. Connect your existing Claude/Codex subscription to translate, summarize, or rewrite text while the cat shows what is happening.",
+    summary_title: "DAP is an AI OS that starts with a cat on your desktop",
+    summary_desc: "DAP stays on screen as a small cat and brings chat, quick launch, and selected-text actions together. Select text to polish, translate, summarize, or ask about it, then call Claude/Codex whenever you need help.",
     fact_platform_label: "Platforms",
     fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
     fact_ai_label: "Connection",
-    fact_ai_value: "Claude Code or Codex CLI installed and signed in",
-    fact_license_label: "Workflow",
-    fact_license_value: "Chat · quick launch · selected-text actions",
+    fact_ai_value: "Use your logged-in Claude · Codex",
+    fact_license_label: "Extensions",
+    fact_license_value: "Plugins · settings · quick actions",
     demo_label: "Preview",
-    demo_title: "Call it from your screen, then keep working",
-    demo_desc: "Use quick launch, selected-text actions, and chat with the cat without leaving the desktop.",
+    demo_title: "An AI OS that stays in the real desktop flow",
+    demo_desc: "Quick launch, selected-text actions, chat, and the desktop cat work as one flow.",
     features_label: "Core features",
     f1_title: "Quick launch",
     f1_desc: "Open the launcher from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
     f2_title: "Claude/Codex connection",
     f2_desc: "Connect Claude or Codex you already use, without starting with a separate API-key setup.",
     f3_title: "Quick actions",
-    f3_desc: "Select or copy text to run translate, summarize, rewrite, explain, or ask actions near the cursor.",
+    f3_desc: "Drag-select text to open a quick-action bar near the cursor for polish, translate, summarize, and ask. The ask card also includes explain and web-search presets.",
     f4_title: "Pet interface",
-    f4_desc: "Nabi stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
+    f4_desc: "The cat stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
+    pet_moments_label: "Pet states",
+    pet_moments_title: "A small cat interface that shows state",
+    pet_working_title: "Working",
+    pet_success_title: "Done signal",
+    pet_happy_title: "Light reactions",
+    pet_sleep_title: "Quiet standby",
+    mini_label: "New in v1.3",
+    mini_title: "Put a small new character on your desktop",
+    mini_desc: "Mini mode includes Claude, Codex, and Gemini character profiles. Add your own idle and reaction images, then adjust the size to fit your desktop.",
+    mini_idle: "Idle",
+    mini_active: "Reaction",
+    mini_note: "Add, edit, or remove character profiles in Settings and choose one independently from your connected AI.",
+    resources_label: "Next steps",
+    resources_title: "A simpler way to start with DAP",
+    resources_desc: "Start with the installer, then browse optional extensions when you want to add more to your desktop flow.",
+    resource_start_title: "Get the installer",
+    resource_start_desc: "Choose the Windows or macOS installer that matches your device and start DAP right away.",
+    resource_services_title: "Browse plugins",
+    resource_services_desc: "Browse optional extensions you can add to DAP.",
+    resource_project_title: "Check the latest version",
+    resource_project_desc: "Use the public download buttons to see the installers currently available.",
     how_title: "Getting started",
     s1_title: "Download & install",
     s1_desc: "Download the installer that matches your device: Windows, macOS Apple Silicon, or macOS Intel.",
@@ -468,24 +629,21 @@ const I18N = {
     faq_title: "FAQ",
     q1_title: "What is DAP?",
     q1_desc: "DAP(Desk AI Pet) is an AI OS that starts with a cat on your Windows or macOS desktop.",
-    q2_title: "What do I need before installing?",
-    q2_desc: "You need Windows 11 or macOS plus Claude Code or Codex CLI installed and signed in. Onboarding checks the connection state.",
-    q3_title: "Do I need to enter an API key?",
-    q3_desc: "No. DAP connects to the Claude/Codex subscription account you are already signed in to.",
-    q4_title: "How is my data handled?",
-    q4_desc: "Settings and chat history stay on your device. Error-reporting telemetry is OFF by default and is only sent after you opt in from settings.",
+    q2_title: "How is it related to Oshi Desk?",
+    q2_desc: "DAP is the base project that combined AI and desktop pets. Oshi Desk is the character-focused desktop pet service that grew from that flow.",
+    q3_title: "Does it take a lot of setup?",
+    q3_desc: "The default flow connects Claude/Codex you already use, instead of starting with separate API-key setup.",
+    q4_title: "Can I use plugins?",
+    q4_desc: "Yes. The plugins page shows optional extensions you can add to DAP.",
     footer: "DAP · Desk AI Pet · Windows & macOS",
-    footer_github: "GitHub",
     bubble_eat: "Taking a break",
     bubble_meow: "I'm here",
-    bubble_going: "Moving",
   }
 };
 
 let BUBBLE_TEXT = {
   eat: I18N.ko.bubble_eat,
   meow: I18N.ko.bubble_meow,
-  going: I18N.ko.bubble_going,
 };
 
 function applyLang(lang){
@@ -498,7 +656,6 @@ function applyLang(lang){
   BUBBLE_TEXT = {
     eat: dict.bubble_eat,
     meow: dict.bubble_meow,
-    going: dict.bubble_going,
   };
 
   for (const el of document.querySelectorAll('[data-i18n]')) {
@@ -514,11 +671,21 @@ function applyLang(lang){
     if (typeof v !== 'string') continue;
     el.setAttribute('title', v);
   }
-  const koBtn = document.getElementById('lang-ko');
-  const enBtn = document.getElementById('lang-en');
-  if (koBtn && enBtn) {
-    koBtn.setAttribute('aria-pressed', lang === 'ko' ? 'true' : 'false');
-    enBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+  for (const el of document.querySelectorAll('[data-i18n-aria]')) {
+    const key = el.getAttribute('data-i18n-aria');
+    const v = dict[key];
+    if (typeof v !== 'string') continue;
+    el.setAttribute('aria-label', v);
+  }
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) {
+    const nextLang = lang === 'en' ? 'ko' : 'en';
+    langToggle.dataset.nextLang = nextLang;
+    langToggle.textContent = nextLang.toUpperCase();
+    langToggle.setAttribute('aria-label', lang === 'en' ? '한국어로 전환' : 'Switch to English');
+  }
+  for (const el of document.querySelectorAll('[data-href-ko][data-href-en]')) {
+    el.setAttribute('href', lang === 'en' ? el.dataset.hrefEn : el.dataset.hrefKo);
   }
 
   // keep pretext layout in sync with new hero text
@@ -528,41 +695,90 @@ function applyLang(lang){
 const qsLang = new URLSearchParams(location.search).get('lang');
 const initialLang = (qsLang || navigator.language || 'ko').toLowerCase().startsWith('en') ? 'en' : 'ko';
 applyLang(initialLang);
-document.getElementById('lang-ko')?.addEventListener('click', () => {
-  applyLang('ko');
-  const u = new URL(location.href); u.searchParams.set('lang','ko'); history.replaceState({},'',u);
+
+function applyTheme(theme) {
+  const selected = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = selected;
+  try { localStorage.setItem('dap-theme', selected); } catch (_) {}
+  const toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    const nextTheme = selected === 'light' ? 'dark' : 'light';
+    toggle.dataset.nextTheme = nextTheme;
+    toggle.textContent = nextTheme.toUpperCase();
+    toggle.setAttribute('aria-label', nextTheme === 'light' ? '라이트 모드로 전환' : '다크 모드로 전환');
+  }
+}
+applyTheme(document.documentElement.dataset.theme);
+document.getElementById('theme-toggle')?.addEventListener('click', (event) => {
+  applyTheme(event.currentTarget.dataset.nextTheme);
 });
-document.getElementById('lang-en')?.addEventListener('click', () => {
-  applyLang('en');
-  const u = new URL(location.href); u.searchParams.set('lang','en'); history.replaceState({},'',u);
+
+document.getElementById('lang-toggle')?.addEventListener('click', (event) => {
+  const lang = event.currentTarget.dataset.nextLang === 'ko' ? 'ko' : 'en';
+  applyLang(lang);
+  const u = new URL(location.href);
+  u.searchParams.set('lang', lang);
+  history.replaceState({}, '', u);
 });
+
+function setupSiteMenu() {
+  const header = document.querySelector('.site-nav');
+  const button = document.getElementById('site-nav-menu');
+  const nav = document.getElementById('site-nav-links');
+  if (!header || !button || !nav) return;
+  const close = () => {
+    header.classList.remove('is-menu-open');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', '메뉴 열기');
+  };
+  const toggle = () => {
+    const isOpen = !header.classList.contains('is-menu-open');
+    header.classList.toggle('is-menu-open', isOpen);
+    button.setAttribute('aria-expanded', String(isOpen));
+    button.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+  };
+  button.addEventListener('click', toggle);
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) close();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') close();
+  });
+  window.matchMedia('(min-width: 721px)').addEventListener('change', close);
+}
+setupSiteMenu();
+
+for (const card of document.querySelectorAll('.mini-pet-card')) {
+  const image = card.querySelector('.mini-pet-image');
+  const buttons = card.querySelectorAll('.mini-pet-toggle button');
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      image.src = button.dataset.miniSrc;
+      image.alt = button.dataset.miniAlt;
+      for (const item of buttons) item.setAttribute('aria-pressed', String(item === button));
+    });
+  }
+}
 
 for (const el of document.querySelectorAll('[data-download-platform]')) {
   el.addEventListener('click', (event) => {
     const availability = el.getAttribute('data-download-availability') || 'available';
     const platform = el.getAttribute('data-download-platform') || 'unknown';
     window.dataLayer = window.dataLayer || [];
-    const campaign = new URLSearchParams(location.search);
     window.dataLayer.push({
       event: 'dap_download_click',
       download_platform: platform,
       download_availability: availability,
       download_label: el.textContent.trim(),
-      download_url: el.href,
       page_language: document.documentElement.lang || 'ko',
       page_location: location.href,
-      page_referrer: document.referrer || '(direct)',
-      utm_source: campaign.get('utm_source') || '(none)',
-      utm_medium: campaign.get('utm_medium') || '(none)',
-      utm_campaign: campaign.get('utm_campaign') || '(none)',
-      utm_content: campaign.get('utm_content') || '(none)',
     });
     if (availability !== 'available') event.preventDefault();
   });
 }
 
-const IDLE = Array.from({ length: 5 }, (_, i) => `sprites/idle_${i}.png`);
-const WALK = Array.from({ length: 5 }, (_, i) => `sprites/walk_${i}.png`);
+const IDLE = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108, 132, 156].map((i) => `sprites/hero_idle_${i}.png`);
+const WALK = [0, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88].map((i) => `sprites/hero_walk_${i}.png`);
 [...IDLE, ...WALK].forEach((s) => {
   const im = new Image();
   im.src = s;
@@ -645,6 +861,8 @@ let stimer = 0;
 let bubTimer = 0;
 const FINT = 115;
 const SW = () => Math.max(300, stage.clientWidth);
+const catWidth = () => Math.max(96, catWrap.getBoundingClientRect().width || catWrap.clientWidth || 120);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function setFlip(f) {
   flip = f;
@@ -677,7 +895,8 @@ function goIdle() {
 function goWalk() {
   state = 'walk';
   frame = 0;
-  targetX = Math.max(10, Math.min(SW() - 110, Math.random() * (SW() - 120)));
+  const w = catWidth();
+  targetX = Math.max(10, Math.min(SW() - w - 10, Math.random() * (SW() - w)));
   setFlip(targetX < catX);
   stimer = 0;
 }
@@ -727,7 +946,8 @@ function tick(now) {
   last = now;
 
   ftimer += dt;
-  if (ftimer >= FINT) {
+  const frameInterval = state === 'walk' ? 165 : state === 'idle' ? 220 : FINT;
+  if (ftimer >= frameInterval) {
     ftimer = 0;
     const frames = state === 'walk' ? WALK : IDLE;
     frame = (frame + 1) % frames.length;
@@ -742,9 +962,9 @@ function tick(now) {
 
   catWrap.style.left = `${catX}px`;
   if (state === 'walk') {
-    catWrap.style.bottom = `${40 + Math.sin(now / 200) * 6}px`;
+    catWrap.style.bottom = `${40 + Math.sin(now / 340) * 2}px`;
     const dir = targetX > catX ? 1 : -1;
-    const spd = 2.1 + Math.sin(now / 400) * 0.55;
+    const spd = 0.9 + Math.sin(now / 680) * 0.16;
     catX += dir * spd;
     if (Math.abs(catX - targetX) < 6) {
       catX = targetX;
@@ -764,22 +984,46 @@ function tick(now) {
 
   requestAnimationFrame(tick);
 }
-requestAnimationFrame(tick);
 
-stage.addEventListener('click', (e) => {
+function reactToStage(clientX) {
   if (state === 'textpop') return;
   const rect = stage.getBoundingClientRect();
-  const cx = e.clientX - rect.left;
-  if (Math.abs(cx - catX - 48) < 72) {
+  const halfCat = catWidth() / 2;
+  const cx = typeof clientX === 'number' ? clientX - rect.left : catX + halfCat;
+  if (Math.abs(cx - catX - halfCat) < halfCat * 0.76) {
     goEat(catX);
     showBubble(BUBBLE_TEXT.meow, 1600);
   } else {
-    targetX = Math.max(10, Math.min(SW() - 110, cx - 48));
+    targetX = Math.max(10, Math.min(SW() - catWidth() - 10, cx - halfCat));
     setFlip(targetX < catX);
     state = 'walk';
     frame = 0;
-    showBubble(BUBBLE_TEXT.going, 1200);
   }
+}
+
+if (!reduceMotion) requestAnimationFrame(tick);
+else {
+  catWrap.style.left = `${catX}px`;
+  catWrap.style.bottom = '40px';
+}
+
+stage.addEventListener('click', (e) => {
+  if (e.detail > 0) stage.blur();
+  reactToStage(e.clientX);
+});
+
+stage.addEventListener('mousedown', (e) => {
+  e.preventDefault();
+});
+
+stage.addEventListener('touchstart', () => {
+  stage.blur();
+}, { passive: true });
+
+stage.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  e.preventDefault();
+  reactToStage();
 });
 
 // ── SCROLL REVEAL (IntersectionObserver) ──
