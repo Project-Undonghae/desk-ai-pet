@@ -1,8 +1,8 @@
 {
-  "plugin_platform_version": "0.2.0",
+  "plugin_platform_version": "0.1.0",
   "manifest_version": 2,
-  "minimum_dap_version": "v1.2.10",
-  "docs_revision": "2026-07-14",
+  "minimum_dap_version": "v1.0.12",
+  "docs_revision": "2026-07-05",
   "docs_entry": "developers.html",
   "catalog_repository": "Project-Undonghae/dap-plugins",
   "catalog_file": "plugin_catalog.json",
@@ -15,9 +15,9 @@
   },
   "compatibility": [
     {
-      "plugin_platform": "0.2.x",
+      "plugin_platform": "0.1.x",
       "manifest_version": 2,
-      "dap_app": ">=v1.2.10"
+      "dap_app": ">=v1.0.12"
     }
   ]
 }
