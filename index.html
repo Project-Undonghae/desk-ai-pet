@@ -246,14 +246,14 @@
   <div class="demo-copy">
     <p class="section-label compact" data-i18n="demo_label">Preview</p>
     <h2 id="demo-title" data-i18n="demo_title">실제 화면 위에서 바로 이어지는 AI OS</h2>
-    <p data-i18n="demo_desc">빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.</p>
+    <p data-i18n="demo_desc">빠른 실행, 선택 영역 액션, 음성 명령, 실행 전 확인, 채팅이 화면 위 고양이와 하나의 흐름으로 이어집니다.</p>
   </div>
   <figure class="demo-frame">
     <img
-      src="demo-preview-ui-20260705.svg?v=20260705-components"
+      src="demo-preview-ui-20260718.png?v=20260718-service"
       width="1400"
       height="900"
-      alt="DAP 실제 UI 흐름: 빠른 실행창, 선택 영역 액션, 채팅 패널, 화면 위 고양이"
+      alt="DAP 최신 서비스 화면: 빠른 실행창, 선택 영역 액션, 음성 명령, 실행 확인, 채팅 패널, 화면 위 고양이"
       loading="lazy"
     />
   </figure>
@@ -282,6 +282,11 @@
     <div class="card-icon">PET</div>
     <h3 data-i18n="f4_title">PET INTERFACE</h3>
     <p data-i18n="f4_desc">고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.</p>
+  </div>
+  <div class="card reveal">
+    <div class="card-icon">MIC</div>
+    <h3 data-i18n="f5_title">음성 명령</h3>
+    <p data-i18n="f5_desc">고양이를 길게 눌러 말하면 음성으로 DAP에게 요청할 수 있습니다. 실행이 필요한 요청은 확인 후 진행합니다.</p>
   </div>
 </div>
 
@@ -509,7 +514,7 @@ const I18N = {
     fact_license_value: "플러그인 · 설정 · 빠른 액션",
     demo_label: "Preview",
     demo_title: "실제 화면 위에서 바로 이어지는 AI OS",
-    demo_desc: "빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.",
+    demo_desc: "빠른 실행, 선택 영역 액션, 음성 명령, 실행 전 확인, 채팅이 화면 위 고양이와 하나의 흐름으로 이어집니다.",
     features_label: "Core features",
     f1_title: "빠른 실행",
     f1_desc: "Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
@@ -519,6 +524,8 @@ const I18N = {
     f3_desc: "텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.",
     f4_title: "Pet interface",
     f4_desc: "고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
+    f5_title: "음성 명령",
+    f5_desc: "고양이를 길게 눌러 말하면 음성으로 DAP에게 요청할 수 있습니다. 실행이 필요한 요청은 확인 후 진행합니다.",
     pet_moments_label: "Pet states",
     pet_moments_title: "상태가 보이는 작은 고양이 인터페이스",
     pet_working_title: "작업 중",
@@ -588,7 +595,7 @@ const I18N = {
     fact_license_value: "Plugins · settings · quick actions",
     demo_label: "Preview",
     demo_title: "An AI OS that stays in the real desktop flow",
-    demo_desc: "Quick launch, selected-text actions, chat, and the desktop cat work as one flow.",
+    demo_desc: "Quick launch, selected-text actions, voice commands, confirmations, and chat flow through the desktop pet.",
     features_label: "Core features",
     f1_title: "Quick launch",
     f1_desc: "Open the launcher from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
@@ -598,6 +605,8 @@ const I18N = {
     f3_desc: "Drag-select text to open a quick-action bar near the cursor for polish, translate, summarize, and ask. The ask card also includes explain and web-search presets.",
     f4_title: "Pet interface",
     f4_desc: "The cat stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
+    f5_title: "Voice commands",
+    f5_desc: "Press and hold the pet to speak your request to DAP. DAP asks for confirmation before carrying out actions.",
     pet_moments_label: "Pet states",
     pet_moments_title: "A small cat interface that shows state",
     pet_working_title: "Working",
