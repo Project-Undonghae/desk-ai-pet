@@ -12,6 +12,7 @@
 ## 문서
 
 - [ ] `developers.html`의 Quickstart, manifest, API reference, distribution, troubleshooting 중 관련 섹션을 갱신했다.
+- [ ] `developers.html`의 한국어와 `?lang=en` 영어 문서가 같은 섹션·API·예제를 제공하는지 확인했다.
 - [ ] `plugins.html`의 등록 안내, catalog field 설명, fallback data 갱신 필요 여부를 확인했다.
 - [ ] `docs/plugin-platform/changelog.md`에 변경 내용을 추가했다.
 - [ ] breaking change가 있으면 migration note를 추가했다.
@@ -30,4 +31,3 @@
 - [ ] 새 permission이 추가된 경우 opt-in과 문서 설명이 일치한다.
 - [ ] catalog schema가 바뀐 경우 이전 catalog entry 처리 방식을 정했다.
 - [ ] 사용자에게 영향이 있는 변경은 changelog에 사용자 관점의 설명을 남겼다.
-
