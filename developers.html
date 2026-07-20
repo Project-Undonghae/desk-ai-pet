@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
-  <meta id="meta-description" name="description" content="DAP 플러그인 플랫폼 공식 개발 문서. Quickstart, manifest v2, ctx API reference, 팔레트 UI, 설치와 배포 가이드." />
+  <meta id="meta-description" name="description" content="DAP v1.3.9+ 플러그인 플랫폼 공식 개발 문서. manifest v2, ctx API, Host service, 권한, 설치와 배포 가이드." />
   <link rel="alternate" hreflang="ko" href="https://project-undonghae.github.io/desk-ai-pet/developers.html" />
   <link rel="alternate" hreflang="en" href="https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en" />
   <link rel="alternate" hreflang="x-default" href="https://project-undonghae.github.io/desk-ai-pet/developers.html" />
@@ -70,7 +70,7 @@
     </p>
     <div class="docs-callout">
       <strong>문서/버전 기준</strong>
-      <p>현재 Plugin Platform 버전은 <code>0.1.0</code>, manifest 기준은 <code>manifest_version: 2</code>입니다. 플러그인 관련 변경은 <code>docs/plugin-platform/version.json</code>과 changelog를 함께 갱신합니다.</p>
+      <p>현재 Plugin Platform은 <code>0.2.0</code>, 최소 호환 앱은 <code>DAP &gt;=v1.3.9</code>입니다. manifest 안정 계약은 <code>manifest_version: 2</code>를 유지하며, 기존 <code>0.1.x</code> 호환성 기록도 보존합니다.</p>
     </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
@@ -113,6 +113,7 @@ Return:
 - local install steps
 
 Keep the implementation minimal and follow manifest_version: 2.</code></pre>
+        <p><small>호환 기준: DAP v1.3.9 이상 / Plugin Platform 0.2.x</small></p>
       </div>
       <div class="docs-card-grid docs-ai-links" aria-label="AI-readable documentation">
         <a href="llms.txt">
@@ -145,7 +146,7 @@ Keep the implementation minimal and follow manifest_version: 2.</code></pre>
       </p>
       <div class="docs-callout">
         <strong>현재 런타임</strong>
-        <p>현행 DAP 플러그인 문서는 Electron/TypeScript 기반 Host API를 기준으로 합니다. 예전 Python/PyQt 플러그인 문서는 historical 문서로만 취급합니다.</p>
+        <p>현행 DAP 플러그인 문서는 DAP v1.3.9 이상의 Electron/TypeScript Host API를 기준으로 합니다. manifest v2 필드 집합과 해석 규약은 stable contract이며, 예전 Python/PyQt 플러그인 문서는 historical 문서로만 취급합니다.</p>
       </div>
     </section>
 
@@ -166,6 +167,7 @@ manifest_version: 2
 entry: dap_my_plugin.plugin:activate
 description: DAP에서 실행되는 첫 플러그인
 author: Your Name
+min_app_version: "1.3.9"
 surface: user
 permissions: []
 execution_modes:
@@ -206,7 +208,8 @@ macOS:
         <tr><td>Manifest</td><td><code>plugin.yaml</code>. id, 이름, 버전, entry, 권한을 선언합니다.</td></tr>
         <tr><td>Entry</td><td><code>module.path:activate</code>. 플러그인의 ESM 진입점입니다.</td></tr>
         <tr><td>Activation</td><td>DAP가 플러그인을 로드할 때 <code>activate(ctx)</code>를 호출합니다.</td></tr>
-        <tr><td>Registration</td><td>액션, 메뉴, 단축키, 설정 섹션은 등록 핸들로 추적되고 비활성화 시 정리됩니다.</td></tr>
+        <tr><td>Registration</td><td>액션, 메뉴, 단축키, 설정 섹션은 등록 핸들로 추적되고 비활성화 시 역순으로 자동 정리됩니다.</td></tr>
+        <tr><td>Cleanup</td><td>타이머·리스너·열린 창처럼 플러그인이 소유한 자원은 <code>activate(ctx)</code>에서 cleanup 함수를 직접 반환해 정리합니다.</td></tr>
         <tr><td>Host services</td><td>클립보드, 저장소, 팔레트 창, LLM 같은 기능은 <code>ctx.host.*</code>로만 접근합니다.</td></tr>
         <tr><td>Permissions</td><td>민감하거나 권한이 필요한 host service는 <code>permissions[]</code>에 선언합니다.</td></tr>
       </table>
@@ -277,6 +280,48 @@ const values = ctx.host.settings.values("general");</code></pre>
 
   return () => palette?.close();
 }</code></pre>
+
+      <h3>AI 대화 컨텍스트 기여하기</h3>
+      <p>manifest에 기여자 id를 먼저 선언하고 같은 id로 <code>ctx.aiContext.contribute()</code>를 등록합니다. 미선언 id는 활성화 실패로 처리됩니다.</p>
+      <pre><code># plugin.yaml
+context_contributors:
+  - recent_items
+
+// plugin.mjs
+ctx.aiContext.contribute({
+  id: "recent_items",
+  provider: async () =&gt; "최근 항목 3건: …",
+});</code></pre>
+      <p>provider는 대화 턴마다 호출됩니다. 약 300ms 안에 응답하는 요약 한두 줄만 반환하세요. 지연·예외·길이 초과 결과는 해당 턴에서 생략되거나 잘립니다.</p>
+
+      <h3>트레이 하위 메뉴 갱신하기</h3>
+      <pre><code>const tray = ctx.trayMenu.addItem({
+  itemId: "usage",
+  label: "AI 사용량",
+  actionId: "openPalette",
+  submenu: [{ itemId: "loading", label: "불러오는 중…", enabled: false }],
+});
+
+tray.update({ submenu: [
+  { itemId: "today", label: "오늘 25%", actionId: "openPalette", enabled: true },
+  { itemId: "separator", type: "separator" },
+  { itemId: "details", label: "상세 보기…", actionId: "openPalette", enabled: true },
+] });</code></pre>
+      <p>등록 핸들의 <code>update()</code>는 자신이 소유한 항목만 바꾸며 dispose 후에는 무시됩니다. 하위 메뉴는 라벨·separator·action으로만 구성하고, 최대 16행·라벨 160자 제한을 지킵니다.</p>
+
+      <h3>민감한 Host 기능은 가용성 확인하기</h3>
+      <pre><code>const capability = ctx.host.meeting?.capabilities();
+if (!capability?.available) {
+  ctx.host.bubble.speak(capability?.reason ?? "회의 캡처를 사용할 수 없어요.");
+  return;
+}
+
+await ctx.host.meeting.start({
+  source: "both",
+  sourceLanguage: "en",
+  targetLanguage: "ko",
+});</code></pre>
+      <p><code>meeting.capture</code>는 운영체제 권한과 backend 상태에 따라 비활성일 수 있으므로 항상 <code>capabilities()</code>를 확인합니다. 발표 오버레이는 <code>ctx.host.presentation</code>, 계정·사용량 표시는 <code>ctx.host.aiAccounts</code>를 사용하며 각각 전용 권한이 필요합니다. 토큰·쿠키·원본 인증 출력은 플러그인에 제공되지 않습니다.</p>
     </section>
 
     <section id="reference">
@@ -289,10 +334,16 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>name</code></td><td>예</td><td>사용자에게 표시할 이름입니다.</td></tr>
         <tr><td><code>version</code></td><td>예</td><td>플러그인 버전입니다.</td></tr>
         <tr><td><code>entry</code></td><td>예</td><td><code>module.path:callable</code> 형식의 진입점입니다.</td></tr>
-        <tr><td><code>manifest_version</code></td><td>권장</td><td>현행 문서는 <code>2</code>를 기준으로 합니다.</td></tr>
+        <tr><td><code>description</code>, <code>author</code></td><td>아니요</td><td>사용자에게 표시할 설명과 작성자입니다.</td></tr>
+        <tr><td><code>min_app_version</code></td><td>아니요</td><td>플러그인의 최소 DAP 버전입니다. 새 0.2 API를 쓰면 <code>1.3.9</code>를 기준으로 합니다.</td></tr>
+        <tr><td><code>manifest_version</code></td><td>권장</td><td>현행 안정 계약은 <code>2</code>입니다.</td></tr>
+        <tr><td><code>surface</code></td><td>아니요</td><td><code>user</code>(기본) 또는 dev build에서만 발견되는 <code>dev</code>입니다.</td></tr>
+        <tr><td><code>context_contributors</code></td><td>아니요</td><td><code>ctx.aiContext</code>로 등록할 기여자 id 목록입니다.</td></tr>
+        <tr><td><code>surface_slots</code></td><td>아니요</td><td>선언용 표면 메타데이터입니다. 현재 런타임은 사용하지 않습니다.</td></tr>
         <tr><td><code>permissions</code></td><td>아니요</td><td>사용할 권한 토큰 목록입니다.</td></tr>
-        <tr><td><code>execution_modes</code></td><td>아니요</td><td><code>user</code>, <code>builtin</code>, <code>scheduled</code> 등 실행 형태 메타데이터입니다.</td></tr>
+        <tr><td><code>execution_modes</code></td><td>아니요</td><td><code>user</code>, <code>builtin</code> 등 배포·실행 형태 메타데이터입니다.</td></tr>
       </table>
+      <p>위 필드 외의 추가 필드는 안정 manifest 스키마가 거절합니다.</p>
 
       <h3>ctx namespaces</h3>
       <table>
@@ -303,18 +354,34 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>ctx.trayMenu.addItem</code></td><td>트레이 메뉴 항목을 추가합니다.</td></tr>
         <tr><td><code>ctx.radialMenu.addItem</code></td><td>펫 래디얼 메뉴 항목을 추가합니다.</td></tr>
         <tr><td><code>ctx.shortcuts.registerShortcut</code></td><td>재바인딩 가능한 전역 단축키를 등록합니다.</td></tr>
+        <tr><td><code>ctx.aiContext.contribute</code></td><td>대화 턴에 요약된 플러그인 컨텍스트를 기여합니다.</td></tr>
       </table>
 
       <h3>Host services</h3>
       <table>
         <tr><th>권한</th><th>서비스</th><th>설명</th></tr>
-        <tr><td>권한 불필요</td><td><code>ctx.host.bubble</code></td><td>펫 말풍선을 출력합니다.</td></tr>
-        <tr><td>권한 불필요</td><td><code>ctx.host.llm</code></td><td>활성 LLM provider로 텍스트를 생성합니다.</td></tr>
+        <tr><td>권한 불필요</td><td><code>ctx.host.clipboard</code></td><td>현재 클립보드 텍스트를 읽고 쓸 수 있습니다.</td></tr>
+        <tr><td>권한 불필요</td><td><code>ctx.host.bubble</code>, <code>ctx.host.events</code></td><td>펫 말풍선과 behavior 이벤트를 사용합니다.</td></tr>
+        <tr><td>권한 불필요</td><td><code>ctx.host.hotkey</code></td><td>수동 전역 단축키를 등록·해제합니다.</td></tr>
+        <tr><td>권한 불필요</td><td><code>ctx.host.llm</code></td><td>활성 LLM provider로 한 번의 텍스트를 생성합니다.</td></tr>
+        <tr><td>권한 불필요</td><td><code>ctx.host.settings</code></td><td>이 플러그인 설정 섹션의 저장값을 읽습니다.</td></tr>
         <tr><td><code>storage.private</code></td><td><code>ctx.host.storage</code></td><td>플러그인 전용 격리 저장소입니다.</td></tr>
         <tr><td><code>window.palette</code></td><td><code>ctx.host.windows</code></td><td>플러그인 팔레트 창을 엽니다.</td></tr>
         <tr><td><code>clipboard.history</code></td><td><code>ctx.host.clipboardHistory</code></td><td>클립보드 기록을 읽습니다. 사용자 opt-in이 필요합니다.</td></tr>
         <tr><td><code>input.synthesize</code></td><td><code>ctx.host.paste</code></td><td>이전 foreground 앱에 붙여넣습니다.</td></tr>
+        <tr><td><code>dragdrop.export</code></td><td><code>window.dapPalette</code> drag API</td><td>팔레트에서 이미지·파일을 OS 드래그로 내보냅니다.</td></tr>
+        <tr><td><code>presentation.overlay</code></td><td><code>ctx.host.presentation</code></td><td>플러그인 HTML을 샌드박스 발표 오버레이에 표시합니다.</td></tr>
+        <tr><td><code>meeting.capture</code></td><td><code>ctx.host.meeting</code></td><td>회의 캡처 상태·전사 이벤트를 제공합니다. <code>capabilities()</code> 확인이 필수입니다.</td></tr>
+        <tr><td><code>ai.accounts</code></td><td><code>ctx.host.aiAccounts</code></td><td>표시용 AI 계정·사용량 메타데이터와 계정 설정 연결을 제공합니다.</td></tr>
       </table>
+      <p><code>clipboard.read</code>/<code>clipboard.write</code>는 설치 고지용 토큰이며 legacy <code>ctx.host.clipboard</code> 노출을 게이트하지 않습니다. 권한은 사용자 동의와 Host API 노출 경계이며 프로세스 sandbox 보안 경계가 아니므로 공식 검토 카탈로그의 플러그인만 설치하세요.</p>
+      <h3>발표·회의·AI 계정 API</h3>
+      <ul>
+        <li><code>ctx.host.presentation</code>: <code>openOverlay</code>, <code>closeOverlay</code>, <code>showOverlay</code>, <code>hideOverlay</code>, <code>setInteractive</code>, <code>postMessage</code>, <code>onMessage</code>, <code>cursorPos</code>. 오버레이 페이지에는 <code>window.dapPresentation</code> 메시지/닫기 브리지만 노출됩니다.</li>
+        <li><code>ctx.host.meeting</code>: <code>capabilities</code>, <code>start</code>, <code>stop</code>, <code>onStatus</code>, <code>onTranscript</code>. 현재 공개 Host는 전사 backend가 연결되기 전까지 <code>available: false</code>를 반환하므로 가용성 검사가 필수입니다.</li>
+        <li><code>ctx.host.aiAccounts</code>: <code>getOverview</code>, <code>getAccountUsage</code>, <code>addAccount</code>, <code>openAccounts</code>. 플러그인은 표시용 계정·한도 정보만 받고 연결·기본 provider 변경은 DAP와 provider의 기존 UI에서 완료합니다.</li>
+      </ul>
+      <p><code>onMessage</code>, <code>onStatus</code>, <code>onTranscript</code>가 반환하는 해제 함수를 호출하고 열린 창/세션을 <code>activate(ctx)</code> cleanup에서 정리하세요.</p>
     </section>
 
     <section id="examples">
@@ -393,6 +460,7 @@ await ctx.host.storage.delete("pins");</code></pre>
         <li><code>docs/plugin-platform/changelog.md</code>는 앱 릴리스 노트와 별도로 플러그인 개발자용 변경사항을 기록합니다.</li>
         <li><code>manifest_version</code>은 manifest 해석 방식이 호환되지 않을 때만 올립니다.</li>
       </ul>
+      <p><code>0.2.x</code>의 최소 기준은 DAP <code>&gt;=v1.3.9</code>입니다. 기존 <code>0.1.x</code>/DAP <code>&gt;=v1.0.12</code> 기록은 호환성 이력으로 유지됩니다.</p>
     </section>
 
     <section id="troubleshooting">
@@ -403,11 +471,14 @@ await ctx.host.storage.delete("pins");</code></pre>
         <tr><td>활성화 실패</td><td><code>entry</code>가 실제 <code>.mjs</code> named export를 가리키는지 확인합니다.</td></tr>
         <tr><td>host service가 undefined</td><td>필요한 권한을 <code>permissions[]</code>에 선언했는지 확인합니다.</td></tr>
         <tr><td>팔레트가 열리지 않음</td><td><code>window.palette</code> 권한과 <code>page</code> 경로가 플러그인 루트 안인지 확인합니다.</td></tr>
+        <tr><td>AI 컨텍스트 등록 실패</td><td><code>context_contributors</code>에 provider id를 먼저 선언했는지 확인합니다.</td></tr>
+        <tr><td>회의 캡처가 시작되지 않음</td><td><code>meeting.capture</code> 권한과 OS 권한을 확인하고 <code>capabilities().available</code>이 true인지 확인합니다.</td></tr>
       </table>
     </section>
 
     <section id="changelog">
       <h2>Changelog</h2>
+      <p><strong>2026-07-20</strong>: Plugin Platform <code>0.2.0</code>. DAP v1.3.9 호환 기준으로 AI 컨텍스트, 트레이 하위 메뉴 갱신, 발표·회의·AI 계정 Host API, 현행 manifest/권한 표를 추가했습니다. 명령 API와 cleanup 예시를 실제 lifecycle에 맞게 정정했으며 manifest v2는 유지합니다.</p>
       <p><strong>2026-07-05</strong>: Plugin Platform <code>0.1.0</code> 기준 문서 구조를 정리했습니다. Electron/TypeScript Host API, manifest v2, palette, distribution, versioning 구조를 반영했습니다.</p>
     </section>
   </article>
@@ -437,7 +508,7 @@ await ctx.host.storage.delete("pins");</code></pre>
     </p>
     <div class="docs-callout">
       <strong>Documentation and version baseline</strong>
-      <p>The current Plugin Platform version is <code>0.1.0</code>, and the manifest baseline is <code>manifest_version: 2</code>. When plugin behavior changes, update <code>docs/plugin-platform/version.json</code> and the changelog together.</p>
+      <p>The current Plugin Platform is <code>0.2.0</code>, with a minimum compatible app version of <code>DAP &gt;=v1.3.9</code>. The stable manifest contract remains <code>manifest_version: 2</code>, and the <code>0.1.x</code> compatibility record is preserved.</p>
     </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
@@ -480,6 +551,7 @@ Return:
 - local install steps
 
 Keep the implementation minimal and follow manifest_version: 2.</code></pre>
+        <p><small>Compatibility baseline: DAP v1.3.9 or later / Plugin Platform 0.2.x</small></p>
       </div>
       <div class="docs-card-grid docs-ai-links" aria-label="AI-readable documentation">
         <a href="llms.txt">
@@ -512,7 +584,7 @@ Keep the implementation minimal and follow manifest_version: 2.</code></pre>
       </p>
       <div class="docs-callout">
         <strong>Current runtime</strong>
-        <p>The current DAP plugin documentation targets the Electron/TypeScript Host API. Treat older Python/PyQt plugin documentation as historical only.</p>
+        <p>The current documentation targets the Electron/TypeScript Host API in DAP v1.3.9 and later. The manifest v2 field set and parsing rules are a stable contract. Treat older Python/PyQt plugin documentation as historical only.</p>
       </div>
     </section>
 
@@ -533,6 +605,7 @@ manifest_version: 2
 entry: dap_my_plugin.plugin:activate
 description: My first plugin for DAP
 author: Your Name
+min_app_version: "1.3.9"
 surface: user
 permissions: []
 execution_modes:
@@ -573,7 +646,8 @@ macOS:
         <tr><td>Manifest</td><td><code>plugin.yaml</code>. Declares the id, name, version, entry point, and permissions.</td></tr>
         <tr><td>Entry</td><td><code>module.path:activate</code>. The plugin's ESM entry point.</td></tr>
         <tr><td>Activation</td><td>DAP calls <code>activate(ctx)</code> when it loads the plugin.</td></tr>
-        <tr><td>Registration</td><td>Actions, menus, shortcuts, and settings sections are tracked by registration handles and cleaned up when the plugin is disabled.</td></tr>
+        <tr><td>Registration</td><td>Actions, menus, shortcuts, and settings sections are tracked by registration handles and automatically disposed in reverse order when the plugin is disabled.</td></tr>
+        <tr><td>Cleanup</td><td>Return a cleanup function directly from <code>activate(ctx)</code> for plugin-owned timers, listeners, and open windows.</td></tr>
         <tr><td>Host services</td><td>Access features such as clipboard, storage, palette windows, and LLMs only through <code>ctx.host.*</code>.</td></tr>
         <tr><td>Permissions</td><td>Declare sensitive or permission-gated host services in <code>permissions[]</code>.</td></tr>
       </table>
@@ -644,6 +718,48 @@ const values = ctx.host.settings.values("general");</code></pre>
 
   return () => palette?.close();
 }</code></pre>
+
+      <h3>Contribute AI conversation context</h3>
+      <p>Declare each contributor id in the manifest, then register the same id with <code>ctx.aiContext.contribute()</code>. An undeclared id causes activation to fail.</p>
+      <pre><code># plugin.yaml
+context_contributors:
+  - recent_items
+
+// plugin.mjs
+ctx.aiContext.contribute({
+  id: "recent_items",
+  provider: async () =&gt; "Three recent items: …",
+});</code></pre>
+      <p>The provider runs for each conversation turn. Return one or two summarized lines in about 300 ms. Slow, failed, or oversized results are omitted for that turn or truncated.</p>
+
+      <h3>Update a tray submenu</h3>
+      <pre><code>const tray = ctx.trayMenu.addItem({
+  itemId: "usage",
+  label: "AI usage",
+  actionId: "openPalette",
+  submenu: [{ itemId: "loading", label: "Loading…", enabled: false }],
+});
+
+tray.update({ submenu: [
+  { itemId: "today", label: "Today 25%", actionId: "openPalette", enabled: true },
+  { itemId: "separator", type: "separator" },
+  { itemId: "details", label: "Open details…", actionId: "openPalette", enabled: true },
+] });</code></pre>
+      <p>The registration handle's <code>update()</code> changes only its own item and is ignored after disposal. Use only labels, separators, and actions in a submenu, with at most 16 rows and 160 characters per label.</p>
+
+      <h3>Check availability for sensitive Host capabilities</h3>
+      <pre><code>const capability = ctx.host.meeting?.capabilities();
+if (!capability?.available) {
+  ctx.host.bubble.speak(capability?.reason ?? "Meeting capture is unavailable.");
+  return;
+}
+
+await ctx.host.meeting.start({
+  source: "both",
+  sourceLanguage: "en",
+  targetLanguage: "ko",
+});</code></pre>
+      <p><code>meeting.capture</code> can be unavailable because of OS permissions or backend status, so always call <code>capabilities()</code>. Use <code>ctx.host.presentation</code> for presentation overlays and <code>ctx.host.aiAccounts</code> for display-safe account and usage information; each requires its own permission. Plugins never receive tokens, cookies, or raw authentication output.</p>
     </section>
 
     <section id="reference">
@@ -656,10 +772,16 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>name</code></td><td>Yes</td><td>The name shown to users.</td></tr>
         <tr><td><code>version</code></td><td>Yes</td><td>The plugin version.</td></tr>
         <tr><td><code>entry</code></td><td>Yes</td><td>The entry point in <code>module.path:callable</code> format.</td></tr>
-        <tr><td><code>manifest_version</code></td><td>Recommended</td><td>The current documentation targets version <code>2</code>.</td></tr>
+        <tr><td><code>description</code>, <code>author</code></td><td>No</td><td>The user-facing description and author.</td></tr>
+        <tr><td><code>min_app_version</code></td><td>No</td><td>The minimum DAP version. Use <code>1.3.9</code> when relying on the new 0.2 APIs.</td></tr>
+        <tr><td><code>manifest_version</code></td><td>Recommended</td><td>The current stable contract is <code>2</code>.</td></tr>
+        <tr><td><code>surface</code></td><td>No</td><td><code>user</code> by default, or <code>dev</code> for discovery only in development builds.</td></tr>
+        <tr><td><code>context_contributors</code></td><td>No</td><td>Contributor ids that the plugin can register through <code>ctx.aiContext</code>.</td></tr>
+        <tr><td><code>surface_slots</code></td><td>No</td><td>Declarative surface metadata. It is not currently consumed by the runtime.</td></tr>
         <tr><td><code>permissions</code></td><td>No</td><td>A list of permission tokens used by the plugin.</td></tr>
-        <tr><td><code>execution_modes</code></td><td>No</td><td>Execution metadata such as <code>user</code>, <code>builtin</code>, or <code>scheduled</code>.</td></tr>
+        <tr><td><code>execution_modes</code></td><td>No</td><td>Distribution and execution metadata such as <code>user</code> or <code>builtin</code>.</td></tr>
       </table>
+      <p>The stable manifest schema rejects fields outside this list.</p>
 
       <h3>ctx namespaces</h3>
       <table>
@@ -670,18 +792,34 @@ const values = ctx.host.settings.values("general");</code></pre>
         <tr><td><code>ctx.trayMenu.addItem</code></td><td>Adds an item to the tray menu.</td></tr>
         <tr><td><code>ctx.radialMenu.addItem</code></td><td>Adds an item to the pet's radial menu.</td></tr>
         <tr><td><code>ctx.shortcuts.registerShortcut</code></td><td>Registers a rebindable global shortcut.</td></tr>
+        <tr><td><code>ctx.aiContext.contribute</code></td><td>Contributes summarized plugin context to a conversation turn.</td></tr>
       </table>
 
       <h3>Host services</h3>
       <table>
         <tr><th>Permission</th><th>Service</th><th>Description</th></tr>
-        <tr><td>None</td><td><code>ctx.host.bubble</code></td><td>Shows a pet speech bubble.</td></tr>
-        <tr><td>None</td><td><code>ctx.host.llm</code></td><td>Generates text through the active LLM provider.</td></tr>
+        <tr><td>None</td><td><code>ctx.host.clipboard</code></td><td>Reads and writes current clipboard text.</td></tr>
+        <tr><td>None</td><td><code>ctx.host.bubble</code>, <code>ctx.host.events</code></td><td>Uses pet speech bubbles and behavior events.</td></tr>
+        <tr><td>None</td><td><code>ctx.host.hotkey</code></td><td>Registers and unregisters a manual global shortcut.</td></tr>
+        <tr><td>None</td><td><code>ctx.host.llm</code></td><td>Performs one generation through the active LLM provider.</td></tr>
+        <tr><td>None</td><td><code>ctx.host.settings</code></td><td>Reads saved values for this plugin's settings section.</td></tr>
         <tr><td><code>storage.private</code></td><td><code>ctx.host.storage</code></td><td>Provides isolated storage for the plugin.</td></tr>
         <tr><td><code>window.palette</code></td><td><code>ctx.host.windows</code></td><td>Opens a plugin palette window.</td></tr>
         <tr><td><code>clipboard.history</code></td><td><code>ctx.host.clipboardHistory</code></td><td>Reads clipboard history. User opt-in is required.</td></tr>
         <tr><td><code>input.synthesize</code></td><td><code>ctx.host.paste</code></td><td>Pastes into the previously focused application.</td></tr>
+        <tr><td><code>dragdrop.export</code></td><td><code>window.dapPalette</code> drag APIs</td><td>Exports images or files through OS drag and drop.</td></tr>
+        <tr><td><code>presentation.overlay</code></td><td><code>ctx.host.presentation</code></td><td>Shows plugin HTML in a sandboxed presentation overlay.</td></tr>
+        <tr><td><code>meeting.capture</code></td><td><code>ctx.host.meeting</code></td><td>Provides meeting capture status and transcript events. A <code>capabilities()</code> check is required.</td></tr>
+        <tr><td><code>ai.accounts</code></td><td><code>ctx.host.aiAccounts</code></td><td>Provides display-safe AI account and usage metadata plus links to account settings.</td></tr>
       </table>
+      <p><code>clipboard.read</code>/<code>clipboard.write</code> are installation disclosure tokens and do not gate the legacy <code>ctx.host.clipboard</code> namespace. Permissions are a user-consent and Host API exposure boundary, not a process sandbox; install plugins only from the official reviewed catalog.</p>
+      <h3>Presentation, meeting, and AI account APIs</h3>
+      <ul>
+        <li><code>ctx.host.presentation</code>: <code>openOverlay</code>, <code>closeOverlay</code>, <code>showOverlay</code>, <code>hideOverlay</code>, <code>setInteractive</code>, <code>postMessage</code>, <code>onMessage</code>, and <code>cursorPos</code>. The overlay page receives only the message and close bridge under <code>window.dapPresentation</code>.</li>
+        <li><code>ctx.host.meeting</code>: <code>capabilities</code>, <code>start</code>, <code>stop</code>, <code>onStatus</code>, and <code>onTranscript</code>. The current public Host returns <code>available: false</code> until a transcription backend is connected, so availability checks are required.</li>
+        <li><code>ctx.host.aiAccounts</code>: <code>getOverview</code>, <code>getAccountUsage</code>, <code>addAccount</code>, and <code>openAccounts</code>. Plugins receive display-safe account and limit data; connection and default-provider changes complete in the existing DAP or provider UI.</li>
+      </ul>
+      <p>Call the unsubscribe functions returned by <code>onMessage</code>, <code>onStatus</code>, and <code>onTranscript</code>, and close owned windows or sessions from the <code>activate(ctx)</code> cleanup function.</p>
     </section>
 
     <section id="examples">
@@ -760,6 +898,7 @@ await ctx.host.storage.delete("pins");</code></pre>
         <li><code>docs/plugin-platform/changelog.md</code> records developer-facing plugin changes separately from app release notes.</li>
         <li>Increase <code>manifest_version</code> only when manifest interpretation becomes incompatible.</li>
       </ul>
+      <p>The minimum baseline for <code>0.2.x</code> is DAP <code>&gt;=v1.3.9</code>. The earlier <code>0.1.x</code>/DAP <code>&gt;=v1.0.12</code> entry remains in the compatibility history.</p>
     </section>
 
     <section id="troubleshooting">
@@ -770,11 +909,14 @@ await ctx.host.storage.delete("pins");</code></pre>
         <tr><td>Activation fails</td><td>Check that <code>entry</code> points to an actual named export in the <code>.mjs</code> file.</td></tr>
         <tr><td>A host service is undefined</td><td>Check that the required permission is declared in <code>permissions[]</code>.</td></tr>
         <tr><td>The palette does not open</td><td>Check the <code>window.palette</code> permission and make sure the <code>page</code> path stays inside the plugin root.</td></tr>
+        <tr><td>AI context registration fails</td><td>Check that the provider id is declared first in <code>context_contributors</code>.</td></tr>
+        <tr><td>Meeting capture does not start</td><td>Check <code>meeting.capture</code>, OS permissions, and whether <code>capabilities().available</code> is true.</td></tr>
       </table>
     </section>
 
     <section id="changelog">
       <h2>Changelog</h2>
+      <p><strong>2026-07-20</strong>: Plugin Platform <code>0.2.0</code>. Added the DAP v1.3.9 compatibility baseline, AI context contributions, dynamic tray submenus, presentation/meeting/AI-account Host APIs, and the current manifest and permission tables. Corrected command and cleanup examples to match the runtime lifecycle while keeping manifest v2.</p>
       <p><strong>2026-07-05</strong>: Reorganized the documentation around Plugin Platform <code>0.1.0</code>. Added the Electron/TypeScript Host API, manifest v2, palette, distribution, and versioning structure.</p>
     </section>
   </article>
@@ -786,7 +928,7 @@ const docsEnMarkup = document.getElementById("docs-en-template")?.innerHTML ?? "
 const PAGE_COPY = {
   ko: {
     title: "DAP Plugin Platform Docs",
-    description: "DAP 플러그인 플랫폼 공식 개발 문서. Quickstart, manifest v2, ctx API reference, 팔레트 UI, 설치와 배포 가이드.",
+    description: "DAP v1.3.9+ 플러그인 플랫폼 공식 개발 문서. manifest v2, ctx API, Host service, 권한, 설치와 배포 가이드.",
     skip: "본문으로 건너뛰기",
     navHome: "홈",
     navPlugins: "플러그인",
@@ -800,7 +942,7 @@ const PAGE_COPY = {
   },
   en: {
     title: "DAP Plugin Platform Docs",
-    description: "Official DAP Plugin Platform documentation covering the quickstart, manifest v2, ctx API reference, palette UI, installation, and distribution.",
+    description: "Official DAP v1.3.9+ Plugin Platform documentation covering manifest v2, ctx APIs, Host services, permissions, installation, and distribution.",
     skip: "Skip to content",
     navHome: "Home",
     navPlugins: "Plugins",

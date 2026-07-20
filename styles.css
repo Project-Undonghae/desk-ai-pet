@@ -1249,6 +1249,7 @@ html[data-theme="light"] .mini-pet-toggle button[aria-pressed="true"] {
 .step:nth-child(1) .step-num { border-color: rgba(103, 232, 200, 0.58);  color: var(--accent); }
 .step:nth-child(2) .step-num { border-color: rgba(139, 211, 221, 0.58); color: var(--accent2); }
 .step:nth-child(3) .step-num { border-color: rgba(216, 183, 106, 0.58); color: var(--accent3); }
+.step:nth-child(4) .step-num { border-color: rgba(103, 232, 200, 0.58); color: var(--accent); }
 .step strong { display: block; margin-bottom: 4px; font-size: 14px; }
 .step p { font-size: 12px; color: var(--soft); line-height: 1.65; }
 

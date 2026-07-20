@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAP 플러그인 서비스</title>
-  <meta name="description" content="DAP에 설치하거나 제공할 수 있는 플러그인 서비스 소개 페이지입니다." />
+  <title>DAP 플러그인 - 필요한 기능을 더해보세요</title>
+  <meta name="description" content="업무와 일상에 필요한 확장 기능을 찾아 DAP에 더해보세요." />
   <link rel="icon" href="favicon.ico" sizes="any" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260703-mobile" />
   <script>
     (() => {
@@ -44,20 +44,20 @@
 <main id="main" class="marketplace-main">
   <section class="marketplace-hero">
     <a class="doc-back" href="index.html#resources-title" data-i18n="back_home">&lt; 랜딩으로 돌아가기</a>
-    <p class="section-label compact" data-i18n="eyebrow">Plugin registry</p>
+    <p class="section-label compact" data-i18n="eyebrow">DAP 확장 기능</p>
     <div class="marketplace-hero-grid">
       <div>
-        <h1 data-i18n="title">DAP Plugin Registry</h1>
-        <p data-i18n="intro">Project-Undonghae/dap-plugins의 plugin_catalog.json에 등록된 플러그인을 이 페이지에서 불러와 보여줍니다. DAP 앱은 같은 카탈로그를 설정의 플러그인 설치 목록으로 사용합니다.</p>
+        <h1 data-i18n="title">필요한 기능을 골라 더해보세요</h1>
+        <p data-i18n="intro">업무 정리, 자료 활용, 수업 도구처럼 필요한 기능을 찾아 DAP에 더할 수 있습니다. 마음에 드는 카드를 열어 자세한 설명을 확인하세요.</p>
       </div>
       <dl class="marketplace-stats" aria-label="Plugin marketplace summary">
         <div>
-          <dt data-i18n="stat_plugins_label">등록 플러그인</dt>
+          <dt data-i18n="stat_plugins_label">사용 가능한 기능</dt>
           <dd id="registry-count">0</dd>
         </div>
         <div>
-          <dt data-i18n="stat_source_label">카탈로그</dt>
-          <dd>GitHub</dd>
+          <dt data-i18n="stat_source_label">앱에서 설치</dt>
+          <dd data-i18n="stat_source_value">설정</dd>
         </div>
       </dl>
     </div>
@@ -69,7 +69,7 @@
       <select id="plugin-sort" aria-label="Plugin sort">
         <option value="registry" data-i18n="sort_registry">등록순</option>
         <option value="name" data-i18n="sort_name">이름순</option>
-        <option value="repo" data-i18n="sort_repo">레포순</option>
+        <option value="repo" data-i18n="sort_repo">제공자순</option>
       </select>
     </div>
     <div class="marketplace-filters" role="list" aria-label="Plugin categories">
@@ -82,14 +82,14 @@
 
   <div class="marketplace-directory-head">
     <div>
-      <h2 data-i18n="directory_title">카탈로그 플러그인</h2>
-      <p data-i18n="directory_desc">등록 목록은 GitHub 카탈로그에서 불러오며, 연결 실패 시 페이지 안의 최신 fallback 데이터를 표시합니다.</p>
+      <h2 data-i18n="directory_title">사용할 수 있는 플러그인</h2>
+      <p data-i18n="directory_desc">원하는 기능을 검색하거나 분야별로 골라보세요. 목록을 새로 불러오지 못해도 최근 확인된 기능을 계속 보여드립니다.</p>
     </div>
     <strong id="plugin-result-count">0</strong>
   </div>
 
   <section id="plugin-market-grid" class="plugin-market-grid" aria-label="Plugins">
-    <p class="marketplace-loading" data-i18n="loading_state">카탈로그를 불러오는 중입니다.</p>
+    <p class="marketplace-loading" data-i18n="loading_state">기능 목록을 불러오는 중입니다.</p>
   </section>
 
   <p class="marketplace-empty" data-i18n="empty_state" hidden>조건에 맞는 플러그인이 없습니다.</p>
@@ -131,28 +131,28 @@ const I18N = {
     nav_developers: "Docs",
     nav_plugins: "플러그인",
     nav_download: "다운로드",
-    title: "DAP Plugin Registry",
+    title: "DAP 플러그인 - 필요한 기능을 더해보세요",
     back_home: "< 랜딩으로 돌아가기",
-    eyebrow: "Plugin registry",
-    intro: "Project-Undonghae/dap-plugins의 plugin_catalog.json에 등록된 플러그인을 이 페이지에서 불러와 보여줍니다. DAP 앱은 같은 카탈로그를 설정의 플러그인 설치 목록으로 사용합니다.",
-    stat_plugins_label: "등록 플러그인",
-    stat_source_label: "카탈로그",
+    eyebrow: "DAP 확장 기능",
+    intro: "업무 정리, 자료 활용, 수업 도구처럼 필요한 기능을 찾아 DAP에 더할 수 있습니다. 마음에 드는 카드를 열어 자세한 설명을 확인하세요.",
+    stat_plugins_label: "사용 가능한 기능",
+    stat_source_label: "앱에서 설치",
+    stat_source_value: "설정",
     search_placeholder: "플러그인 검색",
     search_label: "플러그인 검색",
     sort_registry: "등록순",
     sort_name: "이름순",
-    sort_repo: "레포순",
+    sort_repo: "제공자순",
     filter_all: "전체",
     filter_productivity: "생산성",
     filter_utility: "유틸리티",
     filter_developer: "개발 도구",
-    directory_title: "카탈로그 플러그인",
-    directory_desc: "등록 목록은 GitHub 카탈로그에서 불러오며, 연결 실패 시 페이지 안의 최신 fallback 데이터를 표시합니다.",
-    status_registered: "등록됨",
-    status_fallback: "fallback",
-    fact_id: "Plugin ID",
-    action_repo: "레포 보기",
-    loading_state: "카탈로그를 불러오는 중입니다.",
+    directory_title: "사용할 수 있는 플러그인",
+    directory_desc: "원하는 기능을 검색하거나 분야별로 골라보세요. 목록을 새로 불러오지 못해도 최근 확인된 기능을 계속 보여드립니다.",
+    status_registered: "이용 가능",
+    status_fallback: "최근 확인됨",
+    action_repo: "자세히 보기",
+    loading_state: "기능 목록을 불러오는 중입니다.",
     submit_summary: "플러그인 등록 안내",
     submit_summary_desc: "카탈로그 등록 절차와 필요한 정보를 확인하세요.",
     submit_label: "Publish a plugin",
@@ -179,28 +179,28 @@ const I18N = {
     nav_developers: "Docs",
     nav_plugins: "Plugins",
     nav_download: "Download",
-    title: "DAP Plugin Registry",
+    title: "DAP plugins - Add the features you need",
     back_home: "< Back to landing",
-    eyebrow: "Plugin registry",
-    intro: "This page loads plugins registered in Project-Undonghae/dap-plugins plugin_catalog.json. The DAP app uses the same catalog for the plugin install list in settings.",
-    stat_plugins_label: "Registered",
-    stat_source_label: "Catalog",
+    eyebrow: "DAP extensions",
+    intro: "Find features for organizing work, reusing content, teaching, and more, then add them to DAP. Open any card to learn more.",
+    stat_plugins_label: "Available features",
+    stat_source_label: "Install from",
+    stat_source_value: "Settings",
     search_placeholder: "Search plugins",
     search_label: "Search plugins",
     sort_registry: "Registry order",
     sort_name: "Name",
-    sort_repo: "Repository",
+    sort_repo: "Provider",
     filter_all: "All",
     filter_productivity: "Productivity",
     filter_utility: "Utilities",
     filter_developer: "Developer tools",
-    directory_title: "Catalog plugins",
-    directory_desc: "The list is loaded from the GitHub catalog. If the request fails, this page shows the latest embedded fallback data.",
-    status_registered: "Registered",
-    status_fallback: "Fallback",
-    fact_id: "Plugin ID",
-    action_repo: "View repo",
-    loading_state: "Loading catalog.",
+    directory_title: "Plugins you can use",
+    directory_desc: "Search for a feature or browse by category. If the list cannot refresh, the most recently verified options remain available here.",
+    status_registered: "Available",
+    status_fallback: "Recently verified",
+    action_repo: "Learn more",
+    loading_state: "Loading features.",
     submit_summary: "Plugin submission guide",
     submit_summary_desc: "Review the catalog submission steps and required details.",
     submit_label: "Publish a plugin",
@@ -343,7 +343,7 @@ const FALLBACK_CATALOG = {
       description: "Codex·Claude 로그인 계정의 5시간·주간 한도와 DAP 사용 계정 상태를 확인",
       category: "utility",
       repo: "o-min222/dap-ai-usage",
-      ref: "v0.1.6",
+      ref: "v0.1.7",
     },
   ],
 };
@@ -393,6 +393,7 @@ function normalizePlugin(plugin, index) {
     repoUrl,
     ref,
     repoLabel: plugin.repo || repoUrl.replace("https://github.com/", ""),
+    providerLabel: (plugin.repo || "").split("/")[0] || "DAP",
     search: `${plugin.id || ""} ${plugin.name || ""} ${plugin.description || ""} ${plugin.repo || ""} ${ref} ${category}`.toLowerCase(),
   };
 }
@@ -411,7 +412,7 @@ function renderPlugins(plugins, usedFallback = false) {
     const article = createEl("article", "plugin-market-card is-installable is-registry");
     article.dataset.category = plugin.category;
     article.dataset.name = plugin.name || "";
-    article.dataset.repo = plugin.repoLabel || "";
+    article.dataset.repo = plugin.providerLabel || "";
     article.dataset.search = plugin.search;
 
     const top = createEl("div", "plugin-card-top");
@@ -419,22 +420,12 @@ function renderPlugins(plugins, usedFallback = false) {
 
     article.append(top);
     article.append(createEl("h2", "", plugin.name || plugin.id || "Unnamed plugin"));
-    article.append(createEl("p", "plugin-publisher", plugin.repoLabel || "GitHub"));
+    article.append(createEl("p", "plugin-publisher", plugin.providerLabel));
     article.append(createEl("p", "", plugin.description || ""));
 
     const meta = createEl("div", "plugin-meta");
     meta.append(createEl("span", "", categoryLabel(plugin.category)));
     article.append(meta);
-
-    const facts = createEl("dl", "plugin-facts");
-    const idFact = createEl("div");
-    idFact.append(createEl("dt", "", t("fact_id")));
-    idFact.append(createEl("dd", "", plugin.id || "-"));
-    const repoFact = createEl("div");
-    repoFact.append(createEl("dt", "", "GitHub"));
-    repoFact.append(createEl("dd", "", plugin.repoLabel || "-"));
-    facts.append(idFact, repoFact);
-    article.append(facts);
 
     const link = createEl("a", "plugin-card-action", t("action_repo"));
     link.href = plugin.repoUrl;

@@ -1,0 +1,55 @@
+name: Sync release metadata
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Stable release tag. Leave empty to use the latest release.
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-metadata
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.event_name != 'release' || github.event.release.prerelease == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout landing source
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Update release metadata
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: node scripts/sync-release-metadata.mjs "$RELEASE_TAG"
+
+      - name: Validate changes
+        run: git diff --check
+
+      - name: Commit metadata when needed
+        run: |
+          if git diff --quiet; then
+            echo "Release metadata is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add downloads/index.json index.html llms.txt sitemap.xml
+          git commit -m "chore: sync landing metadata for ${RELEASE_TAG:-latest}"
+          git push origin HEAD:gh-pages
