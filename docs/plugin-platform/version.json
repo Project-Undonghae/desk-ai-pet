@@ -1,12 +1,33 @@
 {
   "plugin_platform_version": "0.2.0",
   "manifest_version": 2,
-  "minimum_dap_version": "v1.3.9",
-  "docs_revision": "2026-07-20",
+  "minimum_dap_version": "v1.3.13",
+  "docs_revision": "2026-07-29",
   "docs_entry": "developers.html",
   "catalog_repository": "Project-Undonghae/dap-plugins",
   "catalog_file": "plugin_catalog.json",
-  "status": "draft",
+  "status": "stable",
+  "source_of_truth": "Project-Undonghae/mydeskpet:docs/PLUGIN_API.md",
+  "host_services": {
+    "always_available": [
+      "clipboard",
+      "bubble",
+      "hotkey",
+      "llm",
+      "settings",
+      "events"
+    ],
+    "permission_gated": {
+      "storage.private": "storage",
+      "clipboard.history": "clipboardHistory",
+      "window.palette": "windows",
+      "input.synthesize": "paste",
+      "presentation.overlay": "presentation",
+      "meeting.capture": "meeting",
+      "ai.accounts": "aiAccounts",
+      "image.generate": "imageGen"
+    }
+  },
   "versioning": {
     "plugin_platform": "SemVer. Bump major for breaking API or manifest contract changes, minor for backward-compatible API or catalog additions, patch for documentation and bug-fix level corrections.",
     "manifest": "Integer contract version. Bump only when plugin.yaml parsing or required semantics become incompatible.",
@@ -15,14 +36,14 @@
   },
   "compatibility": [
     {
+      "plugin_platform": "0.2.x",
+      "manifest_version": 2,
+      "dap_app": ">=v1.3.13"
+    },
+    {
       "plugin_platform": "0.1.x",
       "manifest_version": 2,
       "dap_app": ">=v1.0.12"
-    },
-    {
-      "plugin_platform": "0.2.x",
-      "manifest_version": 2,
-      "dap_app": ">=v1.3.9"
     }
   ]
 }

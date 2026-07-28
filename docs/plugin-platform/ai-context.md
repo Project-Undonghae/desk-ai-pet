@@ -2,27 +2,28 @@
 
 Use this file when an AI coding assistant creates or modifies a DAP plugin.
 
-## Compatibility baseline
-
-- Plugin Platform: `0.2.0`
-- DAP: `>=v1.3.9`
-- Manifest: `manifest_version: 2` (unchanged stable contract)
-- Documentation revision: `2026-07-20`
-
-Older Plugin Platform `0.1.x` plugins remain compatible. Do not invent APIs from historical Python/PyQt plugin documentation; the current runtime is Electron/TypeScript.
+Contract baseline: Plugin Platform `0.2.0`, `manifest_version: 2`, full API requires DAP `>=1.3.13`.
+The complete source of truth is `mydeskpet/docs/PLUGIN_API.md`; never invent an API that is not documented here or there.
 
 ## Required output
 
 Return:
 
 - `plugin.yaml`
-- one self-contained ESM entry file, usually `dap_<plugin_name>/plugin.mjs`
-- any plugin-owned palette or overlay pages
-- required permissions and why each one is needed
-- local installation steps
-- assumptions, capability checks, and known limitations
+- a self-contained ESM entry file, normally `dap_<plugin_name>/plugin.mjs`
+- optional static UI files such as `palette/index.html` or `tray/index.html`
+- every required permission and why it is needed
+- local install steps
+- known limitations and platform requirements
 
-The entry file must not use bare imports. Bundle dependencies into the single `.mjs` file before distribution.
+## Runtime and trust model
+
+- The current runtime is Electron + TypeScript. Python/PyQt plugin examples are historical.
+- A plugin entry is trusted in-process main-process code. `permissions[]` controls user consent and Host API exposure; it is not a process sandbox.
+- DAP installs only reviewed plugins from the official `Project-Undonghae/dap-plugins` catalog. Arbitrary install URLs are unsupported.
+- The entry `.mjs` must be self-contained. Bundle dependencies before publishing; do not ship bare npm imports or require an install/build step on the user's machine.
+- Registration handles are tracked by the host and disposed in reverse order on disable or activation failure.
+- `activate(ctx)` may return a cleanup function for timers, listeners, palettes, captures, and other external resources. Do not return `{ dispose() {} }`.
 
 ## Minimal file tree
 
@@ -34,7 +35,14 @@ my-plugin/
   README.md
 ```
 
-## Manifest rules
+Optional UI:
+
+```text
+  palette/index.html
+  tray/index.html
+```
+
+## Manifest contract
 
 ```yaml
 id: com.example.my_plugin
@@ -44,187 +52,291 @@ manifest_version: 2
 entry: dap_my_plugin.plugin:activate
 description: Short user-facing description
 author: Your Name
-min_app_version: "1.3.9"
+min_app_version: "1.3.13"
 surface: user
-context_contributors: []
-surface_slots: []
 permissions: []
 execution_modes:
   - user
 ```
 
-Required fields are `id`, `name`, `version`, and `entry`. The manifest accepts only the fields shown above. Unknown fields are rejected. `surface_slots` is declaration metadata and is not currently consumed by the runtime.
+Allowed fields:
 
-Keep permissions empty unless the feature needs a gated Host API. Request the smallest set possible. Manifest permissions communicate consent and control Host API exposure; plugins must still come from a trusted, reviewed catalog.
+- required: `id`, `name`, `version`, `entry`
+- optional: `description`, `author`, `min_app_version`, `manifest_version`, `surface`, `permissions`, `execution_modes`, `context_contributors`, `surface_slots`
+- `surface` is `user` by default; `dev` is discovered only in development builds
+- use `surface_slots: [tray_panel]` for `ctx.trayPanel`
+- declare each `ctx.aiContext` contribution id in `context_contributors`
+- extra fields are rejected
+- do not put commands, matchers, callbacks, or backends in YAML
+- `entry: dap_my_plugin.plugin:activate` resolves to the named `activate` export in `dap_my_plugin/plugin.mjs`
+- catalog id and manifest id must match
 
-## Activation and cleanup
+## Minimal entry
 
 ```js
 export function activate(ctx) {
-  const timer = setInterval(() => {
-    ctx.host.bubble.speak("Still running");
-  }, 60_000);
-
   ctx.actions.registerAction({
     id: "hello",
-    callback: () => "Hello from plugin",
+    callback: () => {
+      ctx.host.bubble.speak("Hello from plugin");
+      return "Hello from plugin";
+    },
   });
 
-  // Return the cleanup function itself, not a disposable object.
+  ctx.radialMenu.addItem({
+    itemId: "hello",
+    label: "Hello",
+    actionId: "hello",
+    priority: 50,
+  });
+
   return () => {
-    clearInterval(timer);
+    // Clean up timers, listeners, palettes, captures, or other resources.
   };
 }
 ```
 
-DAP tracks registrations and disposes them automatically in reverse order when the plugin is disabled. Return a cleanup function only for timers, listeners, open windows, or other resources that the plugin owns. If activation throws, DAP rolls back registrations and isolates the failure.
-
-## Contribution APIs
+## Contribution namespaces
 
 ### Actions
 
+Use actions for work invoked by tray, radial, shortcut, selection, or another host surface.
+
 ```js
 ctx.actions.registerAction({
-  id: "open",
-  callback: (payload) => {
-    ctx.host.bubble.speak("Opened");
-    return "Opened";
+  id: "polish",
+  callback: async (payload) => {
+    const text = String(payload?.text ?? "").trim();
+    if (!text) return "다듬을 텍스트가 없어요.";
+    return ctx.host.llm.generate(`다음 문장을 자연스럽게 다듬어줘:\n${text}`, 30);
   },
 });
 ```
 
 ### Commands
 
-Use `ctx.commands.addCommand()`; no alternate command-registration alias is part of the public API.
+Commands use matchers plus a builtin or CLI backend. There is no `ctx.commands.registerCommand` callback API.
 
 ```js
 ctx.commands.addCommand({
   id: "weather",
-  title: "Weather",
-  matchers: [{ type: "keyword", patterns: ["weather", "forecast"], priority: 40 }],
-  backend: { type: "cli", mode: "hub" },
+  title: "날씨",
+  matchers: [{ type: "keyword", patterns: ["날씨", "weather"], priority: 40 }],
+  backend: { type: "builtin", handler: "dap.weather.current" },
 });
 ```
 
-Supported matcher types are `label_exact`, `label_prefix`, `keyword`, `prefix`, and `regex`. A command backend is either `builtin` or `cli`; do not replace `backend` with an undocumented callback.
+Matcher types: `label_exact`, `label_prefix`, `keyword`, `prefix`, `regex`.
+Lower `priority` runs first. Backends are `{ type: "builtin", handler }` or
+`{ type: "cli", mode: "hub"|"cli_tool"|"category", tool?, category? }`.
+Prefer an action unless natural-language routing is required.
 
-### Settings, menus, and shortcuts
-
-- `ctx.settings.registerSettingsSection(...)`
-- `ctx.trayMenu.addItem(...)`
-- `ctx.radialMenu.addItem(...)`
-- `ctx.shortcuts.registerShortcut(...)`
-
-`ctx.trayMenu.addItem()` returns a registration handle. DAP `>=v1.3.9` can update a safe declarative submenu through that handle:
+### Settings
 
 ```js
-const tray = ctx.trayMenu.addItem({
-  itemId: "usage",
-  label: "AI usage",
-  actionId: "open",
-  submenu: [{ itemId: "loading", label: "Loading…", enabled: false }],
+ctx.settings.registerSettingsSection({
+  sectionId: "general",
+  title: "My Plugin",
+  spec: { fields: [
+    { key: "enabled", label: "사용", type: "toggle", default: true },
+    { key: "mode", label: "모드", type: "select", default: "fast",
+      options: [{ value: "fast", label: "빠르게" }] },
+    { key: "note", label: "메모", type: "text" },
+    { key: "size", label: "크기", type: "range", default: 50,
+      min: 10, max: 100, step: 5, unit: "%" },
+  ] },
 });
 
-tray.update({
-  submenu: [
-    { itemId: "daily", label: "Today 25%", actionId: "open", enabled: true },
-    { itemId: "separator", type: "separator" },
-    { itemId: "details", label: "Open details…", actionId: "open", enabled: true },
-  ],
+const values = ctx.host.settings.values("general");
+ctx.host.settings.set("general", "enabled", false);
+```
+
+Field types: `toggle`, `select`, `text`, `range`.
+
+### Tray and radial menu
+
+```js
+ctx.trayMenu.addItem({
+  itemId: "open",
+  label: "My Plugin 열기",
+  actionId: "open",
+  showInContextMenu: true,
+});
+
+ctx.radialMenu.addItem({
+  itemId: "open",
+  label: "My Plugin",
+  actionId: "open",
+  priority: 50,
+  icon: "icon.png",
 });
 ```
 
-Submenus accept labels, separators, and qualified actions, not arbitrary callbacks or Electron roles. A menu has at most 16 rows and a label at most 160 characters. Updates affect only the item owned by that registration and are ignored after disposal.
+Only tray items with `showInContextMenu: true` appear in the current DAP tray hub.
+Radial icons are plugin-relative files up to 512KB; if omitted, DAP uses a first-letter avatar.
+Do not reuse the DAP app icon for a plugin.
+
+Tray registrations support safe declarative `submenu` rows and `registration.update({ submenu })`.
+One menu is limited to 16 rows and 160 characters per label.
+
+### Tray panel
+
+Requires `permissions: [window.palette]` and `surface_slots: [tray_panel]`.
+
+```js
+const panel = ctx.trayPanel.register({
+  id: "status",
+  page: "tray/index.html",
+  height: 210,
+  priority: 10,
+});
+const offPanel = panel.onMessage((message) => {
+  if (message?.type === "refresh") refresh();
+});
+panel.postMessage({ type: "status", items });
+```
+
+- allowed height is 120–420px; 120–240px is recommended
+- the page runs in a path-scoped, external-network-blocked `dap-plugin://` iframe
+- no Node, DAP IPC, or parent DOM access
+- messages must be JSON-like and no larger than 64KB
+- use a palette for detailed UI
 
 ### AI context
 
-Declare every contributor id in the manifest before registering it:
-
 ```yaml
-context_contributors:
-  - recent_items
+context_contributors: [recent_items]
 ```
 
 ```js
 ctx.aiContext.contribute({
   id: "recent_items",
-  provider: async () => "Three recent items: …",
+  provider: async () => "최근 항목 요약",
 });
 ```
 
-The provider runs for each conversation turn. Keep the result to one or two summarized lines. Providers that fail or exceed about 300 ms are omitted for that turn; DAP also truncates per-contributor and total plugin context. An undeclared contributor id causes activation to fail.
+The id must be declared in the manifest. Providers have a 300ms budget, about 300 characters per
+contributor, and about 800 characters across the plugin block.
 
-## Host services and permissions
+## Host services
 
-Always available Host services:
+Always available:
 
-- `ctx.host.clipboard`: current clipboard text
-- `ctx.host.bubble`: pet speech bubble
-- `ctx.host.hotkey`: manual global hotkey registration
-- `ctx.host.llm`: one generation through the active provider
-- `ctx.host.settings`: saved values for this plugin's settings section
-- `ctx.host.events`: pet behavior event bus
+- `ctx.host.clipboard.readText()` / `writeText(text)`
+- `ctx.host.bubble.speak(text)`
+- `ctx.host.hotkey.register(accelerator, callback)` / `unregister(accelerator)`
+- `ctx.host.llm.generate(prompt, timeoutS?)`
+- `ctx.host.settings.values(sectionId)` / `set(sectionId, key, value)`
+- `ctx.host.events`
 
-Permission-gated services:
+Permission-gated:
 
-| Permission | Service or capability | Use |
+| Permission | Service | Purpose |
 | --- | --- | --- |
-| `storage.private` | `ctx.host.storage` | Isolated JSON and blob storage |
-| `clipboard.history` | `ctx.host.clipboardHistory` | Opt-in clipboard history; sensitive |
-| `window.palette` | `ctx.host.windows` | Sandboxed plugin palette UI |
-| `input.synthesize` | `ctx.host.paste` | Paste into the previously focused app |
-| `dragdrop.export` | `window.dapPalette.startDragExport/startDragFiles` | Export images or files by OS drag |
-| `presentation.overlay` | `ctx.host.presentation` | Sandboxed transparent presentation overlay |
-| `meeting.capture` | `ctx.host.meeting` | Meeting capture status and transcript events; sensitive |
-| `ai.accounts` | `ctx.host.aiAccounts` | Display-safe account and usage metadata; sensitive |
+| `storage.private` | `ctx.host.storage` | isolated JSON and blob storage |
+| `clipboard.history` | `ctx.host.clipboardHistory` | sensitive clipboard history; user opt-in defaults OFF |
+| `window.palette` | `ctx.host.windows` | sandboxed palette windows and tray-panel UI |
+| `input.synthesize` | `ctx.host.paste` | paste into the previous foreground app |
+| `presentation.overlay` | `ctx.host.presentation` | transparent presentation overlay |
+| `meeting.capture` | `ctx.host.meeting` | meeting capture status and transcript events |
+| `ai.accounts` | `ctx.host.aiAccounts` | account and normalized subscription-usage metadata |
+| `image.generate` | `ctx.host.imageGen` | Codex-provider PNG generation |
 
-`clipboard.read` and `clipboard.write` are disclosure tokens; the legacy `ctx.host.clipboard` namespace remains available without gating.
+Other permission tokens:
 
-### Capability checks
+- `clipboard.read` / `clipboard.write`: install-time disclosure; clipboard namespace is currently always available
+- `dragdrop.export`: enables `window.dapPalette.startDragExport` and `startDragFiles`
 
-Meeting capture must be capability-gated. Do not assume it is available:
+Request the smallest permission set. Unknown tokens are ignored, not granted.
+Do not invent a generic network permission; plugin palette/tray pages have external networking blocked.
+
+## Palette contract
+
+Requires `window.palette`.
 
 ```js
-const capability = ctx.host.meeting?.capabilities();
-if (!capability?.available) {
-  ctx.host.bubble.speak(capability?.reason ?? "Meeting capture is unavailable.");
-  return;
-}
-
-await ctx.host.meeting.start({ source: "both", sourceLanguage: "en", targetLanguage: "ko" });
+const palette = ctx.host.windows.openPalette({
+  page: "palette/index.html",
+  width: 360,
+  height: 520,
+  frame: false,
+  closeOnPetDrop: true,
+});
+palette.show();
+palette.postMessage({ type: "items", items });
+const off = palette.onMessage((message) => {});
 ```
 
-The current public host reports meeting capture as unavailable until a transcription backend is connected. DAP owns the single capture session, OS permission flow, running indicator, and cleanup; the plugin receives status and transcript events rather than raw credentials.
+The palette page receives only `window.dapPalette`:
 
-Presentation overlays use `openOverlay`, `postMessage`, `onMessage`, `setInteractive`, `showOverlay`, `hideOverlay`, `cursorPos`, and `closeOverlay`. Close the overlay and unsubscribe listeners in the activation cleanup function.
+- `postMessage(message)`
+- `onMessage(callback)`
+- `close()`
+- `startDragExport(blobUrl)` and `startDragFiles(paths)` when `dragdrop.export` is declared
 
-AI account integrations use `getOverview()`, `getAccountUsage(providerId, accountId)`, `addAccount(providerId)`, and `openAccounts()`. The Host exposes display-safe metadata and normalized usage, never tokens, cookies, keychain values, or raw authentication output.
+Palette pages are sandboxed, path-scoped to the plugin root, and blocked from external networks.
+Perform privileged work in the main-side plugin entry and exchange JSON messages.
+Use native HTML5 `dataTransfer.setData("text/plain", text)` for text drag-out.
 
-## Palette safety
+## Sensitive-service rules
 
-Palette pages use only the `window.dapPalette` message bridge. They run with sandboxing, context isolation, plugin-root path scoping, and a CSP that blocks external network connections. Privileged operations stay in the main-side plugin and cross the bridge as messages.
+- `clipboard.history` remains empty until the user separately opts in. Plugins cannot enable collection.
+- `meeting.capture` must call `ctx.host.meeting.capabilities()` before `start()`, support unavailable reasons,
+  clean up status/transcript listeners, and stop capture on cleanup.
+- `ai.accounts` returns display metadata and normalized usage only. It never exposes tokens, cookies, keychain
+  values, auth paths, or raw CLI output.
+- `image.generate` is Codex-provider-only, can take 1–3 minutes, consumes the user's subscription quota, and
+  returns `{ bytes: Uint8Array, mime: "image/png", name }`. Store/display the result yourself.
+- macOS paste can require Accessibility permission; meeting capture can require microphone/system-audio permission.
 
-## Installation
+## Install and distribution
 
-Copy the complete plugin folder to:
+Local paths:
 
 ```text
-Windows: %APPDATA%\dap\plugins\com.example.my_plugin\
-macOS:   ~/Library/Application Support/dap/plugins/com.example.my_plugin/
+Windows: %APPDATA%\dap\plugins\<id>\
+macOS:   ~/Library/Application Support/dap/plugins/<id>/
 ```
 
-Restart DAP or toggle the plugin off and on in Settings. External distribution uses the official reviewed catalog; installation and activation are separate user actions.
+For public distribution:
 
-## Common mistakes
+1. Put `plugin.yaml` at the root of a public GitHub repository.
+2. Ship a self-contained `.mjs`; users do not run git, npm install, or a build.
+3. Increase the manifest `version` for every release and create a version tag.
+4. Add a catalog entry to `Project-Undonghae/dap-plugins/plugin_catalog.json`.
 
-- Missing the named `activate(ctx)` export or pointing `entry` at the wrong `.mjs` file.
-- Using an undocumented command-registration alias instead of `ctx.commands.addCommand()`.
-- Returning a disposable object instead of returning a cleanup function directly.
-- Adding unknown manifest fields or undeclared `ctx.aiContext` contributor ids.
-- Requesting broad permissions without a concrete need.
-- Calling a gated Host API without its permission or capability check.
-- Assuming meeting capture or another optional backend is always available.
-- Using bare imports, external network calls from a palette page, or undocumented Host APIs.
+```json
+{
+  "id": "com.example.my_plugin",
+  "name": "My Plugin",
+  "description": "One-line description",
+  "category": "productivity",
+  "repo": "owner/dap-my-plugin",
+  "ref": "v1.0.0"
+}
+```
+
+Catalog rules:
+
+- required: `id`, `repo`; optional: `name`, `description`, `category`, `ref`
+- `repo` accepts `owner/name` or a GitHub URL
+- `ref` accepts a branch, tag, or SHA; version tags are recommended
+- manifest id and catalog id must match
+- installer limit: 200 files and 20MB; `.git`, `.github`, and `node_modules` are excluded
+- install is an explicit trust action and activates immediately unless the id was previously disabled
+- updates preserve plugin storage and enabled/disabled state; newly added permissions require fresh consent
+- arbitrary URL installation is unsupported
+
+## Validation checklist
+
+- `plugin.yaml` has only allowed fields.
+- `entry` resolves to an existing `.mjs` named export.
+- the `.mjs` is self-contained and has no bare imports.
+- every used permission-gated Host API has the matching token.
+- `activate(ctx)` does not throw and returns a cleanup function when needed.
+- palette/tray pages stay inside the plugin root and use only their documented message bridge.
+- sensitive services implement their required opt-in or capability gate.
+- disabling the plugin removes every contribution and stops listeners, windows, captures, and timers.
 
 ## Prompt template
 
@@ -232,7 +344,7 @@ Restart DAP or toggle the plugin off and on in Settings. External distribution u
 Read https://project-undonghae.github.io/desk-ai-pet/llms.txt
 and create a DAP plugin that [describe the feature].
 
-Target DAP >=v1.3.9 and manifest_version: 2.
-Return plugin.yaml, one self-contained ESM entry file, required permissions with reasons,
-installation steps, capability checks, and known limitations.
+Return plugin.yaml, a self-contained ESM entry file, required permissions with reasons,
+local install steps, known limitations, and any optional palette/tray static files.
+Follow manifest_version: 2 and Plugin Platform 0.2.0. Do not invent Host APIs.
 ```

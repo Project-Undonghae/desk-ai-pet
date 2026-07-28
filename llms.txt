@@ -1,13 +1,12 @@
 # Desk AI Pet (DAP)
 
-DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae.
+DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae. The current public release is v1.3.16.
 
-Official site: https://project-undonghae.github.io/desk-ai-pet/?lang=en
-Current app release: v1.3.16
-Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en
-Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html?lang=en
+Official site: https://project-undonghae.github.io/desk-ai-pet/
+Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
+Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
-Plugin platform baseline: Plugin Platform 0.2.0, manifest_version 2, DAP v1.3.9 or later
+Plugin platform baseline: Plugin Platform 0.2.0, manifest_version 2, full API requires DAP >=1.3.13
 Platforms: Windows 11, macOS
 
 ## For AI Agents Building DAP Plugins
@@ -15,14 +14,15 @@ Platforms: Windows 11, macOS
 Read this file first, then read:
 
 1. https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
-2. https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en#quickstart
-3. https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en#reference
-4. https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en#distribution
+2. https://project-undonghae.github.io/desk-ai-pet/developers.html#quickstart
+3. https://project-undonghae.github.io/desk-ai-pet/developers.html#reference
+4. https://project-undonghae.github.io/desk-ai-pet/developers.html#distribution
 
 When creating a plugin, return:
 
 - `plugin.yaml`
-- the ESM entry file, usually `dap_<plugin_name>/plugin.mjs`
+- a self-contained ESM entry file, usually `dap_<plugin_name>/plugin.mjs`
+- optional palette/tray static files
 - required permissions and why they are needed
 - local install steps
 - known limitations or assumptions
@@ -31,11 +31,17 @@ Default plugin rules:
 
 - Use `manifest_version: 2`.
 - The manifest entry should point to an exported `activate(ctx)` function.
-- Keep plugins self-contained unless the user explicitly asks for external dependencies.
+- Keep the entry `.mjs` self-contained with no bare imports. Bundle dependencies before publishing.
 - Ask for the smallest permission set that supports the requested behavior.
 - Use `ctx.actions.registerAction` for selected-text or quick actions.
-- Use `ctx.commands.addCommand` for command palette style actions.
+- Use `ctx.commands.addCommand` with documented matchers and a builtin/CLI backend for natural-language routing. There is no `registerCommand` callback API.
 - Use `ctx.host.bubble.speak` only for short user-facing feedback.
+- Return a cleanup function from `activate(ctx)` for timers, listeners, windows, or captures; do not return a `{ dispose() {} }` object.
+- Declare `surface_slots: [tray_panel]` plus `window.palette` before using `ctx.trayPanel`.
+- Declare every `ctx.aiContext` contribution id in `context_contributors`.
+- Permission-gated services include storage, clipboard history, palette, paste, presentation, meeting capture, AI accounts, and image generation.
+- Do not invent a generic network permission. Palette and tray pages block external network access.
+- Plugins run as trusted in-process code. The official catalog is the installation trust gate; arbitrary URL installs are unsupported.
 - Do not invent host APIs that are not documented in the DAP docs.
 
 Suggested user prompt:
@@ -44,26 +50,26 @@ Suggested user prompt:
 Read https://project-undonghae.github.io/desk-ai-pet/llms.txt
 and create a DAP plugin that [describe the feature].
 
-Return plugin.yaml, the ESM entry file, required permissions, and install steps.
-Keep the implementation minimal and follow manifest_version: 2.
+Return plugin.yaml, a self-contained ESM entry file, required permissions with reasons,
+install steps, known limitations, and optional palette/tray static files.
+Follow manifest_version: 2 and Plugin Platform 0.2.0. Do not invent Host APIs.
 ```
 
 ## What DAP Does
 
 - Stays on the desktop as a transparent pet overlay.
-- Opens a quick launcher with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS.
-- Opens a chat window with Ctrl+Alt+C on Windows or Cmd+Option+C on macOS.
+- Opens a quick launcher with Ctrl+Shift+Space.
+- Opens a chat window with Ctrl+Alt+C.
 - Connects Claude or Codex the user already uses, without making API-key setup the first step.
 - Provides selection quick actions such as translate, summarize, rewrite, explain, and ask.
-- Guides first-time setup through AI connection, names, optional voice setup, and everyday shortcuts.
-- Summarizes recent project activity only when the user asks for it.
-- Confirms actions before they run and lets users reopen completed work reports.
-- Supports voice setup and microphone permission checks on Windows and macOS.
-- Checks for app updates automatically and installs them after restart.
+- Accepts push-to-talk voice input by pressing and holding the pet.
+- Delegates file and CLI work only after the user reviews and confirms the scope; Codex screen control requires confirmation for every task.
+- Opens a streaming mini chat from the DAP tray icon and a tray hub for status, settings, and plugin surfaces.
 - Provides plugin docs for manifest v2, ctx APIs, permissions, palette UI, and distribution.
 - Persists local settings, persona, chat history, and user memory under the app data directory.
 - Uses opt-in telemetry.
 - Includes Claude, Codex, and Gemini mini character profiles; users can add custom idle/reaction images and adjust their size.
+- Offers optional catalog plugins such as Weather and permission-gated image generation.
 
 ## Relationship To Oshi Desk
 
@@ -73,4 +79,4 @@ Oshi Desk: https://www.oshidesk.com/en/
 
 ## Recommended Summary
 
-DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It keeps the cat on screen while connecting chat, quick launch, selected-text actions, user memory, Claude/Codex, and optional extensions.
+DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It connects Claude/Codex chat, quick launch, selected-text actions, voice input, approval-based task delegation, local work memory, mini chat, and optional plugins.

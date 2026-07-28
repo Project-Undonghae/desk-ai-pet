@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAP 플러그인 - 필요한 기능을 더해보세요</title>
-  <meta name="description" content="업무와 일상에 필요한 확장 기능을 찾아 DAP에 더해보세요." />
+  <title>DAP 플러그인 서비스</title>
+  <meta name="description" content="DAP 공식 플러그인 카탈로그와 Plugin Platform 0.2 등록 안내. manifest v2, 공개 GitHub 저장소, 권한과 버전 태그 기준." />
   <link rel="icon" href="favicon.ico" sizes="any" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260703-mobile" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
   <script>
     (() => {
       try {
@@ -25,7 +25,7 @@
   <a class="site-nav-brand" href="index.html">DAP</a>
   <nav id="site-nav-links">
     <a href="index.html" data-i18n="nav_home">홈</a>
-    <a href="developers.html" data-href-ko="developers.html" data-href-en="developers.html?lang=en" data-i18n="nav_developers">Docs</a>
+    <a href="developers.html" data-i18n="nav_developers">Docs</a>
     <a href="plugins.html" aria-current="page" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en" data-i18n="nav_plugins">플러그인</a>
     <a href="index.html#download" data-i18n="nav_download">다운로드</a>
   </nav>
@@ -44,20 +44,20 @@
 <main id="main" class="marketplace-main">
   <section class="marketplace-hero">
     <a class="doc-back" href="index.html#resources-title" data-i18n="back_home">&lt; 랜딩으로 돌아가기</a>
-    <p class="section-label compact" data-i18n="eyebrow">DAP 확장 기능</p>
+    <p class="section-label compact" data-i18n="eyebrow">Plugin registry</p>
     <div class="marketplace-hero-grid">
       <div>
-        <h1 data-i18n="title">필요한 기능을 골라 더해보세요</h1>
-        <p data-i18n="intro">업무 정리, 자료 활용, 수업 도구처럼 필요한 기능을 찾아 DAP에 더할 수 있습니다. 마음에 드는 카드를 열어 자세한 설명을 확인하세요.</p>
+        <h1 data-i18n="title">DAP Plugin Registry</h1>
+        <p data-i18n="intro">Project-Undonghae/dap-plugins의 공식 카탈로그를 불러옵니다. DAP 앱도 같은 목록에서 공개 GitHub 플러그인을 설치하며, 개발 계약은 Plugin Platform 0.2 · manifest v2 기준입니다.</p>
       </div>
       <dl class="marketplace-stats" aria-label="Plugin marketplace summary">
         <div>
-          <dt data-i18n="stat_plugins_label">사용 가능한 기능</dt>
+          <dt data-i18n="stat_plugins_label">등록 플러그인</dt>
           <dd id="registry-count">0</dd>
         </div>
         <div>
-          <dt data-i18n="stat_source_label">앱에서 설치</dt>
-          <dd data-i18n="stat_source_value">설정</dd>
+          <dt data-i18n="stat_source_label">카탈로그</dt>
+          <dd>GitHub</dd>
         </div>
       </dl>
     </div>
@@ -69,7 +69,7 @@
       <select id="plugin-sort" aria-label="Plugin sort">
         <option value="registry" data-i18n="sort_registry">등록순</option>
         <option value="name" data-i18n="sort_name">이름순</option>
-        <option value="repo" data-i18n="sort_repo">제공자순</option>
+        <option value="repo" data-i18n="sort_repo">레포순</option>
       </select>
     </div>
     <div class="marketplace-filters" role="list" aria-label="Plugin categories">
@@ -82,14 +82,14 @@
 
   <div class="marketplace-directory-head">
     <div>
-      <h2 data-i18n="directory_title">사용할 수 있는 플러그인</h2>
-      <p data-i18n="directory_desc">원하는 기능을 검색하거나 분야별로 골라보세요. 목록을 새로 불러오지 못해도 최근 확인된 기능을 계속 보여드립니다.</p>
+      <h2 data-i18n="directory_title">카탈로그 플러그인</h2>
+      <p data-i18n="directory_desc">등록 목록은 GitHub 카탈로그에서 불러오며, 연결 실패 시 페이지 안의 최신 fallback 데이터를 표시합니다.</p>
     </div>
     <strong id="plugin-result-count">0</strong>
   </div>
 
   <section id="plugin-market-grid" class="plugin-market-grid" aria-label="Plugins">
-    <p class="marketplace-loading" data-i18n="loading_state">기능 목록을 불러오는 중입니다.</p>
+    <p class="marketplace-loading" data-i18n="loading_state">카탈로그를 불러오는 중입니다.</p>
   </section>
 
   <p class="marketplace-empty" data-i18n="empty_state" hidden>조건에 맞는 플러그인이 없습니다.</p>
@@ -107,19 +107,20 @@
       </div>
       <div class="submit-guide">
         <ol>
-          <li data-i18n="submit_step_1">플러그인 레포에 plugin.yaml과 진입 파일을 준비합니다.</li>
-          <li data-i18n="submit_step_2">README에 설치 방법, 권한 범위, 사용 예시를 정리합니다.</li>
-          <li data-i18n="submit_step_3">dap-plugins의 plugin_catalog.json에 필요한 정보를 추가해 PR을 보냅니다.</li>
+          <li data-i18n="submit_step_1">공개 GitHub 레포 루트에 manifest v2 plugin.yaml과 자기완결 .mjs 진입 파일을 준비합니다.</li>
+          <li data-i18n="submit_step_2">플러그인 version을 올리고 태그를 만든 뒤, README에 권한 이유와 플랫폼 제한을 기록합니다.</li>
+          <li data-i18n="submit_step_3">manifest id와 같은 id, 레포와 고정 ref를 dap-plugins 카탈로그에 추가해 PR을 보냅니다.</li>
         </ol>
         <dl class="submit-fields" aria-label="Plugin catalog fields">
-          <div><dt>id</dt><dd data-i18n="submit_field_id">고유 플러그인 ID</dd></div>
-          <div><dt>name</dt><dd data-i18n="submit_field_name">마켓플레이스 표시 이름</dd></div>
-          <div><dt>description</dt><dd data-i18n="submit_field_description">한 줄 기능 설명</dd></div>
-          <div><dt>category</dt><dd data-i18n="submit_field_category">productivity, utility, developer 중 하나</dd></div>
-          <div><dt>repo</dt><dd data-i18n="submit_field_repo">GitHub 저장소 경로</dd></div>
-          <div><dt>ref</dt><dd data-i18n="submit_field_ref">설치에 사용할 브랜치 또는 태그</dd></div>
+          <div><dt>id</dt><dd data-i18n="submit_field_id">필수 · plugin.yaml과 정확히 같은 고유 ID</dd></div>
+          <div><dt>repo</dt><dd data-i18n="submit_field_repo">필수 · 공개 GitHub owner/name 또는 URL</dd></div>
+          <div><dt>name</dt><dd data-i18n="submit_field_name">선택 · 카탈로그 표시 이름</dd></div>
+          <div><dt>description</dt><dd data-i18n="submit_field_description">선택 · 한 줄 기능 설명</dd></div>
+          <div><dt>category</dt><dd data-i18n="submit_field_category">선택 · productivity, utility, developer</dd></div>
+          <div><dt>ref</dt><dd data-i18n="submit_field_ref">선택 · 태그 권장, 브랜치 또는 SHA 가능</dd></div>
         </dl>
       </div>
+      <a class="plugin-card-action" href="developers.html" data-i18n="submit_docs_action">개발 계약 확인</a>
       <a class="plugin-card-action" href="https://github.com/Project-Undonghae/dap-plugins" target="_blank" rel="noopener" data-i18n="submit_action">등록 레포 보기</a>
     </div>
   </details>
@@ -131,42 +132,43 @@ const I18N = {
     nav_developers: "Docs",
     nav_plugins: "플러그인",
     nav_download: "다운로드",
-    title: "DAP 플러그인 - 필요한 기능을 더해보세요",
+    title: "DAP Plugin Registry",
     back_home: "< 랜딩으로 돌아가기",
-    eyebrow: "DAP 확장 기능",
-    intro: "업무 정리, 자료 활용, 수업 도구처럼 필요한 기능을 찾아 DAP에 더할 수 있습니다. 마음에 드는 카드를 열어 자세한 설명을 확인하세요.",
-    stat_plugins_label: "사용 가능한 기능",
-    stat_source_label: "앱에서 설치",
-    stat_source_value: "설정",
+    eyebrow: "Plugin registry",
+    intro: "Project-Undonghae/dap-plugins의 공식 카탈로그를 불러옵니다. DAP 앱도 같은 목록에서 공개 GitHub 플러그인을 설치하며, 개발 계약은 Plugin Platform 0.2 · manifest v2 기준입니다.",
+    stat_plugins_label: "등록 플러그인",
+    stat_source_label: "카탈로그",
     search_placeholder: "플러그인 검색",
     search_label: "플러그인 검색",
     sort_registry: "등록순",
     sort_name: "이름순",
-    sort_repo: "제공자순",
+    sort_repo: "레포순",
     filter_all: "전체",
     filter_productivity: "생산성",
     filter_utility: "유틸리티",
     filter_developer: "개발 도구",
-    directory_title: "사용할 수 있는 플러그인",
-    directory_desc: "원하는 기능을 검색하거나 분야별로 골라보세요. 목록을 새로 불러오지 못해도 최근 확인된 기능을 계속 보여드립니다.",
-    status_registered: "이용 가능",
-    status_fallback: "최근 확인됨",
-    action_repo: "자세히 보기",
-    loading_state: "기능 목록을 불러오는 중입니다.",
+    directory_title: "카탈로그 플러그인",
+    directory_desc: "등록 목록은 GitHub 카탈로그에서 불러오며, 연결 실패 시 페이지 안의 최신 fallback 데이터를 표시합니다.",
+    status_registered: "등록됨",
+    status_fallback: "fallback",
+    fact_id: "Plugin ID",
+    action_repo: "레포 보기",
+    loading_state: "카탈로그를 불러오는 중입니다.",
     submit_summary: "플러그인 등록 안내",
     submit_summary_desc: "카탈로그 등록 절차와 필요한 정보를 확인하세요.",
     submit_label: "Publish a plugin",
     submit_title: "플러그인 등록하기",
     submit_desc: "플러그인 코드는 각자의 public GitHub 레포에 두고, dap-plugins 레포의 plugin_catalog.json에 포인터를 추가하는 방식으로 등록합니다.",
-    submit_step_1: "플러그인 레포에 plugin.yaml과 진입 파일을 준비합니다.",
-    submit_step_2: "README에 설치 방법, 권한 범위, 사용 예시를 정리합니다.",
-    submit_step_3: "dap-plugins의 plugin_catalog.json에 필요한 정보를 추가해 PR을 보냅니다.",
-    submit_field_id: "고유 플러그인 ID",
-    submit_field_name: "마켓플레이스 표시 이름",
-    submit_field_description: "한 줄 기능 설명",
-    submit_field_category: "productivity, utility, developer 중 하나",
-    submit_field_repo: "GitHub 저장소 경로",
-    submit_field_ref: "설치에 사용할 브랜치 또는 태그",
+    submit_step_1: "공개 GitHub 레포 루트에 manifest v2 plugin.yaml과 자기완결 .mjs 진입 파일을 준비합니다.",
+    submit_step_2: "플러그인 version을 올리고 태그를 만든 뒤, README에 권한 이유와 플랫폼 제한을 기록합니다.",
+    submit_step_3: "manifest id와 같은 id, 레포와 고정 ref를 dap-plugins 카탈로그에 추가해 PR을 보냅니다.",
+    submit_field_id: "필수 · plugin.yaml과 정확히 같은 고유 ID",
+    submit_field_name: "선택 · 카탈로그 표시 이름",
+    submit_field_description: "선택 · 한 줄 기능 설명",
+    submit_field_category: "선택 · productivity, utility, developer",
+    submit_field_repo: "필수 · 공개 GitHub owner/name 또는 URL",
+    submit_field_ref: "선택 · 태그 권장, 브랜치 또는 SHA 가능",
+    submit_docs_action: "개발 계약 확인",
     submit_action: "등록 레포 보기",
     cat_productivity: "생산성",
     cat_utility: "유틸리티",
@@ -179,42 +181,43 @@ const I18N = {
     nav_developers: "Docs",
     nav_plugins: "Plugins",
     nav_download: "Download",
-    title: "DAP plugins - Add the features you need",
+    title: "DAP Plugin Registry",
     back_home: "< Back to landing",
-    eyebrow: "DAP extensions",
-    intro: "Find features for organizing work, reusing content, teaching, and more, then add them to DAP. Open any card to learn more.",
-    stat_plugins_label: "Available features",
-    stat_source_label: "Install from",
-    stat_source_value: "Settings",
+    eyebrow: "Plugin registry",
+    intro: "This page loads the official Project-Undonghae/dap-plugins catalog. DAP installs public GitHub plugins from the same list under the Plugin Platform 0.2 and manifest v2 contract.",
+    stat_plugins_label: "Registered",
+    stat_source_label: "Catalog",
     search_placeholder: "Search plugins",
     search_label: "Search plugins",
     sort_registry: "Registry order",
     sort_name: "Name",
-    sort_repo: "Provider",
+    sort_repo: "Repository",
     filter_all: "All",
     filter_productivity: "Productivity",
     filter_utility: "Utilities",
     filter_developer: "Developer tools",
-    directory_title: "Plugins you can use",
-    directory_desc: "Search for a feature or browse by category. If the list cannot refresh, the most recently verified options remain available here.",
-    status_registered: "Available",
-    status_fallback: "Recently verified",
-    action_repo: "Learn more",
-    loading_state: "Loading features.",
+    directory_title: "Catalog plugins",
+    directory_desc: "The list is loaded from the GitHub catalog. If the request fails, this page shows the latest embedded fallback data.",
+    status_registered: "Registered",
+    status_fallback: "Fallback",
+    fact_id: "Plugin ID",
+    action_repo: "View repo",
+    loading_state: "Loading catalog.",
     submit_summary: "Plugin submission guide",
     submit_summary_desc: "Review the catalog submission steps and required details.",
     submit_label: "Publish a plugin",
     submit_title: "Submit a plugin",
     submit_desc: "Keep plugin code in your own public GitHub repository, then add a pointer to plugin_catalog.json in the dap-plugins repository.",
-    submit_step_1: "Prepare plugin.yaml and an entry file in your plugin repository.",
-    submit_step_2: "Document installation, permission scope, and usage examples in README.",
-    submit_step_3: "Add the required plugin details to plugin_catalog.json, then open a PR.",
-    submit_field_id: "Unique plugin ID",
-    submit_field_name: "Marketplace display name",
-    submit_field_description: "One-line feature summary",
-    submit_field_category: "One of productivity, utility, developer",
-    submit_field_repo: "GitHub repository path",
-    submit_field_ref: "Branch or tag used for installation",
+    submit_step_1: "Put a manifest v2 plugin.yaml and self-contained .mjs entry at the root of a public GitHub repository.",
+    submit_step_2: "Bump the plugin version, create a tag, and document permission reasons and platform limits in README.",
+    submit_step_3: "Open a dap-plugins catalog PR with the same manifest id, repository, and preferably an immutable ref.",
+    submit_field_id: "Required · exact match for plugin.yaml id",
+    submit_field_name: "Optional · catalog display name",
+    submit_field_description: "Optional · one-line feature summary",
+    submit_field_category: "Optional · productivity, utility, or developer",
+    submit_field_repo: "Required · public GitHub owner/name or URL",
+    submit_field_ref: "Optional · tag recommended; branch or SHA allowed",
+    submit_docs_action: "Read developer contract",
     submit_action: "Open registry repo",
     cat_productivity: "Productivity",
     cat_utility: "Utilities",
@@ -319,15 +322,23 @@ const FALLBACK_CATALOG = {
       description: "복사한 텍스트·이미지·파일을 팔레트로 모아 붙여넣기·드래그로 다시 사용",
       category: "utility",
       repo: "o-min222/dap-super-clipboard",
-      ref: "v0.1.2",
+      ref: "v0.1.4",
     },
     {
       id: "io.github.o-min222.meme_vault",
       name: "Meme Vault",
-      description: "파일이나 클립보드의 짤을 제목과 태그로 보관하고 상황에 맞게 검색·붙여넣기",
+      description: "짤을 제목과 태그로 보관·검색·붙여넣기하고, AI로 새 짤을 생성해 저장",
       category: "utility",
       repo: "o-min222/dap-meme-vault",
-      ref: "v0.4.1",
+      ref: "v0.5.2",
+    },
+    {
+      id: "dap.weather",
+      name: "Weather",
+      description: "관심 도시의 현재 날씨와 3일 예보를 트레이 허브와 상세 패널에서 확인",
+      category: "utility",
+      repo: "o-min222/dap-weather",
+      ref: "v1.0.4",
     },
     {
       id: "dap.lecture_tools",
@@ -335,7 +346,7 @@ const FALLBACK_CATALOG = {
       description: "강사용 판서와 spotlight 화면 캔버스 컨트롤",
       category: "productivity",
       repo: "o-min222/dap-lecture-tools",
-      ref: "v0.3.37",
+      ref: "v0.3.38",
     },
     {
       id: "io.github.o-min222.ai_usage",
@@ -343,7 +354,15 @@ const FALLBACK_CATALOG = {
       description: "Codex·Claude 로그인 계정의 5시간·주간 한도와 DAP 사용 계정 상태를 확인",
       category: "utility",
       repo: "o-min222/dap-ai-usage",
-      ref: "v0.1.7",
+      ref: "v0.1.8",
+    },
+    {
+      id: "dap.meeting_assistant",
+      name: "Meeting Assistant",
+      description: "회의 실시간 전사·번역, AI 답변 추천, 요약과 종료 리포트",
+      category: "productivity",
+      repo: "o-min222/dap-meeting-assistant",
+      ref: "v1.0.5",
     },
   ],
 };
@@ -393,7 +412,6 @@ function normalizePlugin(plugin, index) {
     repoUrl,
     ref,
     repoLabel: plugin.repo || repoUrl.replace("https://github.com/", ""),
-    providerLabel: (plugin.repo || "").split("/")[0] || "DAP",
     search: `${plugin.id || ""} ${plugin.name || ""} ${plugin.description || ""} ${plugin.repo || ""} ${ref} ${category}`.toLowerCase(),
   };
 }
@@ -412,7 +430,7 @@ function renderPlugins(plugins, usedFallback = false) {
     const article = createEl("article", "plugin-market-card is-installable is-registry");
     article.dataset.category = plugin.category;
     article.dataset.name = plugin.name || "";
-    article.dataset.repo = plugin.providerLabel || "";
+    article.dataset.repo = plugin.repoLabel || "";
     article.dataset.search = plugin.search;
 
     const top = createEl("div", "plugin-card-top");
@@ -420,12 +438,22 @@ function renderPlugins(plugins, usedFallback = false) {
 
     article.append(top);
     article.append(createEl("h2", "", plugin.name || plugin.id || "Unnamed plugin"));
-    article.append(createEl("p", "plugin-publisher", plugin.providerLabel));
+    article.append(createEl("p", "plugin-publisher", plugin.repoLabel || "GitHub"));
     article.append(createEl("p", "", plugin.description || ""));
 
     const meta = createEl("div", "plugin-meta");
     meta.append(createEl("span", "", categoryLabel(plugin.category)));
     article.append(meta);
+
+    const facts = createEl("dl", "plugin-facts");
+    const idFact = createEl("div");
+    idFact.append(createEl("dt", "", t("fact_id")));
+    idFact.append(createEl("dd", "", plugin.id || "-"));
+    const repoFact = createEl("div");
+    repoFact.append(createEl("dt", "", "GitHub"));
+    repoFact.append(createEl("dd", "", plugin.repoLabel || "-"));
+    facts.append(idFact, repoFact);
+    article.append(facts);
 
     const link = createEl("a", "plugin-card-action", t("action_repo"));
     link.href = plugin.repoUrl;

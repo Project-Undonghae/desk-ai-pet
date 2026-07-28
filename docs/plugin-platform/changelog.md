@@ -2,16 +2,16 @@
 
 Plugin Platform 변경사항은 앱 릴리스 노트와 별도로 기록합니다. 앱 설치 파일 배포 없이 문서나 카탈로그 정책만 바뀌는 경우도 여기에 남깁니다.
 
-## v0.2.0 - 2026-07-20
+## v0.2.0 - 2026-07-29
 
-DAP v1.3.9 호환 기준의 하위 호환 기능 추가입니다. 기존 manifest v2 플러그인은 계속 로드됩니다.
-
-- `ctx.aiContext.contribute()`와 manifest `context_contributors` 선언을 공개 문서에 추가했습니다.
-- `ctx.trayMenu.addItem()` 등록 핸들의 `update()`로 선언형 하위 메뉴를 갱신하는 방법을 추가했습니다.
-- `presentation.overlay`, `meeting.capture`, `ai.accounts`와 각 Host API를 문서화했습니다. 회의 캡처는 반드시 `capabilities()`로 사용 가능 여부를 확인해야 합니다.
-- 현행 manifest의 전체 허용 필드와 현행 Host service/권한 대응을 갱신했습니다.
-- 명령 등록 API를 `ctx.commands.addCommand()`로, 비활성화 정리 규약을 cleanup 함수 반환으로 바로잡았습니다.
-- Plugin Platform은 `0.2.0`으로 올렸지만 manifest 해석 규약은 호환되므로 `manifest_version: 2`를 유지합니다.
+- manifest v2 호환을 유지하면서 `surface_slots: [tray_panel]`과 `ctx.trayPanel.register()` 계약을 문서화했습니다.
+- `ctx.trayMenu`의 명시적 `showInContextMenu`, 동적 submenu `update()`, 래디얼 아이콘·사용자 재정의 규칙을 반영했습니다.
+- `ctx.aiContext`, 선언형 설정 `range`와 `ctx.host.settings.set()`을 추가했습니다.
+- `presentation.overlay`, `meeting.capture`, `ai.accounts`, `image.generate`, `dragdrop.export` 권한과 Host API를 추가했습니다.
+- 팔레트·트레이 페이지의 `dap-plugin://` 경로 제한, 외부 네트워크 차단, JSON 메시지 한도를 명확히 했습니다.
+- 공식 카탈로그 설치가 공개 GitHub 저장소의 개별 파일 다운로드이며, 설치 즉시 활성화·업데이트 상태/저장소 보존·권한 증가 시 재동의라는 현행 동작을 반영했습니다.
+- AI 컨텍스트의 잘못된 `ctx.commands.registerCommand`와 `{ dispose() {} }` 예시를 현행 `addCommand` backend 계약과 cleanup 함수로 수정했습니다.
+- 전체 0.2 API의 최소 앱 버전은 DAP `v1.3.13`; `manifest_version`은 계속 `2`입니다.
 
 ## v0.1.0 - 2026-07-05
 

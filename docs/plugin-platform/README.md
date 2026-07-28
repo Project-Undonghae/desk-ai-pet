@@ -1,8 +1,10 @@
 # DAP Plugin Platform Change Management
 
-> Current public baseline: Plugin Platform `0.2.0`, `manifest_version: 2`, DAP `>=v1.3.9`, docs revision `2026-07-20`.
-
 이 문서는 DAP(mydeskpet) 안의 플러그인 관련 기능, manifest, host API, 설치/카탈로그 흐름이 바뀔 때 개발문서와 버전을 같이 관리하기 위한 기준입니다.
+
+현재 공개 기준은 **Plugin Platform 0.2.0 / manifest v2 / DAP 1.3.13+**입니다.
+앱 저장소의 정본은 `mydeskpet/docs/PLUGIN_API.md`이며, 공개 `developers.html`,
+`docs/plugin-platform/ai-context.md`, `llms.txt`는 이 계약에서 파생됩니다.
 
 ## 관리 단위
 
@@ -29,12 +31,13 @@
 
 플러그인 플랫폼 변경 PR은 아래 파일을 함께 확인합니다.
 
-- `developers.html`: 한국어와 `?lang=en` 영어를 제공하는 공개 개발자 문서. Quickstart, manifest, API reference, distribution, troubleshooting을 두 언어에서 함께 최신 상태로 유지합니다.
+- `developers.html`: 공개 개발자 문서. Quickstart, manifest, API reference, distribution, troubleshooting을 최신 상태로 유지합니다.
+- `docs/plugin-platform/ai-context.md`: AI 코딩 에이전트가 직접 소비하는 압축 계약. API 이름·cleanup 형태·권한을 정본과 정확히 맞춥니다.
+- `llms.txt`: AI 문서 진입점과 최소 불변 규칙.
 - `docs/plugin-platform/version.json`: 현재 Plugin Platform 버전과 호환성 메타데이터를 기록합니다.
 - `docs/plugin-platform/changelog.md`: 개발자에게 의미 있는 변경사항을 날짜와 버전으로 기록합니다.
 - `docs/plugin-platform/release-checklist.md`: PR 작성자가 변경 유형별 누락을 점검합니다.
 - `plugins.html`: 카탈로그 필드, 표시 항목, 등록 절차가 바뀐 경우 갱신합니다.
-- `docs/plugin-platform/ai-context.md`: AI 작성 예시의 API명, lifecycle, manifest, Host service/권한 기준을 공개 문서와 동기화합니다.
 
 ## 버전 규칙
 
@@ -62,9 +65,3 @@ Plugin Platform은 SemVer를 따릅니다.
 4. `docs/plugin-platform/version.json`과 `docs/plugin-platform/changelog.md`를 업데이트합니다.
 5. breaking change가 있으면 migration note를 changelog에 추가합니다.
 6. PR 템플릿의 Plugin Platform 체크리스트를 채웁니다.
-
-## 현행 공개 계약
-
-- manifest 필드 집합과 `manifest_version: 2` 해석 규약은 stable contract입니다. 허용되지 않은 추가 필드는 거절됩니다.
-- Plugin Platform `0.2.x` 문서는 DAP `>=v1.3.9`를 최소 기준으로 합니다. `0.1.x`/DAP `>=v1.0.12` 기록은 호환성 이력으로 보존합니다.
-- 새 API와 권한은 기존 플러그인을 깨지 않는 minor 변경이며, manifest 해석이 바뀌지 않아 `manifest_version` 증가가 필요하지 않습니다.
