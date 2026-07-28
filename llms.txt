@@ -3,7 +3,7 @@
 DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/?lang=en
-Current app release: v1.3.11
+Current app release: v1.3.12
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html?lang=en
 Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html?lang=en
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
