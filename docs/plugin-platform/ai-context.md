@@ -2,7 +2,7 @@
 
 Use this file when an AI coding assistant creates or modifies a DAP plugin.
 
-Contract baseline: Plugin Platform `0.2.0`, `manifest_version: 2`, full API requires DAP `>=1.3.13`.
+Contract baseline: Plugin Platform `0.3.0`, `manifest_version: 2`, full API requires DAP `>=1.4.1`.
 The complete source of truth is `mydeskpet/docs/PLUGIN_API.md`; never invent an API that is not documented here or there.
 
 ## Required output
@@ -52,7 +52,7 @@ manifest_version: 2
 entry: dap_my_plugin.plugin:activate
 description: Short user-facing description
 author: Your Name
-min_app_version: "1.3.13"
+min_app_version: "1.4.1"
 surface: user
 permissions: []
 execution_modes:
@@ -65,6 +65,7 @@ Allowed fields:
 - optional: `description`, `author`, `min_app_version`, `manifest_version`, `surface`, `permissions`, `execution_modes`, `context_contributors`, `surface_slots`
 - `surface` is `user` by default; `dev` is discovered only in development builds
 - use `surface_slots: [tray_panel]` for `ctx.trayPanel`
+- use `surface_slots: [briefing.daily]` before calling `ctx.briefing.contribute(...)`
 - declare each `ctx.aiContext` contribution id in `context_contributors`
 - extra fields are rejected
 - do not put commands, matchers, callbacks, or backends in YAML
@@ -241,6 +242,8 @@ Permission-gated:
 | `meeting.capture` | `ctx.host.meeting` | meeting capture status and transcript events |
 | `ai.accounts` | `ctx.host.aiAccounts` | account and normalized subscription-usage metadata |
 | `image.generate` | `ctx.host.imageGen` | Codex-provider PNG generation |
+| `oauth.connect` | `ctx.host.oauth` | Host-managed OAuth connect, status, access-token, and disconnect flow |
+| `connectors.read` | `ctx.host.connectors` | Read-only status for the Gmail connector |
 
 Other permission tokens:
 
@@ -249,6 +252,14 @@ Other permission tokens:
 
 Request the smallest permission set. Unknown tokens are ignored, not granted.
 Do not invent a generic network permission; plugin palette/tray pages have external networking blocked.
+
+### Daily briefing and connected services
+
+Declare `surface_slots: [briefing.daily]`, then register a short, fast provider with `ctx.briefing.contribute({ id, provider })`. Return a single user-facing line for today's briefing and perform no interactive OAuth work inside the provider.
+
+OAuth plugins declare `oauth.connect` and use `ctx.host.oauth.status(connectionId)`, `connect({ connectionId, provider, scopes })`, `accessToken(connectionId)`, and `disconnect(connectionId)`. DAP owns the browser flow and protected credential storage; plugins never receive refresh tokens.
+
+Plugins declaring `connectors.read` can currently call only `ctx.host.connectors.status("gmail")`. It returns `{ state, via, hint }`, where `state` is `"connected"`, `"unavailable"`, or `"unknown"`. Treat only explicit `unavailable` as blocking and show the Host-provided `hint`. `unknown` means the probe itself could not determine status, so fall through to the existing behavior instead of telling the user to reconnect.
 
 ## Palette contract
 
@@ -346,5 +357,5 @@ and create a DAP plugin that [describe the feature].
 
 Return plugin.yaml, a self-contained ESM entry file, required permissions with reasons,
 local install steps, known limitations, and any optional palette/tray static files.
-Follow manifest_version: 2 and Plugin Platform 0.2.0. Do not invent Host APIs.
+Follow manifest_version: 2 and Plugin Platform 0.3.0. Do not invent Host APIs.
 ```

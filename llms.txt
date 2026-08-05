@@ -1,12 +1,12 @@
 # Desk AI Pet (DAP)
 
-DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae. The current public release is v1.3.16.
+DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae. The current public release is v1.4.1.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
 Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
-Plugin platform baseline: Plugin Platform 0.2.0, manifest_version 2, full API requires DAP >=1.3.13
+Plugin platform baseline: Plugin Platform 0.3.0, manifest_version 2, full API requires DAP >=1.4.1
 Platforms: Windows 11, macOS
 
 ## For AI Agents Building DAP Plugins
@@ -38,8 +38,10 @@ Default plugin rules:
 - Use `ctx.host.bubble.speak` only for short user-facing feedback.
 - Return a cleanup function from `activate(ctx)` for timers, listeners, windows, or captures; do not return a `{ dispose() {} }` object.
 - Declare `surface_slots: [tray_panel]` plus `window.palette` before using `ctx.trayPanel`.
+- Declare `surface_slots: [briefing.daily]` before using `ctx.briefing.contribute()`.
 - Declare every `ctx.aiContext` contribution id in `context_contributors`.
-- Permission-gated services include storage, clipboard history, palette, paste, presentation, meeting capture, AI accounts, and image generation.
+- Permission-gated services include storage, clipboard history, palette, paste, presentation, meeting capture, AI accounts, image generation, OAuth (`oauth.connect`), and connector status (`connectors.read`).
+- Connector status currently supports `ctx.host.connectors.status("gmail")`; block only on `unavailable`, not `unknown`, and show the Host-provided hint.
 - Do not invent a generic network permission. Palette and tray pages block external network access.
 - Plugins run as trusted in-process code. The official catalog is the installation trust gate; arbitrary URL installs are unsupported.
 - Do not invent host APIs that are not documented in the DAP docs.
@@ -52,14 +54,14 @@ and create a DAP plugin that [describe the feature].
 
 Return plugin.yaml, a self-contained ESM entry file, required permissions with reasons,
 install steps, known limitations, and optional palette/tray static files.
-Follow manifest_version: 2 and Plugin Platform 0.2.0. Do not invent Host APIs.
+Follow manifest_version: 2 and Plugin Platform 0.3.0. Do not invent Host APIs.
 ```
 
 ## What DAP Does
 
 - Stays on the desktop as a transparent pet overlay.
-- Opens a quick launcher with Ctrl+Shift+Space.
-- Opens a chat window with Ctrl+Alt+C.
+- Opens a quick launcher with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS.
+- Opens a chat window with Ctrl+Alt+C on Windows or Cmd+Option+C on macOS.
 - Connects Claude or Codex the user already uses, without making API-key setup the first step.
 - Provides selection quick actions such as translate, summarize, rewrite, explain, and ask.
 - Accepts push-to-talk voice input by pressing and holding the pet.

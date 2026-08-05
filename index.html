@@ -11,8 +11,8 @@
   <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP (Desk AI Pet) - 당신의 첫 AI OS</title>
-  <meta name="description" content="DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. Claude/Codex 채팅, 선택 영역 액션, 음성 입력, 안전한 작업 위임, 미니 채팅과 플러그인을 한 흐름에 연결합니다." />
-  <meta name="keywords" content="DAP, Desk AI Pet, AI OS, 데스크톱 AI 펫, desktop AI pet, desktop AI companion, Claude CLI, Codex CLI, Spotlight, 선택 영역 퀵액션, 미니 채팅, 트레이 허브, 플러그인 플랫폼, plugin registry" />
+  <meta name="description" content="DAP v1.4.1은 바탕화면 위 고양이와 Todo·Calendar, Google Calendar 연결, Gmail 상태 안내, 데일리 브리핑을 한 흐름으로 이어주는 AI OS입니다." />
+  <meta name="keywords" content="DAP, Desk AI Pet, AI OS, 데스크톱 AI 펫, Claude CLI, Codex CLI, Todo, Calendar, OAuth, 데일리 브리핑, 커넥터, 미니 채팅, 트레이 허브, Weather, Meeting Assistant, AI 이미지, 선택 영역 퀵액션" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="author" content="Project Undonghae" />
   <link rel="canonical" href="https://project-undonghae.github.io/desk-ai-pet/" />
@@ -23,22 +23,22 @@
   <meta property="og:site_name" content="Desk AI Pet" />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:title" content="DAP - 당신의 첫 AI OS" />
-  <meta property="og:description" content="바탕화면 위 고양이로 시작하는 AI OS. Claude/Codex 채팅, 음성 입력, 안전한 작업 위임, 미니 채팅과 플러그인을 연결합니다." />
+  <meta property="og:description" content="Todo·Calendar, Google Calendar 연결, Gmail 상태 안내, 데일리 브리핑을 바탕화면 위 고양이와 함께 사용하세요." />
   <meta property="og:url" content="https://project-undonghae.github.io/desk-ai-pet/" />
-  <meta property="og:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-20260703.png" />
+  <meta property="og:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-v141.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="DAP Desk AI Pet - 실제 고양이 캐릭터와 Windows, macOS 다운로드 안내" />
+  <meta property="og:image:alt" content="DAP v1.4.1 - 바탕화면 고양이와 Todo, Calendar, 데일리 브리핑, 플러그인 허브" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DAP - 당신의 첫 AI OS" />
-  <meta name="twitter:description" content="바탕화면 위 고양이로 시작하는 AI OS. Claude/Codex 채팅, 음성 입력, 안전한 작업 위임, 미니 채팅과 플러그인을 연결합니다." />
-  <meta name="twitter:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-20260703.png" />
+  <meta name="twitter:description" content="Todo·Calendar, Google Calendar 연결, Gmail 상태 안내, 데일리 브리핑을 바탕화면 위 고양이와 함께 사용하세요." />
+  <meta name="twitter:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-v141.png" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="favicon-180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260729-v1316" />
+  <link rel="stylesheet" href="styles.css?v=20260805-v141" />
   <script>
     (() => {
       try {
@@ -57,14 +57,14 @@
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS",
-    "softwareVersion": "1.3.16",
+    "softwareVersion": "1.4.1",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
     "isAccessibleForFree": true,
     "creator": {
       "@type": "Organization",
       "name": "Project Undonghae"
     },
-    "description": "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. Claude/Codex 채팅, 선택 영역 액션, 음성 입력, 안전한 작업 위임, 미니 채팅과 플러그인을 한 흐름에 연결합니다.",
+    "description": "DAP v1.4.1은 바탕화면 위 고양이와 Todo, Calendar, Google Calendar 연결, Gmail 상태 안내, 데일리 브리핑을 한 흐름으로 이어주는 AI OS입니다.",
     "sameAs": [
       "https://www.oshidesk.com/en/"
     ],
@@ -163,7 +163,7 @@
 
     <div id="bubble"></div>
     <div id="cat-wrap">
-      <img id="cat-img" src="sprites/hero_idle_0.png" alt="고양이" />
+      <img id="cat-img" src="sprites/hero_idle_0.png" data-i18n-alt="hero_cat_alt" alt="고양이" />
     </div>
     <div class="item" id="churu-item">TREAT</div>
   </div>
@@ -173,7 +173,7 @@
     <div class="hero-overlay-inner z">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">YOUR FIRST AI OS</p>
       <div class="logo"><h1>DAP</h1><small>Desk AI Pet</small></div>
-      <p class="hero-tagline-text" data-i18n="hero_tagline">고양이와 대화하고, 승인한 작업은 Claude/Codex에게 안전하게 맡기세요</p>
+      <p class="hero-tagline-text" data-i18n="hero_tagline">고양이와 대화하고, 할 일·일정·승인한 작업을 하나의 흐름으로 이어가세요</p>
       <span id="download" class="download-anchor" aria-hidden="true"></span>
       <div class="hero-dl-row">
         <a
@@ -201,7 +201,7 @@
           <span data-i18n="download_mac_intel">macOS Intel 다운로드</span>
         </a>
       </div>
-      <p class="dl-subtitle-hero" data-i18n="download_subtitle">최신 v1.3.16 · Windows와 macOS용 설치 파일</p>
+      <p class="dl-subtitle-hero" data-i18n="download_subtitle">최신 v1.4.1 · Windows와 macOS용 설치 파일</p>
     </div>
   </div>
 
@@ -221,7 +221,7 @@
     <div>
       <h2 id="summary-title" data-i18n="summary_title">DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다</h2>
       <p data-i18n="summary_desc">
-        DAP은 화면 위 고양이, 채팅, 빠른 실행, 선택 영역 액션을 한곳에 모읍니다. 음성으로 말하거나 텍스트를 선택해 요청하고, 파일 작업과 화면 제어는 범위를 확인한 뒤 Claude/Codex에 맡길 수 있어요.
+        DAP v1.4.1은 화면 위 고양이와 Todo·Calendar, 데일리 브리핑, 빠른 실행과 미니 채팅을 한곳에 모읍니다. Google Calendar를 연결하고 Gmail 상태 안내를 받아 필요한 정보와 작업을 흐름을 끊지 않고 이어갈 수 있어요.
       </p>
     </div>
     <dl class="facts" aria-label="Desk AI Pet facts">
@@ -231,11 +231,11 @@
       </div>
       <div>
         <dt data-i18n="fact_ai_label">연결</dt>
-        <dd data-i18n="fact_ai_value">로그인된 Claude · Codex 사용</dd>
+        <dd data-i18n="fact_ai_value">Claude · Codex · Google Calendar</dd>
       </div>
       <div>
         <dt data-i18n="fact_license_label">확장</dt>
-        <dd data-i18n="fact_license_value">미니 채팅 · 트레이 허브 · 플러그인</dd>
+        <dd data-i18n="fact_license_value">Todo · Calendar · 8개 플러그인</dd>
       </div>
     </dl>
   </div>
@@ -253,6 +253,7 @@
       src="demo-preview-ui-20260705.svg?v=20260705-components"
       width="1400"
       height="900"
+      data-i18n-alt="demo_alt"
       alt="DAP 실제 UI 흐름: 빠른 실행창, 선택 영역 액션, 채팅 패널, 화면 위 고양이"
       loading="lazy"
     />
@@ -266,7 +267,7 @@
   <div class="card reveal">
     <div class="card-icon">CMD</div>
     <h3 data-i18n="f1_title">빠른 실행</h3>
-    <p data-i18n="f1_desc">Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.</p>
+    <p data-i18n="f1_desc">Windows에서는 Ctrl+Shift+Space, macOS에서는 Cmd+Shift+Space로 어디서든 실행창을 열어 DAP에게 요청합니다.</p>
   </div>
   <div class="card reveal">
     <div class="card-icon">AI</div>
@@ -276,7 +277,7 @@
   <div class="card reveal">
     <div class="card-icon">SEL</div>
     <h3 data-i18n="f3_title">QUICK ACTIONS</h3>
-    <p data-i18n="f3_desc">텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.</p>
+    <p data-i18n="f3_desc">개선된 드래그 선택으로 텍스트를 잡으면 커서 근처에 빠른 액션 바가 안정적으로 열립니다. 다듬기, 번역, 요약, 질문과 웹 검색을 바로 실행하세요.</p>
   </div>
   <div class="card reveal">
     <div class="card-icon">PET</div>
@@ -286,27 +287,37 @@
 </div>
 
 <!-- CURRENT RELEASE -->
-<p class="section-label" data-i18n="latest_label">Current in v1.3.16</p>
-<div class="features z" aria-label="DAP v1.3.16 highlights">
+<p class="section-label" data-i18n="latest_label">Current in v1.4.1</p>
+<div class="features z" aria-label="DAP v1.4.1 highlights">
+  <div class="card reveal">
+    <div class="card-icon">PLAN</div>
+    <h3 data-i18n="latest_plan_title">Todo와 Calendar</h3>
+    <p data-i18n="latest_plan_desc">할 일은 리스트와 칸반으로 정리하고 일정은 월·주 캘린더로 확인합니다. 붙여넣은 글·이미지·메일에서 초안을 만들어 확인 후 등록할 수도 있어요.</p>
+  </div>
+  <div class="card reveal">
+    <div class="card-icon">LINK</div>
+    <h3 data-i18n="latest_connect_title">서비스 연결과 상태 안내</h3>
+    <p data-i18n="latest_connect_desc">Calendar는 DAP이 관리하는 OAuth로 Google 계정을 연결합니다. Todo는 Gmail 커넥터가 없을 때 필요한 연결 방법을 안내합니다.</p>
+  </div>
+  <div class="card reveal">
+    <div class="card-icon">AM</div>
+    <h3 data-i18n="latest_briefing_title">데일리 브리핑</h3>
+    <p data-i18n="latest_briefing_desc">원할 때 기능을 켜고 시간을 정하면 Todo와 Calendar가 오늘의 할 일과 일정만 짧게 모아 한 번에 전합니다.</p>
+  </div>
   <div class="card reveal">
     <div class="card-icon">TRAY</div>
     <h3 data-i18n="latest_tray_title">미니 채팅과 트레이 허브</h3>
     <p data-i18n="latest_tray_desc">DAP 아이콘을 왼쪽 클릭하면 같은 대화 기록을 쓰는 미니 채팅이, 오른쪽 클릭하면 상태·설정·플러그인을 모은 트레이 허브가 열립니다.</p>
   </div>
   <div class="card reveal">
-    <div class="card-icon">SAFE</div>
-    <h3 data-i18n="latest_safe_title">확인 후 실행하는 작업 위임</h3>
-    <p data-i18n="latest_safe_desc">파일 변경과 CLI 작업은 범위를 먼저 확인하고 진행 상황과 결과를 보여줍니다. 화면 제어는 Codex 연결에서 매 작업마다 승인을 받습니다.</p>
+    <div class="card-icon">LIVE</div>
+    <h3 data-i18n="latest_assist_title">Weather와 Meeting Assistant</h3>
+    <p data-i18n="latest_assist_desc">관심 도시의 현재 날씨와 3일 예보를 확인하고, 회의에서는 실시간 전사·번역, AI 답변 추천, 요약과 종료 리포트를 활용할 수 있습니다.</p>
   </div>
   <div class="card reveal">
-    <div class="card-icon">VOICE</div>
-    <h3 data-i18n="latest_voice_title">음성 입력과 작업 기억</h3>
-    <p data-i18n="latest_voice_desc">펫을 길게 눌러 말하고, 지난 대화와 DAP이 수행한 작업을 로컬 기록에서 다시 이어갑니다. 최근 프로젝트 활동은 요청할 때만 요약합니다.</p>
-  </div>
-  <div class="card reveal">
-    <div class="card-icon">PLUS</div>
-    <h3 data-i18n="latest_plugin_title">필요할 때 더하는 플러그인</h3>
-    <p data-i18n="latest_plugin_desc">Weather, 이미지 생성 같은 기능을 카탈로그에서 선택해 설치합니다. 플러그인은 필요한 권한만 요청하고, 허용 여부는 설정에서 다시 바꿀 수 있습니다.</p>
+    <div class="card-icon">IMG</div>
+    <h3 data-i18n="latest_image_title">AI 이미지와 더 나은 드래그 선택</h3>
+    <p data-i18n="latest_image_desc">Meme Vault에서 AI 이미지를 만들고 보관하세요. 개선된 텍스트 드래그 선택은 커서 가까이에 빠른 액션을 안정적으로 띄워줍니다.</p>
   </div>
 </div>
 
@@ -357,9 +368,9 @@
       <div class="mini-pet-preview">
         <img class="mini-pet-image" src="mini/claude_idle.png" width="2048" height="2048" loading="lazy" alt="Claude 미니 캐릭터 기본 상태" />
       </div>
-      <div class="mini-pet-toggle" aria-label="Claude 캐릭터 상태">
-        <button type="button" aria-pressed="true" data-mini-src="mini/claude_idle.png" data-mini-alt="Claude 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
-        <button type="button" aria-pressed="false" data-mini-src="mini/claude_active.png" data-mini-alt="Claude 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      <div class="mini-pet-toggle" data-i18n-aria="mini_claude_state_aria" aria-label="Claude 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/claude_idle.png" data-mini-alt="Claude 미니 캐릭터 기본 상태" data-i18n-mini-alt="mini_claude_idle_alt" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/claude_active.png" data-mini-alt="Claude 미니 캐릭터 반응 상태" data-i18n-mini-alt="mini_claude_active_alt" data-i18n="mini_active">반응</button>
       </div>
     </figure>
     <figure class="mini-pet-card reveal" data-mini-pet="codex">
@@ -367,9 +378,9 @@
       <div class="mini-pet-preview">
         <img class="mini-pet-image" src="mini/codex_idle.png" width="2048" height="2048" loading="lazy" alt="Codex 미니 캐릭터 기본 상태" />
       </div>
-      <div class="mini-pet-toggle" aria-label="Codex 캐릭터 상태">
-        <button type="button" aria-pressed="true" data-mini-src="mini/codex_idle.png" data-mini-alt="Codex 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
-        <button type="button" aria-pressed="false" data-mini-src="mini/codex_active.png" data-mini-alt="Codex 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      <div class="mini-pet-toggle" data-i18n-aria="mini_codex_state_aria" aria-label="Codex 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/codex_idle.png" data-mini-alt="Codex 미니 캐릭터 기본 상태" data-i18n-mini-alt="mini_codex_idle_alt" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/codex_active.png" data-mini-alt="Codex 미니 캐릭터 반응 상태" data-i18n-mini-alt="mini_codex_active_alt" data-i18n="mini_active">반응</button>
       </div>
     </figure>
     <figure class="mini-pet-card reveal" data-mini-pet="gemini">
@@ -377,9 +388,9 @@
       <div class="mini-pet-preview">
         <img class="mini-pet-image" src="mini/gemini_idle.png" width="2048" height="2048" loading="lazy" alt="Gemini 미니 캐릭터 기본 상태" />
       </div>
-      <div class="mini-pet-toggle" aria-label="Gemini 캐릭터 상태">
-        <button type="button" aria-pressed="true" data-mini-src="mini/gemini_idle.png" data-mini-alt="Gemini 미니 캐릭터 기본 상태" data-i18n="mini_idle">평소</button>
-        <button type="button" aria-pressed="false" data-mini-src="mini/gemini_active.png" data-mini-alt="Gemini 미니 캐릭터 반응 상태" data-i18n="mini_active">반응</button>
+      <div class="mini-pet-toggle" data-i18n-aria="mini_gemini_state_aria" aria-label="Gemini 캐릭터 상태">
+        <button type="button" aria-pressed="true" data-mini-src="mini/gemini_idle.png" data-mini-alt="Gemini 미니 캐릭터 기본 상태" data-i18n-mini-alt="mini_gemini_idle_alt" data-i18n="mini_idle">평소</button>
+        <button type="button" aria-pressed="false" data-mini-src="mini/gemini_active.png" data-mini-alt="Gemini 미니 캐릭터 반응 상태" data-i18n-mini-alt="mini_gemini_active_alt" data-i18n="mini_active">반응</button>
       </div>
     </figure>
   </div>
@@ -436,7 +447,7 @@
       <span class="step-num">03</span>
       <div>
         <strong data-i18n="s3_title">단축키로 즉시 호출</strong>
-        <p data-i18n="s3_desc"><code>Ctrl+Shift+Space</code>로 빠른 실행창, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 액션을 실행합니다.</p>
+        <p data-i18n="s3_desc">Windows에서는 <code>Ctrl+Shift+Space</code>와 <code>Ctrl+Alt+C</code>, macOS에서는 <code>Cmd+Shift+Space</code>와 <code>Cmd+Option+C</code>로 빠른 실행과 채팅을 엽니다.</p>
       </div>
     </div>
   </div>
@@ -508,51 +519,61 @@ let textPopReady = false;
 const I18N = {
   ko: {
     meta_title: "DAP (Desk AI Pet) - 당신의 첫 AI OS",
-    meta_desc: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다. Claude/Codex 채팅, 선택 영역 액션, 음성 입력, 안전한 작업 위임, 미니 채팅과 플러그인을 연결합니다.",
+    meta_desc: "DAP v1.4.1은 바탕화면 위 고양이와 Todo·Calendar, Google Calendar 연결, Gmail 상태 안내, 데일리 브리핑을 한 흐름으로 이어주는 AI OS입니다.",
     nav_home: "홈",
     nav_developers: "Docs",
     nav_plugins: "플러그인",
     nav_download: "다운로드",
     hero_eyebrow: "YOUR FIRST AI OS",
     hero_copy: "당신의 첫 AI OS\n바탕화면 위 고양이가 채팅과 작업 흐름을 이어줍니다",
-    hero_tagline: "고양이와 대화하고, 승인한 작업은 Claude/Codex에게 안전하게 맡기세요",
+    hero_tagline: "고양이와 대화하고, 할 일·일정·승인한 작업을 하나의 흐름으로 이어가세요",
     stage_title: "클릭해서 반응 보기",
     stage_aria: "고양이에게 반응하기",
+    hero_cat_alt: "화면 위 DAP 고양이",
+    demo_alt: "DAP 실제 UI 흐름: 빠른 실행창, 선택 영역 액션, 채팅 패널, 화면 위 고양이",
+    theme_to_light: "라이트 모드로 전환",
+    theme_to_dark: "다크 모드로 전환",
+    menu_open: "메뉴 열기",
+    menu_close: "메뉴 닫기",
     download_label: "DOWNLOAD",
-    download_subtitle: "최신 v1.3.16 · Windows와 macOS용 설치 파일",
+    download_subtitle: "최신 v1.4.1 · Windows와 macOS용 설치 파일",
     download_win: "Windows 다운로드",
     download_mac_arm: "macOS Apple Silicon 다운로드",
     download_mac_intel: "macOS Intel 다운로드",
     summary_label: "DAP overview",
     summary_title: "DAP은 바탕화면 위 고양이로 시작하는 AI OS입니다",
-    summary_desc: "DAP은 화면 위 고양이, 채팅, 빠른 실행, 선택 영역 액션을 한곳에 모읍니다. 음성으로 말하거나 텍스트를 선택해 요청하고, 파일 작업과 화면 제어는 범위를 확인한 뒤 Claude/Codex에 맡길 수 있어요.",
+    summary_desc: "DAP v1.4.1은 화면 위 고양이와 Todo·Calendar, 데일리 브리핑, 빠른 실행과 미니 채팅을 한곳에 모읍니다. Google Calendar를 연결하고 Gmail 상태 안내를 받아 필요한 정보와 작업을 흐름을 끊지 않고 이어갈 수 있어요.",
     fact_platform_label: "지원 플랫폼",
     fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
     fact_ai_label: "연결",
-    fact_ai_value: "로그인된 Claude · Codex 사용",
+    fact_ai_value: "Claude · Codex · Google Calendar",
     fact_license_label: "확장",
-    fact_license_value: "미니 채팅 · 트레이 허브 · 플러그인",
+    fact_license_value: "Todo · Calendar · 8개 플러그인",
     demo_label: "Preview",
     demo_title: "실제 화면 위에서 바로 이어지는 AI OS",
     demo_desc: "빠른 실행, 선택 영역 액션, 채팅, 화면 위 고양이가 하나의 흐름으로 이어집니다.",
     features_label: "Core features",
     f1_title: "빠른 실행",
-    f1_desc: "Ctrl+Shift+Space로 어디서든 실행창을 열고, 현재 흐름을 끊지 않고 DAP에게 요청합니다.",
+    f1_desc: "Windows에서는 Ctrl+Shift+Space, macOS에서는 Cmd+Shift+Space로 어디서든 실행창을 열어 DAP에게 요청합니다.",
     f2_title: "Claude/Codex 연결",
     f2_desc: "이미 로그인한 Claude 또는 Codex를 연결해, 따로 API Key를 입력하지 않고 바로 사용할 수 있습니다.",
     f3_title: "Quick actions",
-    f3_desc: "텍스트를 드래그해 선택하면 커서 근처의 빠른 액션 바에서 다듬기, 번역, 요약, 질문을 실행합니다. 질문 카드에서는 설명과 웹 검색을 바로 선택할 수 있어요.",
+    f3_desc: "개선된 드래그 선택으로 텍스트를 잡으면 커서 근처에 빠른 액션 바가 안정적으로 열립니다. 다듬기, 번역, 요약, 질문과 웹 검색을 바로 실행하세요.",
     f4_title: "Pet interface",
     f4_desc: "고양이가 투명 오버레이로 화면 위에 머물며 작업, 생각, 오류, 기쁨 같은 상태를 조용히 보여줍니다.",
-    latest_label: "Current in v1.3.16",
+    latest_label: "Current in v1.4.1",
+    latest_plan_title: "Todo와 Calendar",
+    latest_plan_desc: "할 일은 리스트와 칸반으로 정리하고 일정은 월·주 캘린더로 확인합니다. 붙여넣은 글·이미지·메일에서 초안을 만들어 확인 후 등록할 수도 있어요.",
+    latest_connect_title: "서비스 연결과 상태 안내",
+    latest_connect_desc: "Calendar는 DAP이 관리하는 OAuth로 Google 계정을 연결합니다. Todo는 Gmail 커넥터가 없을 때 필요한 연결 방법을 안내합니다.",
+    latest_briefing_title: "데일리 브리핑",
+    latest_briefing_desc: "원할 때 기능을 켜고 시간을 정하면 Todo와 Calendar가 오늘의 할 일과 일정만 짧게 모아 한 번에 전합니다.",
     latest_tray_title: "미니 채팅과 트레이 허브",
     latest_tray_desc: "DAP 아이콘을 왼쪽 클릭하면 같은 대화 기록을 쓰는 미니 채팅이, 오른쪽 클릭하면 상태·설정·플러그인을 모은 트레이 허브가 열립니다.",
-    latest_safe_title: "확인 후 실행하는 작업 위임",
-    latest_safe_desc: "파일 변경과 CLI 작업은 범위를 먼저 확인하고 진행 상황과 결과를 보여줍니다. 화면 제어는 Codex 연결에서 매 작업마다 승인을 받습니다.",
-    latest_voice_title: "음성 입력과 작업 기억",
-    latest_voice_desc: "펫을 길게 눌러 말하고, 지난 대화와 DAP이 수행한 작업을 로컬 기록에서 다시 이어갑니다. 최근 프로젝트 활동은 요청할 때만 요약합니다.",
-    latest_plugin_title: "필요할 때 더하는 플러그인",
-    latest_plugin_desc: "Weather, 이미지 생성 같은 기능을 카탈로그에서 선택해 설치합니다. 플러그인은 필요한 권한만 요청하고, 허용 여부는 설정에서 다시 바꿀 수 있습니다.",
+    latest_assist_title: "Weather와 Meeting Assistant",
+    latest_assist_desc: "관심 도시의 현재 날씨와 3일 예보를 확인하고, 회의에서는 실시간 전사·번역, AI 답변 추천, 요약과 종료 리포트를 활용할 수 있습니다.",
+    latest_image_title: "AI 이미지와 더 나은 드래그 선택",
+    latest_image_desc: "Meme Vault에서 AI 이미지를 만들고 보관하세요. 개선된 텍스트 드래그 선택은 커서 가까이에 빠른 액션을 안정적으로 띄워줍니다.",
     pet_moments_label: "Pet states",
     pet_moments_title: "상태가 보이는 작은 고양이 인터페이스",
     pet_working_title: "작업 중",
@@ -564,6 +585,15 @@ const I18N = {
     mini_desc: "미니 모드에는 Claude, Codex, Gemini 캐릭터가 기본 프로필로 들어 있습니다. 평소 모습과 반응 모습을 직접 등록하고 크기도 조절할 수 있습니다.",
     mini_idle: "평소",
     mini_active: "반응",
+    mini_claude_state_aria: "Claude 캐릭터 상태",
+    mini_codex_state_aria: "Codex 캐릭터 상태",
+    mini_gemini_state_aria: "Gemini 캐릭터 상태",
+    mini_claude_idle_alt: "Claude 미니 캐릭터 기본 상태",
+    mini_claude_active_alt: "Claude 미니 캐릭터 반응 상태",
+    mini_codex_idle_alt: "Codex 미니 캐릭터 기본 상태",
+    mini_codex_active_alt: "Codex 미니 캐릭터 반응 상태",
+    mini_gemini_idle_alt: "Gemini 미니 캐릭터 기본 상태",
+    mini_gemini_active_alt: "Gemini 미니 캐릭터 반응 상태",
     mini_note: "캐릭터 프로필은 설정에서 추가·수정·삭제할 수 있으며, 연결한 AI와 별개로 선택할 수 있습니다.",
     resources_label: "Next steps",
     resources_title: "DAP을 더 편하게 시작하는 방법",
@@ -580,7 +610,7 @@ const I18N = {
     s2_title: "Claude/Codex 연결",
     s2_desc: "온보딩 또는 설정에서 Claude/Codex를 선택합니다. 이미 로그인된 계정을 이어서 사용할 수 있습니다.",
     s3_title: "단축키로 즉시 호출",
-    s3_desc: "<code>Ctrl+Shift+Space</code>로 빠른 실행창, <code>Ctrl+Alt+C</code>로 채팅창을 열고 선택 영역 액션을 실행합니다.",
+    s3_desc: "Windows에서는 <code>Ctrl+Shift+Space</code>와 <code>Ctrl+Alt+C</code>, macOS에서는 <code>Cmd+Shift+Space</code>와 <code>Cmd+Option+C</code>로 빠른 실행과 채팅을 엽니다.",
     faq_title: "자주 묻는 질문",
     q1_title: "DAP은 무엇인가요?",
     q1_desc: "DAP(Desk AI Pet)은 Windows/macOS 바탕화면 위 고양이로 시작하는 AI OS입니다.",
@@ -596,51 +626,61 @@ const I18N = {
   },
   en: {
     meta_title: "DAP (Desk AI Pet) - Your first AI OS",
-    meta_desc: "DAP is an AI OS that starts with a desktop cat and connects Claude/Codex chat, selected-text actions, voice, approval-based delegation, mini chat, and plugins.",
+    meta_desc: "DAP v1.4.1 brings Todo, Calendar, Google Calendar connection, Gmail status guidance, and daily briefings together with a cat on your desktop.",
     nav_home: "Home",
     nav_developers: "Docs",
     nav_plugins: "Plugins",
     nav_download: "Download",
     hero_eyebrow: "YOUR FIRST AI OS",
     hero_copy: "Your first AI OS\nA desktop cat keeps chat and work in flow",
-    hero_tagline: "Chat with the cat and safely delegate approved work to Claude or Codex",
+    hero_tagline: "Chat with your desktop cat and keep tasks, schedules, and approved work in one flow",
     stage_title: "Click to interact",
     stage_aria: "Interact with the cat",
+    hero_cat_alt: "DAP cat on the desktop",
+    demo_alt: "DAP interface showing quick launch, selected-text actions, chat, and the desktop cat",
+    theme_to_light: "Switch to light mode",
+    theme_to_dark: "Switch to dark mode",
+    menu_open: "Open menu",
+    menu_close: "Close menu",
     download_label: "DOWNLOAD",
-    download_subtitle: "Latest v1.3.16 · installers for Windows and macOS",
+    download_subtitle: "Latest v1.4.1 · installers for Windows and macOS",
     download_win: "Download for Windows",
     download_mac_arm: "Download for macOS Apple Silicon",
     download_mac_intel: "Download for macOS Intel",
     summary_label: "DAP overview",
     summary_title: "DAP is an AI OS that starts with a cat on your desktop",
-    summary_desc: "DAP brings the desktop cat, chat, quick launch, and selected-text actions together. Speak or select text to ask, then delegate file work or screen control to Claude/Codex after reviewing the scope.",
+    summary_desc: "DAP v1.4.1 brings the desktop cat, Todo, Calendar, daily briefings, quick launch, and mini chat together. Connect Google Calendar, get clear Gmail status guidance, and keep work moving without leaving your flow.",
     fact_platform_label: "Platforms",
     fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
     fact_ai_label: "Connection",
-    fact_ai_value: "Use your logged-in Claude · Codex",
+    fact_ai_value: "Claude · Codex · Google Calendar",
     fact_license_label: "Extensions",
-    fact_license_value: "Mini chat · tray hub · plugins",
+    fact_license_value: "Todo · Calendar · 8 plugins",
     demo_label: "Preview",
     demo_title: "An AI OS that stays in the real desktop flow",
     demo_desc: "Quick launch, selected-text actions, chat, and the desktop cat work as one flow.",
     features_label: "Core features",
     f1_title: "Quick launch",
-    f1_desc: "Open the launcher from anywhere with Ctrl+Shift+Space and ask DAP without leaving your flow.",
+    f1_desc: "Open the launcher with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS and ask DAP without leaving your flow.",
     f2_title: "Claude/Codex connection",
     f2_desc: "Connect Claude or Codex you already use, without starting with a separate API-key setup.",
     f3_title: "Quick actions",
-    f3_desc: "Drag-select text to open a quick-action bar near the cursor for polish, translate, summarize, and ask. The ask card also includes explain and web-search presets.",
+    f3_desc: "Improved drag selection opens the quick-action bar reliably near your cursor. Polish, translate, summarize, ask, or search the web right where you selected the text.",
     f4_title: "Pet interface",
     f4_desc: "The cat stays on screen as a transparent overlay and quietly reflects working, thinking, error, and happy states.",
-    latest_label: "Current in v1.3.16",
+    latest_label: "Current in v1.4.1",
+    latest_plan_title: "Todo and Calendar",
+    latest_plan_desc: "Organize tasks as a list or Kanban board and review events in month or week views. Turn pasted text, images, and emails into drafts, then confirm before adding them.",
+    latest_connect_title: "Service connections and clear status",
+    latest_connect_desc: "Calendar connects a Google account through OAuth managed by DAP. If Todo cannot use Gmail, it tells you which connector setup is needed.",
+    latest_briefing_title: "Daily briefing",
+    latest_briefing_desc: "Turn it on and choose a time when you want Todo and Calendar to combine today's tasks and events into one concise update.",
     latest_tray_title: "Mini chat and tray hub",
     latest_tray_desc: "Left-click the DAP icon for streaming mini chat that shares your conversation history. Right-click for a tray hub with status, settings, and plugins.",
-    latest_safe_title: "Approval-based delegation",
-    latest_safe_desc: "Review the scope before file changes and CLI work, then follow progress and results. Codex screen control asks for approval on every task.",
-    latest_voice_title: "Voice and work memory",
-    latest_voice_desc: "Press and hold the pet to speak, then continue from local conversation and task records. Recent project activity is summarized only when you ask.",
-    latest_plugin_title: "Install only what you need",
-    latest_plugin_desc: "Add features such as Weather and image generation from the catalog. Plugins request only the permissions they need, and you can revise access in Settings.",
+    latest_assist_title: "Weather and Meeting Assistant",
+    latest_assist_desc: "Check current conditions and a three-day forecast, or use live transcription, translation, AI reply suggestions, summaries, and an end-of-meeting report.",
+    latest_image_title: "AI images and better drag selection",
+    latest_image_desc: "Create and save AI images in Meme Vault. Improved text selection keeps quick actions close to the cursor and reliably in reach.",
     pet_moments_label: "Pet states",
     pet_moments_title: "A small cat interface that shows state",
     pet_working_title: "Working",
@@ -652,6 +692,15 @@ const I18N = {
     mini_desc: "Mini mode includes Claude, Codex, and Gemini character profiles. Add your own idle and reaction images, then adjust the size to fit your desktop.",
     mini_idle: "Idle",
     mini_active: "Reaction",
+    mini_claude_state_aria: "Claude character state",
+    mini_codex_state_aria: "Codex character state",
+    mini_gemini_state_aria: "Gemini character state",
+    mini_claude_idle_alt: "Claude mini character in its idle state",
+    mini_claude_active_alt: "Claude mini character in its reaction state",
+    mini_codex_idle_alt: "Codex mini character in its idle state",
+    mini_codex_active_alt: "Codex mini character in its reaction state",
+    mini_gemini_idle_alt: "Gemini mini character in its idle state",
+    mini_gemini_active_alt: "Gemini mini character in its reaction state",
     mini_note: "Add, edit, or remove character profiles in Settings and choose one independently from your connected AI.",
     resources_label: "Next steps",
     resources_title: "A simpler way to start with DAP",
@@ -668,7 +717,7 @@ const I18N = {
     s2_title: "Connect Claude/Codex",
     s2_desc: "Choose Claude or Codex in onboarding or settings, then continue with the account you already use.",
     s3_title: "Call with a hotkey",
-    s3_desc: "Use <code>Ctrl+Shift+Space</code> for quick launch, <code>Ctrl+Alt+C</code> for chat, and selected-text actions when you need them.",
+    s3_desc: "On Windows use <code>Ctrl+Shift+Space</code> and <code>Ctrl+Alt+C</code>; on macOS use <code>Cmd+Shift+Space</code> and <code>Cmd+Option+C</code> for quick launch and chat.",
     faq_title: "FAQ",
     q1_title: "What is DAP?",
     q1_desc: "DAP(Desk AI Pet) is an AI OS that starts with a cat on your Windows or macOS desktop.",
@@ -720,12 +769,35 @@ function applyLang(lang){
     if (typeof v !== 'string') continue;
     el.setAttribute('aria-label', v);
   }
+  for (const el of document.querySelectorAll('[data-i18n-alt]')) {
+    const key = el.getAttribute('data-i18n-alt');
+    const v = dict[key];
+    if (typeof v === 'string') el.setAttribute('alt', v);
+  }
+  for (const button of document.querySelectorAll('[data-i18n-mini-alt]')) {
+    const key = button.getAttribute('data-i18n-mini-alt');
+    const v = dict[key];
+    if (typeof v !== 'string') continue;
+    button.dataset.miniAlt = v;
+    if (button.getAttribute('aria-pressed') === 'true') {
+      const image = button.closest('.mini-pet-card')?.querySelector('.mini-pet-image');
+      if (image) image.alt = v;
+    }
+  }
   const langToggle = document.getElementById('lang-toggle');
   if (langToggle) {
     const nextLang = lang === 'en' ? 'ko' : 'en';
     langToggle.dataset.nextLang = nextLang;
     langToggle.textContent = nextLang.toUpperCase();
     langToggle.setAttribute('aria-label', lang === 'en' ? '한국어로 전환' : 'Switch to English');
+  }
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.setAttribute('aria-label', themeToggle.dataset.nextTheme === 'light' ? dict.theme_to_light : dict.theme_to_dark);
+  }
+  const menuToggle = document.getElementById('site-nav-menu');
+  if (menuToggle) {
+    menuToggle.setAttribute('aria-label', menuToggle.getAttribute('aria-expanded') === 'true' ? dict.menu_close : dict.menu_open);
   }
   for (const el of document.querySelectorAll('[data-href-ko][data-href-en]')) {
     el.setAttribute('href', lang === 'en' ? el.dataset.hrefEn : el.dataset.hrefKo);
@@ -745,10 +817,11 @@ function applyTheme(theme) {
   try { localStorage.setItem('dap-theme', selected); } catch (_) {}
   const toggle = document.getElementById('theme-toggle');
   if (toggle) {
+    const dict = I18N[document.documentElement.lang] || I18N.ko;
     const nextTheme = selected === 'light' ? 'dark' : 'light';
     toggle.dataset.nextTheme = nextTheme;
     toggle.textContent = nextTheme.toUpperCase();
-    toggle.setAttribute('aria-label', nextTheme === 'light' ? '라이트 모드로 전환' : '다크 모드로 전환');
+    toggle.setAttribute('aria-label', nextTheme === 'light' ? dict.theme_to_light : dict.theme_to_dark);
   }
 }
 applyTheme(document.documentElement.dataset.theme);
@@ -770,15 +843,17 @@ function setupSiteMenu() {
   const nav = document.getElementById('site-nav-links');
   if (!header || !button || !nav) return;
   const close = () => {
+    const dict = I18N[document.documentElement.lang] || I18N.ko;
     header.classList.remove('is-menu-open');
     button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-label', '메뉴 열기');
+    button.setAttribute('aria-label', dict.menu_open);
   };
   const toggle = () => {
+    const dict = I18N[document.documentElement.lang] || I18N.ko;
     const isOpen = !header.classList.contains('is-menu-open');
     header.classList.toggle('is-menu-open', isOpen);
     button.setAttribute('aria-expanded', String(isOpen));
-    button.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+    button.setAttribute('aria-label', isOpen ? dict.menu_close : dict.menu_open);
   };
   button.addEventListener('click', toggle);
   nav.addEventListener('click', (event) => {

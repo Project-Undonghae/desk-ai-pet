@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP 플러그인 서비스</title>
-  <meta name="description" content="DAP 공식 플러그인 카탈로그와 Plugin Platform 0.2 등록 안내. manifest v2, 공개 GitHub 저장소, 권한과 버전 태그 기준." />
+  <meta name="description" content="DAP 공식 플러그인 카탈로그와 Plugin Platform 0.3 등록 안내. Todo, Calendar, Weather, Meeting Assistant 등 최신 8개 확장 기능을 확인하세요." />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
@@ -48,7 +48,7 @@
     <div class="marketplace-hero-grid">
       <div>
         <h1 data-i18n="title">DAP Plugin Registry</h1>
-        <p data-i18n="intro">Project-Undonghae/dap-plugins의 공식 카탈로그를 불러옵니다. DAP 앱도 같은 목록에서 공개 GitHub 플러그인을 설치하며, 개발 계약은 Plugin Platform 0.2 · manifest v2 기준입니다.</p>
+        <p data-i18n="intro">Todo, Calendar, Weather, Meeting Assistant 등 공식 카탈로그의 최신 8개 플러그인을 확인하세요. DAP 1.4.1은 Plugin Platform 0.3 · manifest v2 계약을 사용합니다.</p>
       </div>
       <dl class="marketplace-stats" aria-label="Plugin marketplace summary">
         <div>
@@ -135,7 +135,7 @@ const I18N = {
     title: "DAP Plugin Registry",
     back_home: "< 랜딩으로 돌아가기",
     eyebrow: "Plugin registry",
-    intro: "Project-Undonghae/dap-plugins의 공식 카탈로그를 불러옵니다. DAP 앱도 같은 목록에서 공개 GitHub 플러그인을 설치하며, 개발 계약은 Plugin Platform 0.2 · manifest v2 기준입니다.",
+    intro: "Todo, Calendar, Weather, Meeting Assistant 등 공식 카탈로그의 최신 8개 플러그인을 확인하세요. DAP 1.4.1은 Plugin Platform 0.3 · manifest v2 계약을 사용합니다.",
     stat_plugins_label: "등록 플러그인",
     stat_source_label: "카탈로그",
     search_placeholder: "플러그인 검색",
@@ -184,7 +184,7 @@ const I18N = {
     title: "DAP Plugin Registry",
     back_home: "< Back to landing",
     eyebrow: "Plugin registry",
-    intro: "This page loads the official Project-Undonghae/dap-plugins catalog. DAP installs public GitHub plugins from the same list under the Plugin Platform 0.2 and manifest v2 contract.",
+    intro: "Browse the latest eight official plugins, including Todo, Calendar, Weather, and Meeting Assistant. DAP 1.4.1 uses the Plugin Platform 0.3 and manifest v2 contract.",
     stat_plugins_label: "Registered",
     stat_source_label: "Catalog",
     search_placeholder: "Search plugins",
@@ -363,6 +363,22 @@ const FALLBACK_CATALOG = {
       category: "productivity",
       repo: "o-min222/dap-meeting-assistant",
       ref: "v1.0.5",
+    },
+    {
+      id: "io.github.o-min222.todo",
+      name: "Todo",
+      description: "할 일을 칸반으로 관리하고, 붙여넣은 글·이미지·메일에서 초안을 뽑아 확인 후 등록",
+      category: "productivity",
+      repo: "o-min222/dap-todo",
+      ref: "v0.1.2",
+    },
+    {
+      id: "io.github.o-min222.calendar",
+      name: "Calendar",
+      description: "월·주 캘린더. 연결 없이도 일정을 쓰고, Google 캘린더나 연결된 AI에서 가져온다",
+      category: "productivity",
+      repo: "o-min222/dap-calendar",
+      ref: "v0.1.2",
     },
   ],
 };

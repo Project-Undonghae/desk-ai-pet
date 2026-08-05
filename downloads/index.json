@@ -1,7 +1,10 @@
 {
-  "updated_at": "2026-07-28T08:54:56Z",
-  "latest": "v1.3.16",
+  "updated_at": "2026-08-02T12:31:52Z",
+  "latest": "v1.4.1",
   "versions": [
+    "v1.4.1",
+    "v1.4.0",
+    "v1.3.17",
     "v1.3.16",
     "v1.3.15",
     "v1.3.14",
@@ -23,6 +26,21 @@
     "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
   },
   "per_version_files": {
+    "v1.4.1": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.1/Desk-AI-Pet-Setup-1.4.1.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.1/Desk-AI-Pet-1.4.1-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.1/Desk-AI-Pet-1.4.1.dmg"
+    },
+    "v1.4.0": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.0/Desk-AI-Pet-Setup-1.4.0.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.0/Desk-AI-Pet-1.4.0-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.0/Desk-AI-Pet-1.4.0.dmg"
+    },
+    "v1.3.17": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.3.17/Desk-AI-Pet-Setup-1.3.17.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.3.17/Desk-AI-Pet-1.3.17-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.3.17/Desk-AI-Pet-1.3.17.dmg"
+    },
     "v1.3.16": {
       "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.3.16/Desk-AI-Pet-Setup-1.3.16.exe",
       "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.3.16/Desk-AI-Pet-1.3.16-arm64.dmg",
@@ -95,6 +113,21 @@
     }
   },
   "checksums": {
+    "v1.4.1": {
+      "win": "e7ce251b3aca53c6876f77627c86d3bdd87cefe00b5bf680e2e7eac80afce3c2",
+      "mac_arm64": "2ed888e751a7852202f128d8edc1ffe930736355c7617d48590db8a2d17a8d4d",
+      "mac_x64": "0d9c01c1542e9ab7fb946dd28d6f8ea7c7b5a5d1a0353a7c29e989ccdeb370b8"
+    },
+    "v1.4.0": {
+      "win": "dac893376b9e6b927b991c7c3659cd2c4b546e8ea83ab5360a689c6e982307fe",
+      "mac_arm64": "d93176e3f49a40a50778a93fa17e23b0a5d995b5818fac1a741d5fe792b6bc04",
+      "mac_x64": "c1bd7fda64115155edd12a156462233288e376cfff888d297191954770b98888"
+    },
+    "v1.3.17": {
+      "win": "802fb27ab4c5956c21ac22436676135b3cbae7d46f06a95f3e798b4d92282706",
+      "mac_arm64": "472433b1f68ba15a203810313fa4ba23eb7b1956c4ec86142d48578bd290b8c2",
+      "mac_x64": "99906415b827dfa2fa8f2d3d8214aef7fca855661df64d0d0f0ea429c677b88b"
+    },
     "v1.3.16": {
       "win": "c3a760beba5e5b12d387e2c2fe2c2be818dd2848ac639d9614c863ac2ef727d6",
       "mac_arm64": "080f32c69819b7eb5f1b57c09cd4714b681c2efb6551ac15271a2d05be90469a",

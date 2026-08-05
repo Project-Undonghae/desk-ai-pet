@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
-  <meta name="description" content="DAP Plugin Platform 0.2 공식 개발 문서. manifest v2, ctx API, 트레이 패널, 팔레트, 권한, 설치와 카탈로그 배포 계약." />
+  <meta name="description" content="DAP Plugin Platform 0.3 공식 개발 문서. manifest v2, 데일리 브리핑, OAuth·커넥터 API, 트레이 패널, 권한과 카탈로그 배포 계약." />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
@@ -65,7 +65,7 @@
     </p>
     <div class="docs-callout">
       <strong>문서/버전 기준</strong>
-      <p>현재 Plugin Platform 버전은 <code>0.2.0</code>, manifest 기준은 <code>manifest_version: 2</code>, 전체 API 기준 최소 앱 버전은 <code>DAP 1.3.13</code>입니다. 이 페이지와 <code>docs/plugin-platform/ai-context.md</code>는 <code>mydeskpet/docs/PLUGIN_API.md</code>의 현행 계약을 공개용으로 동기화합니다.</p>
+      <p>현재 Plugin Platform 버전은 <code>0.3.0</code>, manifest 기준은 <code>manifest_version: 2</code>, 전체 API 기준 최소 앱 버전은 <code>DAP 1.4.1</code>입니다. 0.3은 데일리 브리핑과 Host 관리 OAuth·커넥터 상태 API를 추가한 하위 호환 릴리스입니다.</p>
     </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
@@ -109,7 +109,7 @@ Return:
 - local install steps
 - known limitations
 
-Follow manifest_version: 2 and Plugin Platform 0.2.0.
+Follow manifest_version: 2 and Plugin Platform 0.3.0.
 Do not invent Host APIs.</code></pre>
       </div>
       <div class="docs-card-grid docs-ai-links" aria-label="AI-readable documentation">
@@ -173,7 +173,7 @@ manifest_version: 2
 entry: dap_my_plugin.plugin:activate
 description: DAP에서 실행되는 첫 플러그인
 author: Your Name
-min_app_version: "1.3.13"
+min_app_version: "1.4.1"
 surface: user
 permissions: []
 execution_modes:
@@ -327,7 +327,7 @@ panel.postMessage({ type: "status", items });</code></pre>
         <tr><td><code>permissions</code></td><td>아니요</td><td>사용할 권한 토큰 목록입니다.</td></tr>
         <tr><td><code>execution_modes</code></td><td>아니요</td><td><code>user</code>, <code>builtin</code>, <code>scheduled</code> 등 실행 형태 메타데이터입니다.</td></tr>
         <tr><td><code>context_contributors</code></td><td>아니요</td><td><code>ctx.aiContext</code>로 등록할 기여 id 목록입니다.</td></tr>
-        <tr><td><code>surface_slots</code></td><td>아니요</td><td>현재 소비되는 시각 표면은 <code>tray_panel</code>입니다.</td></tr>
+        <tr><td><code>surface_slots</code></td><td>아니요</td><td><code>tray_panel</code> 또는 <code>briefing.daily</code> 기여를 사용하기 전에 선언합니다.</td></tr>
       </table>
       <p>추가 필드는 거절됩니다. manifest에는 명령·matcher·backend를 넣지 말고 <code>activate(ctx)</code>에서 등록하세요.</p>
 
@@ -342,6 +342,7 @@ panel.postMessage({ type: "status", items });</code></pre>
         <tr><td><code>ctx.shortcuts.registerShortcut</code></td><td>재바인딩 가능한 전역 단축키를 등록합니다.</td></tr>
         <tr><td><code>ctx.trayPanel.register</code></td><td>트레이 허브의 샌드박스 시각 패널을 등록합니다.</td></tr>
         <tr><td><code>ctx.aiContext.contribute</code></td><td>manifest에 선언한 짧은 AI 컨텍스트를 기여합니다.</td></tr>
+        <tr><td><code>ctx.briefing.contribute</code></td><td><code>briefing.daily</code>에 오늘의 짧은 사용자용 요약을 기여합니다.</td></tr>
       </table>
 
       <h3>Host services</h3>
@@ -359,6 +360,8 @@ panel.postMessage({ type: "status", items });</code></pre>
         <tr><td><code>meeting.capture</code></td><td><code>ctx.host.meeting</code></td><td>지원 여부 확인 후 회의 캡처·상태·전사 이벤트를 사용합니다.</td></tr>
         <tr><td><code>ai.accounts</code></td><td><code>ctx.host.aiAccounts</code></td><td>로그인된 Claude/Codex 계정과 공개된 사용량 메타데이터를 조회합니다.</td></tr>
         <tr><td><code>image.generate</code></td><td><code>ctx.host.imageGen</code></td><td>Codex provider로 PNG를 생성해 bytes로 받습니다.</td></tr>
+        <tr><td><code>oauth.connect</code></td><td><code>ctx.host.oauth</code></td><td>Host가 관리하는 OAuth 연결·상태·access token·해제 흐름을 사용합니다.</td></tr>
+        <tr><td><code>connectors.read</code></td><td><code>ctx.host.connectors</code></td><td>현재 Gmail 커넥터의 상태와 Host가 만든 사용자 안내를 읽습니다.</td></tr>
       </table>
     </section>
 
@@ -376,12 +379,31 @@ panel.postMessage({ type: "status", items });</code></pre>
         <tr><td><code>meeting.capture</code></td><td>마이크·시스템 오디오 전사</td><td>OS 권한과 capability gate, 실행 중 표시</td></tr>
         <tr><td><code>ai.accounts</code></td><td>계정·구독 한도 메타데이터</td><td>token/cookie/keychain 값은 전달되지 않음</td></tr>
         <tr><td><code>image.generate</code></td><td>AI 이미지 생성</td><td>Codex provider 전용, 사용자 quota 소모</td></tr>
+        <tr><td><code>oauth.connect</code></td><td>OAuth 서비스 연결</td><td>브라우저 흐름·refresh token 저장은 DAP이 관리</td></tr>
+        <tr><td><code>connectors.read</code></td><td>Gmail 커넥터 상태</td><td>읽기 전용 상태와 Host가 만든 사용자 안내만 제공</td></tr>
       </table>
       <p>현재 entry module은 신뢰된 in-process 코드입니다. 권한 브로커는 Host API 노출을 제한하지만 악성 플러그인을 프로세스 수준에서 격리하지는 않습니다.</p>
     </section>
 
     <section id="examples">
       <h2>Examples</h2>
+      <h3>Daily briefing and OAuth</h3>
+      <pre><code>// plugin.yaml: surface_slots: [briefing.daily]
+ctx.briefing.contribute({
+  id: "today",
+  provider: () =&gt; "오늘 일정 2개 · 마감 할 일 1개",
+});
+
+// plugin.yaml: permissions: [oauth.connect]
+const status = await ctx.host.oauth.status("google-calendar");
+if (!status.connected) {
+  await ctx.host.oauth.connect({
+    connectionId: "google-calendar",
+    provider: "google",
+    scopes: ["https://www.googleapis.com/auth/calendar.readonly"],
+  });
+}</code></pre>
+      <p>OAuth 브라우저 흐름과 refresh token 보관은 DAP Host가 맡습니다. 플러그인은 refresh token을 직접 받거나 저장하지 않습니다. <code>connectors.read</code>를 선언한 플러그인은 현재 <code>ctx.host.connectors.status("gmail")</code>로 <code>{ state, via, hint }</code>를 받습니다. <code>state</code>는 <code>connected</code>, <code>unavailable</code>, <code>unknown</code> 중 하나이며, 판별 자체가 실패한 <code>unknown</code>에서는 기능을 차단하지 말고 명시적인 <code>unavailable</code>에서만 Host의 <code>hint</code>를 안내하세요.</p>
       <h3>Storage</h3>
       <pre><code>await ctx.host.storage.setJson("pins", ["a", "b"]);
 const pins = await ctx.host.storage.getJson("pins");
@@ -496,6 +518,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
 
     <section id="changelog">
       <h2>Changelog</h2>
+      <p><strong>2026-08-05</strong>: Plugin Platform <code>0.3.0</code>. <code>briefing.daily</code>, <code>ctx.briefing</code>, <code>oauth.connect</code>/<code>ctx.host.oauth</code>, <code>connectors.read</code>/<code>ctx.host.connectors</code>를 추가했습니다. 최소 앱은 DAP 1.4.1이며 manifest v2는 그대로 호환됩니다.</p>
       <p><strong>2026-07-29</strong>: Plugin Platform <code>0.2.0</code>. <code>tray_panel</code>, 동적 tray submenu, <code>ctx.aiContext</code>, 설정 쓰기, presentation/meeting/AI accounts/image generation Host API와 최신 설치·업데이트 계약을 반영했습니다. manifest v2는 그대로 호환됩니다.</p>
       <p><strong>2026-07-05</strong>: Plugin Platform <code>0.1.0</code> 기준 문서 구조를 정리했습니다. Electron/TypeScript Host API, manifest v2, palette, distribution, versioning 구조를 반영했습니다.</p>
     </section>

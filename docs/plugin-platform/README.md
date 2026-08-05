@@ -2,7 +2,7 @@
 
 이 문서는 DAP(mydeskpet) 안의 플러그인 관련 기능, manifest, host API, 설치/카탈로그 흐름이 바뀔 때 개발문서와 버전을 같이 관리하기 위한 기준입니다.
 
-현재 공개 기준은 **Plugin Platform 0.2.0 / manifest v2 / DAP 1.3.13+**입니다.
+현재 공개 기준은 **Plugin Platform 0.3.0 / manifest v2 / DAP 1.4.1+**입니다. 0.3은 OAuth, 커넥터 상태, 데일리 브리핑을 추가한 하위 호환 minor 릴리스입니다.
 앱 저장소의 정본은 `mydeskpet/docs/PLUGIN_API.md`이며, 공개 `developers.html`,
 `docs/plugin-platform/ai-context.md`, `llms.txt`는 이 계약에서 파생됩니다.
 
