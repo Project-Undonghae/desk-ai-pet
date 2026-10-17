@@ -1,7 +1,9 @@
 {
-  "updated_at": "2026-08-02T12:31:52Z",
-  "latest": "v1.4.1",
+  "updated_at": "2026-10-17T10:13:23Z",
+  "latest": "v1.6.1",
   "versions": [
+    "v1.6.1",
+    "v1.6.0",
     "v1.4.1",
     "v1.4.0",
     "v1.3.17",
@@ -26,6 +28,16 @@
     "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
   },
   "per_version_files": {
+    "v1.6.1": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.1/Desk-AI-Pet-Setup-1.6.1.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.1/Desk-AI-Pet-1.6.1-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.1/Desk-AI-Pet-1.6.1.dmg"
+    },
+    "v1.6.0": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.0/Desk-AI-Pet-Setup-1.6.0.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.0/Desk-AI-Pet-1.6.0-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.0/Desk-AI-Pet-1.6.0.dmg"
+    },
     "v1.4.1": {
       "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.1/Desk-AI-Pet-Setup-1.4.1.exe",
       "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.4.1/Desk-AI-Pet-1.4.1-arm64.dmg",
@@ -113,6 +125,16 @@
     }
   },
   "checksums": {
+    "v1.6.1": {
+      "win": "8db46dc7357c3f4239e65ed6060a0269425575779b297d33f551d1abde1842b6",
+      "mac_arm64": "df6aed1775a32fa1884fd598a0dcab3bf19cd72f22bfc20c8637663365dd9bba",
+      "mac_x64": "efbdffd39d0433ed7163e7b9db50dd951752d89139305b3e8e199ec2e54f080a"
+    },
+    "v1.6.0": {
+      "win": "5a09721fb77bb3fd3e1355b3d16bc413048ca553e854ec1a54b1dbdc4d9a14c1",
+      "mac_arm64": "a1cc53a4ad5e774dd1e1b3e9074b013d528072572648fb216791d4c257ec3e3c",
+      "mac_x64": "1778cc44411d92cc5d611b31ac7ed699830d3306caa946fefd7baae1ccc32e73"
+    },
     "v1.4.1": {
       "win": "e7ce251b3aca53c6876f77627c86d3bdd87cefe00b5bf680e2e7eac80afce3c2",
       "mac_arm64": "2ed888e751a7852202f128d8edc1ffe930736355c7617d48590db8a2d17a8d4d",

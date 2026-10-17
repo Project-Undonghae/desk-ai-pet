@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Test release metadata sync
+        run: node --test scripts/sync-release-metadata.test.mjs
+
       - name: Update release metadata
         env:
           GITHUB_TOKEN: ${{ github.token }}
