@@ -68,7 +68,12 @@ interface CharacterPersona {
 | grabbed | waiting |
 | error | failed |
 | jumping | jumping |
+| dance (1.6.2+) | jumping |
+| feed_munch (1.6.2+) | running |
+| groom / sleep / sleep_menu (1.6.2+) | waiting |
 | 그 외 | idle |
+
+스킨이 제공하지 않는 모션만 `idle`로 돌아갑니다. 1.6.2부터 춤·먹기·그루밍·휴식 상태에도 기존 모션을 대응해, 기본 펫이 반응할 때 스킨만 평소 대기처럼 보이던 누락을 수정했습니다. 전용 춤·먹기·수면 프레임을 새로 만든 것은 아니며 기존 스킨의 가장 가까운 모션을 사용합니다. 스킨 적용 자체는 이동 속도·배회 확률·행동 타이머를 바꾸지 않습니다.
 
 ## 앱에 추가한 연결
 
