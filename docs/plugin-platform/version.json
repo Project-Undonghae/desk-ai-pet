@@ -1,8 +1,8 @@
 {
-  "plugin_platform_version": "0.3.0",
+  "plugin_platform_version": "0.4.0",
   "manifest_version": 2,
-  "minimum_dap_version": "v1.4.1",
-  "docs_revision": "2026-08-05",
+  "minimum_dap_version": "v1.6.0",
+  "docs_revision": "2026-10-17",
   "docs_entry": "developers.html",
   "catalog_repository": "Project-Undonghae/dap-plugins",
   "catalog_file": "plugin_catalog.json",
@@ -27,7 +27,8 @@
       "ai.accounts": "aiAccounts",
       "image.generate": "imageGen",
       "oauth.connect": "oauth",
-      "connectors.read": "connectors"
+      "connectors.read": "connectors",
+      "pet.skin": "petSkins"
     }
   },
   "versioning": {
@@ -37,6 +38,11 @@
     "plugin": "Individual plugin version. Managed in each plugin repository and catalog ref."
   },
   "compatibility": [
+    {
+      "plugin_platform": "0.4.x",
+      "manifest_version": 2,
+      "dap_app": ">=v1.6.0"
+    },
     {
       "plugin_platform": "0.3.x",
       "manifest_version": 2,

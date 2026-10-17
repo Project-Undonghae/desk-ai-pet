@@ -2,7 +2,7 @@
 
 Use this file when an AI coding assistant creates or modifies a DAP plugin.
 
-Contract baseline: Plugin Platform `0.3.0`, `manifest_version: 2`, full API requires DAP `>=1.4.1`.
+Contract baseline: Plugin Platform `0.4.0`, `manifest_version: 2`, full API requires DAP `>=1.6.0`.
 The complete source of truth is `mydeskpet/docs/PLUGIN_API.md`; never invent an API that is not documented here or there.
 
 ## Required output
@@ -357,5 +357,14 @@ and create a DAP plugin that [describe the feature].
 
 Return plugin.yaml, a self-contained ESM entry file, required permissions with reasons,
 local install steps, known limitations, and any optional palette/tray static files.
-Follow manifest_version: 2 and Plugin Platform 0.3.0. Do not invent Host APIs.
+Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 ```
+
+
+## Character skins (DAP >=1.6.0, Plugin Platform 0.4.0)
+
+Declare `pet.skin` and feature-detect `ctx.host.petSkins.apiVersion === 2`. Register a local PNG definition with `registerSkin`, then call `apply({usePersona:true|false})`. Registration alone does not change appearance. `reset` and `dispose` affect only that registration if active; disable/unload also clears owned state. The last applied skin wins. Capture persona at each user/proactive turn; preserve user names, call names, memory and host permissions.
+
+See [pet-skins.md](pet-skins.md) for the complete schema, limits, lifecycle and supported motion mapping. `look` is preview metadata only; the desktop pet does not use 16-direction gaze yet. No sprite assets are bundled with DAP. Permission controls Host API exposure; plugin entry code remains trusted in-process code.
+
+Plugin settings read/write keys must use the fully qualified section id `${ctx.pluginId}.section`; section contribution registration qualifies local ids, but `ctx.host.settings.values`/`set` do not.
