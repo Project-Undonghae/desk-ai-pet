@@ -4,15 +4,11 @@ const repository = process.env.GITHUB_REPOSITORY || "Project-Undonghae/desk-ai-p
 const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
 const requestedTag = process.argv[2]?.trim();
 
-if (!token) {
-  throw new Error("GITHUB_TOKEN or GH_TOKEN is required.");
-}
-
 async function github(path) {
   const response = await fetch(`https://api.github.com/repos/${repository}${path}`, {
     headers: {
       Accept: "application/vnd.github+json",
-      Authorization: `Bearer ${token}`,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       "X-GitHub-Api-Version": "2022-11-28",
     },
   });
@@ -74,7 +70,6 @@ downloads.checksums = {
   },
   ...withoutKey(downloads.checksums, tag),
 };
-await writeFile(indexPath, `${JSON.stringify(downloads, null, 2)}\n`);
 
 const indexHtmlPath = "index.html";
 const indexHtml = await readFile(indexHtmlPath, "utf8");
@@ -85,17 +80,15 @@ if (!softwareVersionPattern.test(indexHtml)) {
 const nextIndexHtml = indexHtml.replace(
   softwareVersionPattern,
   `$1${version}$2`,
-);
-await writeFile(indexHtmlPath, nextIndexHtml);
+).replace(/((?:최신 |Latest |Current in |DAP )v)\d+\.\d+\.\d+/g, `$1${version}`);
 
 const llmsPath = "llms.txt";
 const llms = await readFile(llmsPath, "utf8");
-const releaseMarkerPattern = /^Current app release: .*$/m;
+const releaseMarkerPattern = /(The current public release is )v\d+\.\d+\.\d+/;
 if (!releaseMarkerPattern.test(llms)) {
-  throw new Error("Current app release marker not found in llms.txt");
+  throw new Error("Current public release marker not found in llms.txt");
 }
-const nextLlms = llms.replace(releaseMarkerPattern, `Current app release: ${tag}`);
-await writeFile(llmsPath, nextLlms);
+const nextLlms = llms.replace(releaseMarkerPattern, `$1${tag}`);
 
 const sitemapPath = "sitemap.xml";
 const sitemap = await readFile(sitemapPath, "utf8");
@@ -109,6 +102,10 @@ const nextSitemap = sitemap.replace(
   landingLastmodPattern,
   `$1${syncDate}`,
 );
+// Validate every document before writing so a missing marker leaves metadata intact.
+await writeFile(indexPath, `${JSON.stringify(downloads, null, 2)}\n`);
+await writeFile(indexHtmlPath, nextIndexHtml);
+await writeFile(llmsPath, nextLlms);
 await writeFile(sitemapPath, nextSitemap);
 
 console.log(`Synced landing release metadata to ${tag}.`);
