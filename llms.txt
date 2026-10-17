@@ -84,4 +84,4 @@ Oshi Desk: https://www.oshidesk.com/en/
 DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It connects Claude/Codex chat, quick launch, selected-text actions, voice input, approval-based task delegation, local work memory, mini chat, and optional plugins.
 
 Character skins: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/pet-skins.md
-Declare pet.skin for ctx.host.petSkins API v2 (DAP >=1.6.0); look metadata is preview-only.
+Declare pet.skin for ctx.host.petSkins API v2 (DAP >=1.6.0); character identity/displayName overrides the saved pet name with DAP >=1.6.1 and restores on reset; user addressing and memories remain unchanged; look metadata is preview-only.

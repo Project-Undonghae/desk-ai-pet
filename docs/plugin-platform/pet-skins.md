@@ -1,6 +1,6 @@
 # DAP 스킨·캐릭터 페르소나 API
 
-구현 대상: DAP **1.6.0**, Plugin Platform **0.4.0**, manifest **v2** 유지. `ctx.host.petSkins.apiVersion === 2`로 기능을 확인합니다. 코드·테스트 구현 완료. 공식 릴리스: `Project-Undonghae/desk-ai-pet`의 v1.6.0.
+구현 대상: 스킨·성격·말투 DAP **1.6.0+**, 캐릭터 이름·자기 지칭 전환 **1.6.1+**. Plugin Platform **0.4.0**, manifest **v2** 유지. `ctx.host.petSkins.apiVersion === 2`로 기능을 확인합니다. 공식 릴리스 저장소: `Project-Undonghae/desk-ai-pet`.
 
 ## 플러그인이 사용하는 계약
 
@@ -79,5 +79,12 @@ interface CharacterPersona {
 - `chat-pipeline.ts`: 사용자 대화와 먼저 거는 대화의 시작에 캐릭터 페르소나 고정. 진행 중인 대화는 유지하고 다음 대화부터 새 선택 반영.
 - `headless-cli.ts` / `antigravity-cli.ts`: 일반 대화·스트리밍·도구 사용 대화에 캐릭터 스타일 적용. 구조화 분류·요약·일반 생성 경로에는 적용하지 않음.
 
-캐릭터는 말투 계층입니다. 사용자 이름·호칭·기억, 작업 정확성·권한을 우선합니다. 기존 `persona.json`과 기억 저장 형식은 변경하지 않으며, 캐릭터를 부르는 말로 기본 펫 이름을 자동 학습하지 않습니다. 기존 대화 화면의 화자 라벨은 사용자 설정을 유지합니다.
+캐릭터 페르소나는 임시 이름·정체성·성격·말투 계층입니다. `usePersona: true`이면 `persona.displayName`을 대화창 이름, 스트리밍/기록 재생 화자, AI 자기소개·자기 지칭에 적용합니다. 이전 펫 이름과 종족 표현은 현재 정체성에서 제외합니다. 사용자 이름·사용자에 대한 호칭·기억, 작업 정확성·권한을 우선합니다. 기존 `persona.json`과 기억 저장 형식은 변경하지 않으며, 캐릭터를 부르는 말로 기본 펫 이름을 자동 학습하지 않습니다. 말투 옵션을 끄거나 reset/dispose/플러그인 비활성화 시 기존 이름과 말투가 복원됩니다. 진행 중인 답변의 이름은 대화 시작 시 선택으로 고정하며 다음 대화부터 새 캐릭터를 사용합니다. manifest와 API 버전 변경은 없습니다.
 
+## 11개 캐릭터 팩
+
+치이카와·하치와레·우사기·모몽가·시사·랏코·쿠리만쥬·세이렌·후루혼야·아노코·데카츠요. 각자 9개 모션, 원본 가변 프레임 시간, 성격·말투·예시 대사를 제공합니다. 말투는 서비스용 해석이며, 세이렌·아노코·데카츠요는 창작 초안임을 표시합니다.
+
+원본 PNG 합계 약 25.9MB이며 공개 플러그인 ZIP에는 포함하지 않습니다. [Chiikawa Friends](https://github.com/o-min222/dap-chiikawa-friends)는 코드만 GitHub·DAP 카탈로그로 배포하고, 사용자가 선택창에서 원본 저장소 다운로드를 요청하면 고정 커밋의 이미지를 받아 해시를 검증합니다. 공개 DAP 앱·릴리스에도 이미지를 포함하지 않습니다.
+
+근거: [DAP 개발 가이드](https://project-undonghae.github.io/desk-ai-pet/developers.html#ai-build), [원본 에셋](https://github.com/heelee912/chiikawa-dots-pets), [공식 캐릭터 소개](https://www.chiikawaofficial.com/characters).
