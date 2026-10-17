@@ -93,3 +93,8 @@ interface CharacterPersona {
 원본 PNG 합계 약 25.9MB이며 공개 플러그인 ZIP에는 포함하지 않습니다. [Chiikawa Friends](https://github.com/o-min222/dap-chiikawa-friends)는 코드만 GitHub·DAP 카탈로그로 배포하고, 사용자가 선택창에서 원본 저장소 다운로드를 요청하면 고정 커밋의 이미지를 받아 해시를 검증합니다. 공개 DAP 앱·릴리스에도 이미지를 포함하지 않습니다.
 
 근거: [DAP 개발 가이드](https://project-undonghae.github.io/desk-ai-pet/developers.html#ai-build), [원본 에셋](https://github.com/heelee912/chiikawa-dots-pets), [공식 캐릭터 소개](https://www.chiikawaofficial.com/characters).
+
+
+### 표시 크기 (DAP 1.6.3+)
+
+스킨도 저장된 펫 크기를 따릅니다. 화면 표시, 이동 엔진, 마우스 접촉 감지 영역은 동일한 크기를 사용합니다. 1.6.0~1.6.2의 스킨 크기 고정(130px)을 제거했으며, 이동 속도와 배회 빈도는 바꾸지 않습니다. 스킨을 해제하면 기본 외형·미니 모드 설정이 복원됩니다. API/manifest 버전과 플러그인 코드는 그대로 사용할 수 있습니다.

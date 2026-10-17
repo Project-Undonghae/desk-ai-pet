@@ -408,7 +408,7 @@ if (!status.connected) {
       <h3 id="pet-skins">캐릭터 스킨·이름·말투</h3>
       <p>DAP 1.6.0 이상에서 <code>pet.skin</code> 권한을 선언하고 <code>ctx.host.petSkins.apiVersion === 2</code>를 확인하세요. 등록 후 <code>apply({ usePersona: true })</code>로 외형·성격·말투를 함께 적용합니다. <strong>1.6.1 이상</strong>에서는 <code>persona.displayName</code>을 대화창 이름과 AI 자기소개·자기 지칭에도 적용합니다. <code>false</code>면 외형만 적용하며 <code>reset()</code>과 플러그인 해제는 기존 외형·이름·말투를 복원합니다. 사용자 이름·사용자에 대한 호칭·기억은 유지됩니다.</p>
       <p>PNG 상대 경로·크기·프레임 시간과 등록 소유권을 검증합니다. 16방향 시선은 팔레트 미리보기 전용입니다. <a href="docs/plugin-platform/pet-skins.md">데이터 형식·제한·모션 대응·수명 계약</a>을 확인하세요.</p>
-      <p>DAP 1.6.2부터 춤·먹기·그루밍·휴식도 기존 스킨 모션에 대응합니다. 전용 프레임이 없으면 점프·작업·대기 모션을 재사용하며, 이동 속도·배회 빈도는 바꾸지 않습니다.</p>
+      <p>DAP 1.6.2부터 춤·먹기·그루밍·휴식도 기존 스킨 모션에 대응합니다. 전용 프레임이 없으면 점프·작업·대기 모션을 재사용하며, 이동 속도·배회 빈도는 바꾸지 않습니다. <strong>1.6.3부터는 스킨도 설정된 펫 크기를 유지</strong>하며, 화면 크기·이동 물리·마우스 감지 영역에 동일하게 반영합니다.</p>
       <h3>Storage</h3>
       <pre><code>await ctx.host.storage.setJson("pins", ["a", "b"]);
 const pins = await ctx.host.storage.getJson("pins");
