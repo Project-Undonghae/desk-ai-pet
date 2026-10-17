@@ -65,7 +65,7 @@
     </p>
     <div class="docs-callout">
       <strong>문서/버전 기준</strong>
-      <p>현재 Plugin Platform 버전은 <code>0.3.0</code>, manifest 기준은 <code>manifest_version: 2</code>, 전체 API 기준 최소 앱 버전은 <code>DAP 1.4.1</code>입니다. 0.3은 데일리 브리핑과 Host 관리 OAuth·커넥터 상태 API를 추가한 하위 호환 릴리스입니다.</p>
+      <p>현재 Plugin Platform 버전은 <code>0.4.0</code>, manifest 기준은 <code>manifest_version: 2</code>, 전체 API 기준 최소 앱 버전은 <code>DAP 1.6.0</code>입니다. 0.4는 캐릭터 외형·말투를 함께 적용하는 스킨 API를 추가한 하위 호환 릴리스입니다.</p>
     </div>
 
     <div class="docs-card-grid" aria-label="Key documentation paths">
@@ -109,7 +109,7 @@ Return:
 - local install steps
 - known limitations
 
-Follow manifest_version: 2 and Plugin Platform 0.3.0.
+Follow manifest_version: 2 and Plugin Platform 0.4.0.
 Do not invent Host APIs.</code></pre>
       </div>
       <div class="docs-card-grid docs-ai-links" aria-label="AI-readable documentation">
@@ -361,6 +361,7 @@ panel.postMessage({ type: "status", items });</code></pre>
         <tr><td><code>ai.accounts</code></td><td><code>ctx.host.aiAccounts</code></td><td>로그인된 Claude/Codex 계정과 공개된 사용량 메타데이터를 조회합니다.</td></tr>
         <tr><td><code>image.generate</code></td><td><code>ctx.host.imageGen</code></td><td>Codex provider로 PNG를 생성해 bytes로 받습니다.</td></tr>
         <tr><td><code>oauth.connect</code></td><td><code>ctx.host.oauth</code></td><td>Host가 관리하는 OAuth 연결·상태·access token·해제 흐름을 사용합니다.</td></tr>
+        <tr><td><code>pet.skin</code></td><td><code>ctx.host.petSkins</code></td><td>플러그인의 PNG 스프라이트 외형과 선택적 캐릭터 말투를 적용·복원합니다. DAP 1.6.0+, API v2.</td></tr>
         <tr><td><code>connectors.read</code></td><td><code>ctx.host.connectors</code></td><td>현재 Gmail 커넥터의 상태와 Host가 만든 사용자 안내를 읽습니다.</td></tr>
       </table>
     </section>
@@ -404,6 +405,9 @@ if (!status.connected) {
   });
 }</code></pre>
       <p>OAuth 브라우저 흐름과 refresh token 보관은 DAP Host가 맡습니다. 플러그인은 refresh token을 직접 받거나 저장하지 않습니다. <code>connectors.read</code>를 선언한 플러그인은 현재 <code>ctx.host.connectors.status("gmail")</code>로 <code>{ state, via, hint }</code>를 받습니다. <code>state</code>는 <code>connected</code>, <code>unavailable</code>, <code>unknown</code> 중 하나이며, 판별 자체가 실패한 <code>unknown</code>에서는 기능을 차단하지 말고 명시적인 <code>unavailable</code>에서만 Host의 <code>hint</code>를 안내하세요.</p>
+      <h3 id="pet-skins">캐릭터 스킨·말투</h3>
+      <p>DAP 1.6.0 이상에서 <code>pet.skin</code> 권한을 선언하고 <code>ctx.host.petSkins.apiVersion === 2</code>를 확인하세요. 등록 후 <code>apply({ usePersona: true })</code>로 외형·말투를 함께 적용합니다. <code>false</code>면 외형만 적용하며 <code>reset()</code>과 플러그인 해제는 기존 외형·말투를 복원합니다. 사용자 이름·호칭·기억은 유지됩니다.</p>
+      <p>PNG 상대 경로·크기·프레임 시간과 등록 소유권을 검증합니다. 16방향 시선은 팔레트 미리보기 전용입니다. <a href="docs/plugin-platform/pet-skins.md">데이터 형식·제한·모션 대응·수명 계약</a>을 확인하세요.</p>
       <h3>Storage</h3>
       <pre><code>await ctx.host.storage.setJson("pins", ["a", "b"]);
 const pins = await ctx.host.storage.getJson("pins");
@@ -518,6 +522,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
 
     <section id="changelog">
       <h2>Changelog</h2>
+      <p><strong>2026-10-17</strong>: Plugin Platform <code>0.4.0</code>. <code>pet.skin</code>/<code>ctx.host.petSkins</code> API v2 추가. 최소 DAP 1.6.0, manifest v2 유지.</p>
       <p><strong>2026-08-05</strong>: Plugin Platform <code>0.3.0</code>. <code>briefing.daily</code>, <code>ctx.briefing</code>, <code>oauth.connect</code>/<code>ctx.host.oauth</code>, <code>connectors.read</code>/<code>ctx.host.connectors</code>를 추가했습니다. 최소 앱은 DAP 1.4.1이며 manifest v2는 그대로 호환됩니다.</p>
       <p><strong>2026-07-29</strong>: Plugin Platform <code>0.2.0</code>. <code>tray_panel</code>, 동적 tray submenu, <code>ctx.aiContext</code>, 설정 쓰기, presentation/meeting/AI accounts/image generation Host API와 최신 설치·업데이트 계약을 반영했습니다. manifest v2는 그대로 호환됩니다.</p>
       <p><strong>2026-07-05</strong>: Plugin Platform <code>0.1.0</code> 기준 문서 구조를 정리했습니다. Electron/TypeScript Host API, manifest v2, palette, distribution, versioning 구조를 반영했습니다.</p>
