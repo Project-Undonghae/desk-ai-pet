@@ -1,6 +1,6 @@
 # Desk AI Pet (DAP)
 
-DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae. The current public release is v1.6.9.
+DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae. The current public release is v1.6.10.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
