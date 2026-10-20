@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DAP 플러그인 서비스</title>
-  <meta name="description" content="DAP 공식 플러그인 카탈로그와 Plugin Platform 0.4 등록 안내. 캐릭터 스킨, 친구 쪽지, Todo, Calendar 등 10개 확장 기능을 확인하세요." />
+  <title>DAP 앱 카탈로그</title>
+  <meta name="description" content="DAP 1.6.17 앱 보관함과 앱 찾기 안내. 공식 앱 검색·카테고리 탐색·설치 전 권한 확인과 Plugin Platform 0.4 개발 문서." />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
+  <link rel="stylesheet" href="styles.css?v=20261021-v1617" />
   <script>
     (() => {
       try {
@@ -26,7 +26,7 @@
   <nav id="site-nav-links">
     <a href="index.html" data-i18n="nav_home">홈</a>
     <a href="developers.html" data-i18n="nav_developers">Docs</a>
-    <a href="plugins.html" aria-current="page" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en" data-i18n="nav_plugins">플러그인</a>
+    <a href="plugins.html" aria-current="page" data-href-ko="plugins.html" data-href-en="plugins.html?lang=en" data-i18n="nav_plugins">앱</a>
     <a href="index.html#download" data-i18n="nav_download">다운로드</a>
   </nav>
   <div class="site-nav-actions">
@@ -44,15 +44,15 @@
 <main id="main" class="marketplace-main">
   <section class="marketplace-hero">
     <a class="doc-back" href="index.html#resources-title" data-i18n="back_home">&lt; 랜딩으로 돌아가기</a>
-    <p class="section-label compact" data-i18n="eyebrow">Plugin registry</p>
+    <p class="section-label compact" data-i18n="eyebrow">App catalog · plugin registry</p>
     <div class="marketplace-hero-grid">
       <div>
-        <h1 data-i18n="title">DAP Plugin Registry</h1>
-        <p data-i18n="intro">Chiikawa Friends, Friend Messages, Todo, Calendar 등 공식 카탈로그의 10개 플러그인을 확인하세요. Plugin Platform 0.4 · manifest v2를 사용하며, 캐릭터별 독립 대화는 DAP 1.6.14 이상에서 지원합니다.</p>
+        <h1 data-i18n="title">DAP 앱 카탈로그</h1>
+        <p data-i18n="intro">DAP 1.6.17의 앱 보관함 → 앱 찾기에서 공식 앱 10개를 검색하고 설치할 수 있습니다. 사용자 화면에서는 앱으로 안내하며, 개발·배포 계약은 Plugin Platform 0.4 · manifest v2를 유지합니다.</p>
       </div>
       <dl class="marketplace-stats" aria-label="Plugin marketplace summary">
         <div>
-          <dt data-i18n="stat_plugins_label">등록 플러그인</dt>
+          <dt data-i18n="stat_plugins_label">등록 앱</dt>
           <dd id="registry-count">0</dd>
         </div>
         <div>
@@ -63,9 +63,23 @@
     </div>
   </section>
 
+  <section class="demo app-install" aria-labelledby="install-guide-title">
+    <div class="demo-copy">
+      <p class="section-label compact">DAP 1.6.17</p>
+      <h2 id="install-guide-title" data-i18n="install_title">앱 안에서 찾고 설치하세요</h2>
+      <p data-i18n="install_desc">펫의 전체 메뉴 → 앱 보관함의 가방 아이콘 → 앱 찾기. 검색하거나 카테고리를 고르고, 받기에서 버전·권한을 확인한 뒤 다시 받기를 선택합니다.</p>
+      <p data-i18n="install_manage">설치한 앱은 내 앱에서 설정·업데이트합니다. 앱 보관함의 dock에는 자주 쓰는 항목을 최대 6개 고정할 수 있습니다.</p>
+      <a href="developers.html#app-ui" data-i18n="install_docs">앱 UI·설치 계약 문서 보기</a>
+    </div>
+    <div class="app-gallery two-shots">
+      <figure class="demo-frame"><img src="screenshots/dap-app-store-search-win-v1.6.17.jpg" width="382" height="440" loading="lazy" data-i18n-alt="install_search_alt" alt="Windows v1.6.17 앱 찾기의 검색 결과와 카테고리" /><figcaption data-i18n="install_search_caption">Windows v1.6.17 실제 화면 · 검색과 카테고리로 앱 찾기</figcaption></figure>
+      <figure class="demo-frame"><img src="screenshots/dap-app-store-permissions-win-v1.6.17.jpg" width="382" height="440" loading="lazy" data-i18n-alt="install_permission_alt" alt="Windows v1.6.17 Friend Messages 설치 전 권한 미리보기" /><figcaption data-i18n="install_permission_caption">설치 전 버전·요청 권한 확인 · 취소하면 설치하지 않습니다</figcaption></figure>
+    </div>
+  </section>
+
   <section class="marketplace-controls" aria-label="Plugin filters">
     <div class="marketplace-search-row">
-      <input id="plugin-search" type="search" data-i18n-placeholder="search_placeholder" data-i18n-aria="search_label" placeholder="플러그인 검색" aria-label="플러그인 검색" autocomplete="off" />
+      <input id="plugin-search" type="search" data-i18n-placeholder="search_placeholder" data-i18n-aria="search_label" placeholder="플러그인 검색" aria-label="앱 검색" autocomplete="off" />
       <select id="plugin-sort" aria-label="Plugin sort">
         <option value="registry" data-i18n="sort_registry">등록순</option>
         <option value="name" data-i18n="sort_name">이름순</option>
@@ -82,8 +96,8 @@
 
   <div class="marketplace-directory-head">
     <div>
-      <h2 data-i18n="directory_title">카탈로그 플러그인</h2>
-      <p data-i18n="directory_desc">등록 목록은 GitHub 카탈로그에서 불러오며, 연결 실패 시 페이지 안의 최신 fallback 데이터를 표시합니다.</p>
+      <h2 data-i18n="directory_title">공식 카탈로그 앱</h2>
+      <p data-i18n="directory_desc">앱 이름·기능으로 검색하고 카테고리로 좁혀보세요. 카드에는 카탈로그의 고정 ref를 표시하며, 연결 실패 시 이 페이지에 저장한 목록을 사용합니다.</p>
     </div>
     <strong id="plugin-result-count">0</strong>
   </div>
@@ -116,7 +130,7 @@
           <div><dt>repo</dt><dd data-i18n="submit_field_repo">필수 · 공개 GitHub owner/name 또는 URL</dd></div>
           <div><dt>name</dt><dd data-i18n="submit_field_name">선택 · 카탈로그 표시 이름</dd></div>
           <div><dt>description</dt><dd data-i18n="submit_field_description">선택 · 한 줄 기능 설명</dd></div>
-          <div><dt>category</dt><dd data-i18n="submit_field_category">선택 · productivity, utility, developer</dd></div>
+          <div><dt>category</dt><dd data-i18n="submit_field_category">선택 · utility, productivity, communication, creativity 등. 앱 찾기의 분류·검색에 사용</dd></div>
           <div><dt>ref</dt><dd data-i18n="submit_field_ref">선택 · 태그 권장, 브랜치 또는 SHA 가능</dd></div>
         </dl>
       </div>
@@ -128,18 +142,26 @@
 <script>
 const I18N = {
   ko: {
+    install_title: "앱 안에서 찾고 설치하세요",
+    install_desc: "펫의 전체 메뉴 → 앱 보관함의 가방 아이콘 → 앱 찾기. 검색하거나 카테고리를 고르고, 받기에서 버전·권한을 확인한 뒤 다시 받기를 선택합니다.",
+    install_manage: "설치한 앱은 내 앱에서 설정·업데이트합니다. 앱 보관함의 dock에는 자주 쓰는 항목을 최대 6개 고정할 수 있습니다.",
+    install_docs: "앱 UI·설치 계약 문서 보기",
+    install_search_alt: "Windows v1.6.17 앱 찾기의 검색 결과와 카테고리",
+    install_search_caption: "Windows v1.6.17 실제 화면 · 검색과 카테고리로 앱 찾기",
+    install_permission_alt: "Windows v1.6.17 Friend Messages 설치 전 권한 미리보기",
+    install_permission_caption: "설치 전 버전·요청 권한 확인 · 취소하면 설치하지 않습니다",
     nav_home: "홈",
     nav_developers: "Docs",
-    nav_plugins: "플러그인",
+    nav_plugins: "앱",
     nav_download: "다운로드",
-    title: "DAP Plugin Registry",
+    title: "DAP 앱 카탈로그",
     back_home: "< 랜딩으로 돌아가기",
-    eyebrow: "Plugin registry",
-    intro: "Chiikawa Friends, Friend Messages, Todo, Calendar 등 공식 카탈로그의 10개 플러그인을 확인하세요. Plugin Platform 0.4 · manifest v2를 사용하며, 캐릭터별 독립 대화는 DAP 1.6.14 이상에서 지원합니다.",
-    stat_plugins_label: "등록 플러그인",
+    eyebrow: "App catalog · plugin registry",
+    intro: "DAP 1.6.17의 앱 보관함 → 앱 찾기에서 공식 앱 10개를 검색하고 설치할 수 있습니다. 사용자 화면에서는 앱으로 안내하며, 개발·배포 계약은 Plugin Platform 0.4 · manifest v2를 유지합니다.",
+    stat_plugins_label: "등록 앱",
     stat_source_label: "카탈로그",
-    search_placeholder: "플러그인 검색",
-    search_label: "플러그인 검색",
+    search_placeholder: "앱 이름, 기능, 저장소 검색",
+    search_label: "앱 검색",
     sort_registry: "등록순",
     sort_name: "이름순",
     sort_repo: "레포순",
@@ -147,8 +169,8 @@ const I18N = {
     filter_productivity: "생산성",
     filter_utility: "유틸리티",
     filter_developer: "개발 도구",
-    directory_title: "카탈로그 플러그인",
-    directory_desc: "등록 목록은 GitHub 카탈로그에서 불러오며, 연결 실패 시 페이지 안의 최신 fallback 데이터를 표시합니다.",
+    directory_title: "공식 카탈로그 앱",
+    directory_desc: "앱 이름·기능으로 검색하고 카테고리로 좁혀보세요. 카드에는 카탈로그의 고정 ref를 표시하며, 연결 실패 시 이 페이지에 저장한 목록을 사용합니다.",
     status_registered: "등록됨",
     status_fallback: "fallback",
     fact_id: "Plugin ID",
@@ -165,7 +187,7 @@ const I18N = {
     submit_field_id: "필수 · plugin.yaml과 정확히 같은 고유 ID",
     submit_field_name: "선택 · 카탈로그 표시 이름",
     submit_field_description: "선택 · 한 줄 기능 설명",
-    submit_field_category: "선택 · productivity, utility, developer",
+    submit_field_category: "선택 · utility, productivity, communication, creativity 등. 앱 찾기의 분류·검색에 사용",
     submit_field_repo: "필수 · 공개 GitHub owner/name 또는 URL",
     submit_field_ref: "선택 · 태그 권장, 브랜치 또는 SHA 가능",
     submit_docs_action: "개발 계약 확인",
@@ -177,18 +199,26 @@ const I18N = {
     empty_state: "조건에 맞는 플러그인이 없습니다.",
   },
   en: {
+    install_title: "Find and install inside DAP",
+    install_desc: "Open the pet’s full menu → App Library bag icon → app discovery. Search or choose a category, select Get to review the version and permissions, then confirm with Get.",
+    install_manage: "Configure and update installed apps under My Apps. Pin up to six favorites to the App Library dock.",
+    install_docs: "Read the app UI and installation contract",
+    install_search_alt: "Actual Windows v1.6.17 app discovery search results and categories",
+    install_search_caption: "Actual Windows v1.6.17 capture · Search and filter apps",
+    install_permission_alt: "Actual Windows v1.6.17 Friend Messages permission preview before installation",
+    install_permission_caption: "Review version and permissions before installation · Cancel to leave it uninstalled",
     nav_home: "Home",
     nav_developers: "Docs",
-    nav_plugins: "Plugins",
+    nav_plugins: "Apps",
     nav_download: "Download",
-    title: "DAP Plugin Registry",
+    title: "DAP App Catalog",
     back_home: "< Back to landing",
-    eyebrow: "Plugin registry",
-    intro: "Browse ten official plugins, including Chiikawa Friends, Friend Messages, Todo, and Calendar. Plugin Platform 0.4 uses manifest v2; separate character conversations require DAP 1.6.14 or later.",
+    eyebrow: "App catalog · plugin registry",
+    intro: "Search and install ten official apps from App Library → app discovery in DAP 1.6.17. User interfaces call them apps; developer packages retain Plugin Platform 0.4 and manifest v2.",
     stat_plugins_label: "Registered",
     stat_source_label: "Catalog",
-    search_placeholder: "Search plugins",
-    search_label: "Search plugins",
+    search_placeholder: "Search apps, features, or repositories",
+    search_label: "Search apps",
     sort_registry: "Registry order",
     sort_name: "Name",
     sort_repo: "Repository",
@@ -196,8 +226,8 @@ const I18N = {
     filter_productivity: "Productivity",
     filter_utility: "Utilities",
     filter_developer: "Developer tools",
-    directory_title: "Catalog plugins",
-    directory_desc: "The list is loaded from the GitHub catalog. If the request fails, this page shows the latest embedded fallback data.",
+    directory_title: "Official catalog apps",
+    directory_desc: "Search by app name or feature and filter by category. Each card shows the catalog ref. If the registry is unavailable, this page uses its saved catalog.",
     status_registered: "Registered",
     status_fallback: "Fallback",
     fact_id: "Plugin ID",
@@ -214,7 +244,7 @@ const I18N = {
     submit_field_id: "Required · exact match for plugin.yaml id",
     submit_field_name: "Optional · catalog display name",
     submit_field_description: "Optional · one-line feature summary",
-    submit_field_category: "Optional · productivity, utility, or developer",
+    submit_field_category: "Optional · utility, productivity, communication, creativity, etc.; used for app discovery and search",
     submit_field_repo: "Required · public GitHub owner/name or URL",
     submit_field_ref: "Optional · tag recommended; branch or SHA allowed",
     submit_docs_action: "Read developer contract",
@@ -245,6 +275,10 @@ function applyLang(lang) {
   document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
     const value = dict[el.dataset.i18nAria];
     if (value) el.setAttribute("aria-label", value);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    const value = dict[el.dataset.i18nAlt];
+    if (value) el.setAttribute("alt", value);
   });
   document.querySelectorAll("[data-href-ko][data-href-en]").forEach((el) => {
     el.setAttribute("href", lang === "en" ? el.dataset.hrefEn : el.dataset.hrefKo);
@@ -475,6 +509,7 @@ function renderPlugins(plugins, usedFallback = false) {
 
     const meta = createEl("div", "plugin-meta");
     meta.append(createEl("span", "", categoryLabel(plugin.category)));
+    meta.append(createEl("span", "", plugin.ref));
     article.append(meta);
 
     const facts = createEl("dl", "plugin-facts");

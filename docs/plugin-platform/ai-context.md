@@ -16,6 +16,16 @@ Return:
 - local install steps
 - known limitations and platform requirements
 
+## App Library and UI system (DAP >=1.6.15 / discovery >=1.6.17)
+
+- User-facing installed plugins are called apps. Keep `plugin.yaml`, `activate(ctx)`, and the existing Host API names; do not invent an app runtime or new manifest fields.
+- App Library opens installed apps and user web/program shortcuts. The quick-menu dock pins at most six items; drag, context-menu, and keyboard alternatives are available.
+- DAP >=1.6.17 has app discovery from the Library bag icon: search names, descriptions, ids, and category labels; filter categories; preview version and permissions with Get; install only after the second Get confirmation.
+- Installed apps are marked; manage them under My Apps. Web/program shortcuts are managed separately. Catalog installation still uses the official allow-list and existing permission consent.
+- Optional catalog `category` powers discovery. `utility`, `productivity`, `communication`, `creativity` have built-in labels; unknown values stay searchable; missing values use Other.
+- App UI System v1 automatically injects DAP tokens and foundation into palette and tray HTML, excluding presentation/transparent canvas. Existing CSS keeps priority. Use `.dap-app`, `.dap-app-header`, `.dap-app-content`, `.dap-app-footer`, `.dap-card`, `.dap-button`, and documented form/state classes.
+- Read [app-ui.md](app-ui.md) before building a palette or tray page. Verify 320px width, keyboard operation, light/dark, loading, empty, and failure states. Do not add external fonts or a new style framework for the shared shell.
+
 ## Runtime and trust model
 
 - The current runtime is Electron + TypeScript. Python/PyQt plugin examples are historical.

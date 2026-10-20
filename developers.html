@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
-  <meta name="description" content="DAP Plugin Platform 0.4 공식 개발 문서. manifest v2, 캐릭터 스킨·말투 API, 데일리 브리핑, OAuth·커넥터, 권한과 카탈로그 배포 계약." />
+  <meta name="description" content="DAP 1.6.17 앱 보관함·앱 찾기와 App UI System v1 개발 가이드. Plugin Platform 0.4, manifest v2, palette·tray 공통 UI와 카탈로그 배포 계약." />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
@@ -47,6 +47,7 @@
     <a href="#quickstart">Quickstart</a>
     <a href="#concepts">Core concepts</a>
     <a href="#guides">Guides</a>
+    <a href="#app-ui">App Library &amp; UI</a>
     <a href="#reference">API reference</a>
     <a href="#permissions">Permissions</a>
     <a href="#examples">Examples</a>
@@ -58,7 +59,7 @@
 
   <article class="docs-content">
     <p class="docs-eyebrow">DAP Plugin Platform</p>
-    <h1>DAP Plugin Docs</h1>
+    <h1>DAP App &amp; Plugin Docs</h1>
     <p class="docs-lead">
       DAP 플러그인은 데스크톱 위의 DAP 경험에 명령, 액션, 설정, 트레이 패널, 단축키, 팔레트 UI와 로컬 서비스를 추가하는 확장 모듈입니다.
       이 문서는 실제 플러그인을 만들고 배포하는 데 필요한 최소 경로와 API 레퍼런스를 제공합니다.
@@ -90,6 +91,31 @@
         <p>로컬 설치 경로와 카탈로그 배포 형식을 확인합니다.</p>
       </a>
     </div>
+
+    <section id="app-ui">
+      <h2>앱 보관함과 App UI System v1</h2>
+      <p>DAP 1.6.15부터 사용자 화면에서는 설치형 플러그인을 <strong>앱</strong>으로 안내합니다. 기술 계약은 기존 <code>plugin.yaml</code>, <code>activate(ctx)</code>, <code>ctx.host.*</code>를 유지합니다. 앱 UI 시스템과 manifest 버전은 별개입니다.</p>
+      <h3>앱 찾기에서 설치하기 · DAP 1.6.17+</h3>
+      <ol>
+        <li>펫의 전체 메뉴에서 앱 보관함을 열고, 검색창 옆 가방 아이콘으로 <strong>앱 찾기</strong>에 들어갑니다.</li>
+        <li>이름·기능으로 검색하거나 카테고리로 좁힙니다. 이미 설치한 앱에는 설치됨이 표시됩니다.</li>
+        <li><strong>받기</strong>에서 앱 이름·버전·요청 권한을 먼저 확인합니다. 다시 받기를 선택하면 설치하고, 취소하면 설치하지 않습니다.</li>
+        <li><strong>내 앱</strong>에서는 설정·활성화·업데이트를 관리하고, <strong>웹 · 프로그램</strong>에서는 사용자 바로가기를 관리합니다.</li>
+      </ol>
+      <p>기본 보관함 단축키는 Windows <code>Ctrl+Alt+M</code>, macOS <code>Cmd+Option+A</code>입니다. 기존 플러그인 단축키와 충돌하면 설정에서 재지정하거나 펫 전체 메뉴를 사용하세요. 앱 보관함의 dock은 최대 6개를 고정하며 드래그·보조 클릭·키보드 조작을 제공합니다.</p>
+      <h3>새 앱의 화면 작성</h3>
+      <p>DAP 1.6.15+에서는 <code>ctx.host.windows.openPalette()</code> 앱 창과 <code>ctx.trayPanel.register()</code> 위젯에 DAP 토큰·공통 foundation을 자동 주입합니다. 기존 CSS는 유지하며 presentation·투명 canvas에는 주입하지 않습니다. 외부 글꼴이나 색상 패키지를 추가할 필요가 없습니다.</p>
+      <pre><code>&lt;main class="dap-app"&gt;
+  &lt;header class="dap-app-header"&gt;
+    &lt;div class="dap-app-title"&gt;&lt;h1&gt;내 앱&lt;/h1&gt;&lt;/div&gt;
+  &lt;/header&gt;
+  &lt;section class="dap-app-content dap-stack"&gt;
+    &lt;div class="dap-card"&gt;콘텐츠&lt;/div&gt;
+    &lt;p role="status" aria-live="polite"&gt;준비됨&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+      <p><a href="docs/plugin-platform/app-ui.md">App UI System v1 전체 가이드</a>에서 셸·버튼·폼·탭·상태 클래스, 의미 토큰과 제작 검사 명령을 확인하세요. 최소 320px, 키보드, light/dark, 빈 데이터·로딩·실패 상태를 확인합니다. 호스트 bridge와 보안 규칙은 기존 palette/tray 계약을 따릅니다.</p>
+    </section>
 
     <section id="ai-build" class="docs-ai-guide">
       <h2>AI로 플러그인 만들기</h2>
@@ -473,12 +499,14 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
       "id": "com.example.my_plugin",
       "name": "My Plugin",
       "description": "한 줄 설명",
+      "category": "productivity",
       "repo": "https://github.com/example/dap-my-plugin.git",
       "ref": "v1.0.0"
     }
   ]
 }</code></pre>
       <ul>
+        <li><code>category</code>는 선택 필드이며 DAP 1.6.17 앱 찾기의 분류와 검색에 사용합니다. <code>utility</code>, <code>productivity</code>, <code>communication</code>, <code>creativity</code>를 각각 도구·생산성·소통·창작으로 표시하고, 알 수 없는 값도 검색 대상에 남깁니다.</li>
         <li><code>repo</code>는 <code>owner/name</code> 또는 GitHub HTTPS URL을 사용합니다. 저장소는 public이어야 합니다.</li>
         <li><code>ref</code>는 브랜치·태그·SHA이며 재현 가능한 설치를 위해 버전 태그를 권장합니다.</li>
         <li><code>plugin.yaml</code>의 <code>id</code>와 카탈로그 <code>id</code>가 다르면 설치를 거절합니다.</li>
@@ -522,6 +550,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
     </section>
 
     <section id="changelog">
+      <p><strong>2026-10-21</strong>: DAP 1.6.17의 앱 찾기·검색·카테고리·설치 전 권한 확인과 1.6.15의 App UI System v1·앱 보관함을 반영했습니다. <a href="docs/plugin-platform/app-ui.md">공통 앱 UI 가이드</a>를 추가했으며 Plugin Platform 0.4 / manifest v2는 유지합니다.</p>
       <h2>Changelog</h2>
       <p><strong>2026-10-17</strong>: Plugin Platform <code>0.4.0</code>. <code>pet.skin</code>/<code>ctx.host.petSkins</code> API v2 추가. 최소 DAP 1.6.0, manifest v2 유지.</p>
       <p><strong>2026-08-05</strong>: Plugin Platform <code>0.3.0</code>. <code>briefing.daily</code>, <code>ctx.briefing</code>, <code>oauth.connect</code>/<code>ctx.host.oauth</code>, <code>connectors.read</code>/<code>ctx.host.connectors</code>를 추가했습니다. 최소 앱은 DAP 1.4.1이며 manifest v2는 그대로 호환됩니다.</p>

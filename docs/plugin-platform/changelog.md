@@ -4,6 +4,7 @@ Plugin Platform 변경사항은 앱 릴리스 노트와 별도로 기록합니�
 
 ## 문서 갱신 - 2026-10-21
 
+- DAP 1.6.15의 앱 보관함·공통 App UI System v1과 1.6.17의 검색형 앱 찾기·카테고리·설치 전 권한 미리보기를 공개 가이드와 AI 컨텍스트에 반영했습니다. 사용자 화면에서는 앱으로 안내하며 기존 플러그인 API/manifest는 유지합니다.
 - DAP 1.6.14의 캐릭터별 독립 대화와 1.6.16의 현재 대화 초기화 범위를 보강했습니다. 사용자 기억·작업 기록은 유지합니다.
 - Chiikawa Friends v2.6.0의 현재 네 캐릭터와 이미지 준비 방식을 반영했습니다.
 - 공개 카탈로그의 Chiikawa Friends·Friend Messages를 fallback 목록에 반영하고, 소개 페이지를 Plugin Platform 0.4 기준으로 맞췄습니다. API/manifest 버전 변경은 없습니다.

@@ -58,5 +58,11 @@
       "manifest_version": 2,
       "dap_app": ">=v1.0.12"
     }
-  ]
+  ],
+  "app_ui_system": {
+    "version": 1,
+    "minimum_dap_version": "v1.6.15",
+    "docs_entry": "docs/plugin-platform/app-ui.md",
+    "app_discovery_minimum_dap_version": "v1.6.17"
+  }
 }

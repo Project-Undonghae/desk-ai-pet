@@ -17,6 +17,8 @@
 - [ ] `docs/plugin-platform/changelog.md`에 변경 내용을 추가했다.
 - [ ] breaking change가 있으면 migration note를 추가했다.
 - [ ] 예시 코드가 현재 manifest/API 형태와 맞는지 확인했다.
+- [ ] palette/tray UI를 바꾸면 `app-ui.md`의 공통 셸·320px·키보드·light/dark·빈 데이터·로딩·실패 기준을 확인했다.
+- [ ] 카탈로그 표시를 바꾸면 앱 보관함 → 앱 찾기의 검색·카테고리·버전/권한 미리보기와 공개 카탈로그 안내를 맞췄다.
 
 ## 버전
 
