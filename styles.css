@@ -804,6 +804,26 @@ img { image-rendering: auto; }
   height: auto;
   image-rendering: auto;
 }
+.app-capture {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  gap: 40px;
+  align-items: center;
+}
+.app-capture .demo-copy {
+  text-align: left;
+  margin: 0;
+}
+.app-capture figcaption {
+  padding: 14px;
+  color: var(--soft);
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 680px) {
+  .app-capture { grid-template-columns: 1fr; gap: 24px; }
+  .app-capture .demo-frame { width: 100%; max-width: 360px; margin: 0 auto; }
+}
 @media (max-width: 820px) {
   .demo {
     padding: 0 24px;

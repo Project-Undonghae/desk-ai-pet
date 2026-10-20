@@ -63,7 +63,7 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 - Opens a quick launcher with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS.
 - Opens a chat window with Ctrl+Alt+C on Windows or Cmd+Option+C on macOS.
 - Connects Claude or Codex the user already uses, without making API-key setup the first step.
-- Provides selection quick actions such as translate, summarize, rewrite, explain, and ask.
+- Provides opt-in selected-text quick actions such as translate, summarize, rewrite, explain, and ask; off by default for new settings.
 - Accepts push-to-talk voice input by pressing and holding the pet.
 - Delegates file and CLI work only after the user reviews and confirms the scope; Codex screen control requires confirmation for every task.
 - Opens a streaming mini chat from the DAP tray icon and a tray hub for status, settings, and plugin surfaces.
@@ -71,7 +71,9 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 - Persists local settings, persona, chat history, and user memory under the app data directory.
 - Uses opt-in telemetry.
 - Includes Claude, Codex, and Gemini mini character profiles; users can add custom idle/reaction images and adjust their size.
-- Offers optional catalog plugins such as Weather and permission-gated image generation.
+- Offers 10 catalog plugins, including Chiikawa Friends v2.6.0, Friend Messages v0.11.0, Todo, Calendar, Weather, and permission-gated image generation.
+- DAP >=1.6.14 keeps each character’s conversation, summary, title, and user addressing separate. DAP >=1.6.16 resets the current character’s messages, summary, and addressing when asked to clear history or start a new chat; user memory and task history remain.
+- Task reports do not open automatically. The tray retains the latest 20 task results during the current app session.
 
 ## Relationship To Oshi Desk
 
@@ -84,4 +86,4 @@ Oshi Desk: https://www.oshidesk.com/en/
 DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It connects Claude/Codex chat, quick launch, selected-text actions, voice input, approval-based task delegation, local work memory, mini chat, and optional plugins.
 
 Character skins: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/pet-skins.md
-Declare pet.skin for ctx.host.petSkins API v2 (DAP >=1.6.0); character identity/displayName overrides the saved pet name with DAP >=1.6.1 and restores on reset; user addressing and memories remain unchanged; look metadata is preview-only.
+Declare pet.skin for ctx.host.petSkins API v2 (DAP >=1.6.0); character identity/displayName overrides the saved pet name with DAP >=1.6.1 and restores on reset; character-specific addressing is supported from DAP >=1.6.14 while stored user memory is preserved; look metadata is preview-only.

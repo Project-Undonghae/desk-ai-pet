@@ -2,7 +2,7 @@
   "plugin_platform_version": "0.4.0",
   "manifest_version": 2,
   "minimum_dap_version": "v1.6.0",
-  "docs_revision": "2026-10-17",
+  "docs_revision": "2026-10-21",
   "docs_entry": "developers.html",
   "catalog_repository": "Project-Undonghae/dap-plugins",
   "catalog_file": "plugin_catalog.json",

@@ -86,11 +86,11 @@ interface CharacterPersona {
 
 캐릭터 페르소나는 임시 이름·정체성·성격·말투 계층입니다. `usePersona: true`이면 `persona.displayName`을 대화창 이름, 스트리밍/기록 재생 화자, AI 자기소개·자기 지칭에 적용합니다. 이전 펫 이름과 종족 표현은 현재 정체성에서 제외합니다. 사용자 이름·사용자에 대한 호칭·기억, 작업 정확성·권한을 우선합니다. 기존 `persona.json`과 기억 저장 형식은 변경하지 않으며, 캐릭터를 부르는 말로 기본 펫 이름을 자동 학습하지 않습니다. 말투 옵션을 끄거나 reset/dispose/플러그인 비활성화 시 기존 이름과 말투가 복원됩니다. 진행 중인 답변의 이름은 대화 시작 시 선택으로 고정하며 다음 대화부터 새 캐릭터를 사용합니다. manifest와 API 버전 변경은 없습니다.
 
-## 11개 캐릭터 팩
+## 현재 캐릭터 팩
 
-치이카와·하치와레·우사기·모몽가·시사·랏코·쿠리만쥬·세이렌·후루혼야·아노코·데카츠요. 각자 9개 모션, 원본 가변 프레임 시간, 성격·말투·예시 대사를 제공합니다. 말투는 서비스용 해석이며, 세이렌·아노코·데카츠요는 창작 초안임을 표시합니다.
+현재 공식 카탈로그의 [Chiikawa Friends v2.6.0](https://github.com/o-min222/dap-chiikawa-friends/tree/v2.6.0)은 치이카와·하치와레·우사기·모몽가 네 캐릭터를 제공합니다. 캐릭터별 외형·설명·말투·호칭과 모션을 선택하며, 독립 대화 기능에는 DAP 1.6.14 이상이 필요합니다.
 
-원본 PNG 합계 약 25.9MB이며 공개 플러그인 ZIP에는 포함하지 않습니다. [Chiikawa Friends](https://github.com/o-min222/dap-chiikawa-friends)는 코드만 GitHub·DAP 카탈로그로 배포하고, 사용자가 선택창에서 원본 저장소 다운로드를 요청하면 고정 커밋의 이미지를 받아 해시를 검증합니다. 공개 DAP 앱·릴리스에도 이미지를 포함하지 않습니다.
+모몽가·우사기는 플러그인에 포함된 자체 모션으로 바로 적용합니다. 치이카와·하치와레의 미교체 이미지는 사용자가 선택창에서 준비를 요청하면 고정 원본을 다운로드하고 크기·SHA-256을 검증합니다. 다운로드한 원본과 합성 캐시는 배포 ZIP에 포함하지 않으며, 준비된 캐릭터 전환은 오프라인으로 동작합니다. 캐릭터별 교체 현황은 플러그인의 [모션 안내](https://github.com/o-min222/dap-chiikawa-friends/blob/v2.6.0/MOTIONS.md)를 확인하세요.
 
 근거: [DAP 개발 가이드](https://project-undonghae.github.io/desk-ai-pet/developers.html#ai-build), [원본 에셋](https://github.com/heelee912/chiikawa-dots-pets), [공식 캐릭터 소개](https://www.chiikawaofficial.com/characters).
 
@@ -103,3 +103,11 @@ interface CharacterPersona {
 ### 채팅창 프로필 이미지 (DAP 1.6.4+)
 
 활성 스킨의 `animations.idle` 행에서 첫 프레임(column 0)을 잘라 정적 프로필 이미지로 표시합니다. 말투 옵션(`usePersona`)과 관계없이 스킨 외형을 따릅니다. 캐릭터 변경과 스킨 해제는 이미 열린 채팅창에도 반영하고, 해제 시 기존 기본/미니 이미지를 복원합니다. 초기 외형 조회와 이미지 로드가 늦게 완료돼도 최신 선택을 덮지 않습니다. 새 이미지 파일·manifest 필드·API 변경은 필요하지 않습니다.
+
+### 캐릭터별 대화와 초기화 (DAP 1.6.14 / 1.6.16+)
+
+DAP 1.6.14부터 캐릭터별 메시지·대화 제목·요약·사용자 호칭을 독립적으로 저장하고 복원합니다. 전환 전 캐릭터의 늦은 응답·권한 확인·음성은 새 대화에 섞이지 않도록 처리합니다. 기존 단일 대화 기록은 기본 펫 대화로 이전합니다.
+
+DAP 1.6.16부터 “대화 기록을 지워줘”, “새 채팅 시작해줘” 요청은 AI 호출 없이 현재 캐릭터의 메시지·요약·호칭을 초기화합니다. 사용자 기억과 작업 기록은 유지됩니다. 캐릭터 말투는 작업 시작 안내와 실행 결과 요약에도 적용하며, 작업 범위와 권한 확인은 유지합니다.
+
+이 기능들은 DAP 본체 업데이트가 필요합니다. 플러그인만 업데이트해서 본체 동작이 바뀌지는 않습니다. 근거: [1.6.12](https://github.com/Project-Undonghae/desk-ai-pet/releases/tag/v1.6.12), [1.6.14](https://github.com/Project-Undonghae/desk-ai-pet/releases/tag/v1.6.14), [1.6.16](https://github.com/Project-Undonghae/desk-ai-pet/releases/tag/v1.6.16) 릴리스 노트.
