@@ -1,7 +1,8 @@
 {
-  "updated_at": "2026-10-21T15:06:55Z",
-  "latest": "v1.6.19",
+  "updated_at": "2026-11-01T17:48:48Z",
+  "latest": "v1.6.25",
   "versions": [
+    "v1.6.25",
     "v1.6.19",
     "v1.6.18",
     "v1.6.17",
@@ -46,6 +47,11 @@
     "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
   },
   "per_version_files": {
+    "v1.6.25": {
+      "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.25/Desk-AI-Pet-Setup-1.6.25.exe",
+      "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.25/Desk-AI-Pet-1.6.25-arm64.dmg",
+      "mac_x64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.25/Desk-AI-Pet-1.6.25.dmg"
+    },
     "v1.6.19": {
       "win": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.19/Desk-AI-Pet-Setup-1.6.19.exe",
       "mac_arm64": "https://github.com/Project-Undonghae/desk-ai-pet/releases/download/v1.6.19/Desk-AI-Pet-1.6.19-arm64.dmg",
@@ -233,6 +239,11 @@
     }
   },
   "checksums": {
+    "v1.6.25": {
+      "win": "bf5bbd1f6e2a637a8e5fe3b962f26592234b904c3d41922ace5a8b83172e765a",
+      "mac_arm64": "b4f4922f8c6652f415b1bda1078800eb5b7588f4e72bdb9153bba1f4a8e53e46",
+      "mac_x64": "ea70292eb3091b775e99b83f717c4de5d3ff62e1ba6b3144fc6e9918a42d8c9c"
+    },
     "v1.6.19": {
       "win": "5eb46887a92eac402755a94fcbf795ce913f4b957fcfd60abe2f485afe5c4e4f",
       "mac_arm64": "5f3e4560dda615fb602e3bbe59a598d3e7f03eacf1fa5c2ebbc28fc8f7df2f2e",
