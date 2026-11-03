@@ -48,7 +48,7 @@
     <div class="marketplace-hero-grid">
       <div>
         <h1 data-i18n="title">DAP 앱 카탈로그</h1>
-        <p data-i18n="intro">DAP 1.6.17의 앱 보관함 → 앱 찾기에서 공식 앱 10개를 검색하고 설치할 수 있습니다. 사용자 화면에서는 앱으로 안내하며, 개발·배포 계약은 Plugin Platform 0.4 · manifest v2를 유지합니다.</p>
+        <p data-i18n="intro">DAP Workspace v1.6.26과 함께 제공되는 데스크톱 앱 카탈로그입니다. 앱 보관함 → 앱 찾기에서 공식 앱 10개를 탐색하세요. 기존 plugin.yaml / Plugin Platform 0.4 · manifest v2 개발 계약을 유지합니다.</p>
       </div>
       <dl class="marketplace-stats" aria-label="Plugin marketplace summary">
         <div>
@@ -131,6 +131,7 @@
           <div><dt>name</dt><dd data-i18n="submit_field_name">선택 · 카탈로그 표시 이름</dd></div>
           <div><dt>description</dt><dd data-i18n="submit_field_description">선택 · 한 줄 기능 설명</dd></div>
           <div><dt>category</dt><dd data-i18n="submit_field_category">선택 · utility, productivity, communication, creativity 등. 앱 찾기의 분류·검색에 사용</dd></div>
+          <div><dt>icon</dt><dd data-i18n="submit_field_icon">선택 · 저장소 안 앱 카드 아이콘 상대 경로. PNG/JPG/WebP/SVG/ICO, 512KB 이하 권장</dd></div>
           <div><dt>ref</dt><dd data-i18n="submit_field_ref">선택 · 태그 권장, 브랜치 또는 SHA 가능</dd></div>
         </dl>
       </div>
@@ -142,6 +143,7 @@
 <script>
 const I18N = {
   ko: {
+    submit_field_icon: "선택 · 저장소 안 앱 카드 아이콘 상대 경로. PNG/JPG/WebP/SVG/ICO, 512KB 이하 권장",
     install_title: "앱 안에서 찾고 설치하세요",
     install_desc: "펫의 전체 메뉴 → 앱 보관함의 가방 아이콘 → 앱 찾기. 검색하거나 카테고리를 고르고, 받기에서 버전·권한을 확인한 뒤 다시 받기를 선택합니다.",
     install_manage: "설치한 앱은 내 앱에서 설정·업데이트합니다. 앱 보관함의 dock에는 자주 쓰는 항목을 최대 6개 고정할 수 있습니다.",
@@ -157,7 +159,7 @@ const I18N = {
     title: "DAP 앱 카탈로그",
     back_home: "< 랜딩으로 돌아가기",
     eyebrow: "App catalog · plugin registry",
-    intro: "DAP 1.6.17의 앱 보관함 → 앱 찾기에서 공식 앱 10개를 검색하고 설치할 수 있습니다. 사용자 화면에서는 앱으로 안내하며, 개발·배포 계약은 Plugin Platform 0.4 · manifest v2를 유지합니다.",
+    intro: "DAP Workspace v1.6.26과 함께 제공되는 데스크톱 앱 카탈로그입니다. 앱 보관함 → 앱 찾기에서 공식 앱 10개를 탐색하세요. 기존 plugin.yaml / Plugin Platform 0.4 · manifest v2 개발 계약을 유지합니다.",
     stat_plugins_label: "등록 앱",
     stat_source_label: "카탈로그",
     search_placeholder: "앱 이름, 기능, 저장소 검색",
@@ -199,6 +201,7 @@ const I18N = {
     empty_state: "조건에 맞는 플러그인이 없습니다.",
   },
   en: {
+    submit_field_icon: "Optional · repo-relative app-card icon; PNG/JPG/WebP/SVG/ICO, recommended up to 512KB",
     install_title: "Find and install inside DAP",
     install_desc: "Open the pet’s full menu → App Library bag icon → app discovery. Search or choose a category, select Get to review the version and permissions, then confirm with Get.",
     install_manage: "Configure and update installed apps under My Apps. Pin up to six favorites to the App Library dock.",
@@ -214,7 +217,7 @@ const I18N = {
     title: "DAP App Catalog",
     back_home: "< Back to landing",
     eyebrow: "App catalog · plugin registry",
-    intro: "Search and install ten official apps from App Library → app discovery in DAP 1.6.17. User interfaces call them apps; developer packages retain Plugin Platform 0.4 and manifest v2.",
+    intro: "The desktop app catalog alongside DAP Workspace v1.6.26. Discover ten official apps from App Library → app discovery. Existing plugin.yaml / Plugin Platform 0.4 / manifest v2 contracts are preserved.",
     stat_plugins_label: "Registered",
     stat_source_label: "Catalog",
     search_placeholder: "Search apps, features, or repositories",
@@ -417,10 +420,10 @@ const FALLBACK_CATALOG = {
     {
       "id": "io.github.o-min222.chiikawa_friends",
       "name": "Chiikawa Friends",
-      "description": "이미지 카드로 고르는 네 캐릭터 외형·설명·말투·호칭과 승인 모션. 캐릭터별 독립 대화·호칭을 지원하며 DAP 1.6.14 이상 필요",
+      "description": "이미지 카드로 고르는 네 캐릭터 외형·설명·말투·호칭과 승인 모션. 외부 원본 없이 전체 모션을 재생하며 DAP 1.6.14 이상 필요",
       "category": "utility",
       "repo": "o-min222/dap-chiikawa-friends",
-      "ref": "v2.6.0"
+      "ref": "v2.8.0"
     },
     {
       "id": "dap.friend_messages",

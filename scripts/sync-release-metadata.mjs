@@ -80,7 +80,7 @@ if (!softwareVersionPattern.test(indexHtml)) {
 const nextIndexHtml = indexHtml.replace(
   softwareVersionPattern,
   `$1${version}$2`,
-).replace(/((?:최신 |Latest |Current in |DAP )v)\d+\.\d+\.\d+/g, `$1${version}`);
+).replace(/((?:최신 |Latest |Current in |DAP (?:Workspace )?)v)\d+\.\d+\.\d+/g, `$1${version}`);
 
 const llmsPath = "llms.txt";
 const llms = await readFile(llmsPath, "utf8");

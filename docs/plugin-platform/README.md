@@ -6,6 +6,8 @@
 앱 저장소의 정본은 `mydeskpet/docs/PLUGIN_API.md`이며, 공개 `developers.html`,
 `docs/plugin-platform/ai-context.md`, `llms.txt`는 이 계약에서 파생됩니다.
 
+공개 DAP Workspace 1.6.25/1.6.26의 연결·세션·도구·시작/재시도는 [Workspace 가이드](workspace.md)를 확인합니다. 이 데스크톱 플러그인 계약과 Workspace 내부 도구 API를 혼용하지 않습니다.
+
 ## 관리 단위
 
 플러그인 변경은 네 가지 버전을 분리해서 봅니다.

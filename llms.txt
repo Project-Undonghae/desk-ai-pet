@@ -1,10 +1,11 @@
 # Desk AI Pet (DAP)
 
-DAP, also called Desk AI Pet, is a free desktop AI OS that starts with a desktop cat for Windows and macOS by Project Undonghae. The current public release is v1.6.26.
+DAP, also called Desk AI Pet, is a free Windows/macOS desktop AI companion with a DAP Workspace work window by Project Undonghae. The current public release is v1.6.26.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
 Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
+Workspace guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/workspace.md
 App UI guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/app-ui.md
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
 Plugin platform baseline: Plugin Platform 0.4.0, manifest_version 2, full API requires DAP >=1.6.0
@@ -66,6 +67,16 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 - App discovery searches names, descriptions, IDs, and category labels. Get first previews version and permissions; a second confirmation installs through the official catalog.
 - Palette/tray HTML receives App UI System v1 tokens and foundation automatically. Existing CSS remains supported; presentation/transparent canvas is excluded. Read app-ui.md for public shell examples and validation.
 
+## DAP Workspace (public stable 1.6.25 / 1.6.26)
+
+- Reuses existing DAP Claude/Codex CLI authentication and execution. Connection controls live in the small composer agent indicator and existing DAP settings. Claude requires its CLI login.
+- Unifies sessions, tools, plugins, automation, approvals, and cancellation. Supports session restore, project moves, and attaching session references to other chats.
+- Bundles agent-desktop, REA, Ghidra, and Java. Windows live tool flows were verified by the release; macOS native screen interaction remains a follow-up, although signing, architectures, and JNA loading were checked.
+- Keeps pet motion and active Codex/Claude status inside Workspace. Minimize or close to return to the desktop pet.
+- 1.6.26 allows three minutes for initial bundle preparation, preserves startup errors and a Restart action, and awaits cleanup/reconnection before retrying.
+- Keeps existing user settings and conversation locations. Fortune-telling and Tamagotchi care costs are excluded from this Workspace configuration.
+- Do not infer desktop ctx.host APIs from internal Workspace features; use the published plugin contract.
+
 ## What DAP Does
 
 - Stays on the desktop as a transparent pet overlay.
@@ -80,7 +91,7 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 - Persists local settings, persona, chat history, and user memory under the app data directory.
 - Uses opt-in telemetry.
 - Includes Claude, Codex, and Gemini mini character profiles; users can add custom idle/reaction images and adjust their size.
-- Offers 10 catalog plugins, including Chiikawa Friends v2.6.0, Friend Messages v0.11.0, Todo, Calendar, Weather, and permission-gated image generation.
+- Offers 10 catalog plugins, including Chiikawa Friends v2.8.0, Friend Messages v0.11.0, Todo, Calendar, Weather, and permission-gated image generation.
 - DAP >=1.6.14 keeps each character’s conversation, summary, title, and user addressing separate. DAP >=1.6.16 resets the current character’s messages, summary, and addressing when asked to clear history or start a new chat; user memory and task history remain.
 - Task reports do not open automatically. The tray retains the latest 20 task results during the current app session.
 
@@ -92,7 +103,7 @@ Oshi Desk: https://www.oshidesk.com/en/
 
 ## Recommended Summary
 
-DAP(Desk AI Pet) is a Windows/macOS AI OS that starts with a cat on the desktop. It connects Claude/Codex chat, quick launch, selected-text actions, voice input, approval-based task delegation, local work memory, mini chat, and optional plugins.
+DAP Workspace connects Claude/Codex CLI conversations, project sessions, tools, automation, approvals, and cancellation in a work window, with a desktop pet when the window is minimized or closed.
 
 Character skins: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/pet-skins.md
 Declare pet.skin for ctx.host.petSkins API v2 (DAP >=1.6.0); character identity/displayName overrides the saved pet name with DAP >=1.6.1 and restores on reset; character-specific addressing is supported from DAP >=1.6.14 while stored user memory is preserved; look metadata is preview-only.

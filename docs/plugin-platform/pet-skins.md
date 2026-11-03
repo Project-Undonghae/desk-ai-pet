@@ -88,9 +88,9 @@ interface CharacterPersona {
 
 ## 현재 캐릭터 팩
 
-현재 공식 카탈로그의 [Chiikawa Friends v2.6.0](https://github.com/o-min222/dap-chiikawa-friends/tree/v2.6.0)은 치이카와·하치와레·우사기·모몽가 네 캐릭터를 제공합니다. 캐릭터별 외형·설명·말투·호칭과 모션을 선택하며, 독립 대화 기능에는 DAP 1.6.14 이상이 필요합니다.
+현재 공식 카탈로그의 [Chiikawa Friends v2.8.0](https://github.com/o-min222/dap-chiikawa-friends/tree/v2.8.0)은 치이카와·하치와레·우사기·모몽가 네 캐릭터를 제공합니다. 캐릭터별 외형·설명·말투·호칭과 모션을 선택하며, 독립 대화 기능에는 DAP 1.6.14 이상이 필요합니다.
 
-모몽가·우사기는 플러그인에 포함된 자체 모션으로 바로 적용합니다. 치이카와·하치와레의 미교체 이미지는 사용자가 선택창에서 준비를 요청하면 고정 원본을 다운로드하고 크기·SHA-256을 검증합니다. 다운로드한 원본과 합성 캐시는 배포 ZIP에 포함하지 않으며, 준비된 캐릭터 전환은 오프라인으로 동작합니다. 캐릭터별 교체 현황은 플러그인의 [모션 안내](https://github.com/o-min222/dap-chiikawa-friends/blob/v2.6.0/MOTIONS.md)를 확인하세요.
+모몽가·우사기는 플러그인에 포함된 자체 모션으로 바로 적용합니다. 치이카와·하치와레의 미교체 이미지는 사용자가 선택창에서 준비를 요청하면 고정 원본을 다운로드하고 크기·SHA-256을 검증합니다. 다운로드한 원본과 합성 캐시는 배포 ZIP에 포함하지 않으며, 준비된 캐릭터 전환은 오프라인으로 동작합니다. 캐릭터별 교체 현황은 플러그인의 [모션 안내](https://github.com/o-min222/dap-chiikawa-friends/blob/v2.8.0/MOTIONS.md)를 확인하세요.
 
 근거: [DAP 개발 가이드](https://project-undonghae.github.io/desk-ai-pet/developers.html#ai-build), [원본 에셋](https://github.com/heelee912/chiikawa-dots-pets), [공식 캐릭터 소개](https://www.chiikawaofficial.com/characters).
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
-  <meta name="description" content="DAP 1.6.17 앱 보관함·앱 찾기와 App UI System v1 개발 가이드. Plugin Platform 0.4, manifest v2, palette·tray 공통 UI와 카탈로그 배포 계약." />
+  <meta name="description" content="DAP Workspace 1.6.26과 데스크톱 앱 카탈로그·App UI System v1 개발 가이드. Plugin Platform 0.4, manifest v2, palette·tray 공통 UI와 카탈로그 배포 계약." />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
@@ -43,6 +43,7 @@
   <aside class="docs-sidebar" aria-label="Documentation sections">
     <strong>Plugin Platform</strong>
     <a href="#overview">Overview</a>
+    <a href="#workspace">DAP Workspace</a>
     <a href="#ai-build">AI build guide</a>
     <a href="#quickstart">Quickstart</a>
     <a href="#concepts">Core concepts</a>
@@ -91,6 +92,14 @@
         <p>로컬 설치 경로와 카탈로그 배포 형식을 확인합니다.</p>
       </a>
     </div>
+
+    <section id="workspace">
+      <h2>DAP Workspace · 1.6.25 / 1.6.26</h2>
+      <p>대화·프로젝트 세션·도구·플러그인·자동화와 실행 승인·취소를 한 작업창에서 이어갑니다. 입력창의 작은 에이전트 표시와 기존 DAP 설정에서 Claude/Codex CLI 연결을 관리하며, 기존 인증·대화 저장 위치를 유지합니다.</p>
+      <p>세션 삭제/복원, 프로젝트 이동, 다른 대화에 세션 참조 첨부를 지원합니다. agent-desktop·REA·Ghidra·Java를 번들로 포함하며, 창을 최소화하거나 닫으면 바탕화면 펫으로 돌아갑니다.</p>
+      <p>1.6.26은 첫 번들 준비 대기 한도를 3분으로 조정하고, 시작 실패 시 원래 오류와 다시 시작 버튼을 유지합니다. 재시도는 기존 프로세스 종료·재연결을 기다려 중복 실행을 막습니다.</p>
+      <p><a href="docs/plugin-platform/workspace.md">Workspace 시작·플랫폼·재시도 가이드</a>에서 공개 안정판의 기능과 검증 범위를 확인하세요. 이 페이지의 <code>plugin.yaml</code> / <code>ctx.host.*</code>는 기존 데스크톱 플러그인 계약이며, Workspace 내부 도구 API를 임의로 뜻하지 않습니다.</p>
+    </section>
 
     <section id="app-ui">
       <h2>앱 보관함과 App UI System v1</h2>
@@ -500,6 +509,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
       "name": "My Plugin",
       "description": "한 줄 설명",
       "category": "productivity",
+      "icon": "assets/icon.svg",
       "repo": "https://github.com/example/dap-my-plugin.git",
       "ref": "v1.0.0"
     }
@@ -508,6 +518,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
       <ul>
         <li><code>category</code>는 선택 필드이며 DAP 1.6.17 앱 찾기의 분류와 검색에 사용합니다. <code>utility</code>, <code>productivity</code>, <code>communication</code>, <code>creativity</code>를 각각 도구·생산성·소통·창작으로 표시하고, 알 수 없는 값도 검색 대상에 남깁니다.</li>
         <li><code>repo</code>는 <code>owner/name</code> 또는 GitHub HTTPS URL을 사용합니다. 저장소는 public이어야 합니다.</li>
+        <li><code>icon</code>은 선택 필드입니다. 저장소 안 상대 경로의 PNG/JPG/WebP/SVG/ICO(512KB 이하 권장)를 앱 찾기 썸네일로 표시하며, 없거나 읽을 수 없으면 앱 이름 첫 글자로 표시합니다. 퀵 메뉴 항목 아이콘과는 별도입니다.</li>
         <li><code>ref</code>는 브랜치·태그·SHA이며 재현 가능한 설치를 위해 버전 태그를 권장합니다.</li>
         <li><code>plugin.yaml</code>의 <code>id</code>와 카탈로그 <code>id</code>가 다르면 설치를 거절합니다.</li>
         <li>DAP은 GitHub tree/raw API로 파일을 받아 설치합니다. 사용자 PC에서 git, zip 해제, npm install, 빌드를 실행하지 않습니다.</li>
@@ -550,6 +561,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
     </section>
 
     <section id="changelog">
+      <p><strong>2026-11-04</strong>: 공개 DAP Workspace 1.6.25/1.6.26의 세션·도구·CLI 연결과 시작/재시도 안내를 추가했습니다. 카탈로그 icon 필드와 Chiikawa Friends 2.8.0의 외부 자산 없는 모션 구성을 반영했습니다. 데스크톱 Plugin Platform 0.4 / manifest v2는 유지합니다.</p>
       <p><strong>2026-10-21</strong>: DAP 1.6.17의 앱 찾기·검색·카테고리·설치 전 권한 확인과 1.6.15의 App UI System v1·앱 보관함을 반영했습니다. <a href="docs/plugin-platform/app-ui.md">공통 앱 UI 가이드</a>를 추가했으며 Plugin Platform 0.4 / manifest v2는 유지합니다.</p>
       <h2>Changelog</h2>
       <p><strong>2026-10-17</strong>: Plugin Platform <code>0.4.0</code>. <code>pet.skin</code>/<code>ctx.host.petSkins</code> API v2 추가. 최소 DAP 1.6.0, manifest v2 유지.</p>

@@ -40,6 +40,7 @@ test("release sync updates visible versions and validates before writing", async
     assert.match(first[1], /Latest v9\.8\.7/);
     assert.match(first[1], /Current in v9\.8\.7/);
     assert.match(first[1], /DAP v9\.8\.7 highlights/);
+    assert.match(first[1], /DAP Workspace v9\.8\.7/);
     assert.match(first[2], /The current public release is v9\.8\.7\./);
     assert.equal(run().status, 0);
     assert.deepEqual(await snapshot(), first, "Repeated sync must be idempotent");

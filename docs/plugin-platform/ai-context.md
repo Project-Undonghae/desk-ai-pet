@@ -5,6 +5,10 @@ Use this file when an AI coding assistant creates or modifies a DAP plugin.
 Contract baseline: Plugin Platform `0.4.0`, `manifest_version: 2`, full API requires DAP `>=1.6.0`.
 The complete source of truth is `mydeskpet/docs/PLUGIN_API.md`; never invent an API that is not documented here or there.
 
+## Workspace versus desktop plugin contracts
+
+DAP Workspace is available from public 1.6.25, with startup/retry fixes in 1.6.26. Read [workspace.md](workspace.md) for the shipped behavior. This document specifies desktop plugin APIs; do not invent ctx.host services for internal Workspace tools or reuse unpublished development-branch features.
+
 ## Required output
 
 Return:
@@ -339,9 +343,10 @@ For public distribution:
 
 Catalog rules:
 
-- required: `id`, `repo`; optional: `name`, `description`, `category`, `ref`
+- required: `id`, `repo`; optional: `name`, `description`, `category`, `icon`, `ref`
 - `repo` accepts `owner/name` or a GitHub URL
 - `ref` accepts a branch, tag, or SHA; version tags are recommended
+- optional catalog `icon` is a repo-relative app-card thumbnail (PNG/JPG/WebP/SVG/ICO, recommended <=512KB); missing or unreadable icons fall back to the app name initial. It is separate from radial-item icons.
 - manifest id and catalog id must match
 - installer limit: 200 files and 20MB; `.git`, `.github`, and `node_modules` are excluded
 - install is an explicit trust action and activates immediately unless the id was previously disabled
