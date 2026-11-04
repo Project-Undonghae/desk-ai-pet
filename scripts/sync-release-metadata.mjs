@@ -42,7 +42,6 @@ const tag = release.tag_name;
 const version = tag.replace(/^v/, "");
 const win = requireAsset(release.assets, `Desk-AI-Pet-Setup-${version}.exe`);
 const macArm = requireAsset(release.assets, `Desk-AI-Pet-${version}-arm64.dmg`);
-const macX64 = requireAsset(release.assets, `Desk-AI-Pet-${version}.dmg`);
 
 const indexPath = "downloads/index.json";
 const downloads = JSON.parse(await readFile(indexPath, "utf8"));
@@ -52,13 +51,11 @@ downloads.versions = [tag, ...(downloads.versions || []).filter((item) => item !
 downloads.files = {
   win: `https://github.com/${repository}/releases/latest/download/DeskAIPet-Setup-latest-win64.exe`,
   mac_arm64: `https://github.com/${repository}/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg`,
-  mac_x64: `https://github.com/${repository}/releases/latest/download/DeskAIPet-latest-macos-x64.dmg`,
 };
 downloads.per_version_files = {
   [tag]: {
     win: win.browser_download_url,
     mac_arm64: macArm.browser_download_url,
-    mac_x64: macX64.browser_download_url,
   },
   ...withoutKey(downloads.per_version_files, tag),
 };
@@ -66,7 +63,6 @@ downloads.checksums = {
   [tag]: {
     win: win.digest.slice("sha256:".length),
     mac_arm64: macArm.digest.slice("sha256:".length),
-    mac_x64: macX64.digest.slice("sha256:".length),
   },
   ...withoutKey(downloads.checksums, tag),
 };

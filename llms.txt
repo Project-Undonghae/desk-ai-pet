@@ -5,11 +5,12 @@ DAP, also called Desk AI Pet, is a free Windows/macOS desktop AI companion with 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
 Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
+Development preview: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/development-preview.md
 Workspace guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/workspace.md
 App UI guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/app-ui.md
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
 Plugin platform baseline: Plugin Platform 0.4.0, manifest_version 2, full API requires DAP >=1.6.0
-Platforms: Windows 11, macOS
+Platforms for new downloads: Windows 11, macOS Apple Silicon (arm64). Intel Mac new releases are discontinued; v1.6.26 is the final Intel release.
 
 ## For AI Agents Building DAP Plugins
 
@@ -66,6 +67,10 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 - App Library launches installed apps and web/program shortcuts; the quick-menu dock pins up to six items.
 - App discovery searches names, descriptions, IDs, and category labels. Get first previews version and permissions; a second confirmation installs through the official catalog.
 - Palette/tray HTML receives App UI System v1 tokens and foundation automatically. Existing CSS remains supported; presentation/transparent canvas is excluded. Read app-ui.md for public shell examples and validation.
+
+## Development preview (not a public release)
+
+v1.7.0 remains a development checkpoint without a public installer. It includes Workspace/Crew switching, friend and Claude/Codex/Antigravity subscription-model selection using existing CLI logins, per-project work records, worktrees/files/Git/terminals/collaboration, and the existing Feyn learning flow. Core connections and some collaboration are previews. Do not describe all-provider/all-OS validation, remote SSH, full Herdr parity, or experimental native recovery/input protection as released features. Stable downloads remain on the latest public release.
 
 ## DAP Workspace (public stable 1.6.25 / 1.6.26)
 

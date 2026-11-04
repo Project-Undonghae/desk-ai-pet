@@ -9,6 +9,10 @@ The complete source of truth is `mydeskpet/docs/PLUGIN_API.md`; never invent an 
 
 DAP Workspace is available from public 1.6.25, with startup/retry fixes in 1.6.26. Read [workspace.md](workspace.md) for the shipped behavior. This document specifies desktop plugin APIs; do not invent ctx.host services for internal Workspace tools or reuse unpublished development-branch features.
 
+## Distribution support and development previews
+
+New site downloads target Windows and macOS Apple Silicon. v1.6.26 is the final Intel Mac release; v1.7.0 packaging is arm64-only on macOS. Historical release files remain archived. Read [development-preview.md](development-preview.md) for the current non-public Crew checkpoint. Do not promote draft versions, invent new Host APIs, or treat internal recovery experiments as released defaults.
+
 ## Required output
 
 Return:

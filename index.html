@@ -38,7 +38,7 @@
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="favicon-180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261104-v1626" />
+  <link rel="stylesheet" href="styles.css?v=20261104-arm64" />
   <script>
     (() => {
       try {
@@ -56,7 +56,7 @@
     "name": "Desk AI Pet",
     "alternateName": "DAP",
     "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Windows, macOS",
+    "operatingSystem": "Windows 11, macOS (Apple Silicon)",
     "softwareVersion": "1.6.26",
     "url": "https://project-undonghae.github.io/desk-ai-pet/",
     "isAccessibleForFree": true,
@@ -192,16 +192,9 @@
         >
           <span data-i18n="download_mac_arm">macOS Apple Silicon 다운로드</span>
         </a>
-        <a
-          class="btn btn-mi"
-          href="https://github.com/Project-Undonghae/desk-ai-pet/releases/latest/download/DeskAIPet-latest-macos-x64.dmg"
-          data-download-platform="macos_intel"
-          data-download-availability="available"
-        >
-          <span data-i18n="download_mac_intel">macOS Intel 다운로드</span>
-        </a>
       </div>
-      <p class="dl-subtitle-hero" data-i18n="download_subtitle">최신 v1.6.26 · Windows와 macOS용 설치 파일</p>
+      <p class="dl-subtitle-hero" data-i18n="download_subtitle">최신 v1.6.26 · Windows · macOS Apple Silicon 설치 파일</p>
+      <p class="dl-subtitle-hero" data-i18n="platform_policy">macOS는 Apple Silicon 전용으로 제공합니다. Intel Mac 신규 배포는 종료합니다.</p>
     </div>
   </div>
 
@@ -223,7 +216,7 @@
     <dl class="facts" aria-label="Desk AI Pet facts">
       <div>
         <dt data-i18n="fact_platform_label">지원 플랫폼</dt>
-        <dd data-i18n="fact_platform_value">Windows 11 · macOS Apple Silicon · macOS Intel</dd>
+        <dd data-i18n="fact_platform_value">Windows 11 · macOS Apple Silicon</dd>
       </div>
       <div>
         <dt data-i18n="fact_ai_label">연결</dt>
@@ -320,6 +313,23 @@
     <p data-i18n="latest_image_desc">Workspace 안에서도 펫 모션과 작업 중인 Codex·Claude 상태를 확인합니다. 창을 최소화하거나 닫으면 바탕화면 펫으로 돌아옵니다.</p>
   </div>
 </div>
+
+<!-- DEVELOPMENT PREVIEW -->
+<section class="demo z release-preview" aria-labelledby="preview-title">
+  <div class="demo-copy">
+    <p class="section-label compact" data-i18n="preview_version">v1.7.0 · 개발 미리보기</p>
+    <h2 id="preview-title" data-i18n="preview_title">Workspace 옆에, DAP Crew</h2>
+    <p data-i18n="preview_desc">최신 개발 브랜치에 통합된 다음 버전의 기능입니다. 아직 공개 설치본이 없는 초안이며, 위 다운로드 버튼은 현재 공개 안정판을 제공합니다.</p>
+  </div>
+  <div class="preview-grid">
+    <article class="card"><div class="card-icon">CREW</div><h3 data-i18n="preview_switch_title">작업창에서 Workspace와 Crew 전환</h3><p data-i18n="preview_switch_desc">화면 전환·숨김·최소화 중에도 진행 중인 실행과 입력 초안을 유지하는 작업 흐름을 준비하고 있습니다.</p></article>
+    <article class="card"><div class="card-icon">AI</div><h3 data-i18n="preview_models_title">친구와 함께할 AI 선택</h3><p data-i18n="preview_models_desc">현재 친구와 연결된 Claude·Codex·Antigravity 구독 모델을 선택하고 기존 CLI 로그인을 사용합니다.</p></article>
+    <article class="card"><div class="card-icon">WORK</div><h3 data-i18n="preview_project_title">프로젝트별 작업과 기억</h3><p data-i18n="preview_project_desc">친구의 말투·개인 기억을 이어가며 업무 기록을 프로젝트별로 관리합니다. worktree·파일·코드·Git·터미널·협업 전달을 한 작업 흐름으로 연결합니다.</p></article>
+    <article class="card"><div class="card-icon">LEARN</div><h3 data-i18n="preview_learning_title">기존 학습 흐름을 이어서</h3><p data-i18n="preview_learning_desc">Feyn 학습 흐름을 유지합니다. Core 연결과 일부 협업은 미리보기 단계이며, 출시가 확인된 기능만 정식 다운로드 안내에 반영합니다.</p></article>
+  </div>
+  <p data-i18n="preview_platforms">다음 버전의 배포 대상은 Windows와 macOS Apple Silicon입니다. 공개 일정은 확정되지 않았습니다.</p>
+  <a href="developers.html#development-preview" data-i18n="preview_docs">개발 상태와 플랫폼 지원 문서 보기</a>
+</section>
 
 <!-- PET STATES -->
 <section class="pet-moments z" aria-labelledby="pet-moments-title">
@@ -433,7 +443,7 @@
       <span class="step-num">01</span>
       <div>
         <strong data-i18n="s1_title">다운로드 & 설치</strong>
-        <p data-i18n="s1_desc">Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.</p>
+        <p data-i18n="s1_desc">Windows 또는 macOS Apple Silicon 설치 파일을 내려받아 설치합니다. Intel Mac 신규 버전은 제공하지 않습니다.</p>
       </div>
     </div>
     <div class="step reveal">
@@ -518,6 +528,20 @@ let textPopReady = false;
 
 const I18N = {
   ko: {
+    platform_policy: "macOS는 Apple Silicon 전용으로 제공합니다. Intel Mac 신규 배포는 종료합니다.",
+    preview_version: "v1.7.0 · 개발 미리보기",
+    preview_title: "Workspace 옆에, DAP Crew",
+    preview_desc: "최신 개발 브랜치에 통합된 다음 버전의 기능입니다. 아직 공개 설치본이 없는 초안이며, 위 다운로드 버튼은 현재 공개 안정판을 제공합니다.",
+    preview_switch_title: "작업창에서 Workspace와 Crew 전환",
+    preview_switch_desc: "화면 전환·숨김·최소화 중에도 진행 중인 실행과 입력 초안을 유지하는 작업 흐름을 준비하고 있습니다.",
+    preview_models_title: "친구와 함께할 AI 선택",
+    preview_models_desc: "현재 친구와 연결된 Claude·Codex·Antigravity 구독 모델을 선택하고 기존 CLI 로그인을 사용합니다.",
+    preview_project_title: "프로젝트별 작업과 기억",
+    preview_project_desc: "친구의 말투·개인 기억을 이어가며 업무 기록을 프로젝트별로 관리합니다. worktree·파일·코드·Git·터미널·협업 전달을 한 작업 흐름으로 연결합니다.",
+    preview_learning_title: "기존 학습 흐름을 이어서",
+    preview_learning_desc: "Feyn 학습 흐름을 유지합니다. Core 연결과 일부 협업은 미리보기 단계이며, 출시가 확인된 기능만 정식 다운로드 안내에 반영합니다.",
+    preview_platforms: "다음 버전의 배포 대상은 Windows와 macOS Apple Silicon입니다. 공개 일정은 확정되지 않았습니다.",
+    preview_docs: "개발 상태와 플랫폼 지원 문서 보기",
     library_alt: "DAP Windows v1.6.17 앱 보관함과 하단 퀵 메뉴 dock",
     library_caption: "앱 보관함 · 설치한 앱과 웹·프로그램을 한곳에서 실행하고, 자주 쓰는 항목은 dock에 고정합니다.",
     store_alt: "DAP Windows v1.6.17 앱 찾기에서 Friend를 검색한 실제 결과",
@@ -541,15 +565,14 @@ const I18N = {
     menu_open: "메뉴 열기",
     menu_close: "메뉴 닫기",
     download_label: "DOWNLOAD",
-    download_subtitle: "최신 v1.6.26 · Windows와 macOS용 설치 파일",
+    download_subtitle: "최신 v1.6.26 · Windows · macOS Apple Silicon 설치 파일",
     download_win: "Windows 다운로드",
     download_mac_arm: "macOS Apple Silicon 다운로드",
-    download_mac_intel: "macOS Intel 다운로드",
     summary_label: "DAP overview",
     summary_title: "DAP Workspace, 대화와 작업을 하나의 창으로",
     summary_desc: "DAP Workspace는 기존 DAP의 Claude/Codex CLI 로그인과 실행기를 그대로 사용합니다. 프로젝트별 세션과 도구·자동화를 한 창에서 다루고, 실행 승인·취소와 결과를 확인하세요. 창을 닫거나 최소화하면 바탕화면 펫으로 돌아갑니다.",
     fact_platform_label: "지원 플랫폼",
-    fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
+    fact_platform_value: "Windows 11 · macOS Apple Silicon",
     fact_ai_label: "연결",
     fact_ai_value: "Claude · Codex CLI 연결 재사용",
     fact_license_label: "확장",
@@ -611,7 +634,7 @@ const I18N = {
     resource_project_desc: "공개 다운로드 버튼에서 현재 제공 중인 설치 파일을 확인할 수 있습니다.",
     how_title: "Getting started",
     s1_title: "다운로드 & 설치",
-    s1_desc: "Windows, macOS Apple Silicon, macOS Intel 설치 파일 중 현재 환경에 맞는 파일을 내려받아 설치합니다.",
+    s1_desc: "Windows 또는 macOS Apple Silicon 설치 파일을 내려받아 설치합니다. Intel Mac 신규 버전은 제공하지 않습니다.",
     s2_title: "Claude/Codex 연결",
     s2_desc: "온보딩 또는 설정에서 Claude/Codex를 선택합니다. 이미 로그인된 계정을 이어서 사용할 수 있습니다.",
     s3_title: "Workspace에서 작업 시작",
@@ -630,6 +653,20 @@ const I18N = {
     bubble_meow: "여기 있어요",
   },
   en: {
+    platform_policy: "macOS downloads are Apple Silicon only. New Intel Mac releases are discontinued.",
+    preview_version: "v1.7.0 · Development preview",
+    preview_title: "DAP Crew, alongside Workspace",
+    preview_desc: "These next-version features are integrated in the development branch. The release is still a draft with no public installer; the download buttons above serve the current public stable release.",
+    preview_switch_title: "Switch between Workspace and Crew",
+    preview_switch_desc: "The next version is being prepared to retain active runs and input drafts while switching, hiding, or minimizing views.",
+    preview_models_title: "Choose the AI that works with your friend",
+    preview_models_desc: "Choose the current friend and connected Claude, Codex, or Antigravity subscription models using existing CLI logins.",
+    preview_project_title: "Project work and memory",
+    preview_project_desc: "Keep your friend’s speaking style and personal memory while managing work records by project, with worktrees, files, code, Git, terminals, and collaboration handoffs.",
+    preview_learning_title: "Continue the existing learning flow",
+    preview_learning_desc: "The existing Feyn learning flow is preserved. Core connections and some collaboration remain previews; stable download guidance only reflects confirmed public releases.",
+    preview_platforms: "The next release targets Windows and macOS Apple Silicon. A public release date has not been confirmed.",
+    preview_docs: "Read development status and platform support",
     library_alt: "Actual DAP Windows v1.6.17 App Library and quick-menu dock",
     library_caption: "App Library · Launch apps, websites, and programs together and pin favorites to the dock.",
     store_alt: "Actual DAP Windows v1.6.17 app discovery showing search results for Friend",
@@ -653,15 +690,14 @@ const I18N = {
     menu_open: "Open menu",
     menu_close: "Close menu",
     download_label: "DOWNLOAD",
-    download_subtitle: "Latest v1.6.26 · installers for Windows and macOS",
+    download_subtitle: "Latest v1.6.26 · installers for Windows and macOS Apple Silicon",
     download_win: "Download for Windows",
     download_mac_arm: "Download for macOS Apple Silicon",
-    download_mac_intel: "Download for macOS Intel",
     summary_label: "DAP overview",
     summary_title: "DAP Workspace brings conversations and work together",
     summary_desc: "DAP Workspace reuses the existing DAP Claude/Codex CLI login and execution path. Work with project sessions, tools, and automation in one window, review approvals, cancel execution, and inspect results. Close or minimize the window to return to the desktop pet.",
     fact_platform_label: "Platforms",
-    fact_platform_value: "Windows 11 · macOS Apple Silicon · macOS Intel",
+    fact_platform_value: "Windows 11 · macOS Apple Silicon",
     fact_ai_label: "Connection",
     fact_ai_value: "Reuses Claude · Codex CLI connections",
     fact_license_label: "Extensions",
@@ -723,7 +759,7 @@ const I18N = {
     resource_project_desc: "Use the public download buttons to see the installers currently available.",
     how_title: "Getting started",
     s1_title: "Download & install",
-    s1_desc: "Download the installer that matches your device: Windows, macOS Apple Silicon, or macOS Intel.",
+    s1_desc: "Download the Windows or macOS Apple Silicon installer. New Intel Mac versions are no longer provided.",
     s2_title: "Connect Claude/Codex",
     s2_desc: "Choose Claude or Codex in onboarding or settings, then continue with the account you already use.",
     s3_title: "Start work in Workspace",
