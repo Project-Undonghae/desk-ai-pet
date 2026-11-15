@@ -18,13 +18,23 @@ async function github(path) {
   return response.json();
 }
 
-function requireAsset(assets, name) {
+function findAsset(assets, name) {
   const asset = assets.find((candidate) => candidate.name === name);
-  if (!asset) throw new Error(`Release asset not found: ${name}`);
+  if (!asset) return null;
   if (!asset.digest?.startsWith("sha256:")) {
     throw new Error(`Release asset is missing a sha256 digest: ${name}`);
   }
   return asset;
+}
+
+function requireAsset(assets, name) {
+  const asset = findAsset(assets, name);
+  if (!asset) throw new Error(`Release asset not found: ${name}`);
+  return asset;
+}
+
+function sha256(asset) {
+  return asset.digest.slice("sha256:".length);
 }
 
 function withoutKey(object, key) {
@@ -40,7 +50,8 @@ if (release.draft || release.prerelease) {
 
 const tag = release.tag_name;
 const version = tag.replace(/^v/, "");
-const win = requireAsset(release.assets, `Desk-AI-Pet-Setup-${version}.exe`);
+// Windows is optional: a Mac-only release publishes no Windows link for latest.
+const win = findAsset(release.assets, `Desk-AI-Pet-Setup-${version}.exe`);
 const macArm = requireAsset(release.assets, `Desk-AI-Pet-${version}-arm64.dmg`);
 
 const indexPath = "downloads/index.json";
@@ -49,20 +60,20 @@ downloads.updated_at = release.published_at;
 downloads.latest = tag;
 downloads.versions = [tag, ...(downloads.versions || []).filter((item) => item !== tag)];
 downloads.files = {
-  win: `https://github.com/${repository}/releases/latest/download/DeskAIPet-Setup-latest-win64.exe`,
+  ...(win ? { win: `https://github.com/${repository}/releases/latest/download/DeskAIPet-Setup-latest-win64.exe` } : {}),
   mac_arm64: `https://github.com/${repository}/releases/latest/download/DeskAIPet-latest-macos-arm64.dmg`,
 };
 downloads.per_version_files = {
   [tag]: {
-    win: win.browser_download_url,
+    ...(win ? { win: win.browser_download_url } : {}),
     mac_arm64: macArm.browser_download_url,
   },
   ...withoutKey(downloads.per_version_files, tag),
 };
 downloads.checksums = {
   [tag]: {
-    win: win.digest.slice("sha256:".length),
-    mac_arm64: macArm.digest.slice("sha256:".length),
+    ...(win ? { win: sha256(win) } : {}),
+    mac_arm64: sha256(macArm),
   },
   ...withoutKey(downloads.checksums, tag),
 };

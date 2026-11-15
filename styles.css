@@ -2368,3 +2368,13 @@ html[data-theme="light"] .plugin-market-card.is-built-in {
     animation: none !important;
   }
 }
+
+/* A platform that is not shipped yet: shown as text, not a link. */
+.hero-dl-row > .btn.btn-disabled,
+.hero-dl-row > .btn.btn-disabled:hover,
+.hero-dl-row > .btn.btn-disabled:active {
+  cursor: default;
+  opacity: 0.62;
+  transform: none !important;
+  box-shadow: none !important;
+}

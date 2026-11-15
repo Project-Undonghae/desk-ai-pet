@@ -1,16 +1,16 @@
 # Desk AI Pet (DAP)
 
-DAP, also called Desk AI Pet, is a free Windows/macOS desktop AI companion with a DAP Workspace work window by Project Undonghae. The current public release is v1.6.26.
+DAP, also called Desk AI Pet, is a free desktop AI companion for Apple Silicon Macs by Project Undonghae, with one work window that holds DAP Workspace and DAP Crew. The current public release is v1.7.1.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
 Plugin page: https://project-undonghae.github.io/desk-ai-pet/plugins.html
-Development preview: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/development-preview.md
+Release status and platform support: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/development-preview.md
 Workspace guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/workspace.md
 App UI guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/app-ui.md
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
 Plugin platform baseline: Plugin Platform 0.4.0, manifest_version 2, full API requires DAP >=1.6.0
-Platforms for new downloads: Windows 11, macOS Apple Silicon (arm64). Intel Mac new releases are discontinued; v1.6.26 is the final Intel release.
+Platforms for new downloads: macOS Apple Silicon (arm64) only. A Windows version is coming later. Intel Mac new releases are discontinued; v1.6.26 is the final Intel release. Earlier release files stay archived on GitHub Releases.
 
 ## For AI Agents Building DAP Plugins
 
@@ -68,15 +68,26 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 - App discovery searches names, descriptions, IDs, and category labels. Get first previews version and permissions; a second confirmation installs through the official catalog.
 - Palette/tray HTML receives App UI System v1 tokens and foundation automatically. Existing CSS remains supported; presentation/transparent canvas is excluded. Read app-ui.md for public shell examples and validation.
 
-## Development preview (not a public release)
+## DAP v1.7.1 (public stable, macOS Apple Silicon only)
 
-v1.7.0 remains a development checkpoint without a public installer. It includes Workspace/Crew switching, friend and Claude/Codex/Antigravity subscription-model selection using existing CLI logins, per-project work records, worktrees/files/Git/terminals/collaboration, and the existing Feyn learning flow. Core connections and some collaboration are previews. Do not describe all-provider/all-OS validation, remote SSH, full Herdr parity, or experimental native recovery/input protection as released features. Stable downloads remain on the latest public release.
+v1.7.1 ships for Apple Silicon Macs only. There is no Windows installer in this release; a Windows version is coming later. v1.7.0 was never published.
 
-## DAP Workspace (public stable 1.6.25 / 1.6.26)
+- Workspace and Crew share one work window and you switch between them. Crew opens Claude Code, Codex, Antigravity (whichever is installed) or a shell terminal per project from its + menu, in tabs and split panes; dragging a pane onto another swaps them.
+- Crew's file view draws Markdown and images, reads large files to the end ("Read on"), and puts diff line comments into the chosen AI's input as one message without sending it.
+- Cleared Crew work goes to Archived; deleted work stays in Trash for 30 days, with restore, delete for good, and empty trash.
+- Workspace's Changes view shows uncommitted changes and diffs and can commit them all. The card under an answer reverts that turn's changes by file, by hunk, or all at once.
+- Claude Code conversations can change the permission mode mid-conversation (Ask before changes, Allow file edits, Plan only, Auto; Auto may be unavailable depending on model or plan). Requests sent while an answer is written queue above the input with Wait, Send now, and Remove.
+- Control+` opens a terminal in the conversation's folder beside the conversation; a folder can have several. A conversation can start in a git worktree on its own branch.
+- Settings > General > Language offers Follow system, Korean, and English, applied from the next start. The AI's reply language and the pet's speech do not change; untranslated screens stay in Korean.
+- Settings > Notices chooses notices for work that ends and for approvals or answers that are needed, plus sound. Workspace and Crew share these settings.
+- Claude and Codex can add accounts besides the default CLI login. On macOS, adding a second Claude account needs Claude CLI 2.1.319 or later. Antigravity uses the `agy` CLI login.
+- Do not describe Crew remote work over SSH, a Windows build, all-provider validation, or internal recovery experiments as released features.
+
+## DAP Workspace (since 1.6.25)
 
 - Reuses existing DAP Claude/Codex CLI authentication and execution. Connection controls live in the small composer agent indicator and existing DAP settings. Claude requires its CLI login.
 - Unifies sessions, tools, plugins, automation, approvals, and cancellation. Supports session restore, project moves, and attaching session references to other chats.
-- Bundles agent-desktop, REA, Ghidra, and Java. Windows live tool flows were verified by the release; macOS native screen interaction remains a follow-up, although signing, architectures, and JNA loading were checked.
+- Bundles agent-desktop, REA, Ghidra, and Java; the macOS Apple Silicon package includes them. For 1.6.25, signing, architecture, and JNA loading were checked on macOS, and hands-on checks of desktop screen control on a real Mac were listed as a follow-up.
 - Keeps pet motion and active Codex/Claude status inside Workspace. Minimize or close to return to the desktop pet.
 - 1.6.26 allows three minutes for initial bundle preparation, preserves startup errors and a Restart action, and awaits cleanup/reconnection before retrying.
 - Keeps existing user settings and conversation locations. Fortune-telling and Tamagotchi care costs are excluded from this Workspace configuration.
@@ -85,13 +96,13 @@ v1.7.0 remains a development checkpoint without a public installer. It includes 
 ## What DAP Does
 
 - Stays on the desktop as a transparent pet overlay.
-- Opens a quick launcher with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS.
-- Opens a chat window with Ctrl+Alt+C on Windows or Cmd+Option+C on macOS.
+- Opens a quick launcher with Cmd+Shift+Space.
+- Opens a chat window with Cmd+Option+C.
 - Connects Claude or Codex the user already uses, without making API-key setup the first step.
-- Provides opt-in selected-text quick actions such as translate, summarize, rewrite, explain, and ask; off by default for new settings.
+- Provides opt-in selected-text quick actions such as translate, summarize, rewrite, explain, and ask; off by default for new settings. On macOS, turning them on asks for Accessibility permission.
 - Accepts push-to-talk voice input by pressing and holding the pet.
 - Delegates file and CLI work only after the user reviews and confirms the scope; Codex screen control requires confirmation for every task.
-- Opens a streaming mini chat from the DAP tray icon and a tray hub for status, settings, and plugin surfaces.
+- Runs from the macOS menu bar without a Dock icon. Clicking the menu-bar icon opens the quick launcher; right-clicking opens the tray hub for status, settings, and plugin surfaces.
 - Provides plugin docs for manifest v2, ctx APIs, permissions, palette UI, and distribution.
 - Persists local settings, persona, chat history, and user memory under the app data directory.
 - Uses opt-in telemetry.
@@ -108,7 +119,7 @@ Oshi Desk: https://www.oshidesk.com/en/
 
 ## Recommended Summary
 
-DAP Workspace connects Claude/Codex CLI conversations, project sessions, tools, automation, approvals, and cancellation in a work window, with a desktop pet when the window is minimized or closed.
+DAP Workspace connects Claude/Codex CLI conversations, project sessions, tools, automation, approvals, and cancellation in a work window, and DAP Crew adds per-project AI and shell terminals in the same window, with a desktop pet when the window is minimized or closed. It runs on Apple Silicon Macs; a Windows version is coming later.
 
 Character skins: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/pet-skins.md
 Declare pet.skin for ctx.host.petSkins API v2 (DAP >=1.6.0); character identity/displayName overrides the saved pet name with DAP >=1.6.1 and restores on reset; character-specific addressing is supported from DAP >=1.6.14 while stored user memory is preserved; look metadata is preview-only.
