@@ -41,7 +41,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
   <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261119-graphite" />
+  <link rel="stylesheet" href="styles.css?v=20261119-actual" />
   <script>
     (() => {
       try {
@@ -157,8 +157,35 @@
 
 <div id="stars"></div>
 
+<!-- PRODUCT HERO: actual v1.7.1 development build -->
+<section class="product-hero z" aria-labelledby="product-hero-title">
+  <div class="product-hero-copy">
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">DAP v1.7.1 · Preview</p>
+    <div class="product-hero-lockup" role="img" aria-label="dap_">
+      <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
+      <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
+    </div>
+    <h1 id="product-hero-title" data-i18n="product_hero_title">대화에서 문서와 터미널까지,<br />하나의 작업창에서</h1>
+    <p data-i18n="product_hero_desc">DAP은 왼쪽 레일에서 Workspace와 Crew를 오가고, 가운데 대화에서 AI 계정을 선택하며, 필요한 문서·브라우저·터미널을 대화 옆에 엽니다.</p>
+    <div class="product-hero-actions" id="waitlist">
+      <a class="btn btn-w" href="mailto:ssongshare0720@gmail.com?subject=DAP%20v1.7.1%20Waitlist&amp;body=DAP%20v1.7.1%20출시%20소식을%20받고%20싶습니다." data-waitlist-source="hero" data-i18n="download_win">웨이팅리스트 참여</a>
+      <a class="btn btn-m" href="#interface-map-title" data-i18n="product_hero_tour">화면 구성 살펴보기</a>
+    </div>
+    <p class="product-hero-note" data-i18n="download_subtitle">아직 공개 설치본이 없습니다 · 다음 공개 빌드는 macOS Apple Silicon부터 준비 중</p>
+  </div>
+  <figure class="product-window">
+    <div class="product-window-bar" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <strong>DAP Workspace</strong>
+    </div>
+    <img class="product-capture product-capture-dark" src="screenshots/dap-workspace-v1.7.1-dev-dark.png" width="1272" height="826" alt="DAP v1.7.1 개발 빌드의 다크 Workspace 실제 화면" />
+    <img class="product-capture product-capture-light" src="screenshots/dap-workspace-v1.7.1-dev-light.png" width="1272" height="826" alt="DAP v1.7.1 개발 빌드의 라이트 Workspace 실제 화면" />
+    <figcaption data-i18n="product_capture_caption">v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.</figcaption>
+  </figure>
+</section>
+
 <!-- HERO FULLSCREEN: 고양이 스테이지가 전체 화면 배경, 텍스트는 오버레이 -->
-<section id="hero-fullscreen">
+<section id="hero-fullscreen" class="legacy-hero" aria-hidden="true">
   <!-- STAGE: 100vh 풀스크린 고양이 무대 -->
   <div id="stage" role="button" tabindex="0" data-i18n-title="stage_title" data-i18n-aria="stage_aria" title="클릭해서 반응 보기" aria-label="고양이에게 반응하기">
     <div id="floor"></div>
@@ -183,12 +210,11 @@
         <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
       </div>
       <p class="hero-tagline-text" data-i18n="hero_tagline">AI와 문서, 프로젝트 작업을 하나의 데스크톱에서</p>
-      <span id="waitlist" class="download-anchor" aria-hidden="true"></span>
+      <span class="download-anchor" aria-hidden="true"></span>
       <div class="hero-dl-row">
         <a
           class="btn btn-w"
           href="mailto:ssongshare0720@gmail.com?subject=DAP%20v1.7.1%20Waitlist&amp;body=DAP%20v1.7.1%20출시%20소식을%20받고%20싶습니다."
-          data-waitlist-source="hero"
         >
           <span data-i18n="download_win">웨이팅리스트 참여</span>
         </a>
@@ -237,7 +263,7 @@
 </section>
 
 <!-- REAL APP PREVIEW -->
-<section class="demo z" aria-labelledby="demo-title">
+<section class="demo z legacy-app-gallery" aria-labelledby="demo-title">
   <div class="demo-copy">
     <p class="section-label compact" data-i18n="demo_label">Windows v1.6.17 · 실제 앱 화면</p>
     <h2 id="demo-title" data-i18n="demo_title">새 앱을 찾고, 자주 쓰는 앱은 가까이</h2>
@@ -260,8 +286,8 @@
 </section>
 
 <!-- FEATURES -->
-<p class="section-label" data-i18n="features_label">Core features</p>
-<div class="features z">
+<p class="section-label legacy-core" data-i18n="features_label">Core features</p>
+<div class="features z legacy-core">
   <img class="section-cat section-cat-features" src="sprites/happy_24_crop.png" alt="" aria-hidden="true" />
   <div class="card reveal">
     <div class="card-icon">CMD</div>
@@ -286,8 +312,8 @@
 </div>
 
 <!-- CURRENT PREVIEW -->
-<p class="section-label" data-i18n="latest_label">Preview in v1.7.1</p>
-<div class="features z" aria-label="DAP v1.7.1 preview highlights">
+<p class="section-label legacy-preview-cards" data-i18n="latest_label">Preview in v1.7.1</p>
+<div class="features z legacy-preview-cards" aria-label="DAP v1.7.1 preview highlights">
   <div class="card reveal">
     <div class="card-icon">SKIN</div>
     <h3 data-i18n="latest_plan_title">Workspace와 Crew 전환</h3>
@@ -319,6 +345,21 @@
     <p data-i18n="latest_image_desc">Crew의 메인 오케스트레이터가 프로젝트 작업을 나누고 이어줍니다. 기본 친구는 아인이며 선택한 펫 이름을 사용합니다.</p>
   </div>
 </div>
+
+<!-- ACTUAL INTERFACE MAP -->
+<section class="interface-map z" aria-labelledby="interface-map-title">
+  <div class="interface-map-head">
+    <p class="section-label compact" data-i18n="interface_label">Actual interface</p>
+    <h2 id="interface-map-title" data-i18n="interface_title">실제 화면은 네 영역으로 움직입니다</h2>
+    <p data-i18n="interface_desc">기능 목록이 아니라, 앱에서 일을 시작하고 확장하는 순서대로 소개합니다.</p>
+  </div>
+  <div class="interface-map-grid">
+    <article><span>01</span><h3 data-i18n="interface_rail_title">항상 남는 왼쪽 레일</h3><p data-i18n="interface_rail_desc">목록 접기, 최근 작업, 앱과 설정으로 이동합니다. 작업 모드를 바꿔도 같은 자리에 남습니다.</p></article>
+    <article><span>02</span><h3 data-i18n="interface_switch_title">Workspace와 Crew 전환</h3><p data-i18n="interface_switch_desc">대화 중심 Workspace와 프로젝트 중심 Crew를 상단 전환 메뉴에서 오갑니다.</p></article>
+    <article><span>03</span><h3 data-i18n="interface_chat_title">대화와 AI 계정 선택</h3><p data-i18n="interface_chat_desc">프로젝트와 모드를 정하고, 입력창에서 Claude·Codex·Antigravity 계정을 선택해 요청합니다.</p></article>
+    <article><span>04</span><h3 data-i18n="interface_panel_title">대화 옆 작업 패널</h3><p data-i18n="interface_panel_desc">문서, 인앱 브라우저와 Crew 터미널을 대화 옆에서 열어 결과와 작업 맥락을 함께 봅니다.</p></article>
+  </div>
+</section>
 
 <!-- DEVELOPMENT PREVIEW -->
 <section class="demo z release-preview" aria-labelledby="preview-title">
@@ -578,6 +619,10 @@ const I18N = {
     nav_plugins: "앱",
     nav_download: "웨이팅리스트",
     hero_eyebrow: "DAP v1.7.1 · Preview",
+    product_hero_title: "대화에서 문서와 터미널까지, 하나의 작업창에서",
+    product_hero_desc: "DAP은 왼쪽 레일에서 Workspace와 Crew를 오가고, 가운데 대화에서 AI 계정을 선택하며, 필요한 문서·브라우저·터미널을 대화 옆에 엽니다.",
+    product_hero_tour: "화면 구성 살펴보기",
+    product_capture_caption: "v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.",
     hero_copy: "당신의 AI Workspace\n캐릭터와 함께 대화하고 작업을 이어가세요",
     hero_tagline: "AI와 문서, 프로젝트 작업을 하나의 데스크톱에서",
     stage_title: "클릭해서 반응 보기",
@@ -625,6 +670,17 @@ const I18N = {
     latest_assist_desc: "완료 알림에서 관련 세션으로 돌아갑니다. 방해 금지, 이전 실행, 오프라인 이후에도 작업 맥락을 복원합니다.",
     latest_image_title: "프로젝트를 이끄는 AI 친구",
     latest_image_desc: "Crew의 메인 오케스트레이터가 프로젝트 작업을 나누고 이어줍니다. 기본 친구는 아인이며 선택한 펫 이름을 사용합니다.",
+    interface_label: "Actual interface",
+    interface_title: "실제 화면은 네 영역으로 움직입니다",
+    interface_desc: "기능 목록이 아니라, 앱에서 일을 시작하고 확장하는 순서대로 소개합니다.",
+    interface_rail_title: "항상 남는 왼쪽 레일",
+    interface_rail_desc: "목록 접기, 최근 작업, 앱과 설정으로 이동합니다. 작업 모드를 바꿔도 같은 자리에 남습니다.",
+    interface_switch_title: "Workspace와 Crew 전환",
+    interface_switch_desc: "대화 중심 Workspace와 프로젝트 중심 Crew를 상단 전환 메뉴에서 오갑니다.",
+    interface_chat_title: "대화와 AI 계정 선택",
+    interface_chat_desc: "프로젝트와 모드를 정하고, 입력창에서 Claude·Codex·Antigravity 계정을 선택해 요청합니다.",
+    interface_panel_title: "대화 옆 작업 패널",
+    interface_panel_desc: "문서, 인앱 브라우저와 Crew 터미널을 대화 옆에서 열어 결과와 작업 맥락을 함께 봅니다.",
     waitlist_label: "Early access",
     waitlist_title: "v1.7.1 출시 소식을 가장 먼저",
     waitlist_desc: "DAP은 아직 공개 전입니다. 다음 공개 빌드는 macOS Apple Silicon부터 준비하며, Windows 일정은 이후 안내합니다.",
@@ -708,6 +764,10 @@ const I18N = {
     nav_plugins: "Apps",
     nav_download: "Waitlist",
     hero_eyebrow: "DAP v1.7.1 · Preview",
+    product_hero_title: "From conversations to documents and terminals, in one work window",
+    product_hero_desc: "Move between Workspace and Crew from the left rail, choose an AI account in the conversation, and open documents, the browser, or a terminal beside it.",
+    product_hero_tour: "Explore the interface",
+    product_capture_caption: "Actual v1.7.1 development build · details may change before the public release.",
     hero_copy: "Your AI Workspace\nTalk and work with your desktop companion",
     hero_tagline: "AI, documents, and project work on one desktop",
     stage_title: "Click to interact",
@@ -755,6 +815,17 @@ const I18N = {
     latest_assist_desc: "Return to the related session from completion notifications, even after do-not-disturb, older runs, or offline periods.",
     latest_image_title: "An AI friend that orchestrates projects",
     latest_image_desc: "Crew's main orchestrator breaks down and continues project work. Ain is the default friend and the selected pet name is used.",
+    interface_label: "Actual interface",
+    interface_title: "The real interface moves through four areas",
+    interface_desc: "Follow the way work starts and expands in the app, rather than a generic feature list.",
+    interface_rail_title: "A persistent left rail",
+    interface_rail_desc: "Collapse the list, return to recent work, open apps, or reach settings. It stays put across work modes.",
+    interface_switch_title: "Workspace and Crew switch",
+    interface_switch_desc: "Move between conversation-focused Workspace and project-focused Crew from the menu at the top.",
+    interface_chat_title: "Conversation and AI account",
+    interface_chat_desc: "Choose a project and mode, then select a Claude, Codex, or Antigravity account from the composer.",
+    interface_panel_title: "A work panel beside chat",
+    interface_panel_desc: "Open documents, the in-app browser, or a Crew terminal beside the conversation so results keep their context.",
     waitlist_label: "Early access",
     waitlist_title: "Be first to hear about v1.7.1",
     waitlist_desc: "DAP is not publicly available yet. The next public build is being prepared for macOS Apple Silicon first; Windows timing will follow.",
