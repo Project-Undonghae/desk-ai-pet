@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
   <meta name="description" content="DAP Workspace 1.6.26과 데스크톱 앱 카탈로그·App UI System v1 개발 가이드. Plugin Platform 0.4, manifest v2, palette·tray 공통 UI와 카탈로그 배포 계약." />
+  <meta name="theme-color" content="#17191D" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
+  <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
+  <link rel="stylesheet" href="styles.css?v=20261119-logo" />
   <script>
     (() => {
       try {
@@ -22,7 +28,10 @@
 <body class="doc-page docs-product-page">
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-nav" aria-label="DAP navigation">
-  <a class="site-nav-brand" href="index.html">DAP</a>
+  <a class="site-nav-brand" href="index.html" aria-label="DAP 홈">
+    <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
+    <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
+  </a>
   <nav id="site-nav-links">
     <a href="index.html">홈</a>
     <a href="developers.html" aria-current="page">Docs</a>

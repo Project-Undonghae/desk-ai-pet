@@ -25,20 +25,23 @@
   <meta property="og:title" content="DAP Workspace - 캐릭터와 함께하는 AI 작업창" />
   <meta property="og:description" content="DAP Workspace v1.6.26은 기존 Claude/Codex CLI 연결로 대화·세션·도구·자동화와 실행 승인·취소를 한 작업창에 모읍니다. 창을 닫거나 최소화하면 바탕화면 펫으로 돌아갑니다." />
   <meta property="og:url" content="https://project-undonghae.github.io/desk-ai-pet/" />
-  <meta property="og:image" content="https://project-undonghae.github.io/desk-ai-pet/screenshots/dap-app-store-search-win-v1.6.17.jpg" />
-  <meta property="og:image:width" content="382" />
-  <meta property="og:image:height" content="440" />
-  <meta property="og:image:alt" content="DAP Windows v1.6.17 실제 앱 찾기 검색 결과" />
+  <meta property="og:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-cursor.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="그라파이트 배경 위 DAP 커서 D 아이콘과 dap_ 워드마크" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="DAP Workspace - 캐릭터와 함께하는 AI 작업창" />
   <meta name="twitter:description" content="DAP Workspace v1.6.26은 기존 Claude/Codex CLI 연결로 대화·세션·도구·자동화와 실행 승인·취소를 한 작업창에 모읍니다. 창을 닫거나 최소화하면 바탕화면 펫으로 돌아갑니다." />
-  <meta name="twitter:image" content="https://project-undonghae.github.io/desk-ai-pet/screenshots/dap-app-store-search-win-v1.6.17.jpg" />
+  <meta name="twitter:image" content="https://project-undonghae.github.io/desk-ai-pet/og-dap-cursor.png" />
+  <meta name="theme-color" content="#17191D" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
-  <link rel="apple-touch-icon" href="favicon-180.png" />
+  <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
+  <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261104-arm64" />
+  <link rel="stylesheet" href="styles.css?v=20261119-logo" />
   <script>
     (() => {
       try {
@@ -129,7 +132,10 @@
 </div>
 
 <header class="site-nav" aria-label="DAP navigation">
-  <a class="site-nav-brand" href="index.html">DAP</a>
+  <a class="site-nav-brand" href="index.html" aria-label="DAP 홈">
+    <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
+    <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
+  </a>
   <nav id="site-nav-links">
     <a href="index.html" aria-current="page" data-i18n="nav_home">홈</a>
     <a href="developers.html" data-i18n="nav_developers">Docs</a>
@@ -172,7 +178,10 @@
   <div class="hero-overlay">
     <div class="hero-overlay-inner z">
       <p class="hero-eyebrow" data-i18n="hero_eyebrow">YOUR FIRST AI OS</p>
-      <div class="logo"><h1>DAP</h1><small>Desk AI Pet</small></div>
+      <div class="logo" role="img" aria-label="dap_">
+        <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
+        <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
+      </div>
       <p class="hero-tagline-text" data-i18n="hero_tagline">캐릭터와 함께, 대화에서 도구 실행까지 DAP Workspace에서</p>
       <span id="download" class="download-anchor" aria-hidden="true"></span>
       <div class="hero-dl-row">
@@ -489,6 +498,10 @@
 </main>
 
 <footer class="z">
+  <div class="footer-brand" role="img" aria-label="dap_">
+    <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
+    <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
+  </div>
   <span data-i18n="footer">DAP · Desk AI Pet · Windows &amp; macOS</span>
 </footer>
 
