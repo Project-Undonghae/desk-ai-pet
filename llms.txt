@@ -1,6 +1,7 @@
 # Desk AI Pet (DAP)
 
-DAP, also called Desk AI Pet, is a free Windows/macOS desktop AI companion with a DAP Workspace work window by Project Undonghae. The current public release is v1.6.26.
+DAP, also called Desk AI Pet, is a desktop AI companion by Project Undonghae. v1.7.1 is the current pre-release preview and has no public installer yet.
+The latest archived public release is v1.6.26.
 
 Official site: https://project-undonghae.github.io/desk-ai-pet/
 Developer docs: https://project-undonghae.github.io/desk-ai-pet/developers.html
@@ -10,7 +11,7 @@ Workspace guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-pla
 App UI guide: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/app-ui.md
 AI plugin context: https://project-undonghae.github.io/desk-ai-pet/docs/plugin-platform/ai-context.md
 Plugin platform baseline: Plugin Platform 0.4.0, manifest_version 2, full API requires DAP >=1.6.0
-Platforms for new downloads: Windows 11, macOS Apple Silicon (arm64). Intel Mac new releases are discontinued; v1.6.26 is the final Intel release.
+Next public build: macOS Apple Silicon (arm64) first. Windows timing will follow and has not been confirmed. v1.6.26 remains the final Intel Mac public release.
 
 ## For AI Agents Building DAP Plugins
 
@@ -70,7 +71,7 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 
 ## Development preview (not a public release)
 
-v1.7.0 remains a development checkpoint without a public installer. It includes Workspace/Crew switching, friend and Claude/Codex/Antigravity subscription-model selection using existing CLI logins, per-project work records, worktrees/files/Git/terminals/collaboration, and the existing Feyn learning flow. Core connections and some collaboration are previews. Do not describe all-provider/all-OS validation, remote SSH, full Herdr parity, or experimental native recovery/input protection as released features. Stable downloads remain on the latest public release.
+v1.7.1 has no public installer. The site uses an email waitlist and does not collect addresses in a web form. The preview includes Workspace/Crew switching with persistent work, multiple accounts per Claude/Codex/Antigravity provider pinned to Workspace or Crew, Crew projects/worktrees/files/Git/terminals/CLI models with a main orchestrator, Document Workspace for Markdown/DOCX/HWPX/XLSX/PPTX/web files plus an in-app browser, and notifications that reopen related sessions. Native Workspace rebuilding and some Office-native preview work remain in progress. Do not describe all-provider/all-OS validation or experimental features as released defaults.
 
 ## DAP Workspace (public stable 1.6.25 / 1.6.26)
 

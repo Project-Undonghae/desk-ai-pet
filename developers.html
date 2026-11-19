@@ -4,10 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAP Plugin Platform Docs</title>
-  <meta name="description" content="DAP Workspace 1.6.26과 데스크톱 앱 카탈로그·App UI System v1 개발 가이드. Plugin Platform 0.4, manifest v2, palette·tray 공통 UI와 카탈로그 배포 계약." />
+  <meta name="description" content="DAP v1.7.1 개발 미리보기와 공개 Plugin Platform 0.4, manifest v2, App UI System v1 개발 가이드." />
+  <meta name="theme-color" content="#17191D" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.ico" sizes="any" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260729-plugin-02" />
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261119-graphite" />
   <script>
     (() => {
       try {
@@ -22,12 +28,15 @@
 <body class="doc-page docs-product-page">
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-nav" aria-label="DAP navigation">
-  <a class="site-nav-brand" href="index.html">DAP</a>
+  <a class="site-nav-brand" href="index.html" aria-label="DAP 홈">
+    <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
+    <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
+  </a>
   <nav id="site-nav-links">
     <a href="index.html">홈</a>
     <a href="developers.html" aria-current="page">Docs</a>
     <a href="plugins.html">플러그인</a>
-    <a href="index.html#download">다운로드</a>
+    <a href="index.html#waitlist">웨이팅리스트</a>
   </nav>
   <div class="site-nav-actions">
     <button id="theme-toggle" class="theme-toggle" type="button" data-next-theme="light" aria-label="라이트 모드로 전환">LIGHT</button>
@@ -95,18 +104,19 @@
     </div>
 
     <section id="development-preview">
-      <h2>v1.7.0 개발 미리보기 · 2026-11-04 확인</h2>
-      <p>공개 안정판은 <strong>v1.6.26</strong>입니다. v1.7.0은 개발 브랜치에 통합된 체크포인트이며 아직 공개 설치본이 없습니다. 이 페이지의 정식 데스크톱 플러그인 API와 아래 개발 기능을 혼용하지 않습니다.</p>
+      <h2>v1.7.1 개발 미리보기 · 2026-11-19 확인</h2>
+      <p>v1.7.1은 개발 브랜치에 통합된 다음 공개 후보이며 아직 공개 설치본이 없습니다. 사이트의 버튼은 다운로드가 아니라 웨이팅리스트로 연결됩니다. 이 페이지의 정식 데스크톱 플러그인 API와 아래 개발 기능을 혼용하지 않습니다.</p>
       <ul>
-        <li>작업창에서 Workspace와 Crew를 전환하며 실행과 입력 초안을 유지하는 흐름을 준비합니다.</li>
-        <li>현재 친구와 연결된 Claude·Codex·Antigravity 구독 모델 선택, 친구의 말투·개인 기억과 프로젝트별 업무 기록을 다룹니다.</li>
-        <li>Crew의 프로젝트·최근 목록·worktree·파일/코드·Git·터미널·협업 전달과 기존 Feyn 학습 흐름을 포함합니다.</li>
-        <li>Core 연결과 일부 협업은 미리보기입니다. 원격 SSH, 전체 Herdr 기능 동등성, 모든 제공자/OS의 실사용 검증 완료를 의미하지 않습니다.</li>
+        <li>Workspace와 Crew를 전환해도 실행·입력·프로젝트 작업 기록을 유지합니다.</li>
+        <li>Claude·Codex·Antigravity 제공자별 여러 계정을 등록하고 Workspace/Crew에 선택한 계정을 고정합니다.</li>
+        <li>Crew는 메인 오케스트레이터, 프로젝트·worktree·파일·Git·터미널·CLI 모델을 한 작업 흐름으로 연결합니다.</li>
+        <li>Document Workspace에서 Markdown, DOCX, HWPX, XLSX, PPTX, HTML/CSS/JS와 인앱 브라우저를 대화 옆에 둡니다.</li>
+        <li>완료 알림에서 관련 세션을 다시 열며, 방해 금지·이전 실행·오프라인 이후의 알림도 복원합니다.</li>
       </ul>
-      <p>원본 화면 복구·입력 보호 관련 개발 실험이 모두 공개 설치본에 포함됐다고 해석하지 마세요. 공개 버전·배포 산출물과 검증 범위가 확인되기 전에는 정식 API나 다운로드로 안내하지 않습니다.</p>
+      <p>네이티브 Workspace와 Office 미리보기 일부는 준비 중입니다. 공개 버전·배포 산출물과 검증 범위가 확인되기 전에는 정식 API나 다운로드로 안내하지 않습니다.</p>
       <h3>플랫폼 지원 변경</h3>
-      <p>새 설치 파일은 <strong>Windows와 macOS Apple Silicon</strong>을 대상으로 합니다. macOS Intel(x64)의 마지막 릴리스는 v1.6.26이며, v1.7.0부터 Intel 패키지를 제공하지 않습니다. 사이트의 활성 다운로드·최신 체크섬에서도 Intel 항목을 제거했습니다. 이전 릴리스 기록은 보존합니다.</p>
-      <p>확인 근거: 본체 개발 커밋 <code>9b4d72b941</code>의 패키징 설정과 v1.7.0 릴리스 검증 기록. <a href="docs/plugin-platform/development-preview.md">개발 상태와 지원 정책</a>에서 정식/개발 범위를 확인하세요.</p>
+      <p>다음 공개 빌드는 <strong>macOS Apple Silicon</strong>부터 준비합니다. Windows 후속 공개 일정은 아직 확정되지 않았고, macOS Intel(x64)의 마지막 공개 릴리스는 v1.6.26입니다. 이전 릴리스 기록은 보존합니다.</p>
+      <p>확인 근거: 본체 개발 브랜치 <code>0ef24cb</code>와 v1.7.1 패키지 설정. <a href="docs/plugin-platform/development-preview.md">개발 상태와 지원 정책</a>에서 정식/개발 범위를 확인하세요.</p>
     </section>
 
     <section id="workspace">
@@ -577,6 +587,7 @@ const blobId = await ctx.host.storage.putBlob(image.bytes, {
     </section>
 
     <section id="changelog">
+      <p><strong>2026-11-19</strong>: v1.7.1 개발 미리보기에 여러 AI 계정, Document Workspace, Crew 프로젝트 터미널·메인 오케스트레이터와 세션 복원 알림을 반영했습니다. 아직 공개 설치본이 없으므로 사이트 동선은 웨이팅리스트로 안내합니다.</p>
       <p><strong>2026-11-04</strong>: 공개 DAP Workspace 1.6.25/1.6.26의 세션·도구·CLI 연결과 시작/재시도 안내를 추가했습니다. 카탈로그 icon 필드와 Chiikawa Friends 2.8.0의 외부 자산 없는 모션 구성을 반영했습니다. 데스크톱 Plugin Platform 0.4 / manifest v2는 유지합니다.</p>
       <p><strong>2026-10-21</strong>: DAP 1.6.17의 앱 찾기·검색·카테고리·설치 전 권한 확인과 1.6.15의 App UI System v1·앱 보관함을 반영했습니다. <a href="docs/plugin-platform/app-ui.md">공통 앱 UI 가이드</a>를 추가했으며 Plugin Platform 0.4 / manifest v2는 유지합니다.</p>
       <h2>Changelog</h2>

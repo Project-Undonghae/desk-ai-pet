@@ -11,7 +11,7 @@ DAP Workspace is available from public 1.6.25, with startup/retry fixes in 1.6.2
 
 ## Distribution support and development previews
 
-New site downloads target Windows and macOS Apple Silicon. v1.6.26 is the final Intel Mac release; v1.7.0 packaging is arm64-only on macOS. Historical release files remain archived. Read [development-preview.md](development-preview.md) for the current non-public Crew checkpoint. Do not promote draft versions, invent new Host APIs, or treat internal recovery experiments as released defaults.
+The site currently offers a waitlist instead of public installers. The next public build is being prepared for macOS Apple Silicon first; Windows timing is unconfirmed, and v1.6.26 is the final Intel Mac public release. Historical release files remain archived. Read [development-preview.md](development-preview.md) for the current non-public v1.7.1 scope. Do not promote draft versions, invent new Host APIs, or treat internal experiments as released defaults.
 
 ## Required output
 
