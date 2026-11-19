@@ -41,7 +41,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
   <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261119-scenes" />
+  <link rel="stylesheet" href="styles.css?v=20261119-ain-panel" />
   <script>
     (() => {
       try {
@@ -158,7 +158,7 @@
 <div id="stars"></div>
 
 <main id="main">
-<!-- PRODUCT HERO: Ain and the product promise -->
+<!-- PRODUCT HERO: AIN and the product promise -->
 <section class="product-hero z" aria-labelledby="product-hero-title">
   <div class="product-hero-copy">
     <p class="hero-eyebrow" data-i18n="hero_eyebrow">DAP v1.7.1 · Preview</p>
@@ -166,19 +166,21 @@
       <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
       <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
     </div>
-    <h1 id="product-hero-title" data-i18n="product_hero_title">아인이와 함께,<br />일의 다음 장면으로</h1>
-    <p data-i18n="product_hero_desc">DAP은 대화만 하는 펫이 아닙니다. 아인이와 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.</p>
+    <h1 id="product-hero-title" data-i18n="product_hero_title">AIN과 함께,<br />일의 다음 장면으로</h1>
+    <p data-i18n="product_hero_desc">DAP은 대화만 하는 펫이 아닙니다. AIN과 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.</p>
     <div class="product-hero-actions" id="waitlist">
       <a class="btn btn-w" href="mailto:ssongshare0720@gmail.com?subject=DAP%20v1.7.1%20Waitlist&amp;body=DAP%20v1.7.1%20출시%20소식을%20받고%20싶습니다." data-waitlist-source="hero" data-i18n="download_win">웨이팅리스트 참여</a>
       <a class="btn btn-m" href="#product-scenes" data-i18n="product_hero_tour">실제 작업 화면 보기</a>
     </div>
     <p class="product-hero-note" data-i18n="download_subtitle">아직 공개 설치본이 없습니다 · 다음 공개 빌드는 macOS Apple Silicon부터 준비 중</p>
   </div>
-  <div class="ain-hero-stage" aria-label="DAP의 기본 AI 친구 아인이">
+  <div class="ain-hero-stage" aria-label="DAP의 기본 AI 친구 AIN">
     <span class="ain-orbit ain-orbit-workspace">Workspace</span>
     <span class="ain-orbit ain-orbit-crew">Crew</span>
-    <img src="characters/ain/ain-hero.webp" width="320" height="320" alt="웃으며 춤추는 DAP의 기본 AI 친구 아인이" />
-    <div class="ain-status"><span></span><strong data-i18n="ain_status">아인이 · 준비됨</strong></div>
+    <video class="ain-hero-motion" width="320" height="320" autoplay muted loop playsinline poster="characters/ain/ain-hero.webp" aria-label="웃으며 움직이는 DAP의 기본 AI 친구 AIN">
+      <source src="characters/ain/ain-dance.webm" type="video/webm" />
+    </video>
+    <div class="ain-status"><span></span><strong data-i18n="ain_status">AIN · 준비됨</strong></div>
   </div>
 </section>
 
@@ -187,19 +189,37 @@
   <div class="product-scenes-head">
     <p class="section-label compact" data-i18n="product_scenes_label">Inside DAP</p>
     <h2 id="product-scenes-title" data-i18n="product_scenes_title">말을 건 순간부터, 결과가 남을 때까지</h2>
-    <p data-i18n="product_scenes_desc">아래 이미지는 연출된 목업이 아니라 v1.7.1 개발 과정에서 검증한 실제 앱 화면입니다.</p>
+    <p data-i18n="product_scenes_desc">v1.7.1 개발 과정에서 검증한 실제 앱 화면 위에서 AIN 패널의 움직임과 대화 흐름을 보여줍니다.</p>
   </div>
 
   <article class="product-scene">
     <div class="product-scene-copy">
       <span>Workspace</span>
       <h3 data-i18n="scene_conversation_title">대화가 파일과 코드의 결과로 이어집니다</h3>
-      <p data-i18n="scene_conversation_desc">프로젝트를 선택하고 아인이에게 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AI 계정과 작업 모드는 입력창에서 바로 바꿉니다.</p>
+      <p data-i18n="scene_conversation_desc">프로젝트를 선택하고 AIN 패널에서 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AIN의 표정도 생각·말하기·완료 상태에 맞춰 바뀝니다.</p>
     </div>
     <figure class="scene-window">
       <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-conversation-dark.png" width="1296" height="834" alt="DAP Workspace에서 프로젝트 파일과 코드를 확인한 실제 다크 테마 대화 화면" />
       <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-conversation-light.png" width="1296" height="834" alt="DAP Workspace에서 프로젝트 파일과 코드를 확인한 실제 라이트 테마 대화 화면" />
-      <figcaption data-i18n="scene_actual_caption">v1.7.1 개발 빌드 실제 화면</figcaption>
+      <div class="ain-demo-sidebar-brand" aria-hidden="true"><span>DAP</span><img src="characters/ain/ain-happy.webp" alt="" /></div>
+      <div class="ain-demo-panel" data-phase="thinking" aria-label="Workspace 안에서 AIN과 대화하는 패널">
+        <div class="ain-demo-face">
+          <video data-ain-motion="thinking" autoplay muted loop playsinline aria-hidden="true"><source src="characters/ain/face/thinking.webm" type="video/webm" /></video>
+          <video data-ain-motion="speaking" autoplay muted loop playsinline aria-hidden="true"><source src="characters/ain/face/speaking.webm" type="video/webm" /></video>
+          <video data-ain-motion="happy" autoplay muted loop playsinline aria-hidden="true"><source src="characters/ain/face/happy.webm" type="video/webm" /></video>
+          <span class="ain-demo-agent">Claude · 작업 중</span>
+          <strong>AIN</strong>
+        </div>
+        <div class="ain-demo-dialog">
+          <div class="ain-demo-dialog-head"><strong>AIN과 대화</strong><span>프로젝트 구조 확인</span></div>
+          <div class="ain-demo-lines" aria-live="polite">
+            <p class="ain-demo-user" data-i18n="ain_demo_user">이 프로젝트에서 먼저 확인할 파일을 알려줘.</p>
+            <p class="ain-demo-response" data-i18n="ain_demo_thinking">파일과 대화 맥락을 함께 살펴보고 있어요.</p>
+          </div>
+          <div class="ain-demo-composer"><span data-i18n="ain_demo_placeholder">AIN에게 이어서 요청하기</span><b>↵</b></div>
+        </div>
+      </div>
+      <figcaption data-i18n="scene_ain_caption">v1.7.1 실제 Workspace 캡처 + AIN 패널 인터랙션</figcaption>
     </figure>
   </article>
 
@@ -220,16 +240,18 @@
 <!-- AIN, THE DEFAULT AI FRIEND -->
 <section class="ain-story z" aria-labelledby="ain-story-title">
   <div class="ain-story-visual">
-    <img class="ain-story-main" src="characters/ain/ain-working.webp" width="320" height="320" alt="메모를 들고 작업 중인 아인이" />
-    <div class="ain-state-strip" aria-label="아인이의 상태 변화">
-      <img src="characters/ain/ain-thinking.webp" width="320" height="320" alt="생각하는 아인이" />
-      <img src="characters/ain/ain-happy.webp" width="320" height="320" alt="기뻐하는 아인이" />
+    <video class="ain-story-main" width="320" height="320" autoplay muted loop playsinline poster="characters/ain/ain-working.webp" aria-label="움직이며 작업하는 AIN">
+      <source src="characters/ain/ain-dance.webm" type="video/webm" />
+    </video>
+    <div class="ain-state-strip" aria-label="AIN의 상태 변화">
+      <img src="characters/ain/ain-thinking.webp" width="320" height="320" alt="생각하는 AIN" />
+      <img src="characters/ain/ain-happy.webp" width="320" height="320" alt="기뻐하는 AIN" />
     </div>
   </div>
   <div class="ain-story-copy">
-    <p class="section-label compact" data-i18n="ain_label">Meet Ain</p>
+    <p class="section-label compact" data-i18n="ain_label">Meet AIN</p>
     <h2 id="ain-story-title" data-i18n="ain_title">화면을 꾸미는 캐릭터가 아니라,<br />일을 함께 이어가는 친구</h2>
-    <p data-i18n="ain_desc">아인이는 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.</p>
+    <p data-i18n="ain_desc">AIN은 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.</p>
     <dl>
       <div><dt data-i18n="ain_state_work">작업 중</dt><dd data-i18n="ain_state_work_desc">요청과 도구 실행을 따라갑니다.</dd></div>
       <div><dt data-i18n="ain_state_context">맥락 유지</dt><dd data-i18n="ain_state_context_desc">대화와 프로젝트 기록을 이어봅니다.</dd></div>
@@ -395,7 +417,7 @@
   <div class="card reveal">
     <div class="card-icon">PLUS</div>
     <h3 data-i18n="latest_image_title">프로젝트를 이끄는 AI 친구</h3>
-    <p data-i18n="latest_image_desc">Crew의 메인 오케스트레이터가 프로젝트 작업을 나누고 이어줍니다. 기본 친구는 아인이며 선택한 펫 이름을 사용합니다.</p>
+    <p data-i18n="latest_image_desc">Crew의 메인 오케스트레이터가 프로젝트 작업을 나누고 이어줍니다. 기본 친구는 AIN이며 선택한 펫 이름을 사용합니다.</p>
   </div>
 </div>
 
@@ -672,22 +694,28 @@ const I18N = {
     nav_plugins: "앱",
     nav_download: "웨이팅리스트",
     hero_eyebrow: "DAP v1.7.1 · Preview",
-    product_hero_title: "아인이와 함께, 일의 다음 장면으로",
-    product_hero_desc: "DAP은 대화만 하는 펫이 아닙니다. 아인이와 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.",
+    product_hero_title: "AIN과 함께, 일의 다음 장면으로",
+    product_hero_desc: "DAP은 대화만 하는 펫이 아닙니다. AIN과 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.",
     product_hero_tour: "실제 작업 화면 보기",
     product_capture_caption: "v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.",
-    ain_status: "아인이 · 준비됨",
+    ain_status: "AIN · 준비됨",
     product_scenes_label: "Inside DAP",
     product_scenes_title: "말을 건 순간부터, 결과가 남을 때까지",
-    product_scenes_desc: "아래 이미지는 연출된 목업이 아니라 v1.7.1 개발 과정에서 검증한 실제 앱 화면입니다.",
+    product_scenes_desc: "v1.7.1 개발 과정에서 검증한 실제 앱 화면 위에서 AIN 패널의 움직임과 대화 흐름을 보여줍니다.",
     scene_conversation_title: "대화가 파일과 코드의 결과로 이어집니다",
-    scene_conversation_desc: "프로젝트를 선택하고 아인이에게 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AI 계정과 작업 모드는 입력창에서 바로 바꿉니다.",
+    scene_conversation_desc: "프로젝트를 선택하고 AIN 패널에서 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AIN의 표정도 생각·말하기·완료 상태에 맞춰 바뀝니다.",
     scene_automation_title: "반복 작업도 같은 Workspace에서 관리합니다",
     scene_automation_desc: "대화에서 만든 자동화 작업을 별도 화면에서 찾고, 활성 상태와 실행 흐름을 확인합니다. Workspace와 Crew는 같은 레일과 화면 문법을 공유합니다.",
     scene_actual_caption: "v1.7.1 개발 빌드 실제 화면",
-    ain_label: "Meet Ain",
+    scene_ain_caption: "v1.7.1 실제 Workspace 캡처 + AIN 패널 인터랙션",
+    ain_label: "Meet AIN",
     ain_title: "화면을 꾸미는 캐릭터가 아니라, 일을 함께 이어가는 친구",
-    ain_desc: "아인이는 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.",
+    ain_desc: "AIN은 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.",
+    ain_demo_user: "이 프로젝트에서 먼저 확인할 파일을 알려줘.",
+    ain_demo_thinking: "파일과 대화 맥락을 함께 살펴보고 있어요.",
+    ain_demo_speaking: "확인했어요. note.txt와 설정 파일부터 보면 흐름을 가장 빨리 이해할 수 있어요.",
+    ain_demo_happy: "정리가 끝났어요. 다음 요청도 이 패널에서 바로 이어갈 수 있어요.",
+    ain_demo_placeholder: "AIN에게 이어서 요청하기",
     ain_state_work: "작업 중",
     ain_state_work_desc: "요청과 도구 실행을 따라갑니다.",
     ain_state_context: "맥락 유지",
@@ -740,7 +768,7 @@ const I18N = {
     latest_assist_title: "작업을 여는 알림",
     latest_assist_desc: "완료 알림에서 관련 세션으로 돌아갑니다. 방해 금지, 이전 실행, 오프라인 이후에도 작업 맥락을 복원합니다.",
     latest_image_title: "프로젝트를 이끄는 AI 친구",
-    latest_image_desc: "Crew의 메인 오케스트레이터가 프로젝트 작업을 나누고 이어줍니다. 기본 친구는 아인이며 선택한 펫 이름을 사용합니다.",
+    latest_image_desc: "Crew의 메인 오케스트레이터가 프로젝트 작업을 나누고 이어줍니다. 기본 친구는 AIN이며 선택한 펫 이름을 사용합니다.",
     interface_label: "Actual interface",
     interface_title: "실제 화면은 네 영역으로 움직입니다",
     interface_desc: "기능 목록이 아니라, 앱에서 일을 시작하고 확장하는 순서대로 소개합니다.",
@@ -835,22 +863,28 @@ const I18N = {
     nav_plugins: "Apps",
     nav_download: "Waitlist",
     hero_eyebrow: "DAP v1.7.1 · Preview",
-    product_hero_title: "With Ain, move into the next scene of your work",
-    product_hero_desc: "DAP is more than a talking pet. A request you discuss with Ain continues into file review, document editing, terminals, and automation on your desktop.",
+    product_hero_title: "With AIN, move into the next scene of your work",
+    product_hero_desc: "DAP is more than a talking pet. A request you discuss with AIN continues into file review, document editing, terminals, and automation on your desktop.",
     product_hero_tour: "See real work screens",
     product_capture_caption: "Actual v1.7.1 development build · details may change before the public release.",
-    ain_status: "Ain · Ready",
+    ain_status: "AIN · Ready",
     product_scenes_label: "Inside DAP",
     product_scenes_title: "From the first request to a result that stays",
-    product_scenes_desc: "These are real application screens captured during v1.7.1 development, not staged mockups.",
+    product_scenes_desc: "See AIN move and continue a conversation over real application screens verified during v1.7.1 development.",
     scene_conversation_title: "A conversation becomes files, code, and results",
-    scene_conversation_desc: "Choose a project and ask Ain. Reviewed files, code, tables, and run results remain in the same conversation. Switch AI accounts and work modes from the composer.",
+    scene_conversation_desc: "Choose a project and ask from the AIN panel. Reviewed files, code, tables, and run results remain in the same conversation while AIN reacts through thinking, speaking, and complete states.",
     scene_automation_title: "Manage repeat work in the same Workspace",
     scene_automation_desc: "Find automation created from conversations, then review its active state and execution flow. Workspace and Crew share the same rail and interface grammar.",
     scene_actual_caption: "Actual v1.7.1 development build",
-    ain_label: "Meet Ain",
+    scene_ain_caption: "Actual v1.7.1 Workspace capture + interactive AIN panel",
+    ain_label: "Meet AIN",
     ain_title: "Not a decorative character, but a friend who continues the work",
-    ain_desc: "Ain is DAP's default AI friend. Her state changes when work starts, and completed results lead into the next request in the same conversation. In Crew, her name also represents the friend orchestrating a project.",
+    ain_desc: "AIN is DAP's default AI friend. Her state changes when work starts, and completed results lead into the next request in the same conversation. In Crew, her name also represents the friend orchestrating a project.",
+    ain_demo_user: "Which files should I inspect first in this project?",
+    ain_demo_thinking: "I'm reading the files together with our conversation context.",
+    ain_demo_speaking: "I checked them. Start with note.txt and the configuration files to understand the flow fastest.",
+    ain_demo_happy: "The review is ready. Continue with the next request right here in this panel.",
+    ain_demo_placeholder: "Continue with AIN",
     ain_state_work: "Working",
     ain_state_work_desc: "Follows your request and tool execution.",
     ain_state_context: "Keeps context",
@@ -903,7 +937,7 @@ const I18N = {
     latest_assist_title: "Notifications that reopen work",
     latest_assist_desc: "Return to the related session from completion notifications, even after do-not-disturb, older runs, or offline periods.",
     latest_image_title: "An AI friend that orchestrates projects",
-    latest_image_desc: "Crew's main orchestrator breaks down and continues project work. Ain is the default friend and the selected pet name is used.",
+    latest_image_desc: "Crew's main orchestrator breaks down and continues project work. AIN is the default friend and the selected pet name is used.",
     interface_label: "Actual interface",
     interface_title: "The real interface moves through four areas",
     interface_desc: "Follow the way work starts and expands in the app, rather than a generic feature list.",
@@ -1104,6 +1138,46 @@ function setupSiteMenu() {
   window.matchMedia('(min-width: 721px)').addEventListener('change', close);
 }
 setupSiteMenu();
+
+function setupAinDemo() {
+  const panel = document.querySelector('.ain-demo-panel');
+  const response = panel?.querySelector('.ain-demo-response');
+  if (!panel || !response) return;
+  const phases = [
+    ['thinking', 'ain_demo_thinking'],
+    ['speaking', 'ain_demo_speaking'],
+    ['happy', 'ain_demo_happy'],
+  ];
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let timer = 0;
+  const render = () => {
+    const [phase, key] = phases[index];
+    const dict = I18N[document.documentElement.lang] || I18N.ko;
+    panel.dataset.phase = phase;
+    response.dataset.i18n = key;
+    response.textContent = dict[key];
+  };
+  const stop = () => {
+    if (timer) window.clearInterval(timer);
+    timer = 0;
+    for (const video of document.querySelectorAll('.ain-hero-motion, .ain-story-main, .ain-demo-face video')) video.pause();
+  };
+  const start = () => {
+    if (reduced.matches) { stop(); render(); return; }
+    for (const video of document.querySelectorAll('.ain-hero-motion, .ain-story-main, .ain-demo-face video')) video.play().catch(() => {});
+    if (timer) return;
+    timer = window.setInterval(() => {
+      index = (index + 1) % phases.length;
+      render();
+    }, 3600);
+  };
+  render();
+  start();
+  reduced.addEventListener('change', start);
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+}
+setupAinDemo();
 
 for (const card of document.querySelectorAll('.mini-pet-card')) {
   const image = card.querySelector('.mini-pet-image');
