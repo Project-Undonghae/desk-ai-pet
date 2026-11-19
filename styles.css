@@ -2669,7 +2669,6 @@ html[data-theme="light"] .site-nav nav a[aria-current="page"] {
 
 /* ── ACTUAL PRODUCT STORY ── */
 .legacy-hero,
-.legacy-app-gallery,
 .legacy-core,
 .legacy-preview-cards {
   display: none !important;
@@ -2952,8 +2951,8 @@ html[data-theme="light"] .product-capture-light { display: block; }
   scroll-margin-top: 70px;
 }
 .product-scenes-head {
-  max-width: 760px;
-  margin-bottom: 64px;
+  max-width: 800px;
+  margin-bottom: 56px;
 }
 .product-scenes-head h2,
 .ain-story h2 {
@@ -2973,22 +2972,39 @@ html[data-theme="light"] .product-capture-light { display: block; }
 }
 .product-scene {
   display: grid;
-  grid-template-columns: minmax(260px, 0.35fr) minmax(0, 0.65fr);
-  gap: 38px;
-  align-items: center;
-  margin-bottom: 104px;
+  gap: 22px;
+  margin-bottom: 82px;
+  scroll-margin-top: 80px;
 }
 .product-scene:last-child { margin-bottom: 0; }
-.product-scene-reverse { grid-template-columns: minmax(0, 0.65fr) minmax(260px, 0.35fr); }
-.product-scene-reverse .product-scene-copy { order: 2; }
-.product-scene-reverse .scene-window { order: 1; }
+.scene-jumps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.scene-jumps a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--text);
+  font: 500 14px/1.2 'JetBrains Mono', monospace;
+  text-decoration: none;
+}
+.scene-jumps a:hover { background: var(--surface-2); }
+.product-scene-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .8fr);
+  align-items: end;
+  gap: 8px 32px;
+}
 .product-scene-copy > span {
+  grid-column: 1 / -1;
   color: var(--accent2);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-size: 14px;
 }
 .product-scene-copy h3 {
-  margin: 12px 0 14px;
+  margin: 0;
   color: var(--text);
   font-size: clamp(24px, 3vw, 38px);
   font-weight: 600;
@@ -2997,6 +3013,7 @@ html[data-theme="light"] .product-capture-light { display: block; }
   word-break: keep-all;
 }
 .product-scene-copy p {
+  margin: 0;
   color: var(--soft);
   font-size: 16px;
   line-height: 1.75;
@@ -3010,10 +3027,37 @@ html[data-theme="light"] .product-capture-light { display: block; }
   background: var(--surface-2);
   box-shadow: 0 22px 64px rgba(0, 0, 0, 0.24);
 }
-.scene-capture { display: block; width: 100%; height: auto; }
-.scene-capture-light { display: none; }
-html[data-theme="light"] .scene-capture-dark { display: none; }
-html[data-theme="light"] .scene-capture-light { display: block; }
+.scene-media { position: relative; }
+.scene-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1440 / 872;
+  background: #17191d;
+}
+.scene-play:not([hidden]) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 17px;
+  border: 1px solid #EEEEEF;
+  border-radius: 8px;
+  background: #EEEEEF;
+  color: #1B1B1E;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.scene-play:hover { background: #fff; }
+.scene-play:focus-visible { outline: 2px solid #EEEEEF; outline-offset: 4px; }
 .scene-window figcaption {
   padding: 10px 14px;
   border-top: 1px solid var(--border);
@@ -3083,10 +3127,7 @@ html[data-theme="light"] .scene-capture-light { display: block; }
   .product-hero-copy > p:not(.hero-eyebrow):not(.product-hero-note) { margin-left: auto; }
   .product-hero-actions { justify-content: center; }
   .ain-hero-stage { min-height: 480px; }
-  .product-scene,
-  .product-scene-reverse { grid-template-columns: 1fr; }
-  .product-scene-reverse .product-scene-copy,
-  .product-scene-reverse .scene-window { order: initial; }
+  .product-scene-copy { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .ain-story { grid-template-columns: 1fr; }
 }
 
@@ -3112,7 +3153,6 @@ html[data-theme="light"] .scene-capture-light { display: block; }
   .product-scenes-head { margin-bottom: 42px; }
   .product-scene { gap: 24px; margin-bottom: 72px; }
   .scene-window { border-radius: 8px; }
-  .scene-capture { width: 138%; max-width: none; transform: translateX(-2%); }
   .ain-story { margin-bottom: 72px; padding: 64px 16px; }
   .ain-story-visual { min-height: 410px; }
   .ain-story-main { width: min(92%, 330px); margin-top: 26px; }

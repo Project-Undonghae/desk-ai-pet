@@ -41,7 +41,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
   <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261119-actual-app" />
+  <link rel="stylesheet" href="styles.css?v=20261119-app-demos" />
   <script>
     (() => {
       try {
@@ -170,7 +170,7 @@
     <p data-i18n="product_hero_desc">DAP은 대화만 하는 펫이 아닙니다. AIN과 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.</p>
     <div class="product-hero-actions" id="waitlist">
       <a class="btn btn-w" href="mailto:ssongshare0720@gmail.com?subject=DAP%20v1.7.1%20Waitlist&amp;body=DAP%20v1.7.1%20출시%20소식을%20받고%20싶습니다." data-waitlist-source="hero" data-i18n="download_win">웨이팅리스트 참여</a>
-      <a class="btn btn-m" href="#product-scenes" data-i18n="product_hero_tour">실제 작업 화면 보기</a>
+      <a class="btn btn-m" href="#product-scenes" data-i18n="product_hero_tour">작동 영상 보기</a>
     </div>
     <p class="product-hero-note" data-i18n="download_subtitle">아직 공개 설치본이 없습니다 · 다음 공개 빌드는 macOS Apple Silicon부터 준비 중</p>
   </div>
@@ -184,37 +184,51 @@
   </div>
 </section>
 
-<!-- REAL PRODUCT SCENES -->
+<!-- RECORDED APP DEMOS -->
 <section id="product-scenes" class="product-scenes z" aria-labelledby="product-scenes-title">
   <div class="product-scenes-head">
     <p class="section-label compact" data-i18n="product_scenes_label">Inside DAP</p>
-    <h2 id="product-scenes-title" data-i18n="product_scenes_title">말을 건 순간부터, 결과가 남을 때까지</h2>
-    <p data-i18n="product_scenes_desc">v1.7.1 개발 빌드를 직접 실행해 캡처한 실제 앱 화면입니다. 랜딩페이지에서 다시 그린 UI는 포함하지 않았습니다.</p>
+    <h2 id="product-scenes-title" data-i18n="product_scenes_title">Workspace와 Crew, 실제로 쓰는 모습</h2>
+    <p data-i18n="product_scenes_desc">Workspace에서는 대화를 이어가고, Crew에서는 프로젝트의 터미널과 변경 파일을 함께 봅니다. 두 영상 모두 DAP 개발 빌드를 직접 실행해 녹화했습니다.</p>
+    <nav class="scene-jumps" data-i18n-aria="scene_nav" aria-label="제품 시연">
+      <a href="#demo-workspace">Workspace</a>
+      <a href="#demo-crew">Crew</a>
+    </nav>
   </div>
 
-  <article class="product-scene">
+  <article id="demo-workspace" class="product-scene" aria-labelledby="demo-workspace-title">
     <div class="product-scene-copy">
       <span>Workspace</span>
-      <h3 data-i18n="scene_conversation_title">AIN은 Workspace 안에서 이렇게 대화합니다</h3>
-      <p data-i18n="scene_conversation_desc">AIN은 프로젝트 목록 아래 얼굴 카드에 머물고, 말풍선 버튼을 누르면 카드 옆에 대화 칸이 열립니다. 본 대화와 작업 결과는 중앙 영역에서 이어집니다.</p>
+      <h3 id="demo-workspace-title" data-i18n="scene_conversation_title">작업 대화를 열어 둔 채 AIN에게 묻기</h3>
+      <p data-i18n="scene_conversation_desc">왼쪽 하단 AIN 카드의 말풍선을 누르면 옆에 대화 칸이 열립니다. 작업 대화는 중앙에 둔 채, 다음에 확인할 것을 AIN에게 물어봅니다.</p>
     </div>
     <figure class="scene-window">
-      <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-ain-dialog-dark.png" width="2560" height="1550" alt="다크 테마 DAP Workspace 왼쪽 하단의 AIN 얼굴 카드와 옆에 열린 대화 칸이 보이는 실제 앱 화면" />
-      <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-ain-dialog-light.png" width="2560" height="1550" alt="라이트 테마 DAP Workspace 왼쪽 하단의 AIN 얼굴 카드와 옆에 열린 대화 칸이 보이는 실제 앱 화면" />
-      <figcaption data-i18n="scene_ain_caption">v1.7.1 개발 빌드 직접 캡처 · QA 대화 데이터</figcaption>
+      <div class="scene-media">
+        <video class="scene-video" controls playsinline preload="none" width="1440" height="872" poster="screenshots/product-scenes/workspace-demo.jpg" aria-labelledby="demo-workspace-title" aria-describedby="demo-workspace-caption">
+          <source src="screenshots/product-scenes/workspace-demo.mp4" type="video/mp4" />
+          <a href="screenshots/product-scenes/workspace-demo.mp4" data-i18n="scene_video_fallback">영상 파일 열기</a>
+        </video>
+        <button type="button" class="scene-play" hidden><span aria-hidden="true">▶</span><span data-i18n="scene_workspace_play">Workspace 재생</span></button>
+      </div>
+      <figcaption id="demo-workspace-caption" data-i18n="scene_workspace_caption">실제 앱 녹화 · 예시 대화 사용 · 소리 없음</figcaption>
     </figure>
   </article>
 
-  <article class="product-scene product-scene-reverse">
+  <article id="demo-crew" class="product-scene" aria-labelledby="demo-crew-title">
     <div class="product-scene-copy">
-      <span>Automation</span>
-      <h3 data-i18n="scene_automation_title">반복 작업도 같은 Workspace에서 관리합니다</h3>
-      <p data-i18n="scene_automation_desc">대화에서 만든 자동화 작업을 별도 화면에서 찾고, 활성 상태와 실행 흐름을 확인합니다. Workspace와 Crew는 같은 레일과 화면 문법을 공유합니다.</p>
+      <span>Crew</span>
+      <h3 id="demo-crew-title" data-i18n="scene_crew_title">터미널을 열고, 바뀐 코드를 나란히 보기</h3>
+      <p data-i18n="scene_crew_desc">프로젝트 폴더에서 터미널을 열어 Git 상태를 확인합니다. 변경 패널에서 파일을 선택하면 어떤 줄이 바뀌었는지 터미널 옆에서 볼 수 있습니다.</p>
     </div>
     <figure class="scene-window">
-      <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-automation-dark.png" width="1296" height="834" alt="DAP Workspace 자동화 작업의 실제 다크 테마 화면" />
-      <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-automation-light.png" width="1296" height="834" alt="DAP Workspace 자동화 작업의 실제 라이트 테마 화면" />
-      <figcaption data-i18n="scene_actual_caption">v1.7.1 개발 빌드 실제 화면</figcaption>
+      <div class="scene-media">
+        <video class="scene-video" controls playsinline preload="none" width="1440" height="872" poster="screenshots/product-scenes/crew-demo.jpg" aria-labelledby="demo-crew-title" aria-describedby="demo-crew-caption">
+          <source src="screenshots/product-scenes/crew-demo.mp4" type="video/mp4" />
+          <a href="screenshots/product-scenes/crew-demo.mp4" data-i18n="scene_video_fallback">영상 파일 열기</a>
+        </video>
+        <button type="button" class="scene-play" hidden><span aria-hidden="true">▶</span><span data-i18n="scene_crew_play">Crew 재생</span></button>
+      </div>
+      <figcaption id="demo-crew-caption" data-i18n="scene_crew_caption">실제 앱 녹화 · 데모 프로젝트에서 Git 실행 · 소리 없음</figcaption>
     </figure>
   </article>
 </section>
@@ -316,29 +330,6 @@
         <dd data-i18n="fact_license_value">Workspace · Crew · Document Workspace</dd>
       </div>
     </dl>
-  </div>
-</section>
-
-<!-- REAL APP PREVIEW -->
-<section class="demo z legacy-app-gallery" aria-labelledby="demo-title">
-  <div class="demo-copy">
-    <p class="section-label compact" data-i18n="demo_label">Windows v1.6.17 · 실제 앱 화면</p>
-    <h2 id="demo-title" data-i18n="demo_title">새 앱을 찾고, 자주 쓰는 앱은 가까이</h2>
-    <p data-i18n="demo_desc">앱 보관함에서 실행하고 퀵 메뉴에 고정하세요. 앱 찾기에서 이름·기능·카테고리로 탐색하고, 사용할 권한을 확인한 뒤 설치합니다.</p>
-  </div>
-  <div class="app-gallery">
-    <figure class="demo-frame">
-      <img src="screenshots/dap-app-library-win-v1.6.17.jpg" width="381" height="440" loading="lazy" data-i18n-alt="library_alt" alt="DAP Windows v1.6.17 앱 보관함과 하단 퀵 메뉴 dock" />
-      <figcaption data-i18n="library_caption">앱 보관함 · 설치한 앱과 웹·프로그램을 한곳에서 실행하고, 자주 쓰는 항목은 dock에 고정합니다.</figcaption>
-    </figure>
-    <figure class="demo-frame">
-      <img src="screenshots/dap-app-store-search-win-v1.6.17.jpg" width="382" height="440" loading="lazy" data-i18n-alt="store_alt" alt="DAP Windows v1.6.17 앱 찾기에서 Friend를 검색한 실제 결과" />
-      <figcaption data-i18n="store_caption">앱 찾기 · 이름·기능 검색과 카테고리로 탐색합니다. 설치된 앱과 새로 받을 앱을 구분해 보여줍니다.</figcaption>
-    </figure>
-    <figure class="demo-frame">
-      <img src="screenshots/dap-app-store-permissions-win-v1.6.17.jpg" width="382" height="440" loading="lazy" data-i18n-alt="permissions_alt" alt="Friend Messages 설치 전 버전과 앱 창·외부 계정 연결 권한 안내" />
-      <figcaption data-i18n="permissions_caption">설치 전 권한 확인 · 앱 버전과 요청 권한을 읽고 선택합니다. 이 캡처는 설치 전 미리보기입니다.</figcaption>
-    </figure>
   </div>
 </section>
 
@@ -663,12 +654,6 @@ const I18N = {
     preview_learning_desc: "문서 미리보기·편집기와 인앱 브라우저 탭을 한 작업창에 둡니다. Office 네이티브 미리보기는 준비 중입니다.",
     preview_platforms: "다음 공개 빌드는 macOS Apple Silicon부터 준비합니다. Windows 후속 공개 일정은 아직 확정되지 않았습니다.",
     preview_docs: "개발 상태와 플랫폼 지원 문서 보기",
-    library_alt: "DAP Windows v1.6.17 앱 보관함과 하단 퀵 메뉴 dock",
-    library_caption: "앱 보관함 · 설치한 앱과 웹·프로그램을 한곳에서 실행하고, 자주 쓰는 항목은 dock에 고정합니다.",
-    store_alt: "DAP Windows v1.6.17 앱 찾기에서 Friend를 검색한 실제 결과",
-    store_caption: "앱 찾기 · 이름·기능 검색과 카테고리로 탐색합니다. 설치된 앱과 새로 받을 앱을 구분해 보여줍니다.",
-    permissions_alt: "Friend Messages 설치 전 버전과 앱 창·외부 계정 연결 권한 안내",
-    permissions_caption: "설치 전 권한 확인 · 앱 버전과 요청 권한을 읽고 선택합니다. 이 캡처는 설치 전 미리보기입니다.",
     meta_title: "DAP v1.7.1 Preview - AI와 함께 일하는 데스크톱",
     meta_desc: "DAP v1.7.1은 Workspace와 Crew, 여러 AI 계정, 문서 작업 공간과 프로젝트 터미널을 하나의 데스크톱 경험으로 잇습니다. 공개 전 웨이팅리스트에 참여하세요.",
     nav_home: "홈",
@@ -678,18 +663,22 @@ const I18N = {
     hero_eyebrow: "DAP v1.7.1 · Preview",
     product_hero_title: "AIN과 함께, 일의 다음 장면으로",
     product_hero_desc: "DAP은 대화만 하는 펫이 아닙니다. AIN과 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.",
-    product_hero_tour: "실제 작업 화면 보기",
+    product_hero_tour: "작동 영상 보기",
     product_capture_caption: "v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.",
     ain_status: "AIN · 준비됨",
     product_scenes_label: "Inside DAP",
-    product_scenes_title: "말을 건 순간부터, 결과가 남을 때까지",
-    product_scenes_desc: "v1.7.1 개발 빌드를 직접 실행해 캡처한 실제 앱 화면입니다. 랜딩페이지에서 다시 그린 UI는 포함하지 않았습니다.",
-    scene_conversation_title: "AIN은 Workspace 안에서 이렇게 대화합니다",
-    scene_conversation_desc: "AIN은 프로젝트 목록 아래 얼굴 카드에 머물고, 말풍선 버튼을 누르면 카드 옆에 대화 칸이 열립니다. 본 대화와 작업 결과는 중앙 영역에서 이어집니다.",
-    scene_automation_title: "반복 작업도 같은 Workspace에서 관리합니다",
-    scene_automation_desc: "대화에서 만든 자동화 작업을 별도 화면에서 찾고, 활성 상태와 실행 흐름을 확인합니다. Workspace와 Crew는 같은 레일과 화면 문법을 공유합니다.",
-    scene_actual_caption: "v1.7.1 개발 빌드 실제 화면",
-    scene_ain_caption: "v1.7.1 개발 빌드 직접 캡처 · QA 대화 데이터",
+    product_scenes_title: "Workspace와 Crew, 실제로 쓰는 모습",
+    product_scenes_desc: "Workspace에서는 대화를 이어가고, Crew에서는 프로젝트의 터미널과 변경 파일을 함께 봅니다. 두 영상 모두 DAP 개발 빌드를 직접 실행해 녹화했습니다.",
+    scene_nav: "제품 시연",
+    scene_conversation_title: "작업 대화를 열어 둔 채 AIN에게 묻기",
+    scene_conversation_desc: "왼쪽 하단 AIN 카드의 말풍선을 누르면 옆에 대화 칸이 열립니다. 작업 대화는 중앙에 둔 채, 다음에 확인할 것을 AIN에게 물어봅니다.",
+    scene_crew_title: "터미널을 열고, 바뀐 코드를 나란히 보기",
+    scene_crew_desc: "프로젝트 폴더에서 터미널을 열어 Git 상태를 확인합니다. 변경 패널에서 파일을 선택하면 어떤 줄이 바뀌었는지 터미널 옆에서 볼 수 있습니다.",
+    scene_workspace_caption: "실제 앱 녹화 · 예시 대화 사용 · 소리 없음",
+    scene_crew_caption: "실제 앱 녹화 · 데모 프로젝트에서 Git 실행 · 소리 없음",
+    scene_video_fallback: "영상 파일 열기",
+    scene_workspace_play: "Workspace 재생",
+    scene_crew_play: "Crew 재생",
     ain_label: "Meet AIN",
     ain_title: "화면을 꾸미는 캐릭터가 아니라, 일을 함께 이어가는 친구",
     ain_desc: "AIN은 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.",
@@ -721,9 +710,6 @@ const I18N = {
     fact_ai_value: "Claude · Codex · Antigravity",
     fact_license_label: "확장",
     fact_license_value: "Workspace · Crew · Document Workspace",
-    demo_label: "Windows v1.6.17 · 실제 앱 화면",
-    demo_title: "새 앱을 찾고, 자주 쓰는 앱은 가까이",
-    demo_desc: "앱 보관함에서 실행하고 퀵 메뉴에 고정하세요. 앱 찾기에서 이름·기능·카테고리로 탐색하고, 사용할 권한을 확인한 뒤 설치합니다.",
     features_label: "Core features",
     f1_title: "빠른 실행",
     f1_desc: "Windows에서는 Ctrl+Shift+Space, macOS에서는 Cmd+Shift+Space로 어디서든 실행창을 열어 DAP에게 요청합니다.",
@@ -827,12 +813,6 @@ const I18N = {
     preview_learning_desc: "Document previews, editors, and an in-app browser tab share one workspace. Native Office preview is still being prepared.",
     preview_platforms: "The next public build is being prepared for macOS Apple Silicon first. Windows timing has not been confirmed.",
     preview_docs: "Read development status and platform support",
-    library_alt: "Actual DAP Windows v1.6.17 App Library and quick-menu dock",
-    library_caption: "App Library · Launch apps, websites, and programs together and pin favorites to the dock.",
-    store_alt: "Actual DAP Windows v1.6.17 app discovery showing search results for Friend",
-    store_caption: "App discovery · Search by name or feature, filter by category, and distinguish installed apps from available ones.",
-    permissions_alt: "Friend Messages installation preview showing the version and permissions for app windows and external accounts",
-    permissions_caption: "Permission preview · Review the app version and requested permissions. This capture shows the preview before installation.",
     meta_title: "DAP v1.7.1 Preview - A desktop for working with AI",
     meta_desc: "DAP v1.7.1 connects Workspace, Crew, multiple AI accounts, documents, and project terminals. Join the pre-release waitlist.",
     nav_home: "Home",
@@ -842,18 +822,22 @@ const I18N = {
     hero_eyebrow: "DAP v1.7.1 · Preview",
     product_hero_title: "With AIN, move into the next scene of your work",
     product_hero_desc: "DAP is more than a talking pet. A request you discuss with AIN continues into file review, document editing, terminals, and automation on your desktop.",
-    product_hero_tour: "See real work screens",
+    product_hero_tour: "Watch the app in action",
     product_capture_caption: "Actual v1.7.1 development build · details may change before the public release.",
     ain_status: "AIN · Ready",
     product_scenes_label: "Inside DAP",
-    product_scenes_title: "From the first request to a result that stays",
-    product_scenes_desc: "These are direct captures from the running v1.7.1 development build. No landing-page reconstruction is overlaid on the application UI.",
-    scene_conversation_title: "This is how AIN chats inside Workspace",
-    scene_conversation_desc: "AIN stays in the face card below the project list. Pressing the speech-bubble button opens a conversation box beside the card, while the main conversation and work results continue in the center.",
-    scene_automation_title: "Manage repeat work in the same Workspace",
-    scene_automation_desc: "Find automation created from conversations, then review its active state and execution flow. Workspace and Crew share the same rail and interface grammar.",
-    scene_actual_caption: "Actual v1.7.1 development build",
-    scene_ain_caption: "Direct v1.7.1 development build capture · QA conversation data",
+    product_scenes_title: "Workspace and Crew in action",
+    product_scenes_desc: "Keep the conversation going in Workspace, then see the project terminal and changed files together in Crew. Both clips were recorded in a running DAP development build.",
+    scene_nav: "Product demos",
+    scene_conversation_title: "Ask AIN while keeping your work chat open",
+    scene_conversation_desc: "Use the speech bubble on AIN's card in the lower left. Ask what to check next in the box beside AIN while the work conversation stays open in the center.",
+    scene_crew_title: "Open a terminal and review changes beside it",
+    scene_crew_desc: "Open a terminal in the project folder and check the Git status. Select a file in the Changes panel to see the exact diff next to the terminal.",
+    scene_workspace_caption: "Recorded in the app · Example conversation · No audio",
+    scene_crew_caption: "Recorded in the app · Git running in a demo project · No audio",
+    scene_video_fallback: "Open the video file",
+    scene_workspace_play: "Play Workspace",
+    scene_crew_play: "Play Crew",
     ain_label: "Meet AIN",
     ain_title: "Not a decorative character, but a friend who continues the work",
     ain_desc: "AIN is DAP's default AI friend. Her state changes when work starts, and completed results lead into the next request in the same conversation. In Crew, her name also represents the friend orchestrating a project.",
@@ -885,9 +869,6 @@ const I18N = {
     fact_ai_value: "Claude · Codex · Antigravity",
     fact_license_label: "Extensions",
     fact_license_value: "Workspace · Crew · Document Workspace",
-    demo_label: "Windows v1.6.17 · actual app captures",
-    demo_title: "Find new apps. Keep favorites close.",
-    demo_desc: "Launch from the App Library and pin favorites to the quick menu. Search by name, feature, or category, then review permissions before installing.",
     features_label: "Core features",
     f1_title: "Quick launch",
     f1_desc: "Open the launcher with Ctrl+Shift+Space on Windows or Cmd+Shift+Space on macOS and ask DAP without leaving your flow.",
@@ -1125,6 +1106,27 @@ function setupAinMotionPreferences() {
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 }
 setupAinMotionPreferences();
+
+const sceneVideos = document.querySelectorAll('.scene-video');
+for (const video of sceneVideos) {
+  const button = video.parentElement.querySelector('.scene-play');
+  if (button) {
+    video.controls = false;
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      try { await video.play(); }
+      catch {
+        // Leave the native player available to retry if autoplay policy or loading rejects play().
+      }
+      video.controls = true;
+      if (document.activeElement === button) video.focus({ preventScroll: true });
+      button.hidden = true;
+    }, { once: true });
+  }
+  video.addEventListener('play', () => {
+    for (const other of sceneVideos) if (other !== video) other.pause();
+  });
+}
 
 for (const card of document.querySelectorAll('.mini-pet-card')) {
   const image = card.querySelector('.mini-pet-image');
