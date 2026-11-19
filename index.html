@@ -41,7 +41,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
   <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261119-actual" />
+  <link rel="stylesheet" href="styles.css?v=20261119-scenes" />
   <script>
     (() => {
       try {
@@ -157,7 +157,8 @@
 
 <div id="stars"></div>
 
-<!-- PRODUCT HERO: actual v1.7.1 development build -->
+<main id="main">
+<!-- PRODUCT HERO: Ain and the product promise -->
 <section class="product-hero z" aria-labelledby="product-hero-title">
   <div class="product-hero-copy">
     <p class="hero-eyebrow" data-i18n="hero_eyebrow">DAP v1.7.1 · Preview</p>
@@ -165,23 +166,76 @@
       <img class="brand-lockup brand-lockup-dark" src="assets/logo-dap-cursor/dap-lockup-on-dark.svg" alt="" />
       <img class="brand-lockup brand-lockup-light" src="assets/logo-dap-cursor/dap-lockup-on-light.svg" alt="" />
     </div>
-    <h1 id="product-hero-title" data-i18n="product_hero_title">대화에서 문서와 터미널까지,<br />하나의 작업창에서</h1>
-    <p data-i18n="product_hero_desc">DAP은 왼쪽 레일에서 Workspace와 Crew를 오가고, 가운데 대화에서 AI 계정을 선택하며, 필요한 문서·브라우저·터미널을 대화 옆에 엽니다.</p>
+    <h1 id="product-hero-title" data-i18n="product_hero_title">아인이와 함께,<br />일의 다음 장면으로</h1>
+    <p data-i18n="product_hero_desc">DAP은 대화만 하는 펫이 아닙니다. 아인이와 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.</p>
     <div class="product-hero-actions" id="waitlist">
       <a class="btn btn-w" href="mailto:ssongshare0720@gmail.com?subject=DAP%20v1.7.1%20Waitlist&amp;body=DAP%20v1.7.1%20출시%20소식을%20받고%20싶습니다." data-waitlist-source="hero" data-i18n="download_win">웨이팅리스트 참여</a>
-      <a class="btn btn-m" href="#interface-map-title" data-i18n="product_hero_tour">화면 구성 살펴보기</a>
+      <a class="btn btn-m" href="#product-scenes" data-i18n="product_hero_tour">실제 작업 화면 보기</a>
     </div>
     <p class="product-hero-note" data-i18n="download_subtitle">아직 공개 설치본이 없습니다 · 다음 공개 빌드는 macOS Apple Silicon부터 준비 중</p>
   </div>
-  <figure class="product-window">
-    <div class="product-window-bar" aria-hidden="true">
-      <span></span><span></span><span></span>
-      <strong>DAP Workspace</strong>
+  <div class="ain-hero-stage" aria-label="DAP의 기본 AI 친구 아인이">
+    <span class="ain-orbit ain-orbit-workspace">Workspace</span>
+    <span class="ain-orbit ain-orbit-crew">Crew</span>
+    <img src="characters/ain/ain-hero.webp" width="320" height="320" alt="웃으며 춤추는 DAP의 기본 AI 친구 아인이" />
+    <div class="ain-status"><span></span><strong data-i18n="ain_status">아인이 · 준비됨</strong></div>
+  </div>
+</section>
+
+<!-- REAL PRODUCT SCENES -->
+<section id="product-scenes" class="product-scenes z" aria-labelledby="product-scenes-title">
+  <div class="product-scenes-head">
+    <p class="section-label compact" data-i18n="product_scenes_label">Inside DAP</p>
+    <h2 id="product-scenes-title" data-i18n="product_scenes_title">말을 건 순간부터, 결과가 남을 때까지</h2>
+    <p data-i18n="product_scenes_desc">아래 이미지는 연출된 목업이 아니라 v1.7.1 개발 과정에서 검증한 실제 앱 화면입니다.</p>
+  </div>
+
+  <article class="product-scene">
+    <div class="product-scene-copy">
+      <span>Workspace</span>
+      <h3 data-i18n="scene_conversation_title">대화가 파일과 코드의 결과로 이어집니다</h3>
+      <p data-i18n="scene_conversation_desc">프로젝트를 선택하고 아인이에게 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AI 계정과 작업 모드는 입력창에서 바로 바꿉니다.</p>
     </div>
-    <img class="product-capture product-capture-dark" src="screenshots/dap-workspace-v1.7.1-dev-dark.png" width="1272" height="826" alt="DAP v1.7.1 개발 빌드의 다크 Workspace 실제 화면" />
-    <img class="product-capture product-capture-light" src="screenshots/dap-workspace-v1.7.1-dev-light.png" width="1272" height="826" alt="DAP v1.7.1 개발 빌드의 라이트 Workspace 실제 화면" />
-    <figcaption data-i18n="product_capture_caption">v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.</figcaption>
-  </figure>
+    <figure class="scene-window">
+      <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-conversation-dark.png" width="1296" height="834" alt="DAP Workspace에서 프로젝트 파일과 코드를 확인한 실제 다크 테마 대화 화면" />
+      <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-conversation-light.png" width="1296" height="834" alt="DAP Workspace에서 프로젝트 파일과 코드를 확인한 실제 라이트 테마 대화 화면" />
+      <figcaption data-i18n="scene_actual_caption">v1.7.1 개발 빌드 실제 화면</figcaption>
+    </figure>
+  </article>
+
+  <article class="product-scene product-scene-reverse">
+    <div class="product-scene-copy">
+      <span>Automation</span>
+      <h3 data-i18n="scene_automation_title">반복 작업도 같은 Workspace에서 관리합니다</h3>
+      <p data-i18n="scene_automation_desc">대화에서 만든 자동화 작업을 별도 화면에서 찾고, 활성 상태와 실행 흐름을 확인합니다. Workspace와 Crew는 같은 레일과 화면 문법을 공유합니다.</p>
+    </div>
+    <figure class="scene-window">
+      <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-automation-dark.png" width="1296" height="834" alt="DAP Workspace 자동화 작업의 실제 다크 테마 화면" />
+      <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-automation-light.png" width="1296" height="834" alt="DAP Workspace 자동화 작업의 실제 라이트 테마 화면" />
+      <figcaption data-i18n="scene_actual_caption">v1.7.1 개발 빌드 실제 화면</figcaption>
+    </figure>
+  </article>
+</section>
+
+<!-- AIN, THE DEFAULT AI FRIEND -->
+<section class="ain-story z" aria-labelledby="ain-story-title">
+  <div class="ain-story-visual">
+    <img class="ain-story-main" src="characters/ain/ain-working.webp" width="320" height="320" alt="메모를 들고 작업 중인 아인이" />
+    <div class="ain-state-strip" aria-label="아인이의 상태 변화">
+      <img src="characters/ain/ain-thinking.webp" width="320" height="320" alt="생각하는 아인이" />
+      <img src="characters/ain/ain-happy.webp" width="320" height="320" alt="기뻐하는 아인이" />
+    </div>
+  </div>
+  <div class="ain-story-copy">
+    <p class="section-label compact" data-i18n="ain_label">Meet Ain</p>
+    <h2 id="ain-story-title" data-i18n="ain_title">화면을 꾸미는 캐릭터가 아니라,<br />일을 함께 이어가는 친구</h2>
+    <p data-i18n="ain_desc">아인이는 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.</p>
+    <dl>
+      <div><dt data-i18n="ain_state_work">작업 중</dt><dd data-i18n="ain_state_work_desc">요청과 도구 실행을 따라갑니다.</dd></div>
+      <div><dt data-i18n="ain_state_context">맥락 유지</dt><dd data-i18n="ain_state_context_desc">대화와 프로젝트 기록을 이어봅니다.</dd></div>
+      <div><dt data-i18n="ain_state_return">바탕화면으로</dt><dd data-i18n="ain_state_return_desc">작업창을 닫으면 다시 데스크톱에서 만납니다.</dd></div>
+    </dl>
+  </div>
 </section>
 
 <!-- HERO FULLSCREEN: 고양이 스테이지가 전체 화면 배경, 텍스트는 오버레이 -->
@@ -236,7 +290,6 @@
 </section>
 
 <!-- PRODUCT SUMMARY -->
-<main id="main">
 <section class="summary z" aria-labelledby="summary-title">
   <img class="section-cat section-cat-summary" src="sprites/headtilt_24_crop.png" alt="" aria-hidden="true" />
   <p class="section-label compact" data-i18n="summary_label">DAP overview</p>
@@ -619,10 +672,28 @@ const I18N = {
     nav_plugins: "앱",
     nav_download: "웨이팅리스트",
     hero_eyebrow: "DAP v1.7.1 · Preview",
-    product_hero_title: "대화에서 문서와 터미널까지, 하나의 작업창에서",
-    product_hero_desc: "DAP은 왼쪽 레일에서 Workspace와 Crew를 오가고, 가운데 대화에서 AI 계정을 선택하며, 필요한 문서·브라우저·터미널을 대화 옆에 엽니다.",
-    product_hero_tour: "화면 구성 살펴보기",
+    product_hero_title: "아인이와 함께, 일의 다음 장면으로",
+    product_hero_desc: "DAP은 대화만 하는 펫이 아닙니다. 아인이와 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.",
+    product_hero_tour: "실제 작업 화면 보기",
     product_capture_caption: "v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.",
+    ain_status: "아인이 · 준비됨",
+    product_scenes_label: "Inside DAP",
+    product_scenes_title: "말을 건 순간부터, 결과가 남을 때까지",
+    product_scenes_desc: "아래 이미지는 연출된 목업이 아니라 v1.7.1 개발 과정에서 검증한 실제 앱 화면입니다.",
+    scene_conversation_title: "대화가 파일과 코드의 결과로 이어집니다",
+    scene_conversation_desc: "프로젝트를 선택하고 아인이에게 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AI 계정과 작업 모드는 입력창에서 바로 바꿉니다.",
+    scene_automation_title: "반복 작업도 같은 Workspace에서 관리합니다",
+    scene_automation_desc: "대화에서 만든 자동화 작업을 별도 화면에서 찾고, 활성 상태와 실행 흐름을 확인합니다. Workspace와 Crew는 같은 레일과 화면 문법을 공유합니다.",
+    scene_actual_caption: "v1.7.1 개발 빌드 실제 화면",
+    ain_label: "Meet Ain",
+    ain_title: "화면을 꾸미는 캐릭터가 아니라, 일을 함께 이어가는 친구",
+    ain_desc: "아인이는 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.",
+    ain_state_work: "작업 중",
+    ain_state_work_desc: "요청과 도구 실행을 따라갑니다.",
+    ain_state_context: "맥락 유지",
+    ain_state_context_desc: "대화와 프로젝트 기록을 이어봅니다.",
+    ain_state_return: "바탕화면으로",
+    ain_state_return_desc: "작업창을 닫으면 다시 데스크톱에서 만납니다.",
     hero_copy: "당신의 AI Workspace\n캐릭터와 함께 대화하고 작업을 이어가세요",
     hero_tagline: "AI와 문서, 프로젝트 작업을 하나의 데스크톱에서",
     stage_title: "클릭해서 반응 보기",
@@ -764,10 +835,28 @@ const I18N = {
     nav_plugins: "Apps",
     nav_download: "Waitlist",
     hero_eyebrow: "DAP v1.7.1 · Preview",
-    product_hero_title: "From conversations to documents and terminals, in one work window",
-    product_hero_desc: "Move between Workspace and Crew from the left rail, choose an AI account in the conversation, and open documents, the browser, or a terminal beside it.",
-    product_hero_tour: "Explore the interface",
+    product_hero_title: "With Ain, move into the next scene of your work",
+    product_hero_desc: "DAP is more than a talking pet. A request you discuss with Ain continues into file review, document editing, terminals, and automation on your desktop.",
+    product_hero_tour: "See real work screens",
     product_capture_caption: "Actual v1.7.1 development build · details may change before the public release.",
+    ain_status: "Ain · Ready",
+    product_scenes_label: "Inside DAP",
+    product_scenes_title: "From the first request to a result that stays",
+    product_scenes_desc: "These are real application screens captured during v1.7.1 development, not staged mockups.",
+    scene_conversation_title: "A conversation becomes files, code, and results",
+    scene_conversation_desc: "Choose a project and ask Ain. Reviewed files, code, tables, and run results remain in the same conversation. Switch AI accounts and work modes from the composer.",
+    scene_automation_title: "Manage repeat work in the same Workspace",
+    scene_automation_desc: "Find automation created from conversations, then review its active state and execution flow. Workspace and Crew share the same rail and interface grammar.",
+    scene_actual_caption: "Actual v1.7.1 development build",
+    ain_label: "Meet Ain",
+    ain_title: "Not a decorative character, but a friend who continues the work",
+    ain_desc: "Ain is DAP's default AI friend. Her state changes when work starts, and completed results lead into the next request in the same conversation. In Crew, her name also represents the friend orchestrating a project.",
+    ain_state_work: "Working",
+    ain_state_work_desc: "Follows your request and tool execution.",
+    ain_state_context: "Keeps context",
+    ain_state_context_desc: "Continues conversations and project records.",
+    ain_state_return: "Back to desktop",
+    ain_state_return_desc: "Close the work window and meet her on the desktop again.",
     hero_copy: "Your AI Workspace\nTalk and work with your desktop companion",
     hero_tagline: "AI, documents, and project work on one desktop",
     stage_title: "Click to interact",
