@@ -73,14 +73,17 @@ const softwareVersionPattern = /(\"softwareVersion\"\s*:\s*\")[^\"]+(\")/;
 if (!softwareVersionPattern.test(indexHtml)) {
   throw new Error("softwareVersion marker not found in index.html");
 }
-const nextIndexHtml = indexHtml.replace(
-  softwareVersionPattern,
-  `$1${version}$2`,
-).replace(/((?:최신 |Latest |Current in |DAP (?:Workspace )?)v)\d+\.\d+\.\d+/g, `$1${version}`);
+const isPreviewSite = /data-release-status=["']preview["']/.test(indexHtml);
+const nextIndexHtml = isPreviewSite
+  ? indexHtml
+  : indexHtml.replace(
+      softwareVersionPattern,
+      `$1${version}$2`,
+    ).replace(/((?:최신 |Latest |Current in |DAP (?:Workspace )?)v)\d+\.\d+\.\d+/g, `$1${version}`);
 
 const llmsPath = "llms.txt";
 const llms = await readFile(llmsPath, "utf8");
-const releaseMarkerPattern = /(The current public release is )v\d+\.\d+\.\d+/;
+const releaseMarkerPattern = /(The latest archived public release is )v\d+\.\d+\.\d+/;
 if (!releaseMarkerPattern.test(llms)) {
   throw new Error("Current public release marker not found in llms.txt");
 }
