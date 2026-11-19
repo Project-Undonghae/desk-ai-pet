@@ -41,7 +41,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
   <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261119-app-demos" />
+  <link rel="stylesheet" href="styles.css?v=20261119-scene-loops" />
   <script>
     (() => {
       try {
@@ -170,7 +170,7 @@
     <p data-i18n="product_hero_desc">DAP은 대화만 하는 펫이 아닙니다. AIN과 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.</p>
     <div class="product-hero-actions" id="waitlist">
       <a class="btn btn-w" href="mailto:ssongshare0720@gmail.com?subject=DAP%20v1.7.1%20Waitlist&amp;body=DAP%20v1.7.1%20출시%20소식을%20받고%20싶습니다." data-waitlist-source="hero" data-i18n="download_win">웨이팅리스트 참여</a>
-      <a class="btn btn-m" href="#product-scenes" data-i18n="product_hero_tour">작동 영상 보기</a>
+      <a class="btn btn-m" href="#product-scenes" data-i18n="product_hero_tour">앱 작동 모습 보기</a>
     </div>
     <p class="product-hero-note" data-i18n="download_subtitle">아직 공개 설치본이 없습니다 · 다음 공개 빌드는 macOS Apple Silicon부터 준비 중</p>
   </div>
@@ -184,12 +184,12 @@
   </div>
 </section>
 
-<!-- RECORDED APP DEMOS -->
+<!-- REAL APP DEMOS -->
 <section id="product-scenes" class="product-scenes z" aria-labelledby="product-scenes-title">
   <div class="product-scenes-head">
     <p class="section-label compact" data-i18n="product_scenes_label">Inside DAP</p>
     <h2 id="product-scenes-title" data-i18n="product_scenes_title">Workspace와 Crew, 실제로 쓰는 모습</h2>
-    <p data-i18n="product_scenes_desc">Workspace에서는 대화를 이어가고, Crew에서는 프로젝트의 터미널과 변경 파일을 함께 봅니다. 두 영상 모두 DAP 개발 빌드를 직접 실행해 녹화했습니다.</p>
+    <p data-i18n="product_scenes_desc">Workspace에서는 AIN과 대화를 이어가고, Crew에서는 AIN에게 여러 작업을 맡깁니다. 실제 개발 빌드에서 캡처한 화면이 순서대로 재생됩니다.</p>
     <nav class="scene-jumps" data-i18n-aria="scene_nav" aria-label="제품 시연">
       <a href="#demo-workspace">Workspace</a>
       <a href="#demo-crew">Crew</a>
@@ -202,33 +202,39 @@
       <h3 id="demo-workspace-title" data-i18n="scene_conversation_title">작업 대화를 열어 둔 채 AIN에게 묻기</h3>
       <p data-i18n="scene_conversation_desc">왼쪽 하단 AIN 카드의 말풍선을 누르면 옆에 대화 칸이 열립니다. 작업 대화는 중앙에 둔 채, 다음에 확인할 것을 AIN에게 물어봅니다.</p>
     </div>
-    <figure class="scene-window">
-      <div class="scene-media">
-        <video class="scene-video" controls playsinline preload="none" width="1440" height="872" poster="screenshots/product-scenes/workspace-demo.jpg" aria-labelledby="demo-workspace-title" aria-describedby="demo-workspace-caption">
-          <source src="screenshots/product-scenes/workspace-demo.mp4" type="video/mp4" />
-          <a href="screenshots/product-scenes/workspace-demo.mp4" data-i18n="scene_video_fallback">영상 파일 열기</a>
-        </video>
-        <button type="button" class="scene-play" hidden><span aria-hidden="true">▶</span><span data-i18n="scene_workspace_play">Workspace 재생</span></button>
+    <figure class="scene-window" data-scene-loop>
+      <div class="scene-controls" aria-labelledby="demo-workspace-title" role="group" hidden>
+        <div class="scene-steps">
+          <button type="button" data-frame="workspace-open" data-caption="scene_ws_open" data-i18n="scene_ws_open_label" aria-controls="workspace-frame" aria-pressed="false">대화 칸 열기</button>
+          <button type="button" data-frame="workspace-ask" data-caption="scene_ws_ask" data-i18n="scene_ws_ask_label" aria-controls="workspace-frame" aria-pressed="false">질문 입력</button>
+          <button type="button" data-frame="workspace-reply" data-caption="scene_ws_reply" data-i18n="scene_ws_reply_label" aria-controls="workspace-frame" aria-pressed="true">답변 확인</button>
+        </div>
+        <button type="button" class="scene-toggle" data-i18n="scene_play" aria-controls="workspace-frame">재생</button>
       </div>
-      <figcaption id="demo-workspace-caption" data-i18n="scene_workspace_caption">실제 앱 녹화 · 예시 대화 사용 · 소리 없음</figcaption>
+      <img id="workspace-frame" class="scene-frame" src="screenshots/product-scenes/workspace-reply.jpg" width="1440" height="872" loading="lazy" decoding="async" alt="" />
+      <figcaption><span class="scene-caption" data-i18n="scene_ws_reply">AIN이 초안이 목록에서 빠졌는지 확인하라고 답합니다.</span><span class="scene-credit" data-i18n="scene_capture_credit">실제 앱 화면 · 예시 응답 사용</span><a class="scene-enlarge" href="screenshots/product-scenes/workspace-reply.jpg" target="_blank" rel="noopener" data-i18n="scene_enlarge">화면 크게 보기</a></figcaption>
     </figure>
   </article>
 
   <article id="demo-crew" class="product-scene" aria-labelledby="demo-crew-title">
     <div class="product-scene-copy">
       <span>Crew</span>
-      <h3 id="demo-crew-title" data-i18n="scene_crew_title">터미널을 열고, 바뀐 코드를 나란히 보기</h3>
-      <p data-i18n="scene_crew_desc">프로젝트 폴더에서 터미널을 열어 Git 상태를 확인합니다. 변경 패널에서 파일을 선택하면 어떤 줄이 바뀌었는지 터미널 옆에서 볼 수 있습니다.</p>
+      <h3 id="demo-crew-title" data-i18n="scene_crew_title">AIN이 일을 나누고 결과를 모읍니다</h3>
+      <p data-i18n="scene_crew_desc">출시 준비를 요청하면 AIN이 공지 초안과 체크리스트를 각 에이전트에게 맡깁니다. 왼쪽에서 진행 상태를 보고, 전달함의 개별 보고와 AIN이 정리한 최종 답변을 확인할 수 있습니다.</p>
     </div>
-    <figure class="scene-window">
-      <div class="scene-media">
-        <video class="scene-video" controls playsinline preload="none" width="1440" height="872" poster="screenshots/product-scenes/crew-demo.jpg" aria-labelledby="demo-crew-title" aria-describedby="demo-crew-caption">
-          <source src="screenshots/product-scenes/crew-demo.mp4" type="video/mp4" />
-          <a href="screenshots/product-scenes/crew-demo.mp4" data-i18n="scene_video_fallback">영상 파일 열기</a>
-        </video>
-        <button type="button" class="scene-play" hidden><span aria-hidden="true">▶</span><span data-i18n="scene_crew_play">Crew 재생</span></button>
+    <figure class="scene-window" data-scene-loop>
+      <div class="scene-controls" aria-labelledby="demo-crew-title" role="group" hidden>
+        <div class="scene-steps">
+          <button type="button" data-frame="crew-ask" data-caption="scene_crew_ask" data-i18n="scene_crew_ask_label" aria-controls="crew-frame" aria-pressed="false">요청</button>
+          <button type="button" data-frame="crew-delegate" data-caption="scene_crew_delegate" data-i18n="scene_crew_delegate_label" aria-controls="crew-frame" aria-pressed="true">업무 분담</button>
+          <button type="button" data-frame="crew-progress" data-caption="scene_crew_progress" data-i18n="scene_crew_progress_label" aria-controls="crew-frame" aria-pressed="false">진행 상황</button>
+          <button type="button" data-frame="crew-reports" data-caption="scene_crew_reports" data-i18n="scene_crew_reports_label" aria-controls="crew-frame" aria-pressed="false">개별 보고</button>
+          <button type="button" data-frame="crew-summary" data-caption="scene_crew_summary" data-i18n="scene_crew_summary_label" aria-controls="crew-frame" aria-pressed="false">결과 정리</button>
+        </div>
+        <button type="button" class="scene-toggle" data-i18n="scene_play" aria-controls="crew-frame">재생</button>
       </div>
-      <figcaption id="demo-crew-caption" data-i18n="scene_crew_caption">실제 앱 녹화 · 데모 프로젝트에서 Git 실행 · 소리 없음</figcaption>
+      <img id="crew-frame" class="scene-frame" src="screenshots/product-scenes/crew-delegate.jpg" width="1440" height="872" loading="lazy" decoding="async" alt="" />
+      <figcaption><span class="scene-caption" data-i18n="scene_crew_delegate">왼쪽 Agents 목록에 AIN이 나눈 두 작업이 실행 중으로 표시됩니다.</span><span class="scene-credit" data-i18n="scene_capture_credit">실제 앱 화면 · 예시 응답 사용</span><a class="scene-enlarge" href="screenshots/product-scenes/crew-delegate.jpg" target="_blank" rel="noopener" data-i18n="scene_enlarge">화면 크게 보기</a></figcaption>
     </figure>
   </article>
 </section>
@@ -663,22 +669,37 @@ const I18N = {
     hero_eyebrow: "DAP v1.7.1 · Preview",
     product_hero_title: "AIN과 함께, 일의 다음 장면으로",
     product_hero_desc: "DAP은 대화만 하는 펫이 아닙니다. AIN과 이야기한 요청이 파일 확인, 문서 편집, 터미널과 자동화 작업으로 이어지는 데스크톱 작업 공간입니다.",
-    product_hero_tour: "작동 영상 보기",
+    product_hero_tour: "앱 작동 모습 보기",
     product_capture_caption: "v1.7.1 개발 빌드 실제 화면 · 최종 공개본에서는 세부 UI가 달라질 수 있습니다.",
     ain_status: "AIN · 준비됨",
     product_scenes_label: "Inside DAP",
     product_scenes_title: "Workspace와 Crew, 실제로 쓰는 모습",
-    product_scenes_desc: "Workspace에서는 대화를 이어가고, Crew에서는 프로젝트의 터미널과 변경 파일을 함께 봅니다. 두 영상 모두 DAP 개발 빌드를 직접 실행해 녹화했습니다.",
+    product_scenes_desc: "Workspace에서는 AIN과 대화를 이어가고, Crew에서는 AIN에게 여러 작업을 맡깁니다. 실제 개발 빌드에서 캡처한 화면이 순서대로 재생됩니다.",
     scene_nav: "제품 시연",
     scene_conversation_title: "작업 대화를 열어 둔 채 AIN에게 묻기",
     scene_conversation_desc: "왼쪽 하단 AIN 카드의 말풍선을 누르면 옆에 대화 칸이 열립니다. 작업 대화는 중앙에 둔 채, 다음에 확인할 것을 AIN에게 물어봅니다.",
-    scene_crew_title: "터미널을 열고, 바뀐 코드를 나란히 보기",
-    scene_crew_desc: "프로젝트 폴더에서 터미널을 열어 Git 상태를 확인합니다. 변경 패널에서 파일을 선택하면 어떤 줄이 바뀌었는지 터미널 옆에서 볼 수 있습니다.",
-    scene_workspace_caption: "실제 앱 녹화 · 예시 대화 사용 · 소리 없음",
-    scene_crew_caption: "실제 앱 녹화 · 데모 프로젝트에서 Git 실행 · 소리 없음",
-    scene_video_fallback: "영상 파일 열기",
-    scene_workspace_play: "Workspace 재생",
-    scene_crew_play: "Crew 재생",
+    scene_crew_title: "AIN이 일을 나누고 결과를 모읍니다",
+    scene_crew_desc: "출시 준비를 요청하면 AIN이 공지 초안과 체크리스트를 각 에이전트에게 맡깁니다. 왼쪽에서 진행 상태를 보고, 전달함의 개별 보고와 AIN이 정리한 최종 답변을 확인할 수 있습니다.",
+    scene_capture_credit: "실제 앱 화면 · 예시 응답 사용",
+    scene_enlarge: "화면 크게 보기",
+    scene_play: "재생",
+    scene_pause: "일시 정지",
+    scene_ws_open_label: "대화 칸 열기",
+    scene_ws_ask_label: "질문 입력",
+    scene_ws_reply_label: "답변 확인",
+    scene_ws_open: "Workspace 왼쪽 하단의 말풍선을 눌러 AIN 대화 칸을 엽니다.",
+    scene_ws_ask: "작업 대화를 그대로 둔 채, 다음에 무엇을 확인할지 AIN에게 묻습니다.",
+    scene_ws_reply: "AIN이 초안이 목록에서 빠졌는지 확인하라고 답합니다.",
+    scene_crew_ask_label: "요청",
+    scene_crew_delegate_label: "업무 분담",
+    scene_crew_progress_label: "진행 상황",
+    scene_crew_reports_label: "개별 보고",
+    scene_crew_summary_label: "결과 정리",
+    scene_crew_ask: "AIN에게 출시 공지 초안과 체크리스트를 나눠서 맡겨 달라고 요청합니다.",
+    scene_crew_delegate: "왼쪽 Agents 목록에 AIN이 나눈 두 작업이 실행 중으로 표시됩니다.",
+    scene_crew_progress: "공지 초안은 완료됐고, 체크리스트는 아직 실행 중입니다.",
+    scene_crew_reports: "전달함에서 공지 초안과 체크리스트가 각각 AIN에게 보고된 내용을 봅니다.",
+    scene_crew_summary: "AIN이 공지 초안과 출시 전 확인 목록을 답변 하나로 정리합니다.",
     ain_label: "Meet AIN",
     ain_title: "화면을 꾸미는 캐릭터가 아니라, 일을 함께 이어가는 친구",
     ain_desc: "AIN은 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.",
@@ -827,17 +848,32 @@ const I18N = {
     ain_status: "AIN · Ready",
     product_scenes_label: "Inside DAP",
     product_scenes_title: "Workspace and Crew in action",
-    product_scenes_desc: "Keep the conversation going in Workspace, then see the project terminal and changed files together in Crew. Both clips were recorded in a running DAP development build.",
+    product_scenes_desc: "Keep the conversation going with AIN in Workspace, then ask AIN to coordinate several tasks in Crew. The demos play through screenshots captured in the actual development build.",
     scene_nav: "Product demos",
     scene_conversation_title: "Ask AIN while keeping your work chat open",
     scene_conversation_desc: "Use the speech bubble on AIN's card in the lower left. Ask what to check next in the box beside AIN while the work conversation stays open in the center.",
-    scene_crew_title: "Open a terminal and review changes beside it",
-    scene_crew_desc: "Open a terminal in the project folder and check the Git status. Select a file in the Changes panel to see the exact diff next to the terminal.",
-    scene_workspace_caption: "Recorded in the app · Example conversation · No audio",
-    scene_crew_caption: "Recorded in the app · Git running in a demo project · No audio",
-    scene_video_fallback: "Open the video file",
-    scene_workspace_play: "Play Workspace",
-    scene_crew_play: "Play Crew",
+    scene_crew_title: "AIN delegates the work and brings the results together",
+    scene_crew_desc: "Ask AIN for help with a launch and it assigns the announcement draft and checklist to separate agents. Watch progress on the left, read individual reports in Deliveries, and review AIN’s combined answer.",
+    scene_capture_credit: "Actual app screen · Example responses",
+    scene_enlarge: "Open full-size image",
+    scene_play: "Play",
+    scene_pause: "Pause",
+    scene_ws_open_label: "Open chat",
+    scene_ws_ask_label: "Ask a question",
+    scene_ws_reply_label: "Read the reply",
+    scene_ws_open: "The speech bubble in the lower left of Workspace opens AIN’s chat box.",
+    scene_ws_ask: "Ask what to check next while keeping the work conversation open.",
+    scene_ws_reply: "AIN suggests checking that drafts are no longer listed.",
+    scene_crew_ask_label: "Request",
+    scene_crew_delegate_label: "Delegate",
+    scene_crew_progress_label: "Track progress",
+    scene_crew_reports_label: "Read reports",
+    scene_crew_summary_label: "Review summary",
+    scene_crew_ask: "Ask AIN to assign the announcement draft and launch checklist to separate agents.",
+    scene_crew_delegate: "The Agents list on the left shows both tasks running under AIN.",
+    scene_crew_progress: "The announcement draft is done, while the checklist is still running.",
+    scene_crew_reports: "Deliveries shows the individual reports sent to AIN.",
+    scene_crew_summary: "AIN brings the announcement draft and launch checklist together in one reply.",
     ain_label: "Meet AIN",
     ain_title: "Not a decorative character, but a friend who continues the work",
     ain_desc: "AIN is DAP's default AI friend. Her state changes when work starts, and completed results lead into the next request in the same conversation. In Crew, her name also represents the friend orchestrating a project.",
@@ -1107,26 +1143,66 @@ function setupAinMotionPreferences() {
 }
 setupAinMotionPreferences();
 
-const sceneVideos = document.querySelectorAll('.scene-video');
-for (const video of sceneVideos) {
-  const button = video.parentElement.querySelector('.scene-play');
-  if (button) {
-    video.controls = false;
-    button.hidden = false;
-    button.addEventListener('click', async () => {
-      try { await video.play(); }
-      catch {
-        // Leave the native player available to retry if autoplay policy or loading rejects play().
-      }
-      video.controls = true;
-      if (document.activeElement === button) video.focus({ preventScroll: true });
-      button.hidden = true;
-    }, { once: true });
+function setupSceneLoop(figure) {
+  const image = figure.querySelector('.scene-frame');
+  const toggle = figure.querySelector('.scene-toggle');
+  const caption = figure.querySelector('.scene-caption');
+  const enlarge = figure.querySelector('.scene-enlarge');
+  const steps = [...figure.querySelectorAll('[data-frame]')];
+  const sources = steps.map(step => `screenshots/product-scenes/${step.dataset.frame}.jpg`);
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let index = steps.findIndex(step => step.getAttribute('aria-pressed') === 'true');
+  let visible = false;
+  let manual;
+  let timer;
+  let preloaded = false;
+  const playing = () => manual ?? !motion.matches;
+  const translate = (element, key) => {
+    element.dataset.i18n = key;
+    element.textContent = (I18N[document.documentElement.lang] ?? I18N.ko)[key];
+  };
+  const select = next => {
+    index = next;
+    image.src = sources[index];
+    enlarge.href = sources[index];
+    steps.forEach((step, position) => step.setAttribute('aria-pressed', String(position === index)));
+    translate(caption, steps[index].dataset.caption);
+  };
+  const schedule = () => {
+    clearTimeout(timer);
+    translate(toggle, playing() ? 'scene_pause' : 'scene_play');
+    if (!playing() || !visible || document.hidden) return;
+    timer = setTimeout(() => {
+      select((index + 1) % steps.length);
+      schedule();
+    }, index === steps.length - 1 ? 4900 : 3200);
+  };
+  for (const [position, step] of steps.entries()) {
+    step.addEventListener('click', () => {
+      manual = false;
+      select(position);
+      schedule();
+    });
   }
-  video.addEventListener('play', () => {
-    for (const other of sceneVideos) if (other !== video) other.pause();
+  toggle.addEventListener('click', () => {
+    manual = !playing();
+    schedule();
   });
+  const observer = new IntersectionObserver(([entry]) => {
+    visible = entry.intersectionRatio >= 0.20;
+    if (visible && !preloaded) {
+      preloaded = true;
+      for (const src of sources) new Image().src = src;
+    }
+    schedule();
+  }, { threshold: 0.20 });
+  observer.observe(image);
+  document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', schedule);
+  schedule();
+  figure.querySelector('.scene-controls').hidden = false;
 }
+document.querySelectorAll('[data-scene-loop]').forEach(setupSceneLoop);
 
 for (const card of document.querySelectorAll('.mini-pet-card')) {
   const image = card.querySelector('.mini-pet-image');
