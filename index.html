@@ -41,7 +41,7 @@
   <link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180" />
   <link rel="manifest" href="site.webmanifest" />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261119-ain-panel" />
+  <link rel="stylesheet" href="styles.css?v=20261119-actual-app" />
   <script>
     (() => {
       try {
@@ -189,37 +189,19 @@
   <div class="product-scenes-head">
     <p class="section-label compact" data-i18n="product_scenes_label">Inside DAP</p>
     <h2 id="product-scenes-title" data-i18n="product_scenes_title">말을 건 순간부터, 결과가 남을 때까지</h2>
-    <p data-i18n="product_scenes_desc">v1.7.1 개발 과정에서 검증한 실제 앱 화면 위에서 AIN 패널의 움직임과 대화 흐름을 보여줍니다.</p>
+    <p data-i18n="product_scenes_desc">v1.7.1 개발 빌드를 직접 실행해 캡처한 실제 앱 화면입니다. 랜딩페이지에서 다시 그린 UI는 포함하지 않았습니다.</p>
   </div>
 
   <article class="product-scene">
     <div class="product-scene-copy">
       <span>Workspace</span>
-      <h3 data-i18n="scene_conversation_title">대화가 파일과 코드의 결과로 이어집니다</h3>
-      <p data-i18n="scene_conversation_desc">프로젝트를 선택하고 AIN 패널에서 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AIN의 표정도 생각·말하기·완료 상태에 맞춰 바뀝니다.</p>
+      <h3 data-i18n="scene_conversation_title">AIN은 Workspace 안에서 이렇게 대화합니다</h3>
+      <p data-i18n="scene_conversation_desc">AIN은 프로젝트 목록 아래 얼굴 카드에 머물고, 말풍선 버튼을 누르면 카드 옆에 대화 칸이 열립니다. 본 대화와 작업 결과는 중앙 영역에서 이어집니다.</p>
     </div>
     <figure class="scene-window">
-      <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-conversation-dark.png" width="1296" height="834" alt="DAP Workspace에서 프로젝트 파일과 코드를 확인한 실제 다크 테마 대화 화면" />
-      <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-conversation-light.png" width="1296" height="834" alt="DAP Workspace에서 프로젝트 파일과 코드를 확인한 실제 라이트 테마 대화 화면" />
-      <div class="ain-demo-sidebar-brand" aria-hidden="true"><span>DAP</span><img src="characters/ain/ain-happy.webp" alt="" /></div>
-      <div class="ain-demo-panel" data-phase="thinking" aria-label="Workspace 안에서 AIN과 대화하는 패널">
-        <div class="ain-demo-face">
-          <video data-ain-motion="thinking" autoplay muted loop playsinline aria-hidden="true"><source src="characters/ain/face/thinking.webm" type="video/webm" /></video>
-          <video data-ain-motion="speaking" autoplay muted loop playsinline aria-hidden="true"><source src="characters/ain/face/speaking.webm" type="video/webm" /></video>
-          <video data-ain-motion="happy" autoplay muted loop playsinline aria-hidden="true"><source src="characters/ain/face/happy.webm" type="video/webm" /></video>
-          <span class="ain-demo-agent">Claude · 작업 중</span>
-          <strong>AIN</strong>
-        </div>
-        <div class="ain-demo-dialog">
-          <div class="ain-demo-dialog-head"><strong>AIN과 대화</strong><span>프로젝트 구조 확인</span></div>
-          <div class="ain-demo-lines" aria-live="polite">
-            <p class="ain-demo-user" data-i18n="ain_demo_user">이 프로젝트에서 먼저 확인할 파일을 알려줘.</p>
-            <p class="ain-demo-response" data-i18n="ain_demo_thinking">파일과 대화 맥락을 함께 살펴보고 있어요.</p>
-          </div>
-          <div class="ain-demo-composer"><span data-i18n="ain_demo_placeholder">AIN에게 이어서 요청하기</span><b>↵</b></div>
-        </div>
-      </div>
-      <figcaption data-i18n="scene_ain_caption">v1.7.1 실제 Workspace 캡처 + AIN 패널 인터랙션</figcaption>
+      <img class="scene-capture scene-capture-dark" src="screenshots/product-scenes/workspace-ain-dialog-dark.png" width="2560" height="1550" alt="다크 테마 DAP Workspace 왼쪽 하단의 AIN 얼굴 카드와 옆에 열린 대화 칸이 보이는 실제 앱 화면" />
+      <img class="scene-capture scene-capture-light" src="screenshots/product-scenes/workspace-ain-dialog-light.png" width="2560" height="1550" alt="라이트 테마 DAP Workspace 왼쪽 하단의 AIN 얼굴 카드와 옆에 열린 대화 칸이 보이는 실제 앱 화면" />
+      <figcaption data-i18n="scene_ain_caption">v1.7.1 개발 빌드 직접 캡처 · QA 대화 데이터</figcaption>
     </figure>
   </article>
 
@@ -701,21 +683,16 @@ const I18N = {
     ain_status: "AIN · 준비됨",
     product_scenes_label: "Inside DAP",
     product_scenes_title: "말을 건 순간부터, 결과가 남을 때까지",
-    product_scenes_desc: "v1.7.1 개발 과정에서 검증한 실제 앱 화면 위에서 AIN 패널의 움직임과 대화 흐름을 보여줍니다.",
-    scene_conversation_title: "대화가 파일과 코드의 결과로 이어집니다",
-    scene_conversation_desc: "프로젝트를 선택하고 AIN 패널에서 요청하면, 확인한 파일과 코드·표·실행 결과가 같은 대화 안에 남습니다. AIN의 표정도 생각·말하기·완료 상태에 맞춰 바뀝니다.",
+    product_scenes_desc: "v1.7.1 개발 빌드를 직접 실행해 캡처한 실제 앱 화면입니다. 랜딩페이지에서 다시 그린 UI는 포함하지 않았습니다.",
+    scene_conversation_title: "AIN은 Workspace 안에서 이렇게 대화합니다",
+    scene_conversation_desc: "AIN은 프로젝트 목록 아래 얼굴 카드에 머물고, 말풍선 버튼을 누르면 카드 옆에 대화 칸이 열립니다. 본 대화와 작업 결과는 중앙 영역에서 이어집니다.",
     scene_automation_title: "반복 작업도 같은 Workspace에서 관리합니다",
     scene_automation_desc: "대화에서 만든 자동화 작업을 별도 화면에서 찾고, 활성 상태와 실행 흐름을 확인합니다. Workspace와 Crew는 같은 레일과 화면 문법을 공유합니다.",
     scene_actual_caption: "v1.7.1 개발 빌드 실제 화면",
-    scene_ain_caption: "v1.7.1 실제 Workspace 캡처 + AIN 패널 인터랙션",
+    scene_ain_caption: "v1.7.1 개발 빌드 직접 캡처 · QA 대화 데이터",
     ain_label: "Meet AIN",
     ain_title: "화면을 꾸미는 캐릭터가 아니라, 일을 함께 이어가는 친구",
     ain_desc: "AIN은 DAP의 기본 AI 친구입니다. 작업을 시작하면 상태가 바뀌고, 완료된 결과와 다음 요청을 같은 대화에서 이어갑니다. Crew에서는 프로젝트를 조율하는 친구의 이름으로도 나타납니다.",
-    ain_demo_user: "이 프로젝트에서 먼저 확인할 파일을 알려줘.",
-    ain_demo_thinking: "파일과 대화 맥락을 함께 살펴보고 있어요.",
-    ain_demo_speaking: "확인했어요. note.txt와 설정 파일부터 보면 흐름을 가장 빨리 이해할 수 있어요.",
-    ain_demo_happy: "정리가 끝났어요. 다음 요청도 이 패널에서 바로 이어갈 수 있어요.",
-    ain_demo_placeholder: "AIN에게 이어서 요청하기",
     ain_state_work: "작업 중",
     ain_state_work_desc: "요청과 도구 실행을 따라갑니다.",
     ain_state_context: "맥락 유지",
@@ -870,21 +847,16 @@ const I18N = {
     ain_status: "AIN · Ready",
     product_scenes_label: "Inside DAP",
     product_scenes_title: "From the first request to a result that stays",
-    product_scenes_desc: "See AIN move and continue a conversation over real application screens verified during v1.7.1 development.",
-    scene_conversation_title: "A conversation becomes files, code, and results",
-    scene_conversation_desc: "Choose a project and ask from the AIN panel. Reviewed files, code, tables, and run results remain in the same conversation while AIN reacts through thinking, speaking, and complete states.",
+    product_scenes_desc: "These are direct captures from the running v1.7.1 development build. No landing-page reconstruction is overlaid on the application UI.",
+    scene_conversation_title: "This is how AIN chats inside Workspace",
+    scene_conversation_desc: "AIN stays in the face card below the project list. Pressing the speech-bubble button opens a conversation box beside the card, while the main conversation and work results continue in the center.",
     scene_automation_title: "Manage repeat work in the same Workspace",
     scene_automation_desc: "Find automation created from conversations, then review its active state and execution flow. Workspace and Crew share the same rail and interface grammar.",
     scene_actual_caption: "Actual v1.7.1 development build",
-    scene_ain_caption: "Actual v1.7.1 Workspace capture + interactive AIN panel",
+    scene_ain_caption: "Direct v1.7.1 development build capture · QA conversation data",
     ain_label: "Meet AIN",
     ain_title: "Not a decorative character, but a friend who continues the work",
     ain_desc: "AIN is DAP's default AI friend. Her state changes when work starts, and completed results lead into the next request in the same conversation. In Crew, her name also represents the friend orchestrating a project.",
-    ain_demo_user: "Which files should I inspect first in this project?",
-    ain_demo_thinking: "I'm reading the files together with our conversation context.",
-    ain_demo_speaking: "I checked them. Start with note.txt and the configuration files to understand the flow fastest.",
-    ain_demo_happy: "The review is ready. Continue with the next request right here in this panel.",
-    ain_demo_placeholder: "Continue with AIN",
     ain_state_work: "Working",
     ain_state_work_desc: "Follows your request and tool execution.",
     ain_state_context: "Keeps context",
@@ -1139,45 +1111,20 @@ function setupSiteMenu() {
 }
 setupSiteMenu();
 
-function setupAinDemo() {
-  const panel = document.querySelector('.ain-demo-panel');
-  const response = panel?.querySelector('.ain-demo-response');
-  if (!panel || !response) return;
-  const phases = [
-    ['thinking', 'ain_demo_thinking'],
-    ['speaking', 'ain_demo_speaking'],
-    ['happy', 'ain_demo_happy'],
-  ];
+function setupAinMotionPreferences() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let index = 0;
-  let timer = 0;
-  const render = () => {
-    const [phase, key] = phases[index];
-    const dict = I18N[document.documentElement.lang] || I18N.ko;
-    panel.dataset.phase = phase;
-    response.dataset.i18n = key;
-    response.textContent = dict[key];
-  };
   const stop = () => {
-    if (timer) window.clearInterval(timer);
-    timer = 0;
-    for (const video of document.querySelectorAll('.ain-hero-motion, .ain-story-main, .ain-demo-face video')) video.pause();
+    for (const video of document.querySelectorAll('.ain-hero-motion, .ain-story-main')) video.pause();
   };
   const start = () => {
-    if (reduced.matches) { stop(); render(); return; }
-    for (const video of document.querySelectorAll('.ain-hero-motion, .ain-story-main, .ain-demo-face video')) video.play().catch(() => {});
-    if (timer) return;
-    timer = window.setInterval(() => {
-      index = (index + 1) % phases.length;
-      render();
-    }, 3600);
+    if (reduced.matches) { stop(); return; }
+    for (const video of document.querySelectorAll('.ain-hero-motion, .ain-story-main')) video.play().catch(() => {});
   };
-  render();
   start();
   reduced.addEventListener('change', start);
   document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
 }
-setupAinDemo();
+setupAinMotionPreferences();
 
 for (const card of document.querySelectorAll('.mini-pet-card')) {
   const image = card.querySelector('.mini-pet-image');
