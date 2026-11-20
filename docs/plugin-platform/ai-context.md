@@ -384,6 +384,6 @@ Follow manifest_version: 2 and Plugin Platform 0.4.0. Do not invent Host APIs.
 
 Declare `pet.skin` and feature-detect `ctx.host.petSkins.apiVersion === 2`. Register a local PNG definition with `registerSkin`, then call `apply({usePersona:true|false})`. Registration alone does not change appearance. `reset` and `dispose` affect only that registration if active; disable/unload also clears owned state. The last applied skin wins. Capture persona at each user/proactive turn; preserve user names, call names, memory and host permissions.
 
-See [pet-skins.md](pet-skins.md) for the complete schema, limits, lifecycle and supported motion mapping. `look` is preview metadata only; the desktop pet does not use 16-direction gaze yet. No sprite assets are bundled with DAP. Permission controls Host API exposure; plugin entry code remains trusted in-process code.
+See [pet-skins.md](pet-skins.md) for the complete schema, limits, lifecycle and supported motion mapping. `look` is preview metadata only; the desktop partner does not use 16-direction gaze yet. No sprite assets are bundled with DAP. Permission controls Host API exposure; plugin entry code remains trusted in-process code.
 
 Plugin settings read/write keys must use the fully qualified section id `${ctx.pluginId}.section`; section contribution registration qualifies local ids, but `ctx.host.settings.values`/`set` do not.

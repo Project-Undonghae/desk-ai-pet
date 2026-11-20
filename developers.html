@@ -122,7 +122,7 @@
     <section id="workspace">
       <h2>DAP Workspace · 1.6.25 / 1.6.26</h2>
       <p>대화·프로젝트 세션·도구·플러그인·자동화와 실행 승인·취소를 한 작업창에서 이어갑니다. 입력창의 작은 에이전트 표시와 기존 DAP 설정에서 Claude/Codex CLI 연결을 관리하며, 기존 인증·대화 저장 위치를 유지합니다.</p>
-      <p>세션 삭제/복원, 프로젝트 이동, 다른 대화에 세션 참조 첨부를 지원합니다. agent-desktop·REA·Ghidra·Java를 번들로 포함하며, 창을 최소화하거나 닫으면 바탕화면 펫으로 돌아갑니다.</p>
+      <p>세션 삭제/복원, 프로젝트 이동, 다른 대화에 세션 참조 첨부를 지원합니다. agent-desktop·REA·Ghidra·Java를 번들로 포함하며, 창을 최소화하거나 닫으면 바탕화면 파트너로 돌아갑니다.</p>
       <p>1.6.26은 첫 번들 준비 대기 한도를 3분으로 조정하고, 시작 실패 시 원래 오류와 다시 시작 버튼을 유지합니다. 재시도는 기존 프로세스 종료·재연결을 기다려 중복 실행을 막습니다.</p>
       <p><a href="docs/plugin-platform/workspace.md">Workspace 시작·플랫폼·재시도 가이드</a>에서 공개 안정판의 기능과 검증 범위를 확인하세요. 이 페이지의 <code>plugin.yaml</code> / <code>ctx.host.*</code>는 기존 데스크톱 플러그인 계약이며, Workspace 내부 도구 API를 임의로 뜻하지 않습니다.</p>
     </section>
@@ -132,12 +132,12 @@
       <p>DAP 1.6.15부터 사용자 화면에서는 설치형 플러그인을 <strong>앱</strong>으로 안내합니다. 기술 계약은 기존 <code>plugin.yaml</code>, <code>activate(ctx)</code>, <code>ctx.host.*</code>를 유지합니다. 앱 UI 시스템과 manifest 버전은 별개입니다.</p>
       <h3>앱 찾기에서 설치하기 · DAP 1.6.17+</h3>
       <ol>
-        <li>펫의 전체 메뉴에서 앱 보관함을 열고, 검색창 옆 가방 아이콘으로 <strong>앱 찾기</strong>에 들어갑니다.</li>
+        <li>파트너의 전체 메뉴에서 앱 보관함을 열고, 검색창 옆 가방 아이콘으로 <strong>앱 찾기</strong>에 들어갑니다.</li>
         <li>이름·기능으로 검색하거나 카테고리로 좁힙니다. 이미 설치한 앱에는 설치됨이 표시됩니다.</li>
         <li><strong>받기</strong>에서 앱 이름·버전·요청 권한을 먼저 확인합니다. 다시 받기를 선택하면 설치하고, 취소하면 설치하지 않습니다.</li>
         <li><strong>내 앱</strong>에서는 설정·활성화·업데이트를 관리하고, <strong>웹 · 프로그램</strong>에서는 사용자 바로가기를 관리합니다.</li>
       </ol>
-      <p>기본 보관함 단축키는 Windows <code>Ctrl+Alt+M</code>, macOS <code>Cmd+Option+A</code>입니다. 기존 플러그인 단축키와 충돌하면 설정에서 재지정하거나 펫 전체 메뉴를 사용하세요. 앱 보관함의 dock은 최대 6개를 고정하며 드래그·보조 클릭·키보드 조작을 제공합니다.</p>
+      <p>기본 보관함 단축키는 Windows <code>Ctrl+Alt+M</code>, macOS <code>Cmd+Option+A</code>입니다. 기존 플러그인 단축키와 충돌하면 설정에서 재지정하거나 파트너 전체 메뉴를 사용하세요. 앱 보관함의 dock은 최대 6개를 고정하며 드래그·보조 클릭·키보드 조작을 제공합니다.</p>
       <h3>새 앱의 화면 작성</h3>
       <p>DAP 1.6.15+에서는 <code>ctx.host.windows.openPalette()</code> 앱 창과 <code>ctx.trayPanel.register()</code> 위젯에 DAP 토큰·공통 foundation을 자동 주입합니다. 기존 CSS는 유지하며 presentation·투명 canvas에는 주입하지 않습니다. 외부 글꼴이나 색상 패키지를 추가할 필요가 없습니다.</p>
       <pre><code>&lt;main class="dap-app"&gt;
@@ -399,7 +399,7 @@ panel.postMessage({ type: "status", items });</code></pre>
         <tr><td><code>ctx.commands.addCommand</code></td><td>자연어/라벨 기반 명령을 등록합니다.</td></tr>
         <tr><td><code>ctx.settings.registerSettingsSection</code></td><td>설정 UI 섹션을 등록합니다.</td></tr>
         <tr><td><code>ctx.trayMenu.addItem</code></td><td>트레이 메뉴 항목을 추가합니다.</td></tr>
-        <tr><td><code>ctx.radialMenu.addItem</code></td><td>펫 래디얼 메뉴 항목을 추가합니다.</td></tr>
+        <tr><td><code>ctx.radialMenu.addItem</code></td><td>파트너 래디얼 메뉴 항목을 추가합니다.</td></tr>
         <tr><td><code>ctx.shortcuts.registerShortcut</code></td><td>재바인딩 가능한 전역 단축키를 등록합니다.</td></tr>
         <tr><td><code>ctx.trayPanel.register</code></td><td>트레이 허브의 샌드박스 시각 패널을 등록합니다.</td></tr>
         <tr><td><code>ctx.aiContext.contribute</code></td><td>manifest에 선언한 짧은 AI 컨텍스트를 기여합니다.</td></tr>
@@ -409,7 +409,7 @@ panel.postMessage({ type: "status", items });</code></pre>
       <h3>Host services</h3>
       <table>
         <tr><th>권한</th><th>서비스</th><th>설명</th></tr>
-        <tr><td>권한 불필요</td><td><code>ctx.host.bubble</code></td><td>펫 말풍선을 출력합니다.</td></tr>
+        <tr><td>권한 불필요</td><td><code>ctx.host.bubble</code></td><td>파트너 말풍선을 출력합니다.</td></tr>
         <tr><td>권한 불필요</td><td><code>ctx.host.llm</code></td><td>활성 LLM provider로 텍스트를 생성합니다.</td></tr>
         <tr><td>권한 불필요</td><td><code>ctx.host.clipboard</code></td><td>현재 클립보드 텍스트를 읽고 씁니다. manifest 토큰은 설치 고지용입니다.</td></tr>
         <tr><td>권한 불필요</td><td><code>ctx.host.settings</code></td><td>이 플러그인의 선언형 설정값을 읽고 씁니다.</td></tr>
@@ -469,7 +469,7 @@ if (!status.connected) {
       <h3 id="pet-skins">캐릭터 스킨·이름·말투</h3>
       <p>DAP 1.6.0 이상에서 <code>pet.skin</code> 권한을 선언하고 <code>ctx.host.petSkins.apiVersion === 2</code>를 확인하세요. 등록 후 <code>apply({ usePersona: true })</code>로 외형·성격·말투를 함께 적용합니다. <strong>1.6.1 이상</strong>에서는 <code>persona.displayName</code>을 대화창 이름과 AI 자기소개·자기 지칭에도 적용합니다. <code>false</code>면 외형만 적용하며 <code>reset()</code>과 플러그인 해제는 기존 외형·이름·말투를 복원합니다. 사용자 이름·사용자에 대한 호칭·기억은 유지됩니다. <strong>1.6.4 이상</strong>에서는 채팅창 프로필 이미지도 활성 스킨의 첫 대기 프레임으로 바뀝니다. 말투 옵션과 관계없이 적용한 외형을 따르며, 스킨을 해제하면 기본/미니 이미지로 복원됩니다.</p>
       <p>PNG 상대 경로·크기·프레임 시간과 등록 소유권을 검증합니다. 16방향 시선은 팔레트 미리보기 전용입니다. <a href="docs/plugin-platform/pet-skins.md">데이터 형식·제한·모션 대응·수명 계약</a>을 확인하세요.</p>
-      <p>DAP 1.6.2부터 춤·먹기·그루밍·휴식도 기존 스킨 모션에 대응합니다. 전용 프레임이 없으면 점프·작업·대기 모션을 재사용하며, 이동 속도·배회 빈도는 바꾸지 않습니다. <strong>1.6.3부터는 스킨도 설정된 펫 크기를 유지</strong>하며, 화면 크기·이동 물리·마우스 감지 영역에 동일하게 반영합니다.</p>
+      <p>DAP 1.6.2부터 춤·먹기·그루밍·휴식도 기존 스킨 모션에 대응합니다. 전용 프레임이 없으면 점프·작업·대기 모션을 재사용하며, 이동 속도·배회 빈도는 바꾸지 않습니다. <strong>1.6.3부터는 스킨도 설정된 파트너 크기를 유지</strong>하며, 화면 크기·이동 물리·마우스 감지 영역에 동일하게 반영합니다.</p>
       <h3>Storage</h3>
       <pre><code>await ctx.host.storage.setJson("pins", ["a", "b"]);
 const pins = await ctx.host.storage.getJson("pins");
