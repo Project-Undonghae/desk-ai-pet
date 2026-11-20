@@ -15,8 +15,8 @@ test("release sync updates visible versions and validates before writing", async
     tag_name: `v${version}`,
     published_at: "2026-10-17T08:52:44Z",
     assets: [
-      `Desk-AI-Pet-Setup-${version}.exe`,
-      `Desk-AI-Pet-${version}-arm64.dmg`,
+      `Desk-AI-Platform-Setup-${version}.exe`,
+      `Desk-AI-Platform-${version}-arm64.dmg`,
     ].map((name) => ({ name, digest: `sha256:${"a".repeat(64)}`, browser_download_url: `https://example.com/${name}` })),
   };
   const run = (data = release) => spawnSync(process.execPath, [
@@ -51,6 +51,10 @@ test("release sync updates visible versions and validates before writing", async
     const intelAsset = { name: `Desk-AI-Pet-${version}.dmg`, digest: `sha256:${"b".repeat(64)}`, browser_download_url: "https://example.com/intel.dmg" };
     assert.equal(run({ ...release, assets: [...release.assets, intelAsset] }).status, 0);
     assert.deepEqual(await snapshot(), first, "Legacy Intel assets must not reappear in active downloads");
+    const petAssets = release.assets.map((asset) => ({ ...asset, name: asset.name.replace("Desk-AI-Platform", "Desk-AI-Pet") }));
+    assert.equal(run({ ...release, assets: petAssets }).status, 0, "Releases named Desk-AI-Pet must still sync");
+    assert.equal(run().status, 0);
+    assert.deepEqual(await snapshot(), first);
     assert.notEqual(run({ ...release, draft: true }).status, 0);
     assert.deepEqual(await snapshot(), first, "Draft releases must never replace stable downloads");
     assert.notEqual(run({ ...release, assets: release.assets.slice(0, 1) }).status, 0);
