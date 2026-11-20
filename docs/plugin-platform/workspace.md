@@ -1,6 +1,6 @@
 # DAP Workspace · 1.6.25 / 1.6.26
 
-DAP Workspace는 기존 DAP의 Claude/Codex CLI 로그인과 실행기를 재사용하는 작업창입니다. 대화·세션·도구·플러그인·자동화와 실행 승인·취소를 한 화면에서 다룹니다. 창을 최소화하거나 닫으면 바탕화면 펫으로 돌아갑니다.
+DAP Workspace는 기존 DAP의 Claude/Codex CLI 로그인과 실행기를 재사용하는 작업창입니다. 대화·세션·도구·플러그인·자동화와 실행 승인·취소를 한 화면에서 다룹니다. 창을 최소화하거나 닫으면 바탕화면 파트너로 돌아갑니다.
 
 공개 안정판 [v1.6.25](https://github.com/Project-Undonghae/desk-ai-pet/releases/tag/v1.6.25)와 [v1.6.26](https://github.com/Project-Undonghae/desk-ai-pet/releases/tag/v1.6.26)을 기준으로 합니다.
 
@@ -8,7 +8,7 @@ DAP Workspace는 기존 DAP의 Claude/Codex CLI 로그인과 실행기를 재사
 
 - Workspace에서 세션을 열고 요청을 입력합니다. 입력창의 작은 에이전트 표시와 기존 DAP 설정에서 Claude/Codex 연결을 관리합니다.
 - 기존 CLI 인증과 대화 저장 위치를 유지합니다. Claude를 사용하려면 해당 Claude CLI 로그인이 필요합니다.
-- Workspace 안에서도 펫 모션과 작업 중인 Codex·Claude 상태를 표시합니다.
+- Workspace 안에서도 파트너 모션과 작업 중인 Codex·Claude 상태를 표시합니다.
 
 ## 세션과 도구
 

@@ -18,9 +18,11 @@ async function github(path) {
   return response.json();
 }
 
-function requireAsset(assets, name) {
-  const asset = assets.find((candidate) => candidate.name === name);
-  if (!asset) throw new Error(`Release asset not found: ${name}`);
+// Releases before v1.7.1 were published as Desk-AI-Pet; later ones as Desk-AI-Platform.
+function requireAsset(assets, names) {
+  const asset = assets.find((candidate) => names.includes(candidate.name));
+  if (!asset) throw new Error(`Release asset not found: ${names.join(" or ")}`);
+  const name = asset.name;
   if (!asset.digest?.startsWith("sha256:")) {
     throw new Error(`Release asset is missing a sha256 digest: ${name}`);
   }
@@ -40,8 +42,8 @@ if (release.draft || release.prerelease) {
 
 const tag = release.tag_name;
 const version = tag.replace(/^v/, "");
-const win = requireAsset(release.assets, `Desk-AI-Pet-Setup-${version}.exe`);
-const macArm = requireAsset(release.assets, `Desk-AI-Pet-${version}-arm64.dmg`);
+const win = requireAsset(release.assets, [`Desk-AI-Platform-Setup-${version}.exe`, `Desk-AI-Pet-Setup-${version}.exe`]);
+const macArm = requireAsset(release.assets, [`Desk-AI-Platform-${version}-arm64.dmg`, `Desk-AI-Pet-${version}-arm64.dmg`]);
 
 const indexPath = "downloads/index.json";
 const downloads = JSON.parse(await readFile(indexPath, "utf8"));
