@@ -1,0 +1,11 @@
+{
+  "client_id": "https://project-undonghae.github.io/desk-ai-pet/oauth/client.json",
+  "client_name": "Desk AI Platform",
+  "client_uri": "https://project-undonghae.github.io/desk-ai-pet/",
+  "logo_uri": "https://project-undonghae.github.io/desk-ai-pet/favicon-512.png",
+  "redirect_uris": ["http://127.0.0.1/callback"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none",
+  "application_type": "native"
+}
